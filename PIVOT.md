@@ -81,20 +81,30 @@ Findings:
   dynamics from selecting a vacuum.
 - Commuting quadratic triples (105 pairings) give discrete vacua, almost all
   with degenerate entropy pairs — symmetric, no hierarchy.
-- **The canonical octonion-structured rotor Hamiltonian
-  H = Σ_{a<b} σ(a,b) · iL_aL_b (couplings = the multiplication-table signs
-  themselves) selects a unique, non-degenerate vacuum with a strictly
-  hierarchical entropy triple S = (0.630, 0.543, 0.430), τ₃ = 0.217.**
-  This is the first algebra-canonical object in the entire program that
-  produces a three-way entanglement hierarchy with no tuned parameters.
-  Its gap ratio r_S = 0.764 (or 1.31 under label reversal) does not match
-  r_SM = 1.817 — so it does not reproduce the SM hierarchy — but it
-  demonstrates the *mechanism*: hierarchy can be generated, not assumed.
-  Required robustness check before publishing: invariance of the entropy
-  triple under octonion basis/sign conventions and triality frames.
-- Generic random so(7) rotor Hamiltonians: unique vacua, 17.8% ordered,
-  0.8% land in the matching window — algebra-canonical does not mean
-  matching is automatic; the σ-structured choice is special.
+- **[CORRECTED 2026-06-09 after Experiment 6.]** The initially reported
+  hierarchical vacuum S = (0.630, 0.543, 0.430) was an artifact: Exp 4
+  originally built (iL_a)(iL_b) = −L_aL_b, an antisymmetric (non-Hermitian)
+  matrix, and `eigh` silently used its lower triangle. The correct
+  Hermitian rotor Hamiltonian H = Σ_{a<b} σ(a,b) · iL_aL_b selects a
+  **unique vacuum that is permutation-SYMMETRIC with exact invariants:**
+  marginal spectra (1/7, 6/7) on every qubit (S = h₂(1/7) ≈ 0.5917),
+  τ₃ = 8/49, all pairwise concurrences 2√2/7, so every CKW monogamy channel
+  equals exactly 8/49 — perfectly balanced bipartite/tripartite
+  entanglement. Spectrum {±3√7, ±√7(×3)}. The vacuum is the octonion
+  (√7 e₀ − i Σ ±e_a)/√14. **Robustness (Exp 6): the sorted triple is
+  IDENTICAL across all 128 sign gauges, all 5040 index relabelings
+  (GL(3,2) subgroup included), 2000 random combined transformations, the
+  opposite algebra, right-multiplication, and −H.** The unsigned-coupling
+  control |σ| = 1 gives a SEPARABLE vacuum: the multiplication-table signs
+  are what generate the entanglement.
+- Reinterpretation: the algebra selects a *symmetric* entangled vacuum —
+  exactly what the unification corollary wants as a UV boundary state
+  (and its entropy 0.5917 sits inside the marginal-constraint mid-band).
+  Hierarchy is a property of the flow, not the vacuum. Statics from
+  algebra; hierarchy from RG.
+- Generic random so(7) rotor Hamiltonians (corrected): unique vacua, 16.4%
+  ordered, 0.9% land in the matching window, mean S ≈ 0.75 — the
+  σ-structured choice occupies a distinguished symmetric position.
 
 **Level 3 (aspirational):** identify the flow parameter of Level 1 with a
 coarse-graining (MERA-like) flow whose fixed-point Hamiltonian is Level 2's.

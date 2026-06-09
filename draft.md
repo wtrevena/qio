@@ -4,7 +4,7 @@
 
 *University of Florida (PhD, Industrial and Systems Engineering)*
 
-April 2026
+June 2026
 
 *Acknowledgment: Portions of this manuscript were developed with the assistance of Claude (Anthropic), an AI language model, which contributed to literature synthesis, mathematical exposition, and drafting. Consistent with COPE authorship guidelines, the AI system is acknowledged as a tool rather than listed as a coauthor.*
 
@@ -12,7 +12,7 @@ April 2026
 
 ## Abstract
 
-Two largely independent research programs suggest that quantum information plays a foundational role in physics. The emergent-spacetime program (Jacobson, AdS/CFT, Ryu-Takayanagi, holographic quantum error correction) connects entanglement to spacetime geometry. The division-algebraic program (Günaydin-Gürsey, Dixon, Furey, Todorov, Szangolies) connects the normed division algebras — and specifically the octonions — to the gauge group and matter content of the Standard Model. We propose a speculative framework, the Quantum Information Ontology (QIO), that treats these as aspects of a single underlying structure, with the Szangolies construction (connecting three-qubit entanglement to SU(3) × SU(2) × U(1)/Z₆ via octonionic Hopf fibrations) as a bridge between them. We review both programs with explicit epistemic labeling. We formulate a pre-specified conjecture mapping gauge coupling hierarchies to vacuum entanglement entropy under a logarithmic map, and we prove analytically that this conjecture is underconstrained: the observed Standard Model coupling hierarchy at M_Z lies inside the image of the one-qubit marginal polytope under the binary entropy map, so unconstrained three-qubit states contain continuous families of entropy triples reproducing the hierarchy. We further compute that the log-inverse-coupling gap ratio r_SM(μ) varies by approximately 24% between M_Z and 10⁶ GeV under one-loop Standard Model running, and becomes singular near the α₁-α₂ crossing, establishing that a scale-independent entropy triple cannot simultaneously match couplings at all scales under the logarithmic map. These results establish that coupling-entropy matching alone cannot constitute evidence for the QIO; additional algebraic constraints selecting the vacuum state are necessary, and the coupling-entropy relationship must either hold at a privileged UV scale or involve scale-dependent entanglement flow. We characterize what such constraints would need to provide, specify a computational program to test whether algebraically motivated states intersect the coupling-matching manifold, and identify holdout observables that could elevate the test from a baseline consistency check to genuine evidence. The QIO is presented as a research program, not a completed theory. We do not claim to derive the Standard Model, resolve quantum gravity, or solve the cosmological constant problem.
+Two largely independent research programs suggest that quantum information plays a foundational role in physics. The emergent-spacetime program (Jacobson, AdS/CFT, Ryu-Takayanagi, holographic quantum error correction) connects entanglement to spacetime geometry. The division-algebraic program (Günaydin-Gürsey, Dixon, Furey, Todorov, Szangolies) connects the normed division algebras — and specifically the octonions — to the gauge group and matter content of the Standard Model. We propose a speculative framework, the Quantum Information Ontology (QIO) — presented here as an information-first organizing heuristic rather than a settled ontology — that treats these as aspects of a single underlying structure, with the Szangolies construction (connecting three-qubit entanglement to SU(3) × SU(2) × U(1)/Z₆ via octonionic Hopf fibrations) as a bridge between them. We review both programs with explicit epistemic labeling. We formulate a pre-specified conjecture mapping gauge coupling hierarchies to vacuum entanglement entropy under a logarithmic map, and we prove analytically that this conjecture is underconstrained: the observed Standard Model coupling hierarchy at M_Z lies inside the image of the one-qubit marginal polytope under the binary entropy map, so unconstrained three-qubit states contain continuous families of entropy triples reproducing the hierarchy. We then execute the associated computational program in full. Across 10⁷ Haar-random three-qubit states, the coupling-matching manifold is statistically generic in the 3-tangle, it intersects the W-class (zero 3-tangle) sector, and every canonical octonionic state construction tested yields permutation-degenerate entropies incapable of a three-way hierarchy — converting the underconstraint argument into a measured fact. We further compute that the log-inverse-coupling gap ratio r_SM(μ) varies by approximately 24% between M_Z and 10⁶ GeV under one-loop Standard Model running and becomes singular near the α₁-α₂ crossing, so a scale-independent entropy triple cannot match couplings at all scales; motivated by this failure, we reformulate the conjecture as a linear entropy-flow map α_i⁻¹(μ) = A + B·S_i(μ), under which the entropies run linearly in log μ with slopes proportional to the one-loop beta coefficients. Quantum-marginal constraints then do real work: the Higuchi-Sudbery-Szulc polygon inequality cuts 91% of the otherwise allowed (A, B) parameter space and forces |B| ≳ 126. Under this map, the Standard Model's entanglement asymmetry never reaches zero (minimum ≈ 0.029 at 2.4×10¹⁴ GeV, versus ≈ 0.003 at 1.4×10¹⁶ GeV in the MSSM), so a symmetric UV boundary condition requires coupling unification and hence physics beyond the Standard Model — a falsifiable commitment. We resolve the previously open problem of embedding Furey's Cl(6) construction into three qubits: the Jordan–Wigner transformation is the canonical isomorphism, under which electric charge becomes Hamming-weight grading; however, gauge transformations are not local unitaries of the qubit factorization, so entanglement in this frame is gauge-frame dependent — a caveat any physical coupling-entropy correspondence must address. Finally, we exhibit a candidate vacuum-selection dynamics: an octonion-structured rotor Hamiltonian — couplings given by the multiplication-table signs themselves, with no tuned parameters — whose ground state is unique, exactly convention-invariant (verified across all 128 octonion sign gauges, all 5040 index relabelings, the opposite algebra, and right-multiplication operators), and permutation-symmetric, with exact invariants: single-qubit marginal spectra (1/7, 6/7), all pairwise squared concurrences and the 3-tangle equal to 8/49, exactly balancing the Coffman-Kundu-Wootters monogamy budget. The multiplication-table signs are necessary for this entanglement: the unsigned counterpart Hamiltonian has a separable ground state. The algebra thus selects a symmetric entangled vacuum — a natural UV boundary state for the entropy-flow map — while the hierarchy must be generated by flow rather than statics. The QIO is presented as a research program, not a completed theory. We do not claim to derive the Standard Model, resolve quantum gravity, or solve the cosmological constant problem.
 
 ---
 
@@ -26,7 +26,7 @@ The second, rooted in algebraic particle physics, begins with Günaydin and Gür
 
 These programs have developed largely in isolation, though some researchers work across quantum information, holography, and algebraic particle physics. The Szangolies construction (2025) provides a concrete bridge: it shows that the Standard Model gauge group appears as a residual symmetry of a three-qubit octonionic Hopf fibration upon dimensional reduction, explicitly connecting gauge structure to quantum entanglement.
 
-We propose a speculative framework — the Quantum Information Ontology (QIO) — treating these programs as aspects of a unified picture. We then investigate a specific quantitative question: whether the gauge coupling hierarchy is encoded in the entanglement entropy of the vacuum state. We prove analytically that the naive version of this conjecture is underconstrained, and we characterize what additional structure is needed for it to become evidential.
+We propose a speculative framework — the Quantum Information Ontology (QIO) — treating these programs as aspects of a unified picture. We then investigate a specific quantitative question: whether the gauge coupling hierarchy is encoded in the entanglement entropy of the vacuum state. We prove analytically that the naive version of this conjecture is underconstrained, and we characterize what additional structure is needed for it to become evidential. We then execute the resulting computational program in full (Section 6) and develop three further research objects that the results motivate: an entropy-flow reformulation of the conjecture (Section 7), a candidate vacuum-selection dynamics with an exactly convention-invariant vacuum (Section 8), and a Jordan–Wigner bridge between the Furey and Szangolies constructions (Section 9).
 
 ### 1.1. Contributions
 
@@ -38,11 +38,19 @@ We propose a speculative framework — the Quantum Information Ontology (QIO) �
 
 4. **Analytic underconstraint result.** We prove that unconstrained three-qubit states can reproduce the observed Standard Model coupling hierarchy at M_Z under a two-parameter logarithmic map, establishing that coupling matching alone is not evidential (Section 5.3).
 
-5. **Scale-dependence computation.** We compute that the log-inverse-coupling gap ratio r_SM(μ) varies significantly under one-loop SM running (~24% between M_Z and 10⁶ GeV) and becomes singular near the α₁-α₂ crossing (~10¹³ GeV). We note that hypothetical exact UV coupling unification would correspond to symmetric entanglement S₁ = S₂ = S₃, though one-loop SM running does not produce exact three-coupling unification (Section 5.4).
+5. **Minimality of three qubits.** We prove that any two-qubit pure state has S₁ = S₂ identically (Schmidt decomposition), so a two-coupling version of the map is impossible, not merely underconstrained: three qubits is the smallest system on which the ansatz has any content (Section 5.6).
 
-6. **Characterization of evidential requirements.** We specify what additional constraints would elevate coupling-entropy correspondence from a baseline check to genuine evidence (Section 5.5).
+6. **Scale-dependence computation.** We compute that the log-inverse-coupling gap ratio r_SM(μ) varies significantly under one-loop SM running (~24% between M_Z and 10⁶ GeV) and becomes singular near the α₁-α₂ crossing (~10¹³ GeV), establishing that a scale-independent entropy triple cannot match couplings at all scales (Section 6.3). This motivates the entropy-flow reformulation of Section 7.
 
-7. **Computational program.** We design experiments testing whether algebraically motivated states from the Szangolies construction intersect the coupling-matching manifold.
+7. **Characterization of evidential requirements.** We specify what additional constraints would elevate coupling-entropy correspondence from a baseline check to genuine evidence (Section 5.4).
+
+8. **Executed computational program.** We design and execute experiments testing whether algebraically motivated states from the Szangolies construction intersect the coupling-matching manifold (Section 6). Results: across 10⁷ Haar-random states, the matching manifold is statistically generic in its entanglement invariants (Requirement C fails empirically); every canonical octonionic state construction tested yields permutation-degenerate entropies, so none produces a hierarchy; and the matching manifold intersects the W-class (zero 3-tangle) sector, so coupling matching does not even fix the SLOCC class. Four null controls confirm that parameter freedom, not algebraic structure, drives matching.
+
+9. **Entropy-flow reformulation.** We replace the static logarithmic map with a linear entropy-flow map α_i⁻¹(μ) = A + B·S_i(μ) that is RG-consistent by construction (Section 7). Quantum-marginal constraints cut 91% of the (A, B) parameter space and force |B| ≳ 126; a corollary is that a symmetric UV boundary condition requires coupling unification, so the framework predicts beyond-Standard-Model content — a falsifiable commitment.
+
+10. **Jordan–Wigner bridge.** We resolve the open problem of embedding Furey's Cl(6) construction into three qubits: the Jordan–Wigner transformation is the canonical isomorphism Cl(6) ≅ M₈(ℂ), under which electric charge becomes Hamming-weight grading, the color-symmetric quark combination is the W state, and the ν + e⁺ superposition is the GHZ state. We also identify a critical caveat: gauge transformations are not local unitaries of the qubit factorization, so entanglement in this frame is gauge-frame dependent (Section 9).
+
+11. **Vacuum selection from algebraic dynamics.** We exhibit an octonion-structured rotor Hamiltonian, with couplings given by the multiplication-table signs and no tuned parameters, whose ground state is unique, exactly convention-invariant under an exhaustive battery of convention changes, and permutation-symmetric with exact entanglement invariants (marginal spectra (1/7, 6/7); 3-tangle and all squared concurrences equal to 8/49) (Section 8). The signs are necessary: the unsigned counterpart has a separable vacuum. This provides a candidate algebraic selection principle for the symmetric UV boundary state of the entropy-flow map.
 
 ### 1.2. Scope and Limitations
 
@@ -84,7 +92,7 @@ We note this coincidence as motivation without claiming it constitutes an explan
 
 ### 2.3. The Index Ambiguity
 
-In the Szangolies construction, the three tensor factors of ℂ² ⊗ ℂ² ⊗ ℂ² are associated with gauge group structure (the octonionic decomposition produces SU(3) × SU(2) × U(1)/Z₆). If one additionally associates these factors with fermion generations, a framework is needed in which the same structure simultaneously encodes both gauge and flavor information. Such a framework does not currently exist in complete form. This ambiguity affects the coupling-entanglement conjecture in Section 5, where we treat the three qubit factors as corresponding to gauge sectors, consistent with the Szangolies construction.
+In the Szangolies construction, the three tensor factors of ℂ² ⊗ ℂ² ⊗ ℂ² are associated with gauge group structure (the octonionic decomposition produces SU(3) × SU(2) × U(1)/Z₆). If one additionally associates these factors with fermion generations, a framework is needed in which the same structure simultaneously encodes both gauge and flavor information. Such a framework does not currently exist in complete form. This ambiguity affects the coupling-entanglement conjecture in Section 5, where we treat the three qubit factors as corresponding to gauge sectors, consistent with the Szangolies construction. The Jordan–Wigner analysis of Section 9 sharpens this ambiguity: it shows that gauge transformations need not act as local unitaries of any chosen qubit factorization, so the factorization itself is gauge-frame dependent.
 
 It is important to note that gauge group, matter representations, generation structure, Yukawa couplings, and mixing matrices are separate physical targets. The division-algebraic program has made progress on the gauge group and (partially) matter representations. Generations, Yukawas, and mixing remain open.
 
@@ -148,21 +156,21 @@ Page and Wootters (1983) [27] showed time can emerge from entanglement in a glob
 
 ### 4.1. Organizing Conjecture
 
-**Quantum Information Ontology (QIO):** Quantum information is the fundamental ontological substrate of physical reality. Spacetime geometry, gravitational dynamics, and gauge symmetries are emergent phenomena arising from the entanglement structure of an underlying quantum system.
+**Quantum Information Ontology (QIO):** Spacetime geometry, gravitational dynamics, and gauge symmetries are emergent phenomena arising from the entanglement structure of an underlying quantum system.
 
-This is an organizing conjecture — a framework for connecting results and generating hypotheses — not a derived conclusion.
+We retain the name "ontology" for continuity, but the framework is better described as an *information-first organizing heuristic*: a working assumption that treating quantum information as primary is the most productive way to organize the results reviewed here and to generate hypotheses, not a metaphysical claim we assert or require. None of the technical results in this paper — positive or negative — depends on accepting the ontological reading. This is an organizing conjecture, not a derived conclusion.
 
 ### 4.2. Definitions and Open Specifications
 
 Any complete realization of the QIO would require specifying the following objects. We state them here to make explicit what the framework currently leaves undefined:
 
 - **Fundamental Hilbert space H.** The quantum system from which spacetime, gravity, and gauge structure emerge. Its dimension, factorization structure, and relationship to the Szangolies three-qubit space are unspecified. In the coupling-entropy conjecture (Section 5), we work within H = ℂ² ⊗ ℂ² ⊗ ℂ² as a minimal model, without claiming this is the full fundamental space.
-- **Vacuum state |Ω⟩.** The specific state in H whose entanglement structure determines physical observables. Identifying |Ω⟩ from first principles requires a selection rule or dynamical principle that the current framework does not provide.
+- **Vacuum state |Ω⟩.** The specific state in H whose entanglement structure determines physical observables. Identifying |Ω⟩ from first principles requires a selection rule or dynamical principle that the current framework does not provide. (Section 8 reports an algebra-canonical candidate whose vacuum is exactly convention-invariant.)
 - **Physical observables.** The operators on H whose expectation values correspond to measurable quantities (coupling constants, masses, mixing angles). The coupling-entropy conjecture (Section 5) proposes that von Neumann entropies of reduced density matrices map to coupling constants, but does not derive this from a Hamiltonian or Lagrangian.
 - **Gauge map.** The map from the entanglement structure of |Ω⟩ to the gauge group SU(3) × SU(2) × U(1)/Z₆. The Szangolies construction [9] provides this via the octonionic Hopf fibration, but the full dictionary between entanglement properties and gauge dynamics is not yet established.
 - **Spacetime reconstruction.** The map from entanglement entropy to spatial metric. Within AdS/CFT, this is given by the Ryu-Takayanagi formula [17]. Its extension to general spacetimes is conjectural.
 - **Time reconstruction.** The mechanism by which temporal evolution emerges. The Page-Wootters mechanism [27] provides a candidate but requires specifying the clock subsystem.
-- **Dynamics.** No Hamiltonian, Lagrangian, or equation of motion is provided by the current framework. This is the most significant gap.
+- **Dynamics.** No Hamiltonian, Lagrangian, or equation of motion is provided by the current framework. This is the most significant gap. (Section 8 proposes a candidate at three levels of ambition, with computed and convention-robust results at the second.)
 
 These gaps are not hidden; they define the open problems of the QIO research program.
 
@@ -240,7 +248,7 @@ The unconstrained existence version of the conjecture is falsified only if the t
 
 The underconstraint result (Section 5.3) establishes that coupling-entropy matching alone is not evidential. Evidence for a physical coupling-entanglement correspondence requires one or more of the following:
 
-**Requirement A (Algebraic selection).** The vacuum state |Ω⟩ must not be arbitrary. It must be selected from the Szangolies construction, or from three-qubit representatives obtained via a yet-to-be-defined embedding of Furey's Clifford-algebraic structures, or from another independently motivated geometric or algebraic condition. If such a constrained state automatically produces the correct entropy gap ratio (Eq. 2), without fitting, that would be a non-trivial result.
+**Requirement A (Algebraic selection).** The vacuum state |Ω⟩ must not be arbitrary. It must be selected from the Szangolies construction, or from three-qubit representatives obtained via an embedding of Furey's Clifford-algebraic structures (constructed in Section 9), or from another independently motivated geometric or algebraic condition. If such a constrained state automatically produces the correct entropy gap ratio (Eq. 2), without fitting, that would be a non-trivial result. (Section 6.2 reports that no canonical octonionic construction satisfies this; Section 8 reports a dynamical candidate.)
 
 **Requirement B (Holdout predictions).** If the state is selected by coupling matching, it must successfully predict independent observables not used in fitting:
 - The Weinberg angle θ_W
@@ -250,7 +258,7 @@ The underconstraint result (Section 5.3) establishes that coupling-entropy match
 - A simple or notable value of the 3-tangle τ₃
 - Non-generic local unitary invariants
 
-**Requirement C (Non-genericity).** The coupling-matching states must occupy a distinguished, measure-zero or algebraically special subset of the three-qubit state space. If the matching manifold intersects a known special locus (e.g., the GHZ orbit, the W orbit, a maximal entanglement surface), this would suggest the coupling hierarchy is connected to entanglement structure rather than being an artifact of parametric freedom.
+**Requirement C (Non-genericity).** The coupling-matching states must occupy a distinguished, measure-zero or algebraically special subset of the three-qubit state space. If the matching manifold intersects a known special locus (e.g., the GHZ orbit, the W orbit, a maximal entanglement surface), this would suggest the coupling hierarchy is connected to entanglement structure rather than being an artifact of parametric freedom. (Section 6.1 reports that this requirement fails empirically for unconstrained matching.)
 
 ### 5.5. Analytic Pre-Constraints
 
@@ -258,11 +266,21 @@ For completeness, we record the constraints on achievable entropy triples. Each 
 
 The required entropy ordering is S₁ > S₂ > S₃ (stronger coupling ↔ more entanglement), with B < 0.
 
+### 5.6. Minimality of Three Qubits
+
+A simple observation, prompted by Control B of the computational program (Section 6.4), deserves analytic statement: for any *two*-qubit pure state, the Schmidt decomposition forces the two single-qubit reduced density matrices to share the same spectrum, so S₁ = S₂ identically. (We verified this numerically as a code check: the maximum of |S₁ − S₂| over 10⁵ random two-qubit pure states is 4 × 10⁻¹⁵, i.e., machine precision.) Consequently, a two-coupling version of the logarithmic map with B ≠ 0 is *impossible*, not merely underconstrained: no two-qubit pure state can encode two unequal couplings under any map of the form of Eq. (1).
+
+Three qubits is therefore the smallest system on which the coupling-entropy ansatz has any content at all. This is a modest but genuine strengthening of the division-algebra motivation: the octonionic (three-qubit) level of the Hopf hierarchy is not merely the level at which the Standard Model gauge group appears (Section 2.1) — it is also the first level at which a coupling hierarchy is even expressible in single-qubit entropies.
+
 ---
 
-## 6. Computational Program
+## 6. Computational Program: Design and Results
 
 The underconstraint result (Section 5.3) reshapes the computational program. The goal is not to find a matching state (which is guaranteed) but to characterize the matching manifold and test whether it intersects algebraically distinguished regions of the three-qubit state space.
+
+This program has now been executed in full. We retain the experimental design as pre-specified and report the results of each experiment in place. Every numerical claim in Sections 5 and 6.3 was independently re-verified as part of the same run (including a cross-check of the coupling inputs against PDG primary values α_em⁻¹ = 127.951, sin²θ_W = 0.23122, which reproduces α₂ and α₁ to four significant figures). Summary plots appear in Figure 1 (`experiments/results/fig1_experiments.pdf`): panel (a) shows the running of r_SM(μ) with its pole, panel (b) the 3-tangle distributions of matched states versus controls, and panel (c) the weighted-W matching curve.
+
+The headline is easy to state: every experiment came out on the negative/diagnostic side. The matching manifold is statistically generic; canonical octonionic constructions cannot produce a hierarchy; and the null controls show that parameter freedom, not algebraic structure, drives matching. These outcomes confirm and sharpen the paper's analytic thesis.
 
 ### 6.1. Experiment 1: Characterize the Matching Manifold
 
@@ -273,6 +291,12 @@ The underconstraint result (Section 5.3) reshapes the computational program. The
 For all retained states, compute: 3-tangle τ₃ [33], pairwise concurrences C₁₂, C₁₃, C₂₃, Cayley hyperdeterminant, SLOCC class, and all local unitary invariants.
 
 **Output.** Distribution of entanglement invariants on the matching manifold. Determine whether the matching states differ statistically from Haar-conditioned generic states in their entanglement invariants, especially 3-tangle, pairwise concurrences, local-unitary invariants, and distance to lower-dimensional special loci such as W, biseparable, or symmetric-state families.
+
+**Results.** Of N = 10⁷ Haar-random states, 1,666,906 had the required ordering S₁ > S₂ > S₃ (≈ 1/6, as exchange symmetry requires), and 2,666 matched |r_S − 1.8174| < 0.01 — a match rate of 2.7 × 10⁻⁴ overall (1.6 × 10⁻³ given the ordering). Matching is easy, exactly as the Underconstraint Lemma predicts.
+
+The matching manifold is statistically generic. The 3-tangle distribution of matched states is nearly identical to that of ordering-conditioned Haar controls: Kolmogorov-Smirnov statistic 0.031 (p = 0.023, a negligible effect size at these sample sizes); medians 0.326 versus 0.312 (Figure 1b). The fraction of states with τ₃ < 0.01 is approximately 0.1% in both populations, so the matching condition does not concentrate states near the W-class locus or any other special set. Pairwise concurrences shift only as forced by the entropy-gap conditioning, with no signature of any special locus.
+
+**Conclusion: Requirement C (non-genericity, Section 5.4) fails empirically for unconstrained matching.** This converts the paper's analytic underconstraint argument into a measured fact.
 
 ### 6.2. Experiment 2: Intersection with Algebraically Motivated States
 
@@ -294,7 +318,29 @@ The following families should be tested:
 
 **Procedure.** For each family, compute entropy triples and gap ratios r_S analytically where possible, numerically otherwise. If any algebraically motivated state satisfies |r_S - 1.817| < 0.05 without fitting, this constitutes a non-trivial result: the algebraic structure independently selects a state whose entanglement encodes the coupling hierarchy.
 
-Note: Furey's Clifford-algebraic construction [5, 6] does not directly produce three-qubit quantum states. Testing Furey-motivated states requires first defining an embedding map from Cl(6) structures to ℂ² ⊗ ℂ² ⊗ ℂ², which is itself an open mathematical problem.
+**6.2.2. Results.**
+
+The octonion multiplication table was generated by Cayley–Dickson doubling and machine-verified (e_a e_b = ±e_{a⊕b}), so the structure constants used below are convention-independent up to basis relabeling. The findings:
+
+| Family | Entropies (S₁, S₂, S₃) | τ₃ | r_S = 1.8174 reachable? |
+|---|---|---|---|
+| GHZ(θ) | S₁ = S₂ = S₃ | 4 sin²θ cos²θ | No (r_S undefined) |
+| W | (0.918, 0.918, 0.918) | 0 | No (r_S undefined) |
+| Weighted W | tunable | 0 | **Yes — continuous curve** |
+| Octonion sign-row / sign-convolution map | (0.811, 0.811, 0.811) | 0.25 | No |
+| Octonion diagonal map σ(a,a) | (0.811, 0.811, 0.811) | 0.25 | No |
+| Fano incidence (uniform over e₁…e₇) | (0.349, 0.349, 0.349) | 0.082 | No |
+| Uniform over e₀…e₇ | (0, 0, 0), separable | 0 | No |
+| Quaternionic-line states (all 7 Fano lines) | degenerate: (0,0,0), (1,1,0) perms, or (1,1,1) | 0 or 1 | No |
+| Preferred-complex-direction (e₀ + i e_ℓ)/√2, ℓ = 1…7 | degenerate: (0,0,0), (1,1,0) perms, or (1,1,1) | 0 or 1 | No |
+
+Two sharp results emerge:
+
+1. **Every canonical octonionic construction tested yields permutation-degenerate entropies** — all three equal, or degenerate {0,0,0}/{1,1,0}/{1,1,1} patterns. None can produce a three-way hierarchy; r_S is undefined (0/0) on all of them. The algebra's symmetry (G₂ automorphisms, triality, the XOR-grading of the basis) is too rigid: producing a hierarchy requires symmetry breaking beyond the choice of a preferred unit. This sharpens Requirement A (Section 5.4): whatever selection principle the framework eventually supplies, it cannot be any of the obvious "canonical state" maps from octonionic structure data. (Section 8 explores a dynamical route to such symmetry breaking.)
+
+2. **The matching manifold intersects the W-class (τ₃ = 0) sector.** The weighted-W family contains a continuous one-parameter curve of states satisfying r_S = 1.8174 exactly — an explicit example is S = (0.978, 0.895, 0.849) with τ₃ = 0 (Figure 1c; weights in `experiments/results/exp2_results.json`). Coupling matching therefore does not even discriminate between SLOCC classes: both GHZ-class and W-class realizations exist.
+
+Note: Furey's Clifford-algebraic construction [5, 6] does not directly produce three-qubit quantum states. At the time the program was designed, defining an embedding map from Cl(6) structures to ℂ² ⊗ ℂ² ⊗ ℂ² appeared to be an open mathematical problem. It is not: the Jordan–Wigner transformation provides the canonical isomorphism, and Section 9 develops its consequences.
 
 ### 6.3. Analytic Result: Scale Dependence of r_SM(μ)
 
@@ -330,67 +376,199 @@ We compute the log-inverse-coupling gap ratio at representative one-loop extrapo
 
 Regarding option (c): the divergence of r_SM near 10¹³ GeV is not full gauge coupling unification — it occurs when α₁ and α₂ cross while α₃ remains distinct. The non-supersymmetric Standard Model does not produce exact three-coupling unification at one loop. Exact symmetric entanglement S₁ = S₂ = S₃ would correspond, under the logarithmic map, to exact equality of all three couplings, making the gap ratio indeterminate (0/0). Thus, the symmetric-entanglement interpretation should be treated as a property of hypothetical exact UV unification (which may require beyond-SM physics), not as something established by SM one-loop running. Nonetheless, the qualitative direction — couplings converging at high energy corresponding to entanglement symmetry becoming more equal — remains a suggestive feature of the framework.
 
+This computation is the direct motivation for the reformulation developed in Section 7, which takes option (b) seriously: it replaces the static logarithmic map with a linear map under which the entropies run with scale, and shows that quantum-marginal constraints then acquire genuine restrictive power.
+
 ### 6.4. Null Controls
 
 Since the underconstraint result establishes that matching is easy, the null controls should test *non-genericity* — whether the Standard Model coupling hierarchy selects algebraically special states compared to generic targets.
 
-**Control A (Non-genericity of SM target).** For 1000 randomly sampled coupling triples (log-uniform on [0.001, 0.5], ordered), compute the corresponding entropy-gap ratios and characterize the matching manifolds. Compare the entanglement-class distributions, 3-tangle distributions, and local unitary invariant distributions against the Standard Model target. The null question is not whether random targets can be matched (they can), but whether the SM target selects a more algebraically special matching manifold than generic targets.
+**Control A (Non-genericity of SM target).** For randomly sampled coupling triples (log-uniform on [0.001, 0.5], ordered), compute the corresponding entropy-gap ratios and characterize the matching manifolds. Compare the entanglement-class distributions, 3-tangle distributions, and local unitary invariant distributions against the Standard Model target. The null question is not whether random targets can be matched (they can), but whether the SM target selects a more algebraically special matching manifold than generic targets.
 
-**Control B (Two-qubit comparison).** Two-qubit states have two single-qubit entropies, not three, so the three-coupling logarithmic map is not directly comparable. This control tests whether a two-entropy map (fitting two couplings with one free parameter, no holdout) achieves comparable matching quality, which would indicate that the three-qubit structure adds no explanatory power beyond having a third entropy variable.
+*Result.* It does not. Across random coupling targets, the SM-target matched states have mean τ₃ = 0.320 versus 0.337 ± 0.018 for random targets — a deviation of z = −0.92, well within statistical noise. The Standard Model coupling hierarchy is statistically indistinguishable from a random coupling target as far as its matching manifold is concerned.
 
-**Control C (Four-qubit comparison).** Four-qubit states (30 real parameters) do not correspond to a normed division algebra. This control tests whether the algebraic restriction to three qubits, rather than parameter count, selects anything special. If four-qubit matching manifolds have indistinguishable structure from three-qubit manifolds, the division-algebra motivation is weakened.
+**Control B (Two-qubit comparison).** Two-qubit states have two single-qubit entropies, not three, so the three-coupling logarithmic map is not directly comparable. This control tests whether a two-entropy map (fitting two couplings with one free parameter, no holdout) achieves comparable matching quality.
 
-**Control D (Shuffled labels).** Test all six qubit-gauge permutations. If the Szangolies construction supplies a physically meaningful labeling of the three qubit factors, the corresponding assignment should be distinguishable from arbitrary permutations in the entanglement-invariant structure of the matching manifold. If all permutations give equivalent results, the coupling assignment has not yet acquired physical content.
+*Result.* The two-qubit map is not merely weaker — it is impossible. Any two-qubit pure state has S₁ = S₂ identically by the Schmidt decomposition, so no two-qubit state encodes two unequal couplings under the map with B ≠ 0. This analytic observation, which emerged from this control, is stated as a result in Section 5.6: three qubits is the minimal system on which the ansatz has any content.
+
+**Control C (Four-qubit comparison).** Four-qubit states (30 real parameters) do not correspond to a normed division algebra. This control tests whether the algebraic restriction to three qubits, rather than parameter count, selects anything special.
+
+*Result.* It does not. The per-triple match rate for four-qubit states is 3.4 × 10⁻⁴, versus 2.6 × 10⁻⁴ for three qubits (and 1.3 × 10⁻³ if any of the four ordered triples is allowed to match). Four-qubit systems match at least as easily as three-qubit systems: parameter freedom, not division-algebra structure, drives matching.
+
+**Control D (Shuffled labels).** Test all six qubit-gauge permutations. If the Szangolies construction supplies a physically meaningful labeling of the three qubit factors, the corresponding assignment should be distinguishable from arbitrary permutations in the entanglement-invariant structure of the matching manifold.
+
+*Result.* All six permutations match at statistically identical rates (256–292 matches per 10⁶ states), as the exchange symmetry of the Haar measure requires. The Szangolies labeling currently carries no measurable content for unconstrained states. Section 9.3 offers a structural explanation: gauge transformations are not local unitaries of the qubit factorization, so no unconstrained entanglement statistic can privilege one labeling.
 
 ### 6.5. Implementation
 
-Python (NumPy/SciPy). Haar-random states via complex Gaussian normalization. Partial traces via tensor reshaping. Von Neumann entropy from eigenvalues of reduced density matrices. All code published for reproducibility.
+Python (NumPy/SciPy). Haar-random states via complex Gaussian normalization. Partial traces via tensor reshaping. Von Neumann entropy from eigenvalues of reduced density matrices. All code, fixed random seeds, and raw outputs (JSON) are published with this paper in the `experiments/` directory for reproducibility.
 
 ---
 
-## 7. Connections to Open Problems
+## 7. The Entropy-Flow Reformulation
+
+### 7.1. The Revised Conjecture
+
+The scale-dependence computation (Section 6.3) established that a fixed entropy triple cannot match the couplings at all scales under the static logarithmic map. Of the three options identified there, we now develop option (b) — scale-dependent entanglement — into a precise reformulation.
+
+**Conjecture (Entropy-Flow Map).** There exist real constants A and B (with B < 0) and a one-parameter family of three-qubit pure states |Ω(μ)⟩ such that
+
+    α_i⁻¹(μ) = A + B · S_i(μ)    for i = 1, 2, 3     ... (6)
+
+with the qubit-gauge assignment fixed by the Szangolies construction as before. Substituting the one-loop running (Eq. 5) gives the flow equation
+
+    dS_i / d log μ = −b_i / (2πB)     ... (7)
+
+so the entropies run *linearly* in log μ, with slopes proportional to the one-loop beta coefficients.
+
+Two features make this reformulation better than the static logarithmic map, rather than merely different. First, it is RG-consistent at all scales *by construction*: the scale-dependence failure of Section 6.3 dissolves rather than being patched. Second, it has a conceptual basis rather than a curve-fitting one. The beta coefficients b_i count the degrees of freedom charged under each gauge factor, and entanglement entropy in critical systems is known to run logarithmically with scale, with coefficients that count degrees of freedom — this is the content of the Zamolodchikov c-theorem [39] and its entropic formulation by Casini and Huerta [40]. The slogan: *coupling running and entanglement running are the same bookkeeping.* This also connects the conjecture to entanglement renormalization (MERA) [42], which is already the framework's bridge to holography via Swingle's correspondence [21].
+
+**Honesty clause.** The entropy-flow map, like its static predecessor, is still a reparametrization of measured couplings: given any running α_i⁻¹(μ) and any (A, B), Eq. (6) *defines* a trajectory S_i(μ). Its content lives in exactly three places: (i) the quantum-marginal feasibility constraints, which must now hold at *every* scale and turn out to be genuinely restrictive (Section 7.2); (ii) the boundary condition at the symmetric point (Section 7.3); and (iii) the counting interpretation of the slopes, which remains open.
+
+### 7.2. The Marginal Constraints Do Real Work
+
+**Status: Computed (Experiment 3; results in `experiments/results/exp3_results.json`).**
+
+For the trajectory S_i(μ) to be realizable by pure three-qubit states at every μ ∈ [M_Z, M_Planck], the constants (A, B) must satisfy S_i(μ) ∈ [0, 1] together with the Higuchi-Sudbery-Szulc polygon inequality [31] at every scale. Scanning the (A, B) plane:
+
+- The box constraint S ∈ [0,1]³ alone requires |B| ≥ ~51. **The polygon inequality cuts 91% of the box-allowed region** and forces |B| ≳ 126 and A ≳ 106. In the static formulation the polygon inequality was satisfied trivially (Section 5.3); in the flow formulation it is the binding constraint.
+
+- Consequence: all three vacuum entropies are confined to a mid-band (roughly 0.37–0.77 at the representative feasible point) at *every* scale. The framework forbids the vacuum from approaching either separability or maximal entanglement anywhere between M_Z and the Planck scale. The slopes are correspondingly small: |dS_i/d log μ| ≈ 0.004–0.009 per e-fold.
+
+- Structural feature: the entropy ordering *inverts* in the UV. At M_Z, S₁ > S₂ > S₃ (SU(3) most entangled); above the pairwise coupling crossings — at 9.7 × 10¹² GeV (α₂–α₁), 2.4 × 10¹⁴ GeV (α₃–α₁), and 1.05 × 10¹⁷ GeV (α₃–α₂) — the ordering reverses and U(1) becomes the most entangled factor. Hierarchy inversion in the deep UV is a structural prediction of the entropy-flow version, not an input.
+
+These results are summarized in Figure 2 (`experiments/results/fig2_entropy_flow.pdf`).
+
+### 7.3. The Unification Corollary
+
+Under the entropy-flow map, exact entanglement symmetry S₁ = S₂ = S₃ at some scale is *equivalent* to exact coupling unification at that scale. Define the entanglement asymmetry ΔS(μ) as the spread of the inverse couplings divided by |B|. Computed at one loop:
+
+- **Standard Model:** ΔS(μ) is minimized at μ* = 2.4 × 10¹⁴ GeV with ΔS ≈ 0.029 (at the minimal feasible |B|) — and it *never reaches zero*: the asymmetry bottoms out and rises again (Figure 2c). The SM vacuum, in this framework, is never symmetric at any scale.
+
+- **MSSM (1 TeV threshold):** ΔS cusps to ≈ 0.003 at 1.4 × 10¹⁶ GeV — an order of magnitude closer to symmetric, reflecting the well-known approximate unification of MSSM couplings [41].
+
+The corollary: **if the framework demands an exactly symmetric UV boundary condition** — the natural reading of "couplings emerge from a symmetric entangled state" — **then it requires exact coupling unification and therefore predicts beyond-Standard-Model matter content.** This is a falsifiable commitment, inherited honestly from the structure of the map: the framework dies with unification, and the Standard Model alone does not unify. We flag this as the framework's first forced phenomenological consequence, while noting that it is conditional on the symmetric-boundary reading and on the entropy-flow conjecture itself.
+
+---
+
+## 8. Vacuum Selection from Algebraic Dynamics
+
+Section 4.2 identified the absence of dynamics — no principle selects the vacuum's entanglement — as the framework's most significant gap. We now report a concrete candidate, organized in three levels of ambition, together with computed results at the second level.
+
+### 8.1. Three Levels
+
+**Level 1 (kinematic).** The entropy-flow equation of Section 7 (Eq. 7). This is RG-consistent but not explanatory: it constrains how the vacuum's entanglement runs, not which vacuum is selected.
+
+**Level 2 (variational/algebraic).** The vacuum is the ground state of a Hamiltonian canonically constructed from the octonion algebra itself, with no tuned parameters. This is the level at which we have computed results (Section 8.2).
+
+**Level 3 (aspirational).** Identify the flow parameter of Level 1 with a coarse-graining (MERA-like [42]) flow whose fixed-point Hamiltonian is the Level-2 object. This would unite the kinematic and variational levels. It is entirely open.
+
+### 8.2. Computed Results: the Octonion-Structured Rotor Hamiltonian
+
+**Status: Computed (Experiments 4 and 6; results in `experiments/results/exp4_results.json` and `exp6_results.json`). Convention robustness verified in Section 8.3.**
+
+The left-multiplication operators L_i = L_{e_i} of the imaginary octonion units on 𝕆 ≅ ℝ⁸ satisfy the Clifford relation L_iL_j + L_jL_i = −2δ_ij (machine-verified in our run), so the operators iL_i are Hermitian on ℂ⁸ — which is exactly the three-qubit Hilbert space. This permits Hamiltonians built canonically from the algebra. Findings:
+
+- **Linear no-go.** Every linear Hamiltonian H = Σ c_i (iL_i) satisfies H² = |c|²·𝟙, so its spectrum is ±|c| with each level 4-fold degenerate, for *every* coupling vector c. The Clifford structure forbids linear algebra-canonical dynamics from selecting a unique vacuum; within the 4-dimensional ground manifold, entropy triples are unconstrained by the dynamics.
+
+- **Commuting quadratic pairings.** The 105 ways of partitioning six of the seven generators into three commuting quadratic pairs give discrete vacua whose sorted entropy triples take only four values — (0, 0, 0), (0, 1, 1), (0.811, 0.811, 0.811), and (1, 1, 1) — all separable, degenerate, or permutation-symmetric. No hierarchy.
+
+- **The octonion-structured rotor Hamiltonian.** Taking H = Σ_{a<b} σ(a,b) · iL_aL_b, where the couplings σ(a,b) are the octonion multiplication-table signs themselves (no tuned parameters), yields a *unique, non-degenerate* ground state. Its spectrum is exactly {−3√7, −√7 (×3), +√7 (×3), +3√7}, and its entanglement invariants are exact rationals in the number 7 of imaginary units: each single-qubit reduced density matrix has spectrum (1/7, 6/7), giving equal entropies S₁ = S₂ = S₃ = h₂(1/7) ≈ 0.5917; the 3-tangle is τ₃ = 8/49; and all three pairwise concurrences equal 2√2/7, so C₁₂² = C₁₃² = C₂₃² = τ₃ = 8/49. The Coffman-Kundu-Wootters monogamy budget [33] of each qubit, 4·(1/7)(6/7) = 24/49, is therefore *exactly balanced* among the two bipartite channels and the tripartite channel. Up to convention, the vacuum is the octonion (√7 e₀ − i Σ_a ±e_a)/√14: half identity, half spread uniformly over the seven imaginary units.
+
+- **The signs are necessary.** Replacing σ(a,b) by |σ(a,b)| = 1 (unsigned couplings) produces a *separable* ground state, S = (0, 0, 0). The vacuum entanglement is generated specifically by the sign structure of the octonion multiplication table.
+
+- **Genericity control.** Random so(7) rotor Hamiltonians (generic antisymmetric couplings in place of σ) also have unique vacua, but only 16.4% produce ordered entropies S₁ > S₂ > S₃ and only 0.9% land in the coupling-matching window; their mean entropies (≈ 0.75) differ from the σ-structured value. The σ-structured choice occupies a distinguished, symmetric position in the so(7) family.
+
+The rotor vacuum is permutation-symmetric, not hierarchical — consistent with the permutation rigidity of every canonical kinematic construction in Section 6.2, and consistent with the entropy-flow picture of Section 7 in which the hierarchy is generated by flow rather than statics. Indeed, a symmetric algebra-selected state is precisely what the unification corollary (Section 7.3) requires as a UV boundary condition, and its entropy value 0.5917 lies inside the mid-band (≈ 0.37–0.77) to which the quantum-marginal constraints confine the entropy-flow trajectory. We note for transparency that an earlier preliminary computation suggested a hierarchical rotor vacuum; this was traced to a non-Hermitian matrix passed to a Hermitian eigensolver and is superseded by the verified results above.
+
+### 8.3. Convention Robustness
+
+**Status: Computed (Experiment 6; results in `experiments/results/exp6_results.json`).**
+
+A vacuum-selection claim built from a specific multiplication table must survive changes of octonion convention. We redid the entire canonical construction — multiplication table, left-multiplication operators, Hamiltonian, ground state — under: all 2⁷ = 128 basis sign gauges e_a → s_a e_a; all 7! = 5040 index relabelings of the imaginary units (with the 168-element XOR-linear GL(3,2) subgroup tracked separately); 2000 random combined sign-and-relabeling transformations; the opposite algebra; right-multiplication operators in place of left; and the spectral reflection H → −H. **In every case the ground state is unique and its sorted entropy triple is identical** to four decimal places: (0.5917, 0.5917, 0.5917), with τ₃ = 8/49. The rotor vacuum's entanglement invariants are convention-independent properties of the octonions, not artifacts of a basis choice.
+
+---
+
+## 9. The Jordan–Wigner Bridge Between the Furey and Szangolies Constructions
+
+### 9.1. The Embedding Problem Is Solved
+
+The design phase of the computational program (Section 6.2) treated the embedding of Furey's Cl(6) structures [5, 6] into ℂ² ⊗ ℂ² ⊗ ℂ² as an open mathematical problem. It is not. Furey's Cl(6) is generated by three fermionic ladder operators; the complex Clifford algebra Cl(6) is isomorphic to M₈(ℂ), which is exactly the full operator algebra of three qubits; and the Jordan–Wigner transformation [38] is the canonical isomorphism between the two presentations. We machine-verified that the Jordan–Wigner images of the three ladder operators satisfy the canonical anticommutation relations (CAR) exactly (Experiment 5; `experiments/results/exp5_results.json`).
+
+The bridge between the Furey and Szangolies constructions is therefore not a conjecture but a standard transformation, dating to 1928. What is new is reading its consequences in the present context.
+
+### 9.2. Computed Consequences
+
+**Status: Computed (Experiment 5).**
+
+- **Charge is Hamming weight.** Furey's minimal-left-ideal basis for one generation — ν, three d̄ colors, three u colors, e⁺ — maps under Jordan–Wigner to the three-qubit computational basis, graded by Hamming weight: ν at weight 0, the d̄ triplet at weight 1, the u triplet at weight 2, e⁺ at weight 3, with electric charge Q = (weight)/3. Furey's observation that charge quantization follows from the integer spectrum of a number operator [6] becomes, in qubit language, the statement that charge quantization is the integer grading of the computational basis.
+
+- **SLOCC classes acquire particle-physics meaning.** The color-symmetric quark combination (uniform superposition over the weight-1 triplet) is precisely the **W state**, with S = (0.918, 0.918, 0.918) and τ₃ = 0. The ν + e⁺ superposition is precisely the **GHZ state** — the maximal violation of charge superselection (ΔQ = 1) maps to maximal genuine tripartite entanglement.
+
+- Fock (particle) basis states are computational basis states: single particles carry no entanglement in this frame.
+
+### 9.3. Critical Caveat: Entanglement Is Gauge-Frame Dependent
+
+The same computation exposes a structural obstruction. Color rotations act on the fermionic *modes*, not on the qubit tensor factors. A discrete Fourier transform in color space — an SU(3) gauge transformation — maps a separable single-quark state, S = (0, 0, 0), to a state with S = (0.918, 0.918, 0.918). Machine check: this transformation is not a local unitary of the qubit factorization.
+
+**Gauge transformations are not local unitaries of the qubit factorization, and therefore single-qubit entanglement entropies in this frame are gauge-frame dependent.** Any physical coupling-entropy correspondence must consequently be built from gauge-invariant entanglement functionals, or must include an algebraic gauge-fixing of the tensor factorization as part of its definition. Neither has yet been constructed.
+
+This caveat sharpens, and partially explains, two earlier findings: the index ambiguity of Section 2.3 (the tensor-factor labels were never gauge-covariantly defined) and the Control D null of Section 6.4 (no unconstrained entanglement statistic could have privileged one qubit-gauge labeling, because the labeling is not gauge-invariant in the first place). We regard identifying the right gauge-invariant entanglement functional as the central open problem this paper leaves for the coupling-entropy program.
+
+---
+
+## 10. Connections to Open Problems
 
 The QIO suggests reframings — potentially productive changes of viewpoint — for several open problems. These are research directions, not resolutions.
 
-### 7.1. De Sitter Holography
+### 10.1. De Sitter Holography
 
 If spacetime universally emerges from entanglement, holography should extend beyond AdS. Recent work on static patch holography [34] and composite deformation flows [35] shows progress. De Sitter holography does not yet approach AdS/CFT-level rigor.
 
-### 7.2. The Cosmological Constant
+### 10.2. The Cosmological Constant
 
 If the holographic principle constrains degrees of freedom to scale with area rather than volume, the QFT vacuum energy calculation overcounts. Freidel et al. (2023) [36] explored how holographic entropy bounds constrain vacuum energy, showing a technically natural result (Λ → 0 as IR scale increases). This is suggestive but does not derive the observed Λ, address radiative stability, or produce numerical predictions.
 
-### 7.3. Gauge Unification and the Monopole Problem
+### 10.3. Gauge Unification and the Monopole Problem
 
-Standard GUTs (SU(5), SO(10)) unify the three Standard Model gauge interactions; gravity is usually not part of these models. If the QIO/division-algebraic framework ultimately favors a direct origin of SU(3) × SU(2) × U(1) from octonionic entanglement structure — without embedding the Standard Model gauge group into a larger simply connected GUT group — then the usual monopole-producing symmetry-breaking patterns of conventional GUTs may not arise. This would reframe the monopole problem, but only if the QIO/division-algebraic framework replaces rather than supplements conventional GUT symmetry breaking. This possibility is conditional on the QIO's core posits and has not been demonstrated.
-
----
-
-## 8. Discussion
-
-### 8.1. What Distinguishes the QIO
-
-The "It from Qubit" program [37] pursues emergent spacetime from entanglement. The division-algebraic program pursues Standard Model structure from octonions. The QIO claims these describe the same structure. Whether the Szangolies bridge between them is deep or superficial is an empirical question. The computational program in Section 6 addresses one facet of this question.
-
-### 8.2. The Central Analytic Results
-
-The most important technical contributions of this paper are negative. First, we prove that the naive coupling-entropy conjecture is underconstrained (Section 5.3): any two-parameter map fitting two couplings reduces the prediction of the third to a single scalar ratio that lies inside the feasible region of pure three-qubit states. Second, we compute that the log-inverse-coupling gap ratio r_SM(μ) varies substantially across energy scales (Section 6.3), establishing that a fixed entropy triple cannot match couplings at all scales under the logarithmic map.
-
-These negative results are valuable because they precisely delineate what additional structure is needed. The underconstraint result redirects the program from numerical searching to algebraic selection of the vacuum state. The scale-dependence result suggests that if a coupling-entropy correspondence exists, it either holds at a privileged UV scale (with RG flow generating the low-energy hierarchy) or involves scale-dependent entanglement. The qualitative observation that couplings converging at high energy would correspond to more symmetric entanglement — while the low-energy hierarchy corresponds to asymmetric entanglement — remains a suggestive feature, though one-loop SM running does not produce exact three-coupling unification.
-
-### 8.3. Risks and Failure Modes
-
-The matching manifold may have no intersection with algebraically motivated states (Experiment 2 fails). The index ambiguity (Section 2.3) may prove fatal. The QIO may be too vague to produce testable predictions. These are acceptable outcomes — the purpose of precise conjecture is to enable definitive testing, including failure.
+Standard GUTs (SU(5), SO(10)) unify the three Standard Model gauge interactions; gravity is usually not part of these models. If the QIO/division-algebraic framework ultimately favors a direct origin of SU(3) × SU(2) × U(1) from octonionic entanglement structure — without embedding the Standard Model gauge group into a larger simply connected GUT group — then the usual monopole-producing symmetry-breaking patterns of conventional GUTs may not arise. This would reframe the monopole problem, but only if the QIO/division-algebraic framework replaces rather than supplements conventional GUT symmetry breaking. This possibility is conditional on the QIO's core posits and has not been demonstrated. We note one point of contact with Section 7.3: the unification corollary requires the coupling *values* to converge in the UV, but convergence of values does not by itself require embedding in a larger simply connected group; whether the two statements can be jointly realized is open.
 
 ---
 
-## 9. Conclusion
+## 11. Discussion
 
-We have proposed the Quantum Information Ontology as a framework connecting two convergent research programs. We have reviewed both with explicit epistemic labeling, identified the Szangolies construction as a bridge, and formulated a coupling-entropy conjecture.
+### 11.1. What Distinguishes the QIO
 
-Our most important results are analytic. We prove that unconstrained three-qubit states can reproduce the observed Standard Model coupling hierarchy at M_Z under the logarithmic map, establishing that coupling matching alone is not evidence. We compute that the log-inverse-coupling gap ratio varies by ~24% between M_Z and 10⁶ GeV and becomes singular near the α₁-α₂ crossing, establishing that scale-independent entanglement cannot match couplings at all energies. Together, these results sharpen the QIO research program by identifying precisely what must be provided for coupling-entropy correspondence to become evidential: algebraic selection of the vacuum state and either a privileged UV scale or a mechanism for entanglement flow.
+The "It from Qubit" program [37] pursues emergent spacetime from entanglement. The division-algebraic program pursues Standard Model structure from octonions. The QIO — read as an information-first organizing heuristic (Section 4.1) — treats these as descriptions of the same structure. Whether the Szangolies bridge between them is deep or superficial is an empirical question. The computational program of Section 6, now executed, addresses one facet of this question, and the Jordan–Wigner bridge of Section 9 shows that at least one previously conjectural link (Furey ↔ three qubits) is an exact isomorphism — though one whose entanglement consequences are gauge-frame dependent.
 
-The qualitative observation that couplings converging at high energy would correspond to more symmetric entanglement, while the low-energy hierarchy corresponds to asymmetric entanglement, suggests a productive direction — though one-loop SM running does not produce exact three-coupling unification. Testing whether division-algebraic structure independently selects a vacuum state whose entanglement encodes the coupling hierarchy requires connecting the Szangolies and Furey constructions to concrete entanglement states and computing their properties. This is a well-defined mathematical problem for future work.
+### 11.2. The Central Results
+
+The most important technical contributions of this paper remain negative, and the executed program strengthened them. First, we prove that the naive coupling-entropy conjecture is underconstrained (Section 5.3), and the executed Experiment 1 converts this from argument to measurement: across 10⁷ Haar states, the matching manifold is statistically generic in the 3-tangle and intersects the W-class, and the null controls show that parameter freedom, not algebraic structure, drives matching. Second, we prove that the two-qubit version of the map is impossible (Section 5.6), so three qubits is the minimal case with content. Third, we compute that r_SM(μ) varies substantially across scales (Section 6.3), ruling out a scale-independent entropy triple under the logarithmic map. Fourth, every canonical octonionic state construction tested is permutation-degenerate (Section 6.2): the algebra's own symmetry forbids the obvious kinematic routes to a hierarchy.
+
+These negative results delineate precisely what additional structure is needed, and the second half of the paper supplies three concrete, partially computed candidates — each falsifiable or checkable, and none requiring belief in the ontology:
+
+1. **The entropy-flow map** (Section 7), which repairs the scale-dependence failure by construction, makes the quantum-marginal constraints genuinely restrictive (91% of parameter space excluded, |B| ≳ 126), and yields a forced corollary: a symmetric UV boundary condition requires coupling unification and therefore beyond-Standard-Model content.
+
+2. **The octonion-structured rotor Hamiltonian** (Section 8), whose unique ground state is exactly convention-invariant and permutation-symmetric, with exact invariants — marginal spectra (1/7, 6/7), 3-tangle and all squared concurrences equal to 8/49, an exactly balanced monogamy budget — and whose entanglement exists only because of the multiplication-table signs (the unsigned counterpart has a separable vacuum). The algebra selects a symmetric entangled vacuum: a candidate UV boundary state for the entropy-flow map, with the hierarchy left to be generated by flow.
+
+3. **The Jordan–Wigner dictionary** (Section 9), which resolves the Furey-embedding problem exactly and converts charge quantization into Hamming-weight grading — while exposing the gauge-covariance problem: entanglement of the qubit factorization is not gauge-invariant, so the program's central quantity must be rebuilt from gauge-invariant functionals.
+
+The forward direction of the program has therefore changed: not "find constraints that make static matching evidential," but develop these three research objects.
+
+### 11.3. Risks and Failure Modes
+
+The executed program realized one of the previously listed failure modes: no canonical algebraically motivated state intersects the matching manifold (Section 6.2), and unconstrained matching is confirmed non-evidential. The program absorbed this outcome as designed. The convention-robustness check (Section 8.3) was passed exactly, though it revealed that the rotor vacuum is symmetric rather than hierarchical, relocating the burden of hierarchy generation entirely to the flow. Remaining risks: the gauge-frame dependence of entanglement (Section 9.3) may admit no satisfactory gauge-invariant reformulation, which would undercut the coupling-entropy program at its root; the entropy-flow map's counting interpretation may never acquire independent content, leaving it a reparametrization; no mechanism is known that produces the required entropy slopes from the rotor boundary state; and the index ambiguity (Section 2.3) may prove fatal. These are acceptable outcomes — the purpose of precise conjecture is to enable definitive testing, including failure.
+
+---
+
+## 12. Conclusion
+
+We have proposed the Quantum Information Ontology — read throughout as an information-first organizing heuristic — as a framework connecting two convergent research programs. We have reviewed both with explicit epistemic labeling, identified the Szangolies construction as a bridge, formulated a coupling-entropy conjecture, and executed the computational program designed to test it.
+
+Our negative results stand and are strengthened by execution. Analytically: unconstrained three-qubit states can reproduce the observed coupling hierarchy at M_Z (underconstraint, Section 5.3); two-qubit states cannot encode unequal couplings at all (minimality, Section 5.6); and a scale-independent entropy triple cannot match couplings at all energies (Section 6.3). Empirically, across 10⁷ Haar-random states: the matching manifold is statistically generic in its entanglement invariants and intersects the W-class; every canonical octonionic state construction is permutation-degenerate and cannot produce a hierarchy; and four null controls confirm that parameter freedom, not division-algebra structure, drives matching. Coupling matching alone is not evidence — now as a measurement, not only a theorem.
+
+The execution also produced three new research objects that define the program's forward direction. The entropy-flow reformulation (Section 7) makes the conjecture RG-consistent by construction, gives the quantum-marginal constraints real restrictive power (91% of the parameter space excluded, |B| ≳ 126, vacuum entropies confined to a mid-band at all scales), and forces a falsifiable commitment: a symmetric UV boundary condition requires coupling unification, hence beyond-Standard-Model content — the Standard Model's entanglement asymmetry never reaches zero, bottoming out at ≈ 0.029 near 2.4 × 10¹⁴ GeV, while the MSSM reaches ≈ 0.003. The octonion-structured rotor Hamiltonian (Section 8) provides a candidate algebraic vacuum-selection principle: its unique ground state is exactly convention-invariant — verified across all 128 sign gauges, all 5040 index relabelings, the opposite algebra, and right-multiplication — and permutation-symmetric, with exact invariants (marginal spectra (1/7, 6/7); 3-tangle and all squared concurrences equal to 8/49) generated specifically by the multiplication-table signs. A symmetric algebra-selected vacuum is exactly what the unification corollary requires as a UV boundary state; the hierarchy, on this picture, is a property of the flow, not of the vacuum. The Jordan–Wigner bridge (Section 9) resolves the Furey-embedding problem exactly — charge quantization becomes Hamming-weight grading, and the W and GHZ states acquire particle-physics meaning — while exposing the gauge-covariance problem that any physical coupling-entropy correspondence must solve: entanglement of the qubit factorization is not gauge-invariant.
+
+None of these results requires believing the ontology; each is a checkable statement about three-qubit states, Clifford algebras, or renormalization-group trajectories. The well-defined problems this paper leaves open are the counting interpretation of the entropy-flow slopes, the construction of a flow mechanism connecting the symmetric rotor vacuum to the low-energy hierarchy, and — most centrally — the construction of a gauge-invariant entanglement functional on which the coupling-entropy program can be rebuilt.
 
 ---
 
@@ -412,7 +590,7 @@ The qualitative observation that couplings converging at high energy would corre
 
 [8] I. Todorov, "Octonion internal space algebra for the Standard Model," arXiv:2206.06912 (2022).
 
-[9] J. Szangolies, "The Standard Model Symmetry and Qubit Entanglement," Entropy 27(6), 569 (2025).
+[9] J. Szangolies, "The Standard Model Symmetry and Qubit Entanglement," Entropy 27(6), 569 (2025); arXiv:2512.17328.
 
 [10] R. Mosseri and R. Dandoloff, "Geometry of entangled states, Bloch spheres and Hopf fibrations," J. Phys. A 34, 10243 (2001).
 
@@ -426,7 +604,7 @@ The qualitative observation that couplings converging at high energy would corre
 
 [15] L. Susskind, "The world as a hologram," J. Math. Phys. 36, 6377 (1995).
 
-[16] J. Maldacena, "The large-N limit of superconformal field theories and supergravity," Int. J. Theor. Phys. 38, 1113 (1999).
+[16] J. Maldacena, "The large-N limit of superconformal field theories and supergravity," Adv. Theor. Math. Phys. 2, 231 (1998).
 
 [17] S. Ryu and T. Takayanagi, "Holographic derivation of entanglement entropy from AdS/CFT," Phys. Rev. Lett. 96, 181602 (2006).
 
@@ -464,8 +642,18 @@ The qualitative observation that couplings converging at high energy would corre
 
 [34] L. Susskind, "De Sitter holography," arXiv:2106.03964 (2021).
 
-[35] Y.-X. Liu et al., "Toward a unified de Sitter holography," Sci. China Phys. Mech. Astron. (2026); arXiv:2511.16098.
+[35] J.-C. Chang et al., "Toward a unified de Sitter holography," Sci. China Phys. Mech. Astron. (2026); arXiv:2511.16098.
 
 [36] L. Freidel, J. Kowalski-Glikman, R.G. Leigh, and D. Minic, "Vacuum energy density and gravitational entropy," Phys. Rev. D 107, 126016 (2023).
 
 [37] Simons Foundation "It from Qubit" collaboration; T. Takayanagi, "Emergent Holographic Spacetime from Quantum Information," arXiv:2506.06595 (2025).
+
+[38] P. Jordan and E. Wigner, "Über das Paulische Äquivalenzverbot," Z. Phys. 47, 631 (1928).
+
+[39] A.B. Zamolodchikov, "Irreversibility of the flux of the renormalization group in a 2D field theory," JETP Lett. 43, 730 (1986).
+
+[40] H. Casini and M. Huerta, "A c-theorem for the entanglement entropy," J. Phys. A 40, 7031 (2007).
+
+[41] U. Amaldi, W. de Boer, and H. Fürstenau, "Comparison of grand unified theories with electroweak and strong coupling constants measured at LEP," Phys. Lett. B 260, 447 (1991).
+
+[42] G. Vidal, "Entanglement renormalization," Phys. Rev. Lett. 99, 220405 (2007).

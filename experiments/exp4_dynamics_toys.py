@@ -74,7 +74,7 @@ for trio in combinations(combinations(idx, 2), 3):
     flat = [x for p in trio for x in p]
     if len(set(flat)) != 6:
         continue
-    H = sum(iL[a] @ iL[b] for (a, b) in trio)  # + couplings: signs only matter
+    H = sum(1j * (L[a] @ L[b]) for (a, b) in trio)  # + couplings: signs only matter
     w, deg, S, tau, psi = ground_entropies(H)
     rS = None
     if S[0] > S[1] > S[2] and S[1] - S[2] > 1e-9:
@@ -100,7 +100,7 @@ for trial in range(2000):
     H = np.zeros((8, 8), complex)
     for a in range(1, 8):
         for b in range(a+1, 8):
-            H += Jm[a-1, b-1] * (iL[a] @ iL[b])
+            H += Jm[a-1, b-1] * 1j * (L[a] @ L[b])
     w, deg, S, tau, psi = ground_entropies(H)
     rS = np.nan
     if S[0] > S[1] > S[2] and S[1] - S[2] > 1e-12:
@@ -133,7 +133,7 @@ for a in range(8):
 H = np.zeros((8, 8), complex)
 for a in range(1, 8):
     for bb in range(a+1, 8):
-        H += SIG[a, bb] * (iL[a] @ iL[bb])
+        H += SIG[a, bb] * 1j * (L[a] @ L[bb])
 w, deg, S, tau, psi = ground_entropies(H)
 out['octonion_structured_so7'] = dict(
     spectrum=[float(x) for x in np.round(w, 6)], ground_degeneracy=deg,
