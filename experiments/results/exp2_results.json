@@ -1,0 +1,289 @@
+{
+  "GHZ(theta=0.393)": {
+    "S": [
+      0.6008760366928562,
+      0.6008760366928562,
+      0.6008760366928562
+    ],
+    "tau3": 0.5000000000000001,
+    "r_S": null,
+    "note": "S1=S2=S3 always -> r_S undefined"
+  },
+  "GHZ(theta=0.524)": {
+    "S": [
+      0.8112781244591327,
+      0.8112781244591327,
+      0.8112781244591327
+    ],
+    "tau3": 0.7499999999999999,
+    "r_S": null,
+    "note": "S1=S2=S3 always -> r_S undefined"
+  },
+  "GHZ(theta=0.785)": {
+    "S": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tau3": 1.0,
+    "r_S": null,
+    "note": "S1=S2=S3 always -> r_S undefined"
+  },
+  "W": {
+    "S": [
+      0.9182958340544896,
+      0.9182958340544896,
+      0.9182958340544896
+    ],
+    "tau3": 0.0,
+    "r_S": null,
+    "note": "permutation symmetric -> r_S undefined"
+  },
+  "weighted_W": {
+    "intersects": true,
+    "n_solutions_on_grid": 43,
+    "note": "tau3=0 for all weighted-W states; solutions = matching manifold intersects the W-class (zero 3-tangle) sector",
+    "examples": [
+      {
+        "S3": 0.7801507537688441,
+        "S2": 0.8580062288883543,
+        "S1": 0.9995036023504196,
+        "a2": 0.23123082996304328,
+        "b2": 0.2818847555466292,
+        "c2": 0.48688441449032616
+      },
+      {
+        "S3": 0.8062814070351758,
+        "S2": 0.8733571615939786,
+        "S1": 0.9952630786600262,
+        "a2": 0.2468712499465487,
+        "b2": 0.2936243582036969,
+        "c2": 0.4595043918495516
+      },
+      {
+        "S3": 0.8324120603015075,
+        "S2": 0.88706312157339,
+        "S1": 0.9863879489540647,
+        "a2": 0.263790143038826,
+        "b2": 0.3047862494503556,
+        "c2": 0.43142360751081854
+      },
+      {
+        "S3": 0.8585427135678392,
+        "S2": 0.8989755659500768,
+        "S1": 0.9724597031271208,
+        "a2": 0.2822828322332267,
+        "b2": 0.315102220490452,
+        "c2": 0.4026149472763213
+      },
+      {
+        "S3": 0.8846733668341709,
+        "S2": 0.9089053774959471,
+        "S1": 0.952945515419232,
+        "a2": 0.3027889062924245,
+        "b2": 0.32421407852500705,
+        "c2": 0.37299701518256845
+      }
+    ]
+  },
+  "weighted_W_example": {
+    "S": [
+      0.9783052787075636,
+      0.8947293389538316,
+      0.8487437185929646
+    ],
+    "tau3": 0.0,
+    "r_S": 1.8174363876768276,
+    "note": "explicit matching W-class state"
+  },
+  "oct_A_sign_rowsum": {
+    "S": [
+      0.8112781244591328,
+      0.8112781244591328,
+      0.8112781244591328
+    ],
+    "tau3": 0.25,
+    "r_S": null,
+    "note": "sigma row-sum map"
+  },
+  "oct_B_diag": {
+    "S": [
+      0.8112781244591332,
+      0.8112781244591332,
+      0.8112781244591332
+    ],
+    "tau3": 0.24999999999999992,
+    "r_S": null,
+    "note": "sigma(a,a) = -1 except a=0"
+  },
+  "oct_C_imaginary_uniform": {
+    "S": [
+      0.34896659526989626,
+      0.34896659526989626,
+      0.34896659526989626
+    ],
+    "tau3": 0.08163265306122447,
+    "r_S": null,
+    "note": "uniform over e_1..e_7"
+  },
+  "oct_C2_all_units_uniform": {
+    "S": [
+      5.014926407369193e-14,
+      5.014926407369193e-14,
+      5.014926407369193e-14
+    ],
+    "tau3": 5.551115123125783e-17,
+    "r_S": null,
+    "note": "uniform over e_0..e_7"
+  },
+  "oct_D_quat_line_123": {
+    "S": [
+      4.9828921423310435e-14,
+      4.9828921423310435e-14,
+      4.9828921423310435e-14
+    ],
+    "tau3": 0.0,
+    "r_S": null,
+    "note": "quaternionic subalgebra state"
+  },
+  "oct_D_quat_line_145": {
+    "S": [
+      4.9828921423310435e-14,
+      4.9828921423310435e-14,
+      4.9828921423310435e-14
+    ],
+    "tau3": 0.0,
+    "r_S": null,
+    "note": "quaternionic subalgebra state"
+  },
+  "oct_D_quat_line_167": {
+    "S": [
+      1.0,
+      1.0,
+      4.9828921423310435e-14
+    ],
+    "tau3": 0.0,
+    "r_S": null,
+    "note": "quaternionic subalgebra state"
+  },
+  "oct_D_quat_line_246": {
+    "S": [
+      4.9828921423310435e-14,
+      4.9828921423310435e-14,
+      4.9828921423310435e-14
+    ],
+    "tau3": 0.0,
+    "r_S": null,
+    "note": "quaternionic subalgebra state"
+  },
+  "oct_D_quat_line_257": {
+    "S": [
+      1.0,
+      4.9828921423310435e-14,
+      1.0
+    ],
+    "tau3": 0.0,
+    "r_S": null,
+    "note": "quaternionic subalgebra state"
+  },
+  "oct_D_quat_line_347": {
+    "S": [
+      4.9828921423310435e-14,
+      1.0,
+      1.0
+    ],
+    "tau3": 0.0,
+    "r_S": null,
+    "note": "quaternionic subalgebra state"
+  },
+  "oct_D_quat_line_356": {
+    "S": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tau3": 1.0,
+    "r_S": null,
+    "note": "quaternionic subalgebra state"
+  },
+  "oct_E_sign_convolution": {
+    "S": [
+      0.8112781244591328,
+      0.8112781244591328,
+      0.8112781244591328
+    ],
+    "tau3": 0.25,
+    "r_S": null,
+    "note": "same as map A by construction"
+  },
+  "oct_F_complexdir_e1": {
+    "S": [
+      5.014926407369193e-14,
+      5.014926407369193e-14,
+      5.014926407369193e-14
+    ],
+    "tau3": 0.0,
+    "r_S": null,
+    "note": "preferred complex direction"
+  },
+  "oct_F_complexdir_e2": {
+    "S": [
+      5.014926407369193e-14,
+      5.014926407369193e-14,
+      5.014926407369193e-14
+    ],
+    "tau3": 0.0,
+    "r_S": null,
+    "note": "preferred complex direction"
+  },
+  "oct_F_complexdir_e3": {
+    "S": [
+      5.014926407369193e-14,
+      1.0,
+      1.0
+    ],
+    "tau3": 0.0,
+    "r_S": null,
+    "note": "preferred complex direction"
+  },
+  "oct_F_complexdir_e4": {
+    "S": [
+      5.014926407369193e-14,
+      5.014926407369193e-14,
+      5.014926407369193e-14
+    ],
+    "tau3": 0.0,
+    "r_S": null,
+    "note": "preferred complex direction"
+  },
+  "oct_F_complexdir_e5": {
+    "S": [
+      1.0,
+      5.014926407369193e-14,
+      1.0
+    ],
+    "tau3": 0.0,
+    "r_S": null,
+    "note": "preferred complex direction"
+  },
+  "oct_F_complexdir_e6": {
+    "S": [
+      1.0,
+      1.0,
+      5.014926407369193e-14
+    ],
+    "tau3": 0.0,
+    "r_S": null,
+    "note": "preferred complex direction"
+  },
+  "oct_F_complexdir_e7": {
+    "S": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "tau3": 0.9999999999999996,
+    "r_S": null,
+    "note": "preferred complex direction"
+  }
+}
