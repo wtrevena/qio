@@ -1,0 +1,74 @@
+{
+  "verified_CAR": true,
+  "charge_spectrum": {
+    "nu (weight 0, Q=0)": 0.0,
+    "dbar_b (W1, Q=1/3)": 0.3333333333333333,
+    "dbar_g (W1, Q=1/3)": 0.3333333333333333,
+    "dbar_r (W1, Q=1/3)": 0.3333333333333333,
+    "u_r (W2, Q=2/3)": 0.6666666666666666,
+    "u_g (W2, Q=2/3)": 0.6666666666666666,
+    "u_b (W2, Q=2/3)": 0.6666666666666666,
+    "e+ (weight 3, Q=1)": 1.0
+  },
+  "states": {
+    "particle basis state (any)": {
+      "S": [
+        4.9828921423310435e-14,
+        4.9828921423310435e-14,
+        4.9828921423310435e-14
+      ],
+      "tau3": 0.0,
+      "note": "Fock basis = computational basis: S=(0,0,0); single particles carry NO entanglement in this frame"
+    },
+    "color-uniform dbar (W state)": {
+      "S": [
+        0.9182958340544893,
+        0.9182958340544893,
+        0.9182958340544893
+      ],
+      "tau3": 0.0,
+      "note": "SU(3)-flavor-symmetric weight-1 combo = the W state, tau3=0"
+    },
+    "color-uniform u (W-bar state)": {
+      "S": [
+        0.9182958340544893,
+        0.9182958340544893,
+        0.9182958340544893
+      ],
+      "tau3": 0.0,
+      "note": "weight-2 uniform combo = flipped W state"
+    },
+    "nu + e+ (GHZ)": {
+      "S": [
+        0.9999999999999999,
+        0.9999999999999999,
+        0.9999999999999999
+      ],
+      "tau3": 1.0000000000000004,
+      "note": "GHZ = maximal violation of charge superselection (Delta Q = 1)"
+    },
+    "nu + color-uniform dbar": {
+      "S": [
+        0.32362801584410994,
+        0.32362801584410994,
+        0.32362801584410994
+      ],
+      "tau3": 0.0,
+      "note": "lepton-quark superposition (Delta Q = 1/3)"
+    }
+  },
+  "gauge_vs_entanglement": {
+    "S_before": [
+      4.9828921423310435e-14,
+      4.9828921423310435e-14,
+      4.9828921423310435e-14
+    ],
+    "S_after": [
+      0.9182958340544893,
+      0.9182958340544893,
+      0.9182958340544893
+    ],
+    "is_local_unitary": false,
+    "note": "A color rotation (DFT in color space) maps a separable quark state to an entangled one: gauge transformations are NOT local unitaries of the qubit factorization. Entanglement in the JW frame is gauge-frame dependent; only gauge-invariant combinations of invariants can be physical."
+  }
+}

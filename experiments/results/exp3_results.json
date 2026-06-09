@@ -1,0 +1,67 @@
+{
+  "sm": {
+    "crossing_scales_GeV": {
+      "a3-a2": 1.0477653396803614e+17,
+      "a3-a1": 238940206683003.22,
+      "a2-a1": 9651324905040.846
+    },
+    "mu_star_GeV": 238949353952920.47,
+    "min_spread_alpha_inv": 3.7114725798978228,
+    "ainv_at_mu_star": [
+      40.338293485443586,
+      44.04969843570431,
+      40.338225855806485
+    ],
+    "ainv_at_MPl": [
+      52.415744731694446,
+      49.51330733281779,
+      33.26429012585956
+    ],
+    "min_entropy_asymmetry_at_minB": 0.029339704188915596
+  },
+  "mssm": {
+    "mu_star_GeV": 1.4326791999345836e+16,
+    "min_spread_alpha_inv": 0.41035931177822604,
+    "ainv_at_mu_star": [
+      25.613729385404362,
+      26.024081563462513,
+      25.613722251684287
+    ],
+    "min_entropy_asymmetry_at_minB": 0.003243947128681629
+  },
+  "feasible_region": {
+    "n_feasible": 1401,
+    "grid": [
+      181,
+      221
+    ],
+    "min_abs_B": 126.5,
+    "representative_A": 118.0,
+    "representative_B": -126.5,
+    "A_range_feasible": [
+      106.0,
+      140.0
+    ],
+    "note": "Constraints: S in [0,1]^3 and HSS polygon inequality at all mu in [M_Z, M_Planck]. Without the polygon constraint the region is strictly larger; the polygon inequality is doing real work.",
+    "box_only_count": 15974,
+    "polygon_cut_fraction": 0.9122949793414298
+  },
+  "representative_trajectory": {
+    "S_at_MZ": [
+      0.8657568046881023,
+      0.6985105819671938,
+      0.46642648104748907
+    ],
+    "S_at_MPl": [
+      0.5184526108166447,
+      0.541396779977725,
+      0.6698475088864857
+    ],
+    "slopes_dS_dlogmu": [
+      -0.00880699289836575,
+      -0.003984115834974982,
+      0.0051583815547570815
+    ],
+    "note": "Ordering at M_Z: S1>S2>S3 (SU(3) most entangled); ordering at M_Pl inverted (U(1) most entangled). Hierarchy inversion in the deep UV is a structural feature of the entropy-flow version."
+  }
+}
