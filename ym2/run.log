@@ -1,0 +1,19 @@
+== (a)+(b) curves, monotonicity, invertibility ==
+  SU2: S strictly decreasing on grid: True, max dS/dt = -6.195e-03, max|S_direct-S_C1| = 1.78e-15
+      Shannon piece: {'nonmonotonic': False, 'max_dH_dt': -0.005050053347452786}
+      entropy-inversion worst |t_rec - t_true| = 8.57e-14
+  U1: S strictly decreasing on grid: True, max dS/dt = -4.539e-04, max|S_direct-S_C1| = 8.88e-16
+      Shannon piece: {'nonmonotonic': False, 'max_dH_dt': -0.000453916862708419}
+      entropy-inversion worst |t_rec - t_true| = 6.04e-14
+== (c) statistical reconstruction demo ==
+  SU2 t*=0.5: rmse(N=1e3)=0.0127 (CRB 0.0129, ratio 0.983); rmse(N=1e4)=0.0042 (CRB 0.0041, ratio 1.030)
+  SU2 t*=1.0: rmse(N=1e3)=0.0250 (CRB 0.0258, ratio 0.968); rmse(N=1e4)=0.0082 (CRB 0.0082, ratio 1.002)
+  SU2 t*=2.0: rmse(N=1e3)=0.0546 (CRB 0.0516, ratio 1.056); rmse(N=1e4)=0.0166 (CRB 0.0163, ratio 1.014)
+  SU2 t*=4.0: rmse(N=1e3)=0.1046 (CRB 0.1033, ratio 1.013); rmse(N=1e4)=0.0332 (CRB 0.0327, ratio 1.016)
+  U1 t*=0.5: rmse(N=1e3)=0.0214 (CRB 0.0224, ratio 0.958); rmse(N=1e4)=0.0072 (CRB 0.0071, ratio 1.021)
+  U1 t*=1.0: rmse(N=1e3)=0.0472 (CRB 0.0447, ratio 1.055); rmse(N=1e4)=0.0141 (CRB 0.0141, ratio 0.997)
+  U1 t*=2.0: rmse(N=1e3)=0.0911 (CRB 0.0887, ratio 1.027); rmse(N=1e4)=0.0302 (CRB 0.0281, ratio 1.077)
+  U1 t*=4.0: rmse(N=1e3)=0.1600 (CRB 0.1511, ratio 1.058); rmse(N=1e4)=0.0482 (CRB 0.0478, ratio 1.008)
+== (d) figure ==
+== (e) results.json ==
+done in 8.2 s

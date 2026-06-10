@@ -1,8 +1,8 @@
 # Is the Standard Model Coupling Hierarchy Encoded in Three-Qubit Vacuum Entanglement? No-Go Results, an Exact Octonionic Vacuum, and the Surviving Hypothesis Space
 
-**W. [Author]**
+**William T. Trevena**
 
-*University of Florida (PhD, Industrial and Systems Engineering)*
+*Independent researcher (PhD, Industrial and Systems Engineering, University of Florida) — william.todd.trevena@gmail.com*
 
 June 2026
 
@@ -30,27 +30,23 @@ These programs jointly motivate a specific quantitative question, which is the s
 
 ### 1.1. Contributions
 
-1. **Synthesis.** We connect the emergent-spacetime and division-algebraic programs under a common framework, identifying the Szangolies construction as a bridge.
+1. **Synthesis and motivation.** We connect the emergent-spacetime and division-algebraic programs under a common framework, identifying the Szangolies construction — the unique normed-division-algebra Hopf fibration producing the Standard Model gauge group — as the bridge. We also note that Ryu-Takayanagi (spatial emergence) and Page-Wootters (temporal emergence) may describe two aspects of a single informational mechanism; this is suggestive, not a formal result.
 
-2. **Observation on spacetime emergence.** We note that Ryu-Takayanagi (spatial emergence) and Page-Wootters (temporal emergence) may describe two aspects of a single informational mechanism. This is suggestive, not a formal result.
+2. **Analytic underconstraint result.** We prove that unconstrained three-qubit states can reproduce the observed Standard Model coupling hierarchy at M_Z under a two-parameter logarithmic map, establishing that coupling matching alone is not evidential (Section 5.3).
 
-3. **Division-algebra uniqueness.** The three-qubit octonionic case is the unique normed-division-algebra Hopf fibration producing the Standard Model gauge group.
+3. **Minimality of three qubits.** We prove that any two-qubit pure state has S₁ = S₂ identically (Schmidt decomposition), so a two-coupling version of the map is impossible, not merely underconstrained: three qubits is the smallest system on which the ansatz has any content (Section 5.6).
 
-4. **Analytic underconstraint result.** We prove that unconstrained three-qubit states can reproduce the observed Standard Model coupling hierarchy at M_Z under a two-parameter logarithmic map, establishing that coupling matching alone is not evidential (Section 5.3).
+4. **Scale-dependence computation.** We compute that the log-inverse-coupling gap ratio r_SM(μ) varies significantly under one-loop SM running (~24% between M_Z and 10⁶ GeV) and becomes singular near the α₁-α₂ crossing (~10¹³ GeV), establishing that a scale-independent entropy triple cannot match couplings at all scales (Section 6.3). This motivates the entropy-flow reformulation of Section 7.
 
-5. **Minimality of three qubits.** We prove that any two-qubit pure state has S₁ = S₂ identically (Schmidt decomposition), so a two-coupling version of the map is impossible, not merely underconstrained: three qubits is the smallest system on which the ansatz has any content (Section 5.6).
+5. **Characterization of evidential requirements.** We specify what additional constraints would elevate coupling-entropy correspondence from a baseline check to genuine evidence (Section 5.4).
 
-6. **Scale-dependence computation.** We compute that the log-inverse-coupling gap ratio r_SM(μ) varies significantly under one-loop SM running (~24% between M_Z and 10⁶ GeV) and becomes singular near the α₁-α₂ crossing (~10¹³ GeV), establishing that a scale-independent entropy triple cannot match couplings at all scales (Section 6.3). This motivates the entropy-flow reformulation of Section 7.
+6. **Executed computational program.** We design and execute experiments testing whether algebraically motivated states from the Szangolies construction intersect the coupling-matching manifold (Section 6). Results: across 10⁷ Haar-random states, the matching manifold is statistically generic in its entanglement invariants (Requirement C fails empirically); every canonical octonionic state construction tested yields permutation-degenerate entropies, so none produces a hierarchy; and the matching manifold intersects the W-class (zero 3-tangle) sector, so coupling matching does not even fix the SLOCC class. Four null controls confirm that parameter freedom, not algebraic structure, drives matching.
 
-7. **Characterization of evidential requirements.** We specify what additional constraints would elevate coupling-entropy correspondence from a baseline check to genuine evidence (Section 5.4).
+7. **Entropy-flow form of the conjecture.** We construct an RG-consistent affine form of the coupling-entropy map, α_i⁻¹(μ) = A + B·S_i(μ), under which entropies run linearly in log μ with slopes proportional to one-loop beta coefficients (Section 7). The quantum-marginal (polygon) constraint forces |B| ≳ 126 — a robust bound, binding at M_Z — and the map's single falsifiable consequence is that an entanglement-symmetric boundary state is equivalent to exact coupling unification, which the Standard Model alone does not provide. We state this conditionally and flag its dependence on the abelian normalization convention.
 
-8. **Executed computational program.** We design and execute experiments testing whether algebraically motivated states from the Szangolies construction intersect the coupling-matching manifold (Section 6). Results: across 10⁷ Haar-random states, the matching manifold is statistically generic in its entanglement invariants (Requirement C fails empirically); every canonical octonionic state construction tested yields permutation-degenerate entropies, so none produces a hierarchy; and the matching manifold intersects the W-class (zero 3-tangle) sector, so coupling matching does not even fix the SLOCC class. Four null controls confirm that parameter freedom, not algebraic structure, drives matching.
+8. **Jordan–Wigner dictionary and the gauge-covariance obstruction.** We make explicit that Furey's Cl(6) construction — three fermionic ladder operators [5, 6, 45] — is the three-qubit operator algebra under the Jordan–Wigner transformation [38], so that electric charge becomes Hamming-weight grading, the color-symmetric quark combination is the W state, and the ν + e⁺ superposition is the GHZ state (Section 9). The isomorphism itself is standard; the yield is the reading, and above all the obstruction it exposes: gauge transformations are not local unitaries of the qubit factorization, so single-qubit entanglement is gauge-frame dependent — an instance of the known relativity of entanglement to a tensor-product structure [46, 47], here with specific consequences: it renders the title question ill-posed as stated.
 
-9. **Entropy-flow form of the conjecture.** We construct an RG-consistent affine form of the coupling-entropy map, α_i⁻¹(μ) = A + B·S_i(μ), under which entropies run linearly in log μ with slopes proportional to one-loop beta coefficients (Section 7). The quantum-marginal (polygon) constraint forces |B| ≳ 126 — a robust bound, binding at M_Z — and the map's single falsifiable consequence is that an entanglement-symmetric boundary state is equivalent to exact coupling unification, which the Standard Model alone does not provide. We state this conditionally and flag its dependence on the abelian normalization convention.
-
-10. **Jordan–Wigner dictionary and the gauge-covariance obstruction.** We make explicit that Furey's Cl(6) construction — three fermionic ladder operators [5, 6, 45] — is the three-qubit operator algebra under the Jordan–Wigner transformation [38], so that electric charge becomes Hamming-weight grading, the color-symmetric quark combination is the W state, and the ν + e⁺ superposition is the GHZ state (Section 9). The isomorphism itself is standard; the yield is the reading, and above all the obstruction it exposes: gauge transformations are not local unitaries of the qubit factorization, so single-qubit entanglement is gauge-frame dependent — an instance of the known relativity of entanglement to a tensor-product structure [46, 47], here with specific consequences: it renders the title question ill-posed as stated.
-
-11. **An exactly solvable octonionic vacuum.** The rotor Hamiltonian H = Σ_{a<b} σ(a,b)·iL_aL_b, with couplings the octonion multiplication-table signs, has the closed form H = i(L_u + 2R_u) where u = Σ_a e_a (Section 8). Its unique ground state (√7 e₀ − iu)/√14 is provably convention-invariant (and confirmed so across all 128 sign gauges, all 5040 index relabelings, the opposite algebra, and right-multiplication operators) and permutation-symmetric, with exact invariants: marginal spectra (1/7, 6/7), and 3-tangle equal to each squared pairwise concurrence, 8/49. We delimit what this does and does not show: the construction is equivalent to distinguishing the direction u/√7 relative to the frame defining the qubit factorization, so the algebra alone does not select a vacuum; and the symmetric outcome extends the permutation rigidity of the canonical kinematic constructions to the dynamical level.
+9. **An exactly solvable octonionic vacuum.** The rotor Hamiltonian H = Σ_{a<b} σ(a,b)·iL_aL_b, with couplings the octonion multiplication-table signs, has the closed form H = i(L_u + 2R_u) where u = Σ_a e_a (Section 8). Its unique ground state (√7 e₀ − iu)/√14 is provably convention-invariant (and confirmed so across all 128 sign gauges, all 5040 index relabelings, the opposite algebra, and right-multiplication operators) and permutation-symmetric, with exact invariants: marginal spectra (1/7, 6/7), and 3-tangle equal to each squared pairwise concurrence, 8/49. We delimit what this does and does not show: the construction is equivalent to distinguishing the direction u/√7 relative to the frame defining the qubit factorization, so the algebra alone does not select a vacuum; and the symmetric outcome extends the permutation rigidity of the canonical kinematic constructions to the dynamical level.
 
 ### 1.2. Scope and Limitations
 
@@ -108,25 +104,25 @@ We review results connecting quantum information to spacetime, with epistemic la
 
 **Status: Established (semiclassical gravity).**
 
-Black hole entropy scales with horizon area: S = A/(4l_P²) [12, 13]. This area-scaling contrasts with ordinary thermal entropy in local QFT, which is extensive in volume, though vacuum entanglement entropy in QFT also exhibits boundary-area divergences. The holographic principle ('t Hooft [14], Susskind [15]) generalizes: information content is bounded by boundary area in Planck units.
+Black hole entropy scales with horizon area, S = A/(4l_P²) [12, 13], in contrast with the volume-extensivity of ordinary thermal entropy. The holographic principle ('t Hooft [14], Susskind [15]) generalizes: information content is bounded by boundary area in Planck units.
 
 ### 3.2. AdS/CFT Correspondence
 
 **Status: Exact duality (vast evidence; no rigorous proof).**
 
-Maldacena (1997) [16] established a duality between (d+1)-dimensional AdS gravity and d-dimensional boundary CFT. Bulk geometry is derived from boundary entanglement. Formulated in AdS (negative cosmological constant), not our de Sitter-like universe.
+Maldacena (1997) [16] established a duality between (d+1)-dimensional AdS gravity and d-dimensional boundary CFT, in which bulk geometry is derived from boundary entanglement. It is formulated in AdS (negative cosmological constant), not our de Sitter-like universe.
 
 ### 3.3. Ryu-Takayanagi Formula
 
 **Status: Proven within AdS/CFT.**
 
-Entanglement entropy of boundary region A equals the minimal bulk surface area divided by 4G_N [17]. Extended to time-dependent (HRT) and quantum-corrected (QES) settings.
+Entanglement entropy of a boundary region equals the minimal bulk surface area divided by 4G_N [17], extended to time-dependent (HRT) and quantum-corrected (QES) settings.
 
 ### 3.4. Jacobson's Thermodynamic Derivation
 
 **Status: Established derivation from conditional assumptions.**
 
-Jacobson (1995) [18] derived Einstein's field equations from the Clausius relation applied to local Rindler horizons, assuming Bekenstein entropy-area proportionality. This demonstrates that Einstein's equations can be interpreted as an equation of state. It does not prove gravity is *only* emergent; as Donoghue [19] emphasizes, general relativity is also a valid low-energy effective field theory.
+Jacobson (1995) [18] derived Einstein's field equations from the Clausius relation applied to local Rindler horizons, assuming Bekenstein entropy-area proportionality — an equation-of-state reading of gravity. This does not prove gravity is *only* emergent; general relativity remains a valid low-energy effective field theory [19].
 
 ### 3.5. ER=EPR Conjecture
 
@@ -138,19 +134,19 @@ Maldacena and Susskind (2013) [20] proposed that wormholes and entanglement are 
 
 **Status: Structural correspondence (tensor networks as models); established within AdS/CFT (error correction).**
 
-Swingle (2012) [21] showed MERA networks provide models of emergent bulk geometry. Almheiri, Dong, and Harlow (2015) [22] showed holographic correspondence has QEC structure. Harlow (2017) [23] showed this matches AdS/CFT bulk reconstruction. Harlow and Ooguri (2019) [24] proved that quantum gravity in AdS forbids global symmetries and requires all gauge charges to be realized.
+MERA tensor networks model emergent bulk geometry [21], and holographic correspondence has quantum-error-correcting structure [22] matching AdS/CFT bulk reconstruction [23]. Harlow and Ooguri (2019) [24] proved that quantum gravity in AdS forbids global symmetries and requires all gauge charges to be realized.
 
 ### 3.7. Entropic Gravity
 
 **Status: Controversial proposal.**
 
-Verlinde (2010) [25] derived Newton's law from entropic arguments. Consistent with Jacobson's result but remains contested; see Visser (2011) [26] for challenges.
+Verlinde (2010) [25] derived Newton's law from entropic arguments. Consistent with Jacobson's result but contested; see Visser (2011) [26].
 
 ### 3.8. Page-Wootters Mechanism
 
 **Status: Framework with experimental illustration in small systems.**
 
-Page and Wootters (1983) [27] showed time can emerge from entanglement in a globally static quantum state (H|Ψ⟩ = 0). Moreva et al. (2014) [28] experimentally illustrated this in an entangled photon system. Favalli (2024) [29] extended to 3+1 dimensions, recovering Schwarzschild time dilation.
+Page and Wootters (1983) [27] showed time can emerge from entanglement in a globally static quantum state (H|Ψ⟩ = 0). Moreva et al. (2014) [28] illustrated this experimentally; Favalli (2024) [29] extended it to 3+1 dimensions.
 
 ---
 
@@ -176,17 +172,11 @@ Any complete realization of the QIO would require specifying the following objec
 
 These gaps are not hidden; they define the open problems of the QIO research program.
 
-### 4.3. Claims with Confidence Levels
+### 4.3. Confidence Levels and an Observation
 
-**High confidence:** Information content of gravitational systems is holographic. Einstein's equations are derivable from information-theoretic assumptions, in the conditional sense of Section 3.4. Within AdS/CFT, spatial geometry is determined by entanglement entropy.
+**High confidence:** information content of gravitational systems is holographic; Einstein's equations are derivable from information-theoretic assumptions, in the conditional sense of Section 3.4; within AdS/CFT, spatial geometry is determined by entanglement entropy. **Moderate confidence:** gravity as emergent or thermodynamic rather than a fundamental gauge interaction; quantum error-correcting structure of spacetime. **Speculative:** the graviton as an effective quasiparticle; coupling constants encoded in entanglement entropy.
 
-**Moderate confidence:** Several results motivate treating gravity as emergent or thermodynamic rather than as a fundamental gauge interaction. Spacetime may have quantum error-correcting code structure.
-
-**Speculative:** The graviton, if present, may be an effective quasiparticle. If gravity is emergent, QIO reinforces the standard separation between gauge unification (which already involves only three forces in SU(5), SO(10), etc.) and quantum gravity. Coupling constants may be encoded in entanglement entropy.
-
-### 4.4. Observation: Unified Spacetime Emergence
-
-The Ryu-Takayanagi formula describes spatial emergence from entanglement. The Page-Wootters mechanism describes temporal emergence from entanglement. If both operate within a single state satisfying H|Ψ⟩ = 0, space and time emerge from the same substrate through the same mechanism applied to different partitions. This is suggestive, not a formal result. Making it precise requires demonstrating that both can be derived as special cases of a single formalism.
+One observation deserves separate statement: Ryu-Takayanagi describes *spatial* emergence from entanglement and Page-Wootters describes *temporal* emergence, so if both operate within a single state satisfying H|Ψ⟩ = 0, space and time emerge from the same substrate through the same mechanism applied to different partitions. This is suggestive, not a formal result; making it precise requires deriving both as special cases of a single formalism.
 
 ---
 
@@ -530,7 +520,7 @@ That entanglement is relative to a choice of tensor-product structure, and that 
 
 **Gauge transformations are not local unitaries of the qubit factorization, and therefore single-qubit entanglement entropies in this frame are gauge-frame dependent.** Any physical coupling-entropy correspondence must consequently be built from gauge-invariant entanglement functionals, or must include an algebraic gauge-fixing of the tensor factorization as part of its definition. Neither has yet been constructed. Until one is, the title question of this paper is ill-posed — which is itself the sharpest result the executed program produced.
 
-This caveat sharpens, and partially explains, two earlier findings: the index ambiguity of Section 2.3 (the tensor-factor labels were never gauge-covariantly defined) and the Control D null of Section 6.4 (no unconstrained entanglement statistic could have privileged one qubit-gauge labeling, because the labeling is not gauge-invariant in the first place). We regard identifying the right gauge-invariant entanglement functional as the central open problem this paper leaves for the coupling-entropy program.
+This caveat sharpens, and partially explains, two earlier findings: the index ambiguity of Section 2.3 (the tensor-factor labels were never gauge-covariantly defined) and the Control D null of Section 6.4 (no unconstrained entanglement statistic could have privileged one qubit-gauge labeling, because the labeling is not gauge-invariant in the first place). We regard identifying the right gauge-invariant entanglement functional as the central open problem this paper leaves for the coupling-entropy program. A companion computation, completed after this manuscript, carries out exactly this gauge-invariantization for the minimal toy and sharpens the present conclusion — see the Note added preceding the references.
 
 ---
 
@@ -540,11 +530,11 @@ The QIO suggests reframings — potentially productive changes of viewpoint — 
 
 ### 10.1. De Sitter Holography
 
-If spacetime universally emerges from entanglement, holography should extend beyond AdS. Recent work on static patch holography [34] and composite deformation flows [35] shows progress. De Sitter holography does not yet approach AdS/CFT-level rigor.
+If spacetime universally emerges from entanglement, holography should extend beyond AdS; recent work on static patch holography [34] and composite deformation flows [35] shows progress. De Sitter holography does not yet approach AdS/CFT-level rigor.
 
 ### 10.2. The Cosmological Constant
 
-If the holographic principle constrains degrees of freedom to scale with area rather than volume, the QFT vacuum energy calculation overcounts. Freidel et al. (2023) [36] explored how holographic entropy bounds constrain vacuum energy, showing a technically natural result (Λ → 0 as IR scale increases). This is suggestive but does not derive the observed Λ, address radiative stability, or produce numerical predictions.
+If the holographic principle constrains degrees of freedom to scale with area rather than volume, the QFT vacuum energy calculation overcounts; Freidel et al. (2023) [36] show holographic entropy bounds yield a technically natural Λ → 0 as the IR scale increases. This is suggestive but does not derive the observed Λ, address radiative stability, or produce numerical predictions.
 
 ### 10.3. Gauge Unification and the Monopole Problem
 
@@ -587,6 +577,12 @@ Our negative results stand and are strengthened by execution. Analytically: unco
 The surviving hypothesis space is small and sharply bounded. A coupling-entropy correspondence, if one exists, must: (i) be built from gauge-invariant entanglement functionals, because single-qubit entropies of the Jordan–Wigner factorization are gauge-frame dependent (Section 9.3) and the abelian normalization is itself a convention (Section 7.3); (ii) generate the hierarchy by flow rather than statics, in the RG-consistent affine form of Section 7, whose only falsifiable consequence is the unification boundary condition — the Standard Model's entanglement asymmetry never reaches zero, bottoming at ≈ 0.029 near 2.4 × 10¹⁴ GeV, while the MSSM reaches ≈ 0.003 near 1.4 × 10¹⁶ GeV; and (iii) explain why the algebra's own canonical vacuum, the exactly solvable rotor ground state (√7 e₀ − iu)/√14 with marginal spectra (1/7, 6/7) and 3-tangle 8/49, is permutation-symmetric — hierarchy is nowhere to be found in the octonions' canonical structures, kinematic or dynamical.
 
 None of these results requires believing the ontology; each is a checkable statement about three-qubit states, Clifford algebras, or renormalization-group trajectories, with code and raw outputs published. The well-defined problems this paper leaves open are the construction of a gauge-invariant entanglement functional (the well-posedness problem, which we regard as the central one), the counting interpretation of the entropy-flow slopes, and the mechanism question of whether any flow connects a symmetric boundary state to the low-energy hierarchy. A map of where the answers cannot lie is what this paper contributes; we offer it to whoever next enters this territory.
+
+---
+
+## Note Added
+
+After this manuscript was completed, a sequel computation (companion paper, in preparation) made the title question well-posed by replacing single-qubit entropies with entanglement relative to the gauge-invariant operator subalgebras — the algebraic notion of Barnum-Knill-Ortiz-Viola [47] and Zanardi [46] — and computed the answer exactly in the Jordan–Wigner toy of Section 9. The result: the weighted-W coupling-matching curve of Section 6.2, this paper's one surviving static "match," is pure gauge — every state on it has zero gauge-invariant entanglement relative to the U(3)-, SU(3)-, and U(1)-invariant subalgebras, and the W state itself is exactly G(U)|001⟩, a gauge transform of a single-particle state. The static match was therefore matching frame artifacts, which strengthens the ill-posedness conclusion of Section 9.3 from a diagnosis to a computed fact.
 
 ---
 

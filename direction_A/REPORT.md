@@ -17,7 +17,7 @@ replaces -- with every step machine-verified (`run_direction_A.py`, seed 2026060
    **M1 (+) M3 (+) M3 (+) M1**.
 2. For **every pure state**, the algebraic entanglement entropy is **purely classical (center)
    charge statistics** for all three gauge choices; the quantum piece vanishes identically
-   (verified to 1.8e-15 over 10^4 Haar states). In Casini-Huerta language: this toy is *all
+   (verified to 1.8e-15: full machinery on a 200-state subsample of the 10^4 Haar ensemble; sector-statistics consistency on all 10^4). In Casini-Huerta language: this toy is *all
    edge-mode term, no bulk term* -- a direct bridge to Direction B.
 3. The rotor vacuum's gauge-invariant data is exactly **p = (1/2, 3/14, 3/14, 1/14)**, with
    S_U(3) = 1/2 + (1/2)log2(14) - (3/7)log2(3) ~ **1.724408 bits** and S_SU(3) ~ **1.413800 bits**.
@@ -150,7 +150,7 @@ exactly the 3 relative phases between the four sectors: 14 - 3 = 11. OK.
 
 All entropies in **bits**. For every pure state and all three algebras the **quantum piece is
 identically zero** -- each Wedderburn block above has n_k = 1 or m_k = 1, so the conditional block
-states of a pure state are pure. (Verified: max |quantum piece| = 1.8e-15 over 10^4 Haar states.)
+states of a pure state are pure. (Verified: max |quantum piece| = 1.8e-15, full machinery on a 200-state subsample; sector statistics on all 10^4.)
 S_A is therefore **entirely the center (classical) term** in this toy; the table reports totals.
 
 | state | (p0, p1, p2, p3) | S_U(3) | S_SU(3) | S_U(1) | single-qubit S (gauge-VARIANT, for contrast) |
@@ -269,7 +269,7 @@ the algebra's symmetry.
 We tested every ordered assignment of three distinct charge sectors to the three couplings (24 per
 feature map) under three feature maps (p_k, log2 p_k, -p_k log2 p_k), against the inherited
 two-parameter affine ansatz, i.e. demanding the gap ratio r = (x_a - x_b)/(x_b - x_c) equal
-r_SM = 1.8174 (draft Eq. 2). Result (66 finite assignments): **none lands within the paper's
+r_SM = 1.8174 (draft Eq. 2). Result (60 non-degenerate assignments of 72 enumerated; 12 degenerate excluded — see results.json): **none lands within the paper's
 widened tolerance 0.05**; the best miss is r = 2 exactly (feature p, sectors (0, 1, 3) or (0, 2, 3)
 descending), at distance **0.183** -- and the assignments achieving it must, absurdly, assign the
 *neutrino* sector and the *positron* sector to two different gauge couplings while skipping one of
