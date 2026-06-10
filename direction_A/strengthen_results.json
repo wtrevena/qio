@@ -1,0 +1,310 @@
+{
+  "seed": 20260609,
+  "task1_su2L_lemma": {
+    "claim": "The unitaries W on C^8 with W span{f1,f2,f3} W^dag <= span{f1,f2,f3} are exactly {e^{i phi} G(U) : U in U(3)}; hence no SU(2)_L can act as a mode gauge symmetry on this one-generation ideal.",
+    "dim_L": 10,
+    "expected_dim": "10 = dim u(3) + 1 (global phase)",
+    "svd_split": {
+      "largest_zero_sv": 1.1319748747287749e-15,
+      "smallest_nonzero_sv": 0.999999999999999
+    },
+    "residuals": {
+      "constraint": 9.331032194697592e-16,
+      "hermiticity": 0.0,
+      "number_conservation": 1.1467535259100575e-15
+    },
+    "L_equals_dGamma_u3_plus_identity": {
+      "rank_expected": 10,
+      "rank_union": 10,
+      "expected_gens_constraint_residual": 0.0
+    },
+    "exponentiation": {
+      "n_elements_checked": 30,
+      "max_mode_reconstruction_residual": 2.75095515060398e-15,
+      "max_M_unitarity_residual": 4.73278015639452e-16,
+      "max_phase_times_GU_residual": 2.5134198359443534e-15,
+      "note": "W = expm(i h) for all 10 basis elements and 20 random real combinations; each satisfies W f_k W^dag = sum_j M_kj f_j with M unitary, and W = e^{i phi} G(M^dag) exactly."
+    },
+    "converse": {
+      "mode_algebra_dim": 64,
+      "note": "Group-level converse: if W span{f} W^dag <= span{f}, CAR forces the coefficient matrix M to be unitary (M M^dag = 1 from {W f_i W^dag, (W f_j W^dag)^dag} = delta_ij); then W G(M^dag)^dag commutes with every f_k, f_k^dag, whose generated algebra is all of M_8(C) (machine: dim 64), so Schur gives W = e^{i phi} G(M^dag). No extra components exist."
+    },
+    "su3_centralizer_in_L": {
+      "dim": 2,
+      "equals_span_1_N": true,
+      "fresh_sample_residual": 1.1389563874384875e-15,
+      "commutator_of_basis": 3.0857376105115264e-16,
+      "note": "An SU(2)_L gauge factor must commute with the colour action and preserve the modes. The space of such generators is the 2-dimensional ABELIAN algebra span{1, N}; su(2) needs a 3-dimensional non-abelian algebra. Obstruction is machine-exact."
+    },
+    "bogoliubov_variant": {
+      "dim_LB": 16,
+      "expected": "16 = dim so(6) + 1",
+      "svd_split": {
+        "largest_zero_sv": 2.175579031519784e-15,
+        "smallest_nonzero_sv": 0.9999999999999998
+      },
+      "identified_as": "dGamma(u(3)) (+) R.1 (+) 6 pair terms f_i^dag f_j^dag + h.c., i(f_i^dag f_j^dag - h.c.)",
+      "rank_checks": {
+        "expected": 16,
+        "union": 16
+      },
+      "number_conserving_part": {
+        "dim": 10,
+        "equals_L": true
+      },
+      "grading_violation": {
+        "pair_generator": {
+          "norm_comm_N": 4.0,
+          "max_off_weight_block_of_exp": 0.8414709848078966,
+          "perp_to_modespan_of_comm_f1": 2.0
+        },
+        "random_complement_element": {
+          "norm_comm_N": 4.975732341256987,
+          "max_off_weight_block_of_exp": 0.9470541324198545,
+          "perp_to_modespan_of_comm_f1": 2.484677102924638
+        }
+      },
+      "note": "Allowing f_i -> sum_j (U_ij f_j + V_ij f_j^dag) enlarges the LINEAR-constraint solution space from 10 to 16 (the Bogoliubov algebra so(6) (+) phase), but every added direction violates particle number, moves states across Hamming-weight (= charge) sectors, and fails to map span{f} into itself. The number-conserving / span-preserving part collapses back to u(3) (+) phase exactly."
+    },
+    "particle_hole": {
+      "W": "X(x)X(x)X",
+      "action": "f_k -> (f1^dag, -f2^dag, f3^dag)",
+      "residual": 0.0,
+      "N_inversion_residual": 0.0,
+      "image_orthogonal_to_modespan": 1.0,
+      "note": "A particle-hole unitary exists but SWAPS span{f} with span{f^dag} and inverts the charge grading (N -> 3 - N); it is not in the span-preserving group, and SU(2), being connected, cannot live in a disconnected coset."
+    },
+    "antilinear": {
+      "f_real_residual": 0.0,
+      "conjG_residual": 0.0,
+      "note": "All f_k are real matrices, so every antiunitary preserving span{f} is K (entrywise conjugation) composed with a span-preserving unitary; K G(U) K = G(conj U). Antilinear maps add no new symmetry."
+    }
+  },
+  "task2_alphaY_rerun": {
+    "alpha_inputs": {
+      "alpha3": 0.1179,
+      "alpha2": 0.03374,
+      "alpha1_GUT": 0.01695,
+      "alpha1_inv": 58.99705014749263,
+      "alphaY_inv": 98.32841691248773,
+      "alphaY_inv_from_rounded_59": 98.33333333333334
+    },
+    "r_SM_GUT": 1.8174363876768216,
+    "r_Y": 1.043286400178411,
+    "r_Y_rounded_table": 1.0435076871755977,
+    "n_enumerated": 72,
+    "n_finite": 60,
+    "cross_check_GUT_best_dist": 0.1825636123231793,
+    "best": {
+      "feature": "log2_p",
+      "sectors": [
+        3,
+        1,
+        0
+      ],
+      "r": 1.296606943119222,
+      "dist_to_r_Y": 0.25332054294081097
+    },
+    "top5": [
+      {
+        "feature": "log2_p",
+        "sectors": [
+          3,
+          1,
+          0
+        ],
+        "r": 1.296606943119222,
+        "dist_to_r_Y": 0.25332054294081097
+      },
+      {
+        "feature": "log2_p",
+        "sectors": [
+          3,
+          2,
+          0
+        ],
+        "r": 1.296606943119222,
+        "dist_to_r_Y": 0.25332054294081097
+      },
+      {
+        "feature": "log2_p",
+        "sectors": [
+          0,
+          1,
+          3
+        ],
+        "r": 0.7712437491614225,
+        "dist_to_r_Y": 0.27204265101698855
+      },
+      {
+        "feature": "log2_p",
+        "sectors": [
+          0,
+          2,
+          3
+        ],
+        "r": 0.7712437491614225,
+        "dist_to_r_Y": 0.27204265101698855
+      },
+      {
+        "feature": "p",
+        "sectors": [
+          3,
+          1,
+          0
+        ],
+        "r": 0.49999999999999983,
+        "dist_to_r_Y": 0.5432864001784112
+      }
+    ],
+    "best_dist_rounded_variant": 0.25309925594362426,
+    "any_within_0p05": false,
+    "any_within_0p01": false,
+    "note": "Same 60-assignment zoo (3 feature maps x 24 ordered sector triples, 12 indeterminate by p1 = p2) re-targeted at the non-GUT-normalized gap ratio r_Y. No assignment lands within 0.05 (or 0.01). The p1 = p2 degeneracy and the four-sectors-vs-three-couplings mismatch are normalization-independent."
+  },
+  "task4_exp2_reconciliation": {
+    "claim": "The S-triple (0.9995, 0.8580, 0.7802) quoted in Paper 2 and the S-triple (0.978, 0.895, 0.849) quoted in draft.md Fig. 1c / Sec 6.2 are DIFFERENT points on the SAME exp2 weighted-W matching curve; no inconsistency. Every stored point has support only on the weight-1 sector, hence S_alg = 0 (pure gauge).",
+    "grid": {
+      "S3_scan": "linspace(0.30, 0.95, 200)",
+      "step": 0.0032663316582914573,
+      "n_curve_points": 43,
+      "examples_are_curve_indices": [
+        0,
+        8,
+        16,
+        24,
+        32
+      ],
+      "fig1c_point_is_curve_index": 21,
+      "fig1c_steps_from_example0": 20.99999999999996
+    },
+    "examples_verification": {
+      "n": 5,
+      "max_S_recompute_residual": 8.038014698286133e-14,
+      "max_r_S_minus_r_SM": 6.612488334667432e-13,
+      "max_weight1_support_deficit": 4.440892098500626e-16,
+      "max_S_alg_all_algebras": 1.6017132519074597e-15,
+      "max_weight_sum_deficit": 2.0272672429655358e-13,
+      "per_example": [
+        {
+          "stored_S": [
+            0.9995036023504196,
+            0.8580062288883543,
+            0.7801507537688441
+          ],
+          "recomputed_S": [
+            0.9995036023504194,
+            0.8580062288883543,
+            0.7801507537688444
+          ],
+          "r_S": 1.817436387676824,
+          "weight1_support": 1.0000000000000004,
+          "S_alg": {
+            "U3": -1.1830725560695069e-15,
+            "SU3": -1.0593259966009363e-15,
+            "U1": -1.6017132519074597e-15
+          }
+        },
+        {
+          "stored_S": [
+            0.9952630786600262,
+            0.8733571615939786,
+            0.8062814070351758
+          ],
+          "recomputed_S": [
+            0.9952630786600478,
+            0.8733571615940539,
+            0.8062814070352562
+          ],
+          "r_S": 1.8174363876761603,
+          "weight1_support": 1.0,
+          "S_alg": {
+            "U3": -5.423872553065231e-16,
+            "SU3": -8.62729905688015e-16,
+            "U1": -9.610279511444756e-16
+          }
+        },
+        {
+          "stored_S": [
+            0.9863879489540647,
+            0.88706312157339,
+            0.8324120603015075
+          ],
+          "recomputed_S": [
+            0.9863879489540646,
+            0.8870631215733897,
+            0.8324120603015073
+          ],
+          "r_S": 1.8174363876768238,
+          "weight1_support": 1.0,
+          "S_alg": {
+            "U3": -8.62729905688015e-16,
+            "SU3": -8.62729905688015e-16,
+            "U1": -9.610279511444756e-16
+          }
+        },
+        {
+          "stored_S": [
+            0.9724597031271208,
+            0.8989755659500768,
+            0.8585427135678392
+          ],
+          "recomputed_S": [
+            0.9724597031271207,
+            0.8989755659500767,
+            0.8585427135678392
+          ],
+          "r_S": 1.8174363876768262,
+          "weight1_support": 0.9999999999999999,
+          "S_alg": {
+            "U3": -2.220446049250313e-16,
+            "SU3": -5.423872553065231e-16,
+            "U1": -6.406853007629837e-16
+          }
+        },
+        {
+          "stored_S": [
+            0.952945515419232,
+            0.9089053774959471,
+            0.8846733668341709
+          ],
+          "recomputed_S": [
+            0.9529455154192321,
+            0.9089053774959471,
+            0.8846733668341707
+          ],
+          "r_S": 1.817436387676817,
+          "weight1_support": 0.9999999999999999,
+          "S_alg": {
+            "U3": -2.220446049250313e-16,
+            "SU3": -5.423872553065231e-16,
+            "U1": -6.406853007629837e-16
+          }
+        }
+      ]
+    },
+    "fig1c_point": {
+      "stored_S": [
+        0.9783052787075636,
+        0.8947293389538316,
+        0.8487437185929646
+      ],
+      "stored_r_S": 1.8174363876768276,
+      "reconstructed_weights": {
+        "a2": 0.27513986711752947,
+        "b2": 0.3113532123033327,
+        "c2": 0.41350692057927824
+      },
+      "weight_sum_deficit": 1.4033219031261979e-13,
+      "S_roundtrip_residual": 5.4067861299245124e-14,
+      "r_S_residual": 1.836308882730009e-12,
+      "weight1_support": 1.0,
+      "S_alg": {
+        "U3": -5.423872553065231e-16,
+        "SU3": -8.62729905688015e-16,
+        "U1": -3.2034265038149176e-16
+      }
+    },
+    "verdict": "Different points on the same matching curve. Paper 2 quotes exp2 examples[0] (curve grid index 0, S3 = 0.7802); draft.md Fig. 1c quotes the separately stored \"weighted_W_example\" (curve grid index 21 of 43, the curve midpoint, S3 = 0.8487). Both satisfy r_S = r_SM to solver precision, both are weight-1 states with S_alg = 0 for all three algebras. Recommend a footnote, not a correction."
+  }
+}
