@@ -2,8 +2,9 @@
 
 The candidate selection principle (Exp 4) is: vacuum = ground state of
 H = sum_{a<b} sigma(a,b) iL_aL_b, with sigma the octonion multiplication-table
-signs. The entropy triple S = (0.630, 0.543, 0.430) was computed in ONE
-convention. Here we redo the entire canonical construction under:
+signs. An earlier (buggy, non-Hermitian) computation suggested a hierarchical
+vacuum; the corrected vacuum is symmetric. This script checks robustness of
+the corrected result. Here we redo the entire canonical construction under:
 
   1. all 128 basis sign gauges e_a -> s_a e_a,
   2. all 5040 index relabelings e_a -> e_{pi(a)} (with the XOR-linear
@@ -101,8 +102,7 @@ for pi in permutations(range(1, 8)):
     degs_p.append(deg)
     key = tuple(np.round(S, 4))
     triples_p[key] = triples_p.get(key, 0) + 1
-    if np.array_equal(p[XOR], XOR[p][:, p].T * 0 + p[XOR]) and \
-       all(p[a ^ b] == p[a] ^ p[b] for a in range(8) for b in range(8)):
+    if all(p[a ^ b] == p[a] ^ p[b] for a in range(8) for b in range(8)):
         n_gl += 1
         triples_gl[key] = triples_gl.get(key, 0) + 1
 out['permutations'] = dict(n=5040, n_GL32=n_gl, degeneracies=sorted(set(degs_p)),
@@ -136,8 +136,21 @@ deg, S, tau = vacuum(build_H(XOR, SIG.T))            # opposite algebra
 variants['opposite_algebra'] = dict(deg=deg, S=[float(x) for x in S], tau3=round(tau, 4))
 deg, S, tau = vacuum(build_H(XOR, SIG, right=True))  # right multiplications
 variants['right_mult'] = dict(deg=deg, S=[float(x) for x in S], tau3=round(tau, 4))
-deg, S, tau = vacuum(build_H(XOR, np.abs(SIG)))      # unsigned couplings
-variants['unsigned_J'] = dict(deg=deg, S=[float(x) for x in S], tau3=round(tau, 4))
+# unsigned couplings, PROPER operators: J_ab = +1 with the true (signed) L_a.
+# (An earlier version rebuilt the operators from the unsigned table, producing
+# a non-Hermitian matrix; that result was invalid.)
+Ls_true = np.zeros((8, 8, 8))
+for a in range(8):
+    Ls_true[a][XOR[a], np.arange(8)] = SIG[a]
+H_uns = np.zeros((8, 8), complex)
+for a in range(1, 8):
+    for b in range(a + 1, 8):
+        H_uns += 1j * (Ls_true[a] @ Ls_true[b])
+assert np.allclose(H_uns, H_uns.conj().T)
+deg, S, tau = vacuum(H_uns)
+variants['unsigned_J_proper'] = dict(deg=deg, S=[float(x) for x in S], tau3=round(tau, 4),
+    note="couplings +1, true operators: unique ENTANGLED (hierarchical) vacuum; "
+         "the table signs are necessary for the SYMMETRIC vacuum, not for entanglement")
 deg, S, tau = vacuum(-build_H(XOR, SIG))             # ceiling state
 variants['minus_H'] = dict(deg=deg, S=[float(x) for x in S], tau3=round(tau, 4))
 out['variants'] = variants
@@ -147,3 +160,21 @@ for k, v in variants.items():
 with open('results/exp6_results.json', 'w') as f:
     json.dump(out, f, indent=2)
 print("Saved results/exp6_results.json")
+
+
+# ---- 5. closed form (found in adversarial review): H = i(L_u + 2 R_u), u = sum e_a ----
+Lmat = np.zeros((8, 8, 8)); Rmat = np.zeros((8, 8, 8))
+for i in range(8):
+    for b in range(8):
+        Lmat[i][:, b] = cd_mult(np.eye(8)[i], np.eye(8)[b], 3)
+        Rmat[i][:, b] = cd_mult(np.eye(8)[b], np.eye(8)[i], 3)
+Lu = sum(Lmat[i] for i in range(1, 8)); Ru = sum(Rmat[i] for i in range(1, 8))
+H0 = build_H(XOR, SIG)
+closed = np.linalg.norm(H0 - 1j * (Lu + 2 * Ru))
+out['closed_form'] = dict(norm_H_minus_i_Lu_plus_2Ru=float(closed),
+    note="H = i(L_u + 2R_u) exactly; convention-invariance of the vacuum is "
+         "provable from this form, the numerical battery above confirms it")
+print(f"closed form ||H - i(L_u+2R_u)|| = {closed:.2e}")
+with open('results/exp6_results.json', 'w') as f:
+    json.dump(out, f, indent=2)
+print("re-saved with closed form")

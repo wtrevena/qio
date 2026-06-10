@@ -63,14 +63,15 @@
       ],
       "tau3": 0.1633
     },
-    "unsigned_J": {
+    "unsigned_J_proper": {
       "deg": 1,
       "S": [
-        5.1430634675217894e-14,
-        5.1430634675217894e-14,
-        5.1430634675217894e-14
+        0.5769709796061768,
+        0.47182604070807577,
+        0.32647046196561896
       ],
-      "tau3": 0.0
+      "tau3": 0.0816,
+      "note": "couplings +1, true operators: unique ENTANGLED (hierarchical) vacuum; the table signs are necessary for the SYMMETRIC vacuum, not for entanglement"
     },
     "minus_H": {
       "deg": 1,
@@ -81,5 +82,9 @@
       ],
       "tau3": 0.1633
     }
+  },
+  "closed_form": {
+    "norm_H_minus_i_Lu_plus_2Ru": 0.0,
+    "note": "H = i(L_u + 2R_u) exactly; convention-invariance of the vacuum is provable from this form, the numerical battery above confirms it"
   }
 }
