@@ -1,0 +1,616 @@
+{
+  "seed": 20260609,
+  "conventions": {
+    "entropy_base": "bits (log2)",
+    "jw_modes": "f1 = sm x I x I, f2 = Z x sm x I, f3 = Z x Z x sm; sm = [[0,1],[0,0]]",
+    "gauge_action": "G(U) f_b^dag G(U)^dag = sum_a U[a,b] f_a^dag; weight sectors carry 1, U, Lambda^2 U, det U",
+    "S_alg": "S_A = H({p_k}) + sum_k p_k S(rho_k)  (BKOV / Casini-Huerta)"
+  },
+  "verification": {
+    "CAR_residual": 0.0,
+    "G_unitarity_residual": 2.3777028946551568e-15,
+    "G_homomorphism_residual": 6.838513391081885e-16,
+    "G_mode_transformation_residual": 1.940658652687082e-15
+  },
+  "commutants": {
+    "U3": {
+      "n_samples": 50,
+      "dim": 4,
+      "center_dim": 4,
+      "structure": "M1(x)1_1[weights [0]] (+) M1(x)1_3[weights [1]] (+) M1(x)1_3[weights [2]] (+) M1(x)1_1[weights [3]]",
+      "blocks": [
+        {
+          "n": 1,
+          "m": 1,
+          "dim": 1,
+          "weights": [
+            0
+          ]
+        },
+        {
+          "n": 1,
+          "m": 3,
+          "dim": 3,
+          "weights": [
+            1
+          ]
+        },
+        {
+          "n": 1,
+          "m": 3,
+          "dim": 3,
+          "weights": [
+            2
+          ]
+        },
+        {
+          "n": 1,
+          "m": 1,
+          "dim": 1,
+          "weights": [
+            3
+          ]
+        }
+      ],
+      "star_closure_residual": 1.2333143182486784e-15,
+      "fresh_sample_commutation_residual": 1.1678574345320434e-15
+    },
+    "SU3": {
+      "n_samples": 50,
+      "dim": 6,
+      "center_dim": 3,
+      "structure": "M2(x)1_1[weights [0, 3]] (+) M1(x)1_3[weights [1]] (+) M1(x)1_3[weights [2]]",
+      "blocks": [
+        {
+          "n": 2,
+          "m": 1,
+          "dim": 2,
+          "weights": [
+            0,
+            3
+          ]
+        },
+        {
+          "n": 1,
+          "m": 3,
+          "dim": 3,
+          "weights": [
+            1
+          ]
+        },
+        {
+          "n": 1,
+          "m": 3,
+          "dim": 3,
+          "weights": [
+            2
+          ]
+        }
+      ],
+      "star_closure_residual": 1.05973564628282e-15,
+      "fresh_sample_commutation_residual": 1.155676112693118e-15,
+      "M2_block_support": "|000>, |111>  (nu and e+)"
+    },
+    "U1": {
+      "n_samples": 50,
+      "dim": 20,
+      "center_dim": 4,
+      "structure": "M1(x)1_1[weights [0]] (+) M3(x)1_1[weights [1]] (+) M3(x)1_1[weights [2]] (+) M1(x)1_1[weights [3]]",
+      "blocks": [
+        {
+          "n": 1,
+          "m": 1,
+          "dim": 1,
+          "weights": [
+            0
+          ]
+        },
+        {
+          "n": 3,
+          "m": 1,
+          "dim": 3,
+          "weights": [
+            1
+          ]
+        },
+        {
+          "n": 3,
+          "m": 1,
+          "dim": 3,
+          "weights": [
+            2
+          ]
+        },
+        {
+          "n": 1,
+          "m": 1,
+          "dim": 1,
+          "weights": [
+            3
+          ]
+        }
+      ],
+      "star_closure_residual": 0.0,
+      "fresh_sample_commutation_residual": 0.0
+    }
+  },
+  "states": {
+    "rotor_vacuum": {
+      "amplitudes_note": "",
+      "sector_probs": [
+        0.5000000000000001,
+        0.2142857142857143,
+        0.2142857142857143,
+        0.07142857142857144
+      ],
+      "single_qubit_entropies": [
+        0.5916727785823275,
+        0.5916727785823275,
+        0.5916727785823275
+      ],
+      "sector_probs_exact": [
+        "1/2",
+        "3/14",
+        "3/14",
+        "1/14"
+      ],
+      "S_alg_U3": {
+        "center": 1.7244078178625921,
+        "quantum": 1.609823385706477e-15,
+        "total": 1.7244078178625937,
+        "block_probs": [
+          0.5000000000000003,
+          0.21428571428571447,
+          0.21428571428571408,
+          0.07142857142857147
+        ]
+      },
+      "S_alg_SU3": {
+        "center": 1.41379956460568,
+        "quantum": 6.661338147750939e-16,
+        "total": 1.4137995646056807,
+        "block_probs": [
+          0.5714285714285715,
+          0.21428571428571436,
+          0.21428571428571425
+        ]
+      },
+      "S_alg_U1": {
+        "center": 1.7244078178625923,
+        "quantum": 0.0,
+        "total": 1.7244078178625923,
+        "block_probs": [
+          0.5000000000000001,
+          0.21428571428571436,
+          0.21428571428571427,
+          0.07142857142857144
+        ]
+      },
+      "exact_values": {
+        "sector_probs": "(1/2, 3/14, 3/14, 1/14)",
+        "S_U3": "1/2 + (1/2)log2(14) - (3/7)log2(3) = 1.724407817863 bits",
+        "S_SU3": "(4/7)(log2 7 - 2) + (3/7)log2(14/3) = 1.413799564606 bits",
+        "S_U1": "= S_U3 (quantum piece vanishes for pure states)"
+      },
+      "SU3_singlet_block": {
+        "prob": 0.5714285714285715,
+        "state_re": [
+          [
+            0.8750000000000001,
+            0.0
+          ],
+          [
+            0.0,
+            0.125
+          ]
+        ],
+        "state_im": [
+          [
+            0.0,
+            0.3307189138830738
+          ],
+          [
+            -0.3307189138830738,
+            0.0
+          ]
+        ],
+        "purity": 1.0000000000000002
+      }
+    },
+    "W": {
+      "amplitudes_note": "",
+      "sector_probs": [
+        0.0,
+        1.0000000000000002,
+        0.0,
+        0.0
+      ],
+      "single_qubit_entropies": [
+        0.9182958340544893,
+        0.9182958340544893,
+        0.9182958340544893
+      ],
+      "sector_probs_exact": [
+        "0",
+        "1",
+        "0",
+        "0"
+      ],
+      "S_alg_U3": {
+        "center": -1.6017132519074597e-15,
+        "quantum": 0.0,
+        "total": -1.6017132519074597e-15,
+        "block_probs": [
+          2.0155748791869873e-32,
+          1.000000000000001,
+          3.223494077603679e-31,
+          5.607652172228156e-32
+        ]
+      },
+      "S_alg_SU3": {
+        "center": -3.2034265038149176e-16,
+        "quantum": 0.0,
+        "total": -3.2034265038149176e-16,
+        "block_probs": [
+          1.7566657787688774e-32,
+          1.0000000000000002,
+          1.4721959983315946e-31
+        ]
+      },
+      "S_alg_U1": {
+        "center": -6.406853007629837e-16,
+        "quantum": -9.61027951144476e-16,
+        "total": -1.6017132519074597e-15,
+        "block_probs": [
+          0.0,
+          1.0000000000000004,
+          2.3873425462494826e-32,
+          0.0
+        ]
+      }
+    },
+    "GHZ": {
+      "amplitudes_note": "",
+      "sector_probs": [
+        0.4999999999999999,
+        0.0,
+        0.0,
+        0.4999999999999999
+      ],
+      "single_qubit_entropies": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "sector_probs_exact": [
+        "1/2",
+        "0",
+        "0",
+        "1/2"
+      ],
+      "S_alg_U3": {
+        "center": 0.9999999999999999,
+        "quantum": -1.1102230246251565e-16,
+        "total": 0.9999999999999998,
+        "block_probs": [
+          0.4999999999999999,
+          1.3664537679126877e-31,
+          6.75640637991436e-31,
+          0.5000000000000002
+        ]
+      },
+      "S_alg_SU3": {
+        "center": 1.6017132519074586e-16,
+        "quantum": -1.6017132519074586e-16,
+        "total": 0.0,
+        "block_probs": [
+          0.9999999999999999,
+          2.679542837109386e-32,
+          3.298310341679101e-34
+        ]
+      },
+      "S_alg_U1": {
+        "center": 1.0,
+        "quantum": 0.0,
+        "total": 1.0,
+        "block_probs": [
+          0.4999999999999999,
+          0.0,
+          0.0,
+          0.4999999999999999
+        ]
+      },
+      "SU3_singlet_block": {
+        "prob": 0.9999999999999998,
+        "state_re": [
+          [
+            0.5,
+            0.5
+          ],
+          [
+            0.5,
+            0.5
+          ]
+        ],
+        "state_im": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "purity": 1.0
+      }
+    },
+    "weighted_W_matching": {
+      "amplitudes_note": "",
+      "sector_probs": [
+        0.0,
+        1.0000000000000004,
+        0.0,
+        0.0
+      ],
+      "single_qubit_entropies": [
+        0.9995036023504194,
+        0.8580062288883543,
+        0.7801507537688444
+      ],
+      "sector_probs_exact": [
+        "0",
+        "1",
+        "0",
+        "0"
+      ],
+      "S_alg_U3": {
+        "center": -1.9220559022889516e-15,
+        "quantum": 0.0,
+        "total": -1.9220559022889516e-15,
+        "block_probs": [
+          2.576749285707331e-32,
+          1.0000000000000013,
+          2.3223812957832345e-31,
+          6.972244411481624e-32
+        ]
+      },
+      "S_alg_SU3": {
+        "center": -6.406853007629837e-16,
+        "quantum": 0.0,
+        "total": -6.406853007629837e-16,
+        "block_probs": [
+          1.2747940862448488e-32,
+          1.0000000000000004,
+          1.2286992906309466e-31
+        ]
+      },
+      "S_alg_U1": {
+        "center": -9.610279511444756e-16,
+        "quantum": -6.406853007629841e-16,
+        "total": -1.6017132519074597e-15,
+        "block_probs": [
+          0.0,
+          1.0000000000000007,
+          3.487079633455577e-32,
+          0.0
+        ]
+      }
+    }
+  },
+  "W_is_pure_gauge": {
+    "note": "W = G(U)|001> for an explicit U in SU(3) (column 3 = (1,1,1)/sqrt3)",
+    "construction_residual": 0.0,
+    "U3_reduction_residual": 2.5655751170911806e-16,
+    "single_qubit_S_of_W": [
+      0.9182958340544893,
+      0.9182958340544893,
+      0.9182958340544893
+    ],
+    "single_qubit_S_of_001": [
+      -0.0,
+      -0.0,
+      -0.0
+    ]
+  },
+  "gauge_invariance": {
+    "n_random_gauge_elements": 20,
+    "per_state": {
+      "rotor_vacuum": {
+        "U3": {
+          "max_dS_alg": 1.7763568394002505e-15,
+          "max_dS_single_qubit": 0.3261685986670757
+        },
+        "SU3": {
+          "max_dS_alg": 8.881784197001252e-16,
+          "max_dS_single_qubit": 0.3154877373091094
+        },
+        "U1": {
+          "max_dS_alg": 2.220446049250313e-16,
+          "max_dS_single_qubit": 4.440892098500626e-16
+        }
+      },
+      "W": {
+        "U3": {
+          "max_dS_alg": 2.144100507213983e-15,
+          "max_dS_single_qubit": 0.7654701333997501
+        },
+        "SU3": {
+          "max_dS_alg": 1.0593259966009365e-15,
+          "max_dS_single_qubit": 0.8756489362346741
+        },
+        "U1": {
+          "max_dS_alg": 9.61027951144476e-16,
+          "max_dS_single_qubit": 2.220446049250313e-16
+        }
+      },
+      "GHZ": {
+        "U3": {
+          "max_dS_alg": 2.220446049250313e-16,
+          "max_dS_single_qubit": 2.220446049250313e-16
+        },
+        "SU3": {
+          "max_dS_alg": 9.610279511444756e-16,
+          "max_dS_single_qubit": 2.220446049250313e-16
+        },
+        "U1": {
+          "max_dS_alg": 0.0,
+          "max_dS_single_qubit": 0.0
+        }
+      },
+      "weighted_W_matching": {
+        "U3": {
+          "max_dS_alg": 2.52631643732976e-15,
+          "max_dS_single_qubit": 0.9226213584909766
+        },
+        "SU3": {
+          "max_dS_alg": 1.5034152064509992e-15,
+          "max_dS_single_qubit": 0.873951704313292
+        },
+        "U1": {
+          "max_dS_alg": 3.2034265038149206e-16,
+          "max_dS_single_qubit": 2.220446049250313e-16
+        }
+      }
+    },
+    "S_U1_and_S_SU3_invariant_under_full_U3": {
+      "U1": 2.220446049250313e-16,
+      "SU3": 8.881784197001252e-16
+    },
+    "note": "S_alg invariant to ~1e-12 under its gauge group; single-qubit entropies shift by O(1) under the same transformations"
+  },
+  "haar_ensemble": {
+    "n": 10000,
+    "S_U3": {
+      "mean": 1.5798057204784786,
+      "std": 0.239126236917716,
+      "min": 0.4103144541204108,
+      "max": 1.99844976285531,
+      "analytic_mean_Dirichlet_1331": 1.5766595804000814
+    },
+    "S_SU3": {
+      "mean": 1.398088015585825,
+      "std": 0.16168480896413004,
+      "min": 0.40663666380055996,
+      "max": 1.5849423090876509,
+      "analytic_mean_Dirichlet_233": 1.3963227002889609
+    },
+    "S_U1": "identical to S_U3 for every pure state (quantum piece = 0)",
+    "fast_vs_full_machinery_max_residual": 1.9984014443252818e-15,
+    "max_quantum_piece_over_sample": 1.8041124150158794e-15,
+    "note": "for PURE states all three algebras give purely classical (center) entropy; every block has n_k = 1 or m_k = 1"
+  },
+  "parameter_count": {
+    "U3": "3 real parameters: (p1, p2, p3); p0 = 1 - p1 - p2 - p3. The center is the charge (Hamming-weight) distribution; nothing else survives.",
+    "SU3": "4 real parameters: (p1, p2) + the pure qubit in the M2 (nu/e+ singlet) block (2 Bloch parameters).",
+    "U1": "11 real parameters: 3 sector probabilities + pure conditional states in the two M3 blocks (4 each, projectively).",
+    "note": "E_A captures all single-copy gauge-invariant measurement data. Multi-copy (polynomial) invariants are richer; see beyond_EA_invariants."
+  },
+  "task4": {
+    "rotor_invariant_data": {
+      "p": [
+        "1/2",
+        "3/14",
+        "3/14",
+        "1/14"
+      ],
+      "p1_minus_p2": 0.0,
+      "independent_parameters": 2,
+      "note": "p1 = p2 EXACTLY (uniform |amplitude| over the 7 imaginary units forces p_k proportional to sector dimension on weights 1..3). The algebra-canonical vacuum has only TWO independent invariant parameters -- fewer than the three couplings."
+    },
+    "r_matching_zoo": {
+      "R_SM": 1.8174,
+      "n_assignments_tested": 60,
+      "best": {
+        "feature": "p",
+        "sectors": [
+          0,
+          1,
+          3
+        ],
+        "r": 2.000000000000001,
+        "dist_to_R_SM": 0.18260000000000098
+      },
+      "top5": [
+        {
+          "feature": "p",
+          "sectors": [
+            0,
+            1,
+            3
+          ],
+          "r": 2.000000000000001,
+          "dist_to_R_SM": 0.18260000000000098
+        },
+        {
+          "feature": "p",
+          "sectors": [
+            0,
+            2,
+            3
+          ],
+          "r": 2.000000000000001,
+          "dist_to_R_SM": 0.18260000000000098
+        },
+        {
+          "feature": "log2_p",
+          "sectors": [
+            3,
+            1,
+            0
+          ],
+          "r": 1.296606943119222,
+          "dist_to_R_SM": 0.5207930568807779
+        },
+        {
+          "feature": "log2_p",
+          "sectors": [
+            3,
+            2,
+            0
+          ],
+          "r": 1.296606943119222,
+          "dist_to_R_SM": 0.5207930568807779
+        },
+        {
+          "feature": "log2_p",
+          "sectors": [
+            0,
+            1,
+            3
+          ],
+          "r": 0.7712437491614225,
+          "dist_to_R_SM": 1.0461562508385773
+        }
+      ],
+      "any_within_0p05": false,
+      "any_within_0p01": false,
+      "note": "Every ordered assignment of three distinct charge sectors to the three couplings, under feature maps p, log2 p, -p log2 p. None reproduces r_SM = 1.8174 within the tolerance 0.05 used in the paper (Section 6.2), let alone 0.01 (Section 6.1)."
+    },
+    "weighted_W_collapse": {
+      "n_curve_points_tested": 5,
+      "max_S_alg_over_curve_and_algebras": 1.9220559022889516e-15,
+      "note": "The entire exp2 coupling-matching weighted-W curve is pure gauge: every point has p = (0,1,0,0), S_alg = 0 for U(3), SU(3), U(1). Each is gauge-equivalent to a single Fock basis state (one d-bar quark in a rotated color frame)."
+    },
+    "beyond_EA_invariants": {
+      "rotor_values": {
+        "abs_w_v1_wedge_v2": 0.07142857142857144,
+        "abs_conj_v3_times_wedge": 0.019090088708030317,
+        "abs_conj_v0_v3_conj_wedge": 0.013498731178900976
+      },
+      "gauge_invariance_residual": 5.551115123125783e-17,
+      "exact_note": "|v1 ^ v2| = 1/14 exactly for the rotor vacuum; |conj(v3) (v1^v2)| = 14^{-3/2}",
+      "note": "The polynomial invariant ring is strictly richer than the E_A (single-copy) data: these degree-(2,2)/(3,3) invariants are not functions of (p0..p3). They are inaccessible to single-copy gauge-invariant measurements but exist as state invariants."
+    },
+    "SU2L_obstruction": {
+      "statement": "No unitary representation of SU(2)_L acts on this C^8 ideal as a gauge symmetry of the construction.",
+      "reasons": [
+        "The mode-rotation (Bogoliubov, number-conserving) gauge group of three JW modes is exactly U(3) = (SU(3)_c x U(1))/Z3; there is no room for an independent SU(2) factor acting on color modes.",
+        "The ideal (nu, dbar_i, u_i, e+) contains NO weak-isospin doublet pair: nu_L pairs with e-_L (absent; the ideal has e+), u_L with d_L (absent; the ideal has dbar). SU(2)_L raising/lowering operators would map this ideal into a DIFFERENT ideal of Cl(6) (in Furey's full construction SU(2)_L acts on the quaternionic factor of C (x) H (x) O, i.e. between ideals, not within one).",
+        "Charge bookkeeping: SU(2)_L does not commute with electric charge Q = N/3, so any implementation would have to move states between Hamming-weight sectors by Delta(weight) = 3Q steps; the only weight-0/weight-3 pair is (nu, e+), which is not a doublet."
+      ],
+      "consequence": "At most TWO gauge factors (SU(3)_c and U(1)_em) act on the toy at all; a three-coupling question cannot even be posed gauge-covariantly on one generation ideal."
+    },
+    "verdict": "NO-GO, now sharp instead of ill-posed. (1) The U(3)-invariant data of any pure state is its charge-sector distribution (p0,p1,p2,p3): 3 real parameters indexed by ELECTRIC CHARGE, not by gauge factor; no natural bijection {4 charge sectors} -> {3 gauge factors} exists. (2) The algebra-canonical rotor vacuum has p = (1/2, 3/14, 3/14, 1/14) with p1 = p2 exactly: only 2 independent invariant parameters, fewer than 3 couplings -- the permutation degeneracy of the frame-dependent analysis survives gauge-invariantly as a sector degeneracy. (3) Exhaustive search over sector-to-coupling assignments and feature maps finds no match of r_SM (best miss 0.18). (4) The previous \"positive\" result -- the weighted-W coupling-matching curve -- collapses: it is pure gauge, S_alg = 0 identically. (5) SU(2)_L is not representable on the ideal. The well-posed question has a definite answer: the gauge-invariant entanglement of a single pure state in this toy CANNOT encode three independent couplings."
+  }
+}
