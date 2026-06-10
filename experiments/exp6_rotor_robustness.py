@@ -151,18 +151,39 @@ deg, S, tau = vacuum(H_uns)
 variants['unsigned_J_proper'] = dict(deg=deg, S=[float(x) for x in S], tau3=round(tau, 4),
     note="couplings +1, true operators: unique ENTANGLED (hierarchical) vacuum; "
          "the table signs are necessary for the SYMMETRIC vacuum, not for entanglement")
+
+# convention-DEPENDENCE of the unsigned variant: sorted triples across the
+# 128 sign gauges (contrast: the sigma-structured vacuum takes ONE value)
+uns_triples = {}
+for bits in range(128):
+    s = np.ones(8)
+    for i in range(7):
+        if (bits >> i) & 1:
+            s[i + 1] = -1
+    sgn = SIG * s[:, None] * s[None, :] * s[XOR]
+    Ls_g = np.zeros((8, 8, 8))
+    for a in range(8):
+        Ls_g[a][XOR[a], np.arange(8)] = sgn[a]
+    Hg = np.zeros((8, 8), complex)
+    for a in range(1, 8):
+        for b in range(a + 1, 8):
+            Hg += 1j * (Ls_g[a] @ Ls_g[b])
+    _, Sg, _ = vacuum(Hg)
+    k = tuple(np.round(Sg, 4))
+    uns_triples[k] = uns_triples.get(k, 0) + 1
+variants['unsigned_J_convention_dependence'] = dict(
+    n_distinct_sorted_triples_over_128_sign_gauges=len(uns_triples),
+    triples={str(k): v for k, v in uns_triples.items()},
+    note="the unsigned variant's vacuum varies across sign gauges, unlike "
+         "the sigma-structured vacuum (1 triple); 'unsigned' is not a "
+         "basis-independent notion")
 deg, S, tau = vacuum(-build_H(XOR, SIG))             # ceiling state
 variants['minus_H'] = dict(deg=deg, S=[float(x) for x in S], tau3=round(tau, 4))
 out['variants'] = variants
 for k, v in variants.items():
-    print(f"{k:18s} deg={v['deg']} S={np.round(v['S'],4)} tau3={v['tau3']}")
+    print(k, 'deg=', v.get('deg', '-'), 'tau3=', v.get('tau3', '-'))
 
-with open('results/exp6_results.json', 'w') as f:
-    json.dump(out, f, indent=2)
-print("Saved results/exp6_results.json")
-
-
-# ---- 5. closed form (found in adversarial review): H = i(L_u + 2 R_u), u = sum e_a ----
+# ---- 5. closed form (found in adversarial review): H = i(L_u + 2 R_u) ----
 Lmat = np.zeros((8, 8, 8)); Rmat = np.zeros((8, 8, 8))
 for i in range(8):
     for b in range(8):
@@ -173,8 +194,9 @@ H0 = build_H(XOR, SIG)
 closed = np.linalg.norm(H0 - 1j * (Lu + 2 * Ru))
 out['closed_form'] = dict(norm_H_minus_i_Lu_plus_2Ru=float(closed),
     note="H = i(L_u + 2R_u) exactly; convention-invariance of the vacuum is "
-         "provable from this form, the numerical battery above confirms it")
+         "provable from this form; the numerical battery above confirms it")
 print(f"closed form ||H - i(L_u+2R_u)|| = {closed:.2e}")
+
 with open('results/exp6_results.json', 'w') as f:
     json.dump(out, f, indent=2)
-print("re-saved with closed form")
+print("Saved results/exp6_results.json")

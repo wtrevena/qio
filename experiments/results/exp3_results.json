@@ -30,21 +30,22 @@
     "min_entropy_asymmetry_at_minB": 0.003243947128681629
   },
   "feasible_region": {
-    "n_feasible": 1401,
-    "grid": [
-      181,
-      221
-    ],
     "min_abs_B": 126.5,
     "representative_A": 118.0,
     "representative_B": -126.5,
-    "A_range_feasible": [
-      106.0,
-      140.0
-    ],
-    "note": "Constraints: S in [0,1]^3 and HSS polygon inequality at all mu in [M_Z, M_Planck]. Without the polygon constraint the region is strictly larger; the polygon inequality is doing real work.",
-    "box_only_count": 15974,
-    "polygon_cut_fraction": 0.9122949793414298
+    "note": "Constraints: S in [0,1]^3 and HSS polygon inequality. The feasible region is UNBOUNDED (larger A forces proportionally larger |B|), so no fraction-of-parameter-space or upper bound on A is meaningful; the only robust content is the lower bound on |B|. An earlier version of this script reported a 91% 'cut fraction' and an A range; both were artifacts of an arbitrary finite grid and are intentionally no longer emitted."
+  },
+  "minB_robustness": {
+    "base_grid": 126.5,
+    "extended_grid_A50_300_B300": 127.0,
+    "uv_endpoint_1e16": 127.0,
+    "note": "min |B| is stable against enlarging the scan region and moving the UV endpoint from M_Planck to 1e16 GeV."
+  },
+  "mz_only_equality": {
+    "n_full": 1401,
+    "n_mz_only": 1401,
+    "identical": true,
+    "note": "The constraints bind at M_Z alone: all-scale and M_Z-only feasible sets coincide, because the coupling spread is widest at M_Z (deflation credited to adversarial review)."
   },
   "representative_trajectory": {
     "S_at_MZ": [
@@ -62,6 +63,6 @@
       -0.003984115834974982,
       0.0051583815547570815
     ],
-    "note": "Ordering at M_Z: S1>S2>S3 (SU(3) most entangled); ordering at M_Pl inverted (U(1) most entangled). Hierarchy inversion in the deep UV is a structural feature of the entropy-flow version."
+    "note": "Ordering at M_Z: S1>S2>S3 (SU(3) most entangled); ordering at M_Pl inverted (U(1) most entangled): the one-loop crossing pattern re-expressed in entropy variables."
   }
 }

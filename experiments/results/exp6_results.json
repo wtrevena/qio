@@ -73,6 +73,21 @@
       "tau3": 0.0816,
       "note": "couplings +1, true operators: unique ENTANGLED (hierarchical) vacuum; the table signs are necessary for the SYMMETRIC vacuum, not for entanglement"
     },
+    "unsigned_J_convention_dependence": {
+      "n_distinct_sorted_triples_over_128_sign_gauges": 9,
+      "triples": {
+        "(np.float64(0.577), np.float64(0.4718), np.float64(0.3265))": 64,
+        "(np.float64(0.7699), np.float64(0.6948), np.float64(0.6715))": 8,
+        "(np.float64(0.7862), np.float64(0.6948), np.float64(0.5733))": 8,
+        "(np.float64(0.6715), np.float64(0.5733), np.float64(0.5733))": 8,
+        "(np.float64(0.6948), np.float64(0.6948), np.float64(0.4679))": 8,
+        "(np.float64(0.7862), np.float64(0.6777), np.float64(0.4679))": 8,
+        "(np.float64(0.894), np.float64(0.8786), np.float64(0.5733))": 8,
+        "(np.float64(0.894), np.float64(0.7862), np.float64(0.7862))": 8,
+        "(np.float64(0.8786), np.float64(0.7699), np.float64(0.6777))": 8
+      },
+      "note": "the unsigned variant's vacuum varies across sign gauges, unlike the sigma-structured vacuum (1 triple); 'unsigned' is not a basis-independent notion"
+    },
     "minus_H": {
       "deg": 1,
       "S": [
@@ -85,6 +100,6 @@
   },
   "closed_form": {
     "norm_H_minus_i_Lu_plus_2Ru": 0.0,
-    "note": "H = i(L_u + 2R_u) exactly; convention-invariance of the vacuum is provable from this form, the numerical battery above confirms it"
+    "note": "H = i(L_u + 2R_u) exactly; convention-invariance of the vacuum is provable from this form; the numerical battery above confirms it"
   }
 }

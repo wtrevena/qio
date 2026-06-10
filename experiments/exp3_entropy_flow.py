@@ -81,37 +81,73 @@ if len(ib_f):
 else:
     Bmin_abs, A_rep, B_rep = None, None, None
 out['feasible_region'] = dict(
-    n_feasible=int(feas.sum()), grid=[len(A_grid), len(B_grid)],
     min_abs_B=Bmin_abs, representative_A=A_rep, representative_B=B_rep,
-    A_range_feasible=[float(A_grid[ia_f].min()), float(A_grid[ia_f].max())] if len(ia_f) else None,
-    note="Constraints: S in [0,1]^3 and HSS polygon inequality at all "
-         "mu in [M_Z, M_Planck]. Without the polygon constraint the region "
-         "is strictly larger; the polygon inequality is doing real work.")
+    note="Constraints: S in [0,1]^3 and HSS polygon inequality. The feasible "
+         "region is UNBOUNDED (larger A forces proportionally larger |B|), so "
+         "no fraction-of-parameter-space or upper bound on A is meaningful; "
+         "the only robust content is the lower bound on |B|. An earlier "
+         "version of this script reported a 91% 'cut fraction' and an A "
+         "range; both were artifacts of an arbitrary finite grid and are "
+         "intentionally no longer emitted.")
 
-# how much does the polygon constraint cut?
-feas_box = np.zeros_like(feas)
-for ia, A in enumerate(A_grid):
-    for ib, B in enumerate(B_grid):
-        S = (AIg - A) / B
-        feas_box[ia, ib] = (S.min() >= 0) and (S.max() <= 1)
-out['feasible_region']['box_only_count'] = int(feas_box.sum())
-out['feasible_region']['polygon_cut_fraction'] = float(1 - feas.sum() / max(1, feas_box.sum()))
+# --- robustness of min|B|: extended grid and earlier UV endpoint ---
+def min_abs_B_scan(A_lo, A_hi, B_lo, tmax):
+    Ag = np.linspace(A_lo, A_hi, int(A_hi - A_lo) + 1)
+    Bg = np.linspace(B_lo, -30, int(-30 - B_lo) + 1)
+    tg2 = np.linspace(0, tmax, 80)
+    AI2 = ainv_sm(tg2)
+    best = None
+    for A in Ag:
+        for B in Bg:
+            S = (AI2 - A) / B
+            if S.min() < 0 or S.max() > 1:
+                continue
+            lam = lam_of_S(S)
+            if np.all(2 * lam.max(0) <= lam.sum(0) + 1e-12):
+                if best is None or -B < best:
+                    best = -B
+    return float(best) if best else None
+out['minB_robustness'] = dict(
+    base_grid=Bmin_abs,
+    extended_grid_A50_300_B300=min_abs_B_scan(50, 300, -300, TMAX),
+    uv_endpoint_1e16=min_abs_B_scan(50, 300, -300, np.log(1e16 / MZ)),
+    note="min |B| is stable against enlarging the scan region and moving the "
+         "UV endpoint from M_Planck to 1e16 GeV.")
+
+# --- M_Z-only vs all-scale constraints: feasible sets are identical ---
+def feas_set(tgrid):
+    AI2 = ainv_sm(tgrid)
+    s = set()
+    for ia, A in enumerate(A_grid):
+        for ib, B in enumerate(B_grid):
+            S = (AI2 - A) / B
+            if S.min() < 0 or S.max() > 1:
+                continue
+            lam = lam_of_S(S)
+            if np.all(2 * lam.max(0) <= lam.sum(0) + 1e-12):
+                s.add((ia, ib))
+    return s
+f_full, f_mz = feas_set(tg), feas_set(np.array([0.0]))
+out['mz_only_equality'] = dict(
+    n_full=len(f_full), n_mz_only=len(f_mz), identical=bool(f_full == f_mz),
+    note="The constraints bind at M_Z alone: all-scale and M_Z-only feasible "
+         "sets coincide, because the coupling spread is widest at M_Z "
+         "(deflation credited to adversarial review).")
 
 # ---- 3. entanglement asymmetry at the symmetric point ----
 if B_rep is not None:
     for tag, sp in [('sm', out['sm']['min_spread_alpha_inv']),
                     ('mssm', out['mssm']['min_spread_alpha_inv'])]:
         out[tag]['min_entropy_asymmetry_at_minB'] = float(sp / Bmin_abs)
-    # S trajectories at representative (A,B)
     S_MZ = (ainv_sm(0)[:, 0] - A_rep) / B_rep
     S_PL = (ainv_sm(TMAX)[:, 0] - A_rep) / B_rep
     out['representative_trajectory'] = dict(
         S_at_MZ=[float(x) for x in S_MZ], S_at_MPl=[float(x) for x in S_PL],
         slopes_dS_dlogmu=[float(x) for x in -B_SM / (2 * np.pi * B_rep)],
         note="Ordering at M_Z: S1>S2>S3 (SU(3) most entangled); ordering at "
-             "M_Pl inverted (U(1) most entangled). Hierarchy inversion in the "
-             "deep UV is a structural feature of the entropy-flow version.")
+             "M_Pl inverted (U(1) most entangled): the one-loop crossing "
+             "pattern re-expressed in entropy variables.")
 
 with open('results/exp3_results.json', 'w') as f:
     json.dump(out, f, indent=2)
-print(json.dumps(out, indent=2))
+print(json.dumps({k: out[k] for k in ('feasible_region', 'minB_robustness', 'mz_only_equality')}, indent=2))
