@@ -1,0 +1,15 @@
+# Verification environment: Python 3.10.12 (Linux). All deterministic outputs
+# checked into this repository were re-verified against these exact versions.
+numpy==2.2.6
+matplotlib==3.10.9  # figures only: experiments/make_figures.py, experiments/make_fig2.py, ym2/*.py
+
+# scipy is required by a minority of scripts (experiments/exp1_matching_manifold.py,
+# experiments/exp2_algebraic_families.py, experiments/verify_numbers.py,
+# direction_A/run_direction_A.py [section 4 onward], direction_A/strengthen.py,
+# ym2/ym2_flux.py, ym2/ym2_su3.py). It was not installable in the sandbox used
+# for the final verification pass, so no exact version is pinned here; any
+# recent release satisfies the brentq/expm/digamma/stats usage.
+# By design, paper3/mle_bias_ci.py runs with OR without scipy (pure-Python
+# Brent fallback), paper3/weak_coupling_check.py, experiments/verify_wfamily.py,
+# all of newwork/, and tests/ are numpy-only.
+scipy>=1.10

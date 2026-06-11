@@ -1,0 +1,341 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue,
+pdftitle={Fisher Information in Compact U(1) Flux Sectors: Asymptotic Exponential Families, a Crossover Obstruction, and a Topological Zero-Mode Bridge to Four Dimensions},
+pdfauthor={William T. Trevena}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\theoremstyle{plain}
+
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\emergencystretch=1.5em
+
+\title{Fisher Information in Compact $\mathrm{U}(1)$ Flux Sectors: Asymptotic Exponential Families, a Crossover Obstruction, and a Topological Zero-Mode Bridge to Four Dimensions}
+
+\author{William T. Trevena\\[3pt]
+{\small\itshape Independent Researcher (PhD, ISE, University of Florida)}\\
+{\small\texttt{trevenaw7@gmail.com}}}
+
+\date{June 2026}
+
+\begin{document}
+
+\maketitle
+
+{\small\itshape Acknowledgment: Portions of this manuscript were developed with the assistance of Claude (Anthropic), an AI language model, which contributed to literature synthesis, mathematical exposition, drafting, and the computational experiments. Every formula taken from the literature was verified against the cited primary source, not from memory; the verification record is \texttt{newwork/u1\_4d/LITERATURE.md} in the repository. All numerical claims are reproduced by the published scripts (\texttt{newwork/u1\_4d/u1\_chain\_ed.py}, \texttt{analyze\_chain.py}, \texttt{u1\_dipole\_gas.py}, \texttt{t3\_flux\_sectors.py}; deterministic, no random number generation in any computation quoted here). Consistent with COPE authorship guidelines, the AI system is acknowledged as a tool rather than listed as a coauthor.}
+
+\begin{abstract}
+In two-dimensional Yang--Mills theory the boundary-flux distribution of the Hartle--Hawking state is a one-parameter exponential family in the coupling, and the sector entropy obeys $dS/dt = -t\,I(t)$ with $I$ the Fisher information of the flux measurement \cite{P3}. We ask how much of that structure survives for compact $\mathrm{U}(1)$ gauge theory above two dimensions, where the electric flux through an entangling surface is a field of integers rather than one global label. Three results, each scoped to a stated regime. \emph{(i) Strong coupling} (lattice, $d=3{+}1$, leading order in $1/e^4$): the ground-state flux distribution across a flat cut is an exponential family whose sufficient statistic is the dipole count $\tfrac12\sum_l |n_l|$ --- not the quadratic Casimir --- and whose natural parameter is $\theta = \ln(16e^8)$, logarithmic in the coupling; the identity $dS/d\theta = -\theta\,I(\theta)$ holds exactly at this order, and the information is extensive in the cut area, which removes the $d=2$ ``entropy scales, information does not'' pathology. \emph{(ii) Globally in the coupling the family is curved}: an exact-diagonalization rank test in the dual-height representation of the $2{+}1$d theory gives $\sigma_3/\sigma_2 = 5\times10^{-2}$ over the full coupling range, versus $4\times10^{-4}$ in the strong-coupling window and $10^{-15}$ for the exact 2d control, and the fitted sufficient statistic interpolates from $|n|$ toward $n^2$; no single natural parameter or sufficient statistic covers the coupling axis. \emph{(iii) On a spatial 3-torus} the topological flux/winding sectors yield the one regulator-independent descendant of the 2d mechanism that we can defend: in the Gibbs (torus Hartle--Hawking) class of states the three global electric winding labels form an \emph{exact} exponential family in $e^2$ over the integer flux lattice, with the metric quadratic form $\tfrac{\beta}{2V} n^{\mathsf T} G\, n$ as sufficient statistic; $dS/de^2 = -e^2 I(e^2)$ holds to the $10^{-9}$ finite-difference floor; and the Fisher information is finite with metric-independent leading term $b_2/(2e^4)$ --- $1/(2e^4)$ per homology class, geometry entering only through a universal per-mode freeze-out curve. The per-class marginal is exactly the constant-flux sector sum of Donnelly--Wall, eq.~(36) of arXiv:1506.05792. Poisson resummation exchanges this family with its magnetic dual (natural parameter $\propto 1/e^2$); on the self-dual torus the total sector entropy satisfies $S(e^2) = S(4\pi^2/e^2)$ exactly, and at $e^2 = 2\pi$ one finds $dS/de^2 = 0$ with $I(e^2) > 0$ --- the crossover obstruction reappearing in miniature, because the joint electric--magnetic family is curved (rank 3) even though each marginal is exactly straight. We state precisely why none of this is determination of the coupling by entanglement: the carrier is the contested, non-distillable center/edge sector; the universal continuum coefficients are independent of the coupling's value; and every trace of $e$ in the statistics is a compactness effect.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+\subsection{The question}
+
+For pure gauge theory in two spacetime dimensions there is an exact statement connecting a gauge coupling to gauge-invariant entanglement data. In the heat-kernel formulation on a sphere of area $A$, the reduced state of an interval is block-diagonal in the boundary electric flux $R$, with sector distribution and entropy derivative
+\begin{equation}\label{eq:2d}
+p_R(t) = \frac{d_R^2\, e^{-(t/2) C_2(R)}}{Z(t)}, \qquad t = g^2 A, \qquad \frac{dS}{dt} = -t\, I(t), \qquad I(t) = \tfrac14 \Var_t(C_2),
+\end{equation}
+where $I(t)$ is the Fisher information about $t$ carried by one flux measurement \cite{D14, GS14, P3}. The distribution \eqref{eq:2d} is a one-parameter exponential family in the coupling at \emph{every} coupling; the identity is exact; and the coupling is estimable from flux samples at the Cram\'er--Rao limit \cite{P3}. The present note asks the question that result makes unavoidable:
+
+\begin{quote}
+\emph{Does the exponential-family/Fisher mechanism survive above two dimensions --- specifically, for compact $\mathrm{U}(1)$ gauge theory, where the flux through an entangling surface is a field of integers $\{n_l\}$ on the cut rather than one global label?}
+\end{quote}
+
+This question was posed, in the form ``does the compact $\mathrm{U}(1)$ flux-sector distribution form an exponential family in $1/e^2$, and how much Fisher information about $e$ does it carry,'' by an external review of the companion work. This note is self-contained: everything used from the $d=2$ case is displayed in \eqref{eq:2d}, and no other result of the companion series is assumed.
+
+\subsection{Answers, scoped}
+
+The answer splits into a positive asymptotic statement at each end of the coupling axis, a negative global statement in between, and one exact, regulator-independent statement in the topological sector. Throughout, ``$S$'' is the Shannon entropy of the flux-sector distribution --- the classical center/edge term --- not a full entanglement entropy; Section~\ref{sec:notation} fixes this and the rest of the notation.
+
+\begin{enumerate}
+\item \textbf{Strong coupling (Sec.~\ref{sec:strong}; derived at leading order, verified numerically).} At leading order in the strong-coupling expansion of $d=3{+}1$ lattice compact $\mathrm{U}(1)$, the ground-state flux distribution across a flat cut is an exponential family --- but with sufficient statistic the $\ell^1$ flux $T = \tfrac12 \sum_l |n_l|$ (dipole count), not the Casimir $\sum_l n_l^2$, and natural parameter $\theta = \ln(16 e^8)$, logarithmic in the coupling. The identity $dS/d\theta = -\theta I(\theta)$ holds exactly at this order, and both entropy and information are \emph{extensive in the cut area}: in $d \geq 3$ every boundary cell is an independent flux sample, so the $d=2$ pathology --- entropy scaling with cut number while information does not \cite{P3} --- disappears.
+\item \textbf{The crossover obstruction (Sec.~\ref{sec:obstruction}; computed, with a perturbative mechanism).} Between the strong-coupling and weak-coupling asymptotic regimes the family is genuinely curved: no single natural parameter and no single sufficient statistic covers the coupling axis. The evidence is a singular-value rank test on exact-diagonalization data for the $2{+}1$d theory in its dual-height representation, with the exact 2d family as a control, plus the strong-coupling mechanism that produces the curvature at next-to-leading order. The exactness that made the $d=2$ statement a theorem (the self-reproducing heat kernel) has no analog here.
+\item \textbf{The topological zero-mode family (Sec.~\ref{sec:t3}; derived exactly, verified numerically).} On a spatial 3-torus the global electric winding sectors --- the zero-mode family whose single-class version is eq.~(36) of Donnelly--Wall \cite{DW16} --- form an \emph{exact} one-parameter exponential family in $e^2$ in the Gibbs/Hartle--Hawking class of states, at all couplings, with sufficient statistic the metric quadratic form on the rank-$b_2$ flux lattice. The identity $dS/de^2 = -e^2 I(e^2)$ holds verbatim; the Fisher information is finite, cutoff-independent, and has the metric-blind leading term $b_2/(2e^4)$. Electric--magnetic (Poisson/theta) duality acts exactly on the family, and the joint electric--magnetic family reproduces the curvature obstruction in miniature: at the self-dual point $dS/de^2 = 0$ while $I(e^2) > 0$. This is the one $d=4$ descendant of \eqref{eq:2d} we consider physically defensible.
+\item \textbf{Continuum status (Sec.~\ref{sec:continuum}; literature-verified).} At fixed lattice spacing the edge-flux information is finite per mode and extensive; in the continuum limit it diverges as $\mathrm{Area}/a^2$ --- but it lives entirely in the non-distillable, center-choice-dependent sector data, while the universal continuum coefficients carry exactly zero information about $e$ \cite{CH15, CHMP}. All $e$-dependence of the flux statistics is a compactness effect. Only the topological zero modes survive as finite, regulator-independent carriers.
+\end{enumerate}
+
+Epistemic labels as in the companion series: ``derived'' means proven here from stated hypotheses (proofs given); ``computed'' means verified by the published deterministic scripts, with residuals quoted; ``literature-verified'' means checked against the cited primary source, with the verification record in \texttt{newwork/u1\_4d/LITERATURE.md}.
+
+\section{Notation, and What ``Entropy'' Means Here}\label{sec:notation}
+
+Three different objects are called ``entanglement entropy'' in this subject, and conflating them is the standard way to overclaim. For a lattice gauge theory with a cut, the extended-Hilbert-space entropy decomposes as \cite{D11, CHR, GST15}
+\[
+S_{\mathrm{EHS}} = \underbrace{H[p]}_{\text{Shannon entropy of sector distribution}} + \underbrace{\textstyle\sum_k p_k \ln \dim_k}_{\text{edge degeneracy}} + \underbrace{\textstyle\sum_k p_k S(\rho_k)}_{\text{distillable}} .
+\]
+For $\mathrm{U}(1)$ the degeneracy term vanishes ($\dim_k = 1$). In $d = 2$ the distillable term also vanishes and $S_{\mathrm{EHS}} = H[p]$; in $d \geq 3$ it does not (there is a propagating photon), and \emph{nothing in this paper computes it}. Every entropy statement below concerns $H[p]$, the Shannon entropy of the flux-sector (center) distribution, written simply $S$. This is deliberate: the sector distribution is the unambiguous, convention-free object; its entropy is the contested one (Sec.~\ref{sec:continuum}).
+
+\begin{center}
+\small
+\begin{tabular}{ll}
+\toprule
+Symbol & Meaning \\
+\midrule
+$e^2$ & compact $\mathrm{U}(1)$ coupling, Kogut--Susskind normalization \eqref{eq:KS} \\
+$\Sigma$, $N_\partial$, $N_{\mathrm{str}}$ & entangling surface; cut links; straddling boundary plaquettes ($N_{\mathrm{str}} = 2N_\partial$) \\
+$\{n_l\}$, $p_{e^2}(\{n_l\})$ & integer electric fluxes on cut links (center labels); their distribution \\
+$\theta$, $T$, $h$ & natural parameter, sufficient statistic, base measure of an exponential family \\
+$I(\eta)$ & Fisher information about the parameter $\eta$ of one sample of the sector label \\
+$S$ & Shannon entropy $H[p]$ of the sector distribution (\emph{not} $S_{\mathrm{EHS}}$) \\
+$\Lambda$, $G$, $V$, $\beta$ & torus lattice, Gram matrix $G_{ij} = a_i \cdot a_j$, volume $\sqrt{\det G}$, inverse temperature \\
+$t_i$ & per-homology-class parameter $\beta e^2 L_i^2 / V$ (rectangular torus) \\
+$b_1, b_2$ & Betti numbers of the spatial manifold ($b_1 = b_2 = 3$ for $T^3$) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Theory and cut.} The Kogut--Susskind Hamiltonian for compact $\mathrm{U}(1)$ on a spatial cubic lattice (spacing $a = 1$, links $l$, plaquettes $p$) is
+\begin{equation}\label{eq:KS}
+H = \frac{e^2}{2} \sum_l E_l^2 \;-\; \frac{1}{2e^2} \sum_p \left( U_p + U_p^\dagger \right), \qquad E_l |n_l\rangle = n_l |n_l\rangle, \; n_l \in \Z,
+\end{equation}
+with $U_p$ the plaquette operator \cite{KS75}. For a region $A$ bounded by a closed surface $\Sigma$, the center of the gauge-invariant algebra of $A$ (electric choice) is generated by the cut-link fluxes $\{E_l\}_{l \in \partial}$, and the reduced state is block-diagonal in $\{n_l\}$, Gauss-constrained to total flux zero through closed contractible $\Sigma$ \cite{D11, CHR, GST15, DW16}. The object of study is the induced distribution $p_{e^2}(\{n_l\})$ and its statistical geometry as the coupling varies.
+
+\textbf{Definition.} A one-parameter family $p_\eta(x)$ is an \emph{exponential family} if it can be written
+\[
+p_\eta(x) = h(x)\, e^{-\theta(\eta)\, T(x)} / Z(\eta)
+\]
+with $\eta$-independent base measure $h$ and sufficient statistic $T$. This property is invariant under smooth reparametrizations $\eta \to \eta'$, so ``exponential family in $1/e^2$'' and ``in $e^2$'' are the same property; what is not automatic --- and what the Fisher information tracks --- is \emph{which function of $e^2$ the natural parameter is}.
+
+\section{The Entropy--Fisher Lemma}\label{sec:lemma}
+
+The $d=2$ identity in \eqref{eq:2d} is not two-dimensional. It is a fact about exponential families:
+
+\begin{lemma}[entropy--Fisher identity]\label{lem:fisher}
+Let $p_\theta(x) = h(x)\, e^{-\theta T(x)}/Z(\theta)$ be an exponential family in its natural parameter $\theta$, with $S(\theta) = -\sum_x p_\theta \ln p_\theta$. Then
+\[
+I(\theta) = \Var_\theta(T), \qquad \frac{dS}{d\theta} = -\theta \Var_\theta(T) - \Cov_\theta(\ln h, T).
+\]
+In particular, if $h \equiv 1$ on the support,
+\begin{equation}\label{eq:identity}
+\frac{dS}{d\theta} = -\theta\, I(\theta).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+$\partial_\theta \ln p_\theta = \langle T \rangle - T$, so $I(\theta) = \mathbb{E}[(\partial_\theta \ln p)^2] = \Var_\theta(T)$. From $-\ln p_\theta = -\ln h + \theta T + \ln Z$, $S = -\langle \ln h\rangle + \theta \langle T\rangle + \ln Z$; differentiate using $d\langle f \rangle / d\theta = -\Cov_\theta(f, T)$ and $d \ln Z/d\theta = -\langle T \rangle$.
+\end{proof}
+
+The $d=2$-specific content of \eqref{eq:2d} was never the identity but (i) that the exact ground state is an exponential family at \emph{all} couplings, and (ii) that the natural parameter is linear in the coupling. Those are exactly the two properties at stake in $d > 2$. Under reparametrization $\eta = \eta(\theta)$, $I(\eta) = (d\theta/d\eta)^2 I(\theta)$ and $dS/d\eta = (d\theta/d\eta)\, dS/d\theta$, so the ``naive'' form $dS/d\eta = -\eta I(\eta)$ holds \emph{only if} $\theta$ is linear in $\eta$ --- a fact we will see fail, by a computable factor, at strong coupling.
+
+\section{Strong Coupling: the Dipole Family}\label{sec:strong}
+
+\textbf{Status: derived at leading order in $1/e^4$; verified numerically (analytic model and $2{+}1$d exact diagonalization).}
+
+At $e^2 \to \infty$ the electric term of \eqref{eq:KS} dominates and the unperturbed ground state has all $n_l = 0$. A single plaquette excitation (flux $\pm1$ around four links) costs $2e^2$ and is created by $V = -\tfrac{1}{2e^2}\sum_p (U_p + U_p^\dagger)$ with amplitude $c = \tfrac{1}{2e^2} / 2e^2 = 1/(4e^4)$; higher orders exponentiate cluster-wise, so to leading order $\psi(\{n\}) \propto c^{\,k(\{n\})}$ with $k$ the minimal number of plaquette applications. A plaquette straddling a flat cut $\Sigma$ (there are $N_{\mathrm{str}} = 2N_\partial$ of them) deposits the dipole $(+1,-1)$ on two cut links; a cut configuration $\{n_l\}$ requires $k = \tfrac12 \sum_l |n_l|$ straddling excitations whenever it is dipole-reachable. Hence:
+
+\begin{proposition}[leading-order flux family]\label{prop:dipole}
+At leading order in the strong-coupling expansion of \eqref{eq:KS} in $d = 3{+}1$, the ground-state flux distribution across a flat cut is
+\begin{equation}\label{eq:dipole}
+p(\{n_l\}) = \frac{1}{Z}\, h(\{n\})\, e^{-\theta(e^2)\, T(\{n\})}, \qquad
+T = \tfrac12 \sum_{l \in \partial} |n_l|, \qquad
+\theta = -\ln c^2 = \ln(16 e^8),
+\end{equation}
+with $h \in \{0,1\}$ the dipole-reachability indicator ($h = 1$ on the support). Consequently, by Lemma~\ref{lem:fisher}, $dS/d\theta = -\theta I(\theta)$ exactly at this order; and, the straddling plaquettes being independent three-state systems $\{0, \pm\text{dipole}\}$ at this order,
+\begin{equation}\label{eq:extensive}
+I(\theta) = N_{\mathrm{str}} \cdot 2q(1 - 2q) \approx 2 N_{\mathrm{str}}\, c^2 = \frac{N_{\mathrm{str}}}{8 e^8},
+\qquad
+I(e^2) = \Big(\frac{d\theta}{de^2}\Big)^{2} I(\theta) = \frac{2 N_{\mathrm{str}}}{e^{12}},
+\end{equation}
+where $q = c^2/(1 + 2c^2)$ is the per-plaquette dipole probability.
+\end{proposition}
+
+Three structural readings, each a departure from $d = 2$. \emph{First}, the sufficient statistic is the $\ell^1$ flux (dipole count), not the quadratic Casimir: the naive transplant $p \propto e^{-(e^2/2)\sum n_l^2}$ of the 2d form is wrong in the 4d electric limit. \emph{Second}, the natural parameter is logarithmic in the coupling. By the reparametrization remark after Lemma~\ref{lem:fisher}, the naive identity fails by exactly
+\begin{equation}\label{eq:thetaover4}
+\frac{dS/de^2}{-e^2\, I(e^2)} = \frac{\theta(e^2)}{4},
+\end{equation}
+since $d\theta/de^2 = 4/e^2$. \emph{Third}, information is extensive in the cut area: each boundary cell is an independent sample. In $d = 2$ the flux was one global random variable and extra cuts added entropy but no information \cite{P3}; in $d \geq 3$ both scale together. Both $S$ and $I$ vanish as $e^2 \to \infty$ (sectors freeze), the same corner as $t \to \infty$ in 2d.
+
+\textbf{Verification (analytic model).} The three-state model of \eqref{eq:dipole}--\eqref{eq:extensive} evaluated at finite $\theta$ (script \texttt{u1\_dipole\_gas.py}, results \texttt{results\_dipole.json}): the identity $dS/d\theta = -\theta I(\theta)$ holds with relative residual $\leq 1.1\times10^{-6}$ (the finite-difference floor) at $e^2 = 1.5$--$12$; per straddling plaquette, $p_{\mathrm{dip}} = 1.2\times10^{-2}$, $I(\theta) = 2.4\times10^{-2}$ at $e^2 = 1.5$, falling to $p_{\mathrm{dip}} = 1.0\times10^{-4}$, $I(\theta) = 2.0\times10^{-4}$ at $e^2 = 5$; and the measured ratio \eqref{eq:thetaover4} equals $\theta/4$ to three decimals at all six couplings ($1.099, 1.386, 1.792, 2.303, 2.773, 3.178$ at $e^2 = 1.5, 2, 3, 5, 8, 12$).
+
+\textbf{Verification (exact diagonalization).} In $2{+}1$d, solving Gauss's law turns the theory into a quantum integer-height chain (dual-height representation); a $1 \times N$ plaquette strip with height cutoff $h_{\max}$ is exactly diagonalizable (script \texttt{u1\_chain\_ed.py}; dimensions up to $7^6$; Lanczos residuals $\leq 2\times10^{-13}$; no randomness). The single cut link's flux $n = h_k - h_{k+1}$ is the center label. The strong-coupling predictions for this geometry ($p(\pm1)/p(0) \to 2c_3^2$, $c_3 = 1/(2e^4)$) are confirmed quantitatively: $d\ln[p(1)/p(0)]/d\ln e^2 = -4.002$ (prediction $-4$), intercept $0.689$ (prediction $\ln 2 = 0.693$), $p(1)/2c_3^2 = 0.9999$ at $e^2 = 8$; the identity $dS/d\theta = -\theta \Var(T)$ holds to relative residual $\leq 10^{-3}$ for $e^2 \geq 2.5$; and the measured ratio \eqref{eq:thetaover4} is $1.079 / 1.558 / 1.965$ at $e^2 = 2.5/4/6$ versus $\theta/4 = 1.087 / 1.559 / 1.965$ (results \texttt{analysis\_chain.json}).
+
+\section{The Crossover Obstruction}\label{sec:obstruction}
+
+\textbf{Status: computed ($2{+}1$d exact diagonalization with a 2d exact control); mechanism derived perturbatively in $d=3{+}1$.}
+
+At the weak-coupling end the structure changes. For $\beta_{\mathrm{lat}} = 1/e^2$ above the transition, $d = 3{+}1$ compact $\mathrm{U}(1)$ is in a Coulomb phase (a theorem: \cite{Guth80, FS82}; transition near $\beta_{\mathrm{lat}} \approx 1.01$ by Monte Carlo), and up to exponentially small monopole corrections the ground-state flux distribution across a cut is a Gauss-constrained discrete Gaussian
+\begin{equation}\label{eq:gaussian}
+p(\{n_l\}) \approx \frac{1}{Z} \exp\Big[ -\frac{e^2}{2} \sum_{l,l' \in \partial} n_l\, (M^{-1})_{ll'}\, n_{l'} \Big],
+\end{equation}
+with $M$ the boundary restriction of the free-photon covariance --- a \emph{pure geometry} kernel, $e$-independent because the photon does not run in the pure compact theory's Coulomb phase. This is again an exponential family; but now the sufficient statistic is the quadratic form and the natural parameter is $e^2$ itself (the magnetic dual sectors carry the dual family with parameter $\propto 1/e^2$, as in \cite{DW16}; as a family statement, ``exponential family in $1/e^2$'' is correct, since exponential-family-ness is reparametrization-invariant).
+
+So the two ends of the coupling axis disagree about everything except the exponential form: the sufficient statistic is $\tfrac12\sum|n_l|$ at strong coupling and a quadratic form at weak coupling; the natural parameter is $\ln(16e^8)$ at one end and $e^2$ at the other. The question is whether one global exponential family interpolates. It does not:
+
+\begin{quote}
+\textbf{Obstruction (computed).} Assemble the log-likelihood matrix $L[j, n] = \ln p(n; e^2_j)$ of the $2{+}1$d strip model over a coupling grid. The family is a one-parameter exponential family with \emph{some} fixed statistic iff the rows of $D[j,n] = L[j,n] - L[j_0,n]$ lie in $\mathrm{span}\{\mathbf 1, T\}$, i.e.\ $\operatorname{rank} D = 2$. The measured third-to-second singular-value ratio $\sigma_3/\sigma_2$ is $5.1\times10^{-2}$ over the full coupling range and $3.9$--$5.1\times10^{-2}$ in the weak window, against $3.8\times10^{-4}$ in the strong window and $1.4\times10^{-15}$ for the exact 2d family \eqref{eq:2d} computed identically as a control. The fitted statistic shape $T(2)$ (normalized so $T(0)=0$, $T(1)=1$; $|n| \mapsto 2$, $n^2 \mapsto 4$) moves from $2.23$ in the strong-coupling-dominated fit to $3.56$ in the weak window: the sufficient statistic itself crosses over. At the crossover ($e^2 \approx 1$) the identity \eqref{eq:identity} fails by ${\sim}40\%$ with either candidate statistic (\texttt{analysis\_chain.json}, \texttt{analysis\_weak\_hmax3.json}).
+\end{quote}
+
+The mechanism is visible already in $d = 3{+}1$ perturbation theory: at next-to-leading order, stacked dipoles, $1\times2$ loop excitations, and parallel plaquettes acquire distinct $O(1)$ prefactors --- the base measure $h$ becomes nontrivial and cluster-type-dependent energy denominators split ``the'' natural parameter --- so the family becomes curved, with nothing to protect it (in 2d it was protected by the self-reproducing heat kernel; there is no analog).
+
+Scope of the numerics, stated plainly: the exact diagonalization is $2{+}1$-dimensional, on a $1\times N$ strip with height cutoff $h_{\max} \leq 3$; $N$-dependence is negligible ($\leq 2\times10^{-5}$ in $S$ between $N = 6$ and $7$), and $h_{\max}$-dependence is controlled for $e^2 \gtrsim 0.6$ but \emph{not} converged at $e^2 = 0.3$ (fitted $\theta$: $0.487/0.310/0.268$ for $h_{\max} = 1/2/3$), so the weakest-coupling numbers are qualitative. In the weak window the fitted natural parameter is approximately linear in $e^2$ ($\theta = 1.17 e^2 - 0.12$, $R^2 = 0.989$ at $h_{\max} = 3$), with residual curvature that is genuine: in $2{+}1$d even the weak-coupling family is weakly curved, because the Polyakov mass $m(e^2) \propto e^{-\mathrm{const}/e^2}$ runs the kernel \cite{Pol77} --- a $2{+}1$d-specific effect absent from the frozen 4d Coulomb kernel of \eqref{eq:gaussian}. The obstruction claim we carry forward is therefore the conservative one: \emph{the crossover region is curved in any $d \geq 3$; the weak-coupling end is asymptotically exponential, exactly so in the 4d Coulomb phase up to $e^{-S_{\mathrm{mono}}}$.}
+
+\section{The \texorpdfstring{$T^3$}{T3} Zero-Mode Family: an Exact \texorpdfstring{$d=4$}{d=4} Descendant}\label{sec:t3}
+
+\textbf{Status: derived (Theorem~\ref{thm:t3}, proofs in Appendix~\ref{app:proofs}); verified numerically (script \texttt{t3\_flux\_sectors.py}, results \texttt{results\_t3.json}; residuals quoted below). This is the new computation of this paper.}
+
+Everything so far concerned the local flux field on a contractible cut --- data that will turn out, in the continuum, to be divergent and contested (Sec.~\ref{sec:continuum}). Compactness, however, also produces \emph{topological} sectors, and these survive the continuum limit. Put the \emph{compact Maxwell theory} --- the $\mathrm{U}(1)$ gauge theory of a circle-valued gauge field, i.e.\ free Maxwell plus flux quantization and compact holonomies, the continuum setting of \cite{DW16} --- on a flat spatial 3-torus $T^3 = \mathbb{R}^3/\Lambda$, with lattice basis $a_1, a_2, a_3$, Gram matrix $G_{ij} = a_i \cdot a_j$, volume $V = \sqrt{\det G}$, charge quantum $q = 1$; the lattice theory \eqref{eq:KS} reduces to it in the Coulomb phase up to monopole corrections $e^{-S_{\mathrm{mono}}}$. (We choose $T^3$ over $T^2 \times$ interval deliberately: $T^3$ is closed, so there are no boundary conditions to choose and no boundary edge modes to regulate; it carries the maximal number of independent classes --- $b_1 = b_2 = 3$, equal by Poincar\'e duality, and we write $b_2$ for the common rank throughout; and all sector labels are exactly superselected \cite{tHooft79}.) The zero modes are:
+\begin{itemize}
+\item \emph{Electric winding} $n \in \Z^3 \cong H^1(T^3, \Z)$: the Wilson-line holonomies $\theta_i \in [0, 2\pi)$ are compact under large gauge transformations, so their conjugate momenta --- the constant electric field $E = \sum_i n_i\, a_i / V$ --- have integer spectrum, with energy $E_{\mathrm{el}}(n) = \frac{e^2}{2V}\, n^{\mathsf T} G\, n$.
+\item \emph{Magnetic flux} $m \in \Z^3 \cong H^2(T^3, \Z)$: Dirac quantization gives flux $2\pi m_i$ through the three 2-cycles, constant field $B = \sum_i 2\pi m_i\, a_i / V$, energy $E_{\mathrm{mag}}(m) = \frac{(2\pi)^2}{2 e^2 V}\, m^{\mathsf T} G\, m$.
+\end{itemize}
+Both label sets commute with $H$ and with each other, and decouple exactly from the photon oscillators. In the strict ground state they are superselected at $n = m = 0$: degenerate distribution, zero information. The family lives on the \emph{Gibbs (torus Hartle--Hawking) class of states} at inverse temperature $\beta$ --- prepared by the Euclidean path integral on $T^3 \times S^1_\beta$ --- exactly as the 2d family \eqref{eq:2d} lived on the Hartle--Hawking sphere state with $t = g^2 A$, not on a Minkowski vacuum. There the sector weights factor out of the photon free energy exactly.
+
+\begin{theorem}[$T^3$ flux-sector family]\label{thm:t3}
+For the compact Maxwell theory on $T^3$ in the Gibbs state at inverse temperature $\beta$:
+\begin{enumerate}
+\item[(a)] \emph{(exact exponential family)} The electric winding sectors are distributed as
+\begin{equation}\label{eq:t3family}
+p(n) = \frac{1}{Z_E} \exp\big[ -e^2\, R(n) \big], \qquad R(n) = \frac{\beta}{2V}\, n^{\mathsf T} G\, n, \qquad n \in \Z^{3},
+\end{equation}
+a one-parameter exponential family over the integer flux lattice with natural parameter $e^2$ and sufficient statistic $R$ --- exactly, at every coupling, with trivial base measure. For a rectangular torus the marginal of class $i$ is a one-dimensional discrete Gaussian with parameter $t_i = \beta e^2 L_i^2 / V$.
+\item[(b)] \emph{(identity)} $dS/de^2 = -e^2\, I(e^2)$ with $I(e^2) = \Var(R)$, for all $e^2, \beta, G$.
+\item[(c)] \emph{(Fisher information; metric-blind leading term)} As $\beta e^2 \lambda_{\max}(G)/V \to 0$ ($\lambda_{\max}$ the largest eigenvalue of $G$; equivalently, all $t_i \to 0$ in the rectangular case),
+\[
+I(e^2) = \frac{b_2}{2 e^4}\,\big(1 + \varepsilon\big), \qquad
+S = \frac{b_2}{2}\Big[\ln\frac{2\pi}{\beta e^2} + 1\Big] + \frac12 \ln V + \varepsilon',
+\]
+with $\varepsilon, \varepsilon'$ exponentially small in $1/t_i$ and --- the point --- \emph{independent of the shape of $G$ at leading order}: per homology class the information is $1/(2e^4)$ regardless of the metric, and the entropy constant depends on the torus only through its volume. Geometry enters only through where each class sits on one universal correction curve, $2e^4 I_i = \tfrac{t_i^2}{2}\Var_{t_i}(n^2)$, which equals $1$ for $t_i \lesssim 0.5$, peaks at ${\approx}1.53$ near $t_i \approx 5$, and collapses as ${\sim}e^{-t_i/2}$ beyond (freeze-out). $I(e^2)$ is finite for every $e^2 > 0$ and vanishes, with $S$, as $e^2 \to \infty$.
+\item[(d)] \emph{(modular structure / duality)} With $\alpha = \beta e^2 / V$,
+\[
+Z_E(\alpha; G) = \Big(\frac{2\pi}{\alpha}\Big)^{3/2} (\det G)^{-1/2}\, Z_E\Big(\frac{4\pi^2}{\alpha};\, G^{-1}\Big),
+\]
+so Poisson resummation exchanges weak and strong coupling and the electric lattice with its dual. The magnetic sectors form the dual family with natural parameter $\propto 1/e^2$. On the cubic torus with $\beta = L$ the per-class parameters are $t_E = e^2$ and $t_M = 4\pi^2/e^2$, the magnetic family is exactly the Poisson dual of the electric one, and the total sector entropy $S_{\mathrm{tot}} = S_E + S_M$ obeys $S_{\mathrm{tot}}(e^2) = S_{\mathrm{tot}}(4\pi^2/e^2)$ exactly, with self-dual point $e^2 = 2\pi$ at which $dS_{\mathrm{tot}}/de^2 = 0$ while the joint Fisher information $I_{\mathrm{tot}}(e^2) = I_E(e^2) + I_M(e^2)$ remains strictly positive.
+\end{enumerate}
+\end{theorem}
+
+Proofs are short and given in Appendix~\ref{app:proofs}; (b) is Lemma~\ref{lem:fisher} with $h \equiv 1$, and the shape-blindness in (c) is a two-line Gaussian trace identity.
+
+\textbf{Relation to Donnelly--Wall.} Eq.~(36) of \cite{DW16} is the electric flux-sector sum for a product geometry $B \times F$,
+\[
+Z_E = \sum_{E \in q_B \Z} e^{-\frac12 \mathrm{Vol}(B) E^2}, \qquad q_B = q/\sqrt{\mathrm{Vol}(F)}
+\]
+(both expressions verified verbatim against the source). For the rectangular torus, the marginal of class $i$ in \eqref{eq:t3family} is exactly this object with $B_i$ the $(x_i, \tau)$ 2-torus and $F_i$ the transverse $T^2$:
+\[
+t_i = \frac{\beta e^2 L_i^2}{V} = e^2\, \frac{\mathrm{Vol}(B_i)}{\mathrm{Vol}(F_i)} = q_B^2\, \mathrm{Vol}(B_i) \Big|_{q=1}.
+\]
+Theorem~\ref{thm:t3} is thus the rank-$b_2$ generalization of the Donnelly--Wall zero mode, with the metric quadratic form tying the classes together; and the per-class marginal is literally the $\mathrm{U}(1)$ family \eqref{eq:2d} with $t \to t_i$ (the per-class entropy constant $\tfrac12 + \tfrac12\ln 2\pi$ is the $\mathrm{U}(1)$ heat-kernel constant of \cite{P3}). The 2d mechanism does not merely have an analog in $d = 4$; on the torus zero modes it \emph{recurs verbatim}, three copies, coupled only through the metric.
+
+\textbf{Numerical verification} (all from \texttt{results\_t3.json}; three metrics: cubic $L = 4$; anisotropic $2\times3\times5$; sheared, Gram $[[4,2,0],[2,5,2],[0,2,5]]$, $V = 8$):
+\begin{itemize}
+\item \emph{(a)} Rank test on $\ln p$ over 12-point coupling grids: $\sigma_3/\sigma_2 = 6.1\times10^{-14}$, $2.2\times10^{-14}$, $1.6\times10^{-13}$ --- machine-zero curvature, versus $5.1\times10^{-2}$ for the bulk family of Sec.~\ref{sec:obstruction}.
+\item \emph{(b)} Identity residual $\leq 7.5\times10^{-10}$ (central differences; the floor) over $e^2 = 0.05$--$12$ on all metrics.
+\item \emph{(c)} $2e^4 I / b_2 = 1$ to $\leq 2\times10^{-10}$ for $e^2 \leq 0.8$ (and to $\leq 5\times10^{-16}$ for $e^2 \leq 0.4$) on all three metrics; the entropy asymptote holds to $\leq 2\times10^{-15}$ for $e^2 \leq 0.4$. Staggered freeze-out on the anisotropic torus at $e^2 = 12$ ($t_i = 1.6/3.6/10$): per-class $2e^4 I_i = 1.002 / 1.311 / 0.656$, on the universal curve.
+\item \emph{(d)} Poisson identity verified by evaluating $\ln Z_E$, $S$, $I$ through both representations on the sheared metric: agreement to $\leq 1.2\times10^{-15}$. Self-duality: $S_{\mathrm{tot}}(e^2) - S_{\mathrm{tot}}(4\pi^2/e^2) = 0.0$ in double precision at four coupling pairs; at $e^2 = 2\pi$, $dS_{\mathrm{tot}}/de^2 = 0$ to the $10^{-10}$ floor while $I_{\mathrm{tot}} = 0.10998$.
+\end{itemize}
+
+\textbf{The duality point is the obstruction in miniature.} The joint electric--magnetic sector distribution is $p(n, m) \propto \exp[-\theta_E T_E - \theta_M T_M]$ with $(\theta_E, \theta_M) = (e^2,\, 4\pi^2/e^2)$ on the self-dual torus: a \emph{curved} one-parameter path (a hyperbola) inside a two-parameter exponential family. A rank test on the joint family gives third singular value $\sigma_3 = 3.005$ with $\sigma_4/\sigma_3 = 9.5\times10^{-12}$ (rank exactly 3), while the electric marginal on the identical grid gives $\sigma_3 = 1.4\times10^{-10}$ (rank exactly 2). Correspondingly, the identity ratio $\frac{dS_{\mathrm{tot}}/de^2}{-e^2 I_{\mathrm{tot}}}$ runs from $+1.000$ at $e^2 = 0.3$ (electric-dominated) through $0$ at the self-dual point to $-1.000$ at $e^2 = 60$ (magnetic-dominated). Entropy stationarity with strictly positive Fisher information is possible only because the joint family is curved: precisely the structure that obstructed a global family in Sec.~\ref{sec:obstruction}, now in an exactly solvable two-statistic setting. Each marginal alone remains an exact one-parameter family at all couplings.
+
+\textbf{Caveats, stated with the result.} (1) The family lives on the Gibbs/Hartle--Hawking class of states, not the strict $T^3$ vacuum, where the labels are superselected and carry no information; this is the same status as $t = g^2 A$ in \eqref{eq:2d}. (2) Only the dimensionless products $\beta e^2 L_i^2 / V$ are estimable --- the torus echo of ``only $g^2 A$ is recoverable.'' (3) Every trace of $e^2$ exists because $n$ is an integer: flux quantization supplies the absolute unit that the rescaling $E \to E/e$ would otherwise erase; the noncompact theory has no normalizable zero-mode ground state at all \cite{DW16}. (4) This is the free compact theory: 4d monopole corrections (exponentially small in the Coulomb phase) and charged matter are not included, and in the confining phase the electric description should be dualized.
+
+\section{Continuum Status: Where the Information Lives in \texorpdfstring{$d = 4$}{d = 4}}\label{sec:continuum}
+
+\textbf{Status: literature-verified (sources and verbatim quotes in \texttt{LITERATURE.md}, Appendix~\ref{app:repro}); this section is the honest core of the answer to ``how much information about $e$.''}
+
+In the Coulomb phase the lattice results of Secs.~\ref{sec:strong}--\ref{sec:obstruction} give $I(e^2) \approx N_{\mathrm{modes}}/(2e^4)$ with $N_{\mathrm{modes}} \sim \mathrm{Area}/a^2$: the coupling is \emph{infinitely} well determined by cutoff-scale flux data as $a \to 0$. That divergence is not a feature; it is the signature that the carrier is regulator data. Three tiers:
+
+\begin{enumerate}
+\item \textbf{Edge/center data: divergent, and contested as entanglement.} The flux-sector information lives in exactly the sector whose physical status is the live dispute of this subject. The sector (edge) entropy depends on the choice of center/boundary algebra \cite{CHR}; the extended-Hilbert-space entropy that contains it ``does not agree with the maximum number of Bell pairs that can be extracted by\ldots entanglement distillation'' \cite{GST15, ST15}; the classical edge term ``does not contribute to the relative entropy or the mutual information in the continuum limit'' \cite{MST18}; and for free $\mathrm{U}(1)$ in $3{+}1$d the extractable part differs from the full universal term by a boundary scalar \cite{ST16}. An operationalist who admits only distillable entanglement will say the area-law information here is about \emph{superselection-sector statistics}, not entanglement. We regard that reading as defensible, and this caveat as load-bearing for every claim in this paper: the distribution $p(\{n_l\})$ is an unambiguous gauge-invariant object; calling its Shannon entropy ``entanglement'' is a convention.
+\item \textbf{Topological zero modes: finite, regulator-independent.} The $T^3$ family of Theorem~\ref{thm:t3} carries $I(e^2) = b_2/(2e^4)$ at weak coupling --- per homology class, not per lattice cell; no $a \to 0$ divergence; no center choice (the labels are global superselection charges \cite{tHooft79}). This is the one tier where a Fisher-information statement about $e$ survives the continuum limit, and it is the direct descendant of \eqref{eq:2d}.
+\item \textbf{Universal continuum coefficients: zero information.} The free-Maxwell sphere log-coefficient is $-16/45$ independent of $e$ \cite{CH15} (and famously mismatched with the trace anomaly $-31/45$); the correction that restores the anomaly when charges and monopoles are included is ``independent of the precise UV dynamics'' --- in particular independent of the value of the coupling \cite{CHMP}. The one sharp $d = 4$ computation of a coupling-adjacent universal entanglement coefficient finds the coupling dropping out. (In $d = 3$, by contrast, a universal weak-coupling term $\tfrac12 \dim(G) \log(e^2 r)$ does carry the coupling \cite{R15}; that is the dimension where ``universal'' and ``coupling-sensitive'' coexist.)
+\end{enumerate}
+
+Why no contradiction with the free-field no-go (noncompact Maxwell entanglement cannot depend on $e$, by the field redefinition $E \to E/e$): all $e$-dependence above is a \emph{compactness} effect. Integer flux quantization supplies the absolute unit in which Gaussian widths are measured; remove compactness and the normalization of $M^{-1}$ in \eqref{eq:gaussian} is unobservable. The coupling enters gauge-invariant statistics in $d = 4$ through the integers, or not at all.
+
+\section{Discussion}\label{sec:discussion}
+
+\textbf{What survives of the 2d mechanism.} The answer to the opening question has the shape of a split, not a yes or a no. The exponential-family structure and the entropy--Fisher identity survive as \emph{asymptotic, phase-by-phase} properties of the local flux data --- with the natural parameter and the sufficient statistic both changing identity between phases, and a genuinely curved crossover in between, where no version of \eqref{eq:identity} holds. They survive \emph{exactly} in precisely one place: the topological zero-mode family on a spatial manifold with nontrivial homology, where the 2d family recurs verbatim, class by class, with finite and regulator-independent Fisher information $b_2/(2e^4)$, an exact duality action, and --- in the joint electric--magnetic family --- a clean, exactly solvable instance of the same curvature obstruction. The $d = 2$ pathology that entropy scales while information does not is specific to $d = 2$: at strong coupling in $d \geq 3$ both are extensive in the cut area; on the torus both are finite and counted by $b_2$.
+
+\textbf{Reflection, not determination.} As in the 2d case, everything here is parameter estimation within a presupposed theory: the group, the state class (Gibbs/Hartle--Hawking, with $\beta$ part of the presupposition), and the functional form of the family are inputs; the output is the value of dimensionless combinations ($\beta e^2 L_i^2/V$; $g^2 A$ in 2d). Nothing in this paper shows that the coupling is \emph{constituted by} entanglement or sector statistics. The strongest honest summary: \emph{in $d = 4$ compact $\mathrm{U}(1)$, the coupling leaves a complete, efficiently readable fingerprint in exactly one regulator-independent gauge-invariant statistic --- the topological flux-sector distribution --- and everywhere else its fingerprint is either cutoff data of contested physical status or absent from universal quantities altogether.}
+
+\textbf{What a lattice study would add.} The claims of Secs.~\ref{sec:strong}--\ref{sec:obstruction} rest on leading-order analytics, an exactly solved $2{+}1$d strip, and exact zero-mode computations; the missing pieces are quantitative, not conceptual. In order of value: (1) $3{+}1$d Hamiltonian diagonalization beyond strips (a $2^3$ cube with $|n| \leq 2$ and Gauss projection is $10^7$--$10^8$ states --- feasible with sparse methods) to measure the joint multi-link distribution and its kernel $M$ at intermediate coupling; (2) Euclidean Monte Carlo of 4d compact QED with flux-sector-resolved measurements across a surface in the Coulomb phase, testing \eqref{eq:gaussian} and extracting $M$ and the monopole corrections near the transition; (3) the $T^3$ program on the interacting lattice theory: measure the winding-sector distribution against \eqref{eq:t3family} as monopoles turn on; (4) a proof (expected from \cite{MST18, CHMP}) that the distillable/relative-entropy information about $e^2$ vanishes in the continuum, which would make Sec.~\ref{sec:continuum}'s tier 1 rigorous; (5) repeating Sec.~\ref{sec:obstruction} with a magnetic or trivial center to quantify how much of the Fisher information is center-choice dependent --- the expectation, since it is edge data, is: strongly.
+
+\appendix
+
+\section{Proofs for Theorem~\texorpdfstring{\ref{thm:t3}}{1}}\label{app:proofs}
+
+\emph{(a)} The mode decomposition $A_i(x) = \theta_i\, b^i + (\text{oscillators})$, with $b^i$ the dual basis ($b^i \cdot a_j = \delta^i_j$), separates $H$ exactly: $B = \nabla \times A$ contains no holonomy zero mode, and the constant mode of $E$ is orthogonal to the oscillator modes. Large gauge transformations shift $\theta_i$ by $2\pi$, so $\theta_i$ is an angle and its conjugate $n_i$ is an integer; the constant field is $E = \sum_i n_i a_i / V$ (normalized so that $[\theta_i, n_j] = i\delta_{ij}$), giving $E_{\mathrm{el}}(n) = \frac{e^2}{2}\int E^2 = \frac{e^2}{2V} n^{\mathsf T} G n$. In the Gibbs state the density matrix factorizes over (electric zero modes) $\otimes$ (magnetic sector) $\otimes$ (oscillators), and the zero-mode block is diagonal with weights $e^{-\beta E_{\mathrm{el}}(n)}$, which is \eqref{eq:t3family}. The magnetic statement is identical with $B = \sum_i 2\pi m_i a_i / V$ (the unique constant field with fluxes $2\pi m_i$, since $a_i \cdot (a_j \times a_k) = V$).
+
+\emph{(b)} Lemma~\ref{lem:fisher} with $h \equiv 1$ on $\Z^3$ and natural parameter $e^2$.
+
+\emph{(c)} Write $p(x) \propto e^{-\frac12 x^{\mathsf T} A x}$ with $A = \frac{\beta e^2}{V} G$ and treat $x$ as continuous (corrections exponentially small in $1/t_i$ by Poisson resummation, part (d)). For a Gaussian, $\Var(x^{\mathsf T} M x) = 2 \operatorname{tr}[(M A^{-1})^2]$; with $M = \frac{\beta}{2V} G$, $MA^{-1} = \frac{1}{2e^2}\mathbf 1$, so
+\[
+I(e^2) = \Var(R) = 2 \operatorname{tr}\Big[\tfrac{1}{4e^4}\mathbf 1\Big] = \frac{3}{2e^4} = \frac{b_2}{2e^4},
+\]
+for \emph{every} $G$ --- the metric cancels in the trace. For the entropy, $\ln Z_E \to \frac32 \ln \frac{2\pi V}{\beta e^2} - \frac12 \ln \det G$ and $S = \ln Z_E + e^2 \langle R\rangle \to \ln Z_E + \frac32$; since $\det G = V^2$, the shape drops out and $S \to \frac{b_2}{2}[\ln\frac{2\pi}{\beta e^2} + 1] + \frac12 \ln V$. The per-class correction curve follows from $I_i = (c_i/2)^2 \Var_{t_i}(n^2)$, $c_i = t_i/e^2$, and the large-$t$ behavior $\Var_t(n^2) \approx 2e^{-t/2}$ from the three lowest states.
+
+\emph{(d)} Poisson resummation $\sum_{n \in \Z^3} e^{-\frac12 n^{\mathsf T} \! A n} = (2\pi)^{3/2} (\det A)^{-1/2} \sum_{k \in \Z^3} e^{-2\pi^2 k^{\mathsf T} \! A^{-1} k}$ with $A = \alpha G$ gives the functional equation. On the cubic torus with $\beta = L$: $t_E = \beta e^2 L^2 / V = e^2$ and $t_M = \beta (2\pi)^2 L^2 / (e^2 V) = 4\pi^2/e^2$, so $e^2 \mapsto 4\pi^2/e^2$ swaps $t_E \leftrightarrow t_M$ and hence the electric and magnetic factors of $S_{\mathrm{tot}}$; differentiating $S_{\mathrm{tot}}(e^2) = S_{\mathrm{tot}}(4\pi^2/e^2)$ at the fixed point $e^2 = 2\pi$ gives $S'_{\mathrm{tot}}(2\pi) = -S'_{\mathrm{tot}}(2\pi)$, hence zero; $I_{\mathrm{tot}} = I_E + I_M > 0$ because both marginals have non-degenerate sufficient statistics at finite parameter. \qed
+
+\section{Reproducibility}\label{app:repro}
+
+All computations are deterministic and complete in seconds (the exact diagonalization in minutes) on a laptop; no random number generation enters any quantity quoted in this paper. Repository paths (relative to repo root):
+
+\begin{itemize}
+\item \texttt{newwork/u1\_4d/t3\_flux\_sectors.py} --- \textbf{new for this paper.} Theorem~\ref{thm:t3} verification: rank tests, identity, Fisher asymptotics, entropy constant, Poisson/duality, joint-family curvature, on three metrics (cubic, anisotropic, sheared). Pure numpy; theta sums with rigorous truncation (terms below $e^{-750}$); weak coupling evaluated through the Poisson-dual representation with analytic $e^2$-derivatives. Output: \texttt{results\_t3.json}. Runtime ${\approx}3$\,s.
+\item \texttt{newwork/u1\_4d/u1\_dipole\_gas.py} --- strong-coupling dipole model and single-zero-mode discrete Gaussian (Sec.~\ref{sec:strong}). Output: \texttt{results\_dipole.json}.
+\item \texttt{newwork/u1\_4d/u1\_chain\_ed.py}, \texttt{analyze\_chain.py} --- $2{+}1$d dual-height strip: Lanczos exact diagonalization (dimensions to $7^6$; residuals $\leq 2\times10^{-13}$), rank/curvature tests, identity tests, convergence in $N$ and $h_{\max}$ (Secs.~\ref{sec:strong}--\ref{sec:obstruction}). Outputs: \texttt{results\_chain.json}, \texttt{analysis\_chain.json}, and \texttt{analysis\_weak\_hmax3.json}.
+\item \texttt{newwork/u1\_4d/LITERATURE.md} --- primary-source verification record for every literature claim in Secs.~\ref{sec:obstruction} and \ref{sec:continuum}, including the verbatim Donnelly--Wall eq.~(36) and $q_B$ definitions and the Casini--Huerta and CHMP abstract quotes.
+\item \texttt{newwork/u1\_4d/DERIVATION.md} --- the analytic layer behind Secs.~\ref{sec:strong}--\ref{sec:obstruction}.
+\item \texttt{newwork/u1\_4d/T3\_RESULTS.md} --- the computation record for Sec.~\ref{sec:t3}.
+\item Headline residuals: exponential-family rank $\sigma_3/\sigma_2 \leq 1.6\times10^{-13}$ ($T^3$, three metrics); identity \eqref{eq:identity} on $T^3$ to $\leq 7.5\times10^{-10}$; $2e^4 I/b_2 = 1$ to $\leq 2\times10^{-10}$ ($e^2 \leq 0.8$); Poisson identity to $\leq 1.2\times10^{-15}$; dipole-gas identity to $\leq 1.1\times10^{-6}$; ED strong-coupling slope $-4.002$ vs.\ $-4$.
+\end{itemize}
+
+\begin{thebibliography}{99}
+
+\bibitem{P3} W. T. Trevena, ``Fisher Information and Coupling Reconstruction from Edge-Sector Statistics in Two-Dimensional Yang--Mills,'' companion paper (2026), repository \texttt{paper3/main.tex}.
+
+\bibitem{KS75} J. Kogut and L. Susskind, ``Hamiltonian formulation of Wilson's lattice gauge theories,'' Phys. Rev. D 11, 395 (1975).
+
+\bibitem{D11} W. Donnelly, ``Decomposition of entanglement entropy in lattice gauge theory,'' Phys. Rev. D 85, 085004 (2012); arXiv:1109.0036.
+
+\bibitem{D14} W. Donnelly, ``Entanglement entropy and nonabelian gauge symmetry,'' Class. Quantum Grav. 31, 214003 (2014); arXiv:1406.7304.
+
+\bibitem{GS14} A. Gromov and R. A. Santos, ``Entanglement entropy in 2D non-abelian pure gauge theory,'' Phys. Lett. B 737, 60 (2014); arXiv:1403.5035.
+
+\bibitem{CHR} H. Casini, M. Huerta, and J. A. Rosabal, ``Remarks on entanglement entropy for gauge fields,'' Phys. Rev. D 89, 085012 (2014); arXiv:1312.1183.
+
+\bibitem{GST15} S. Ghosh, R. M. Soni, and S. P. Trivedi, ``On the entanglement entropy for gauge theories,'' JHEP 09 (2015) 069; arXiv:1501.02593.
+
+\bibitem{ST15} R. M. Soni and S. P. Trivedi, ``Aspects of entanglement entropy for gauge theories,'' JHEP 01 (2016) 136; arXiv:1510.07455.
+
+\bibitem{ST16} R. M. Soni and S. P. Trivedi, ``Entanglement entropy in (3+1)-d free U(1) gauge theory,'' JHEP 02 (2017) 101; arXiv:1608.00353.
+
+\bibitem{MST18} U. Moitra, R. M. Soni, and S. P. Trivedi, ``Entanglement entropy, relative entropy and duality,'' JHEP 08 (2019) 059; arXiv:1811.06986.
+
+\bibitem{DW14} W. Donnelly and A. C. Wall, ``Entanglement entropy of electromagnetic edge modes,'' Phys. Rev. Lett. 114, 111603 (2015); arXiv:1412.1895.
+
+\bibitem{DW16} W. Donnelly and A. C. Wall, ``Geometric entropy and edge modes of the electromagnetic field,'' Phys. Rev. D 94, 104053 (2016); arXiv:1506.05792.
+
+\bibitem{CH15} H. Casini and M. Huerta, ``Entanglement entropy of a Maxwell field on the sphere,'' Phys. Rev. D 93, 105031 (2016); arXiv:1512.06182.
+
+\bibitem{CHMP} H. Casini, M. Huerta, J. M. Mag\'an, and D. Pontello, ``On the logarithmic coefficient of the entanglement entropy of a Maxwell field,'' Phys. Rev. D 101, 065020 (2020); arXiv:1911.00529.
+
+\bibitem{R15} \DJ. Radi\v{c}evi\'c, ``Entanglement in weakly coupled lattice gauge theories,'' JHEP 04 (2016) 163; arXiv:1509.08478.
+
+\bibitem{tHooft79} G. 't Hooft, ``A property of electric and magnetic flux in non-Abelian gauge theories,'' Nucl. Phys. B 153, 141 (1979).
+
+\bibitem{Pol77} A. M. Polyakov, ``Quark confinement and topology of gauge theories,'' Nucl. Phys. B 120, 429 (1977).
+
+\bibitem{Guth80} A. H. Guth, ``Existence proof of a nonconfining phase in four-dimensional U(1) lattice gauge theory,'' Phys. Rev. D 21, 2291 (1980).
+
+\bibitem{FS82} J. Fr\"ohlich and T. Spencer, ``Massless phases and symmetry restoration in abelian gauge theories and spin systems,'' Commun. Math. Phys. 83, 411 (1982).
+
+\end{thebibliography}
+
+\end{document}

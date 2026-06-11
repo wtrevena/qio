@@ -1,0 +1,519 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\Alg}{\mathcal{A}}
+\newcommand{\SA}{S_{\mathcal{A}}}
+\newcommand{\Fock}{\mathcal{F}}
+\newcommand{\su}[1]{\mathfrak{su}(#1)}
+\newcommand{\rep}[2]{(\mathbf{#1})_{#2}}
+
+\title{Room for Three Couplings, and Only the Room:\\ The Gauge-Invariant Algebra of a One-Generation Chiral Fock Space}
+
+\author{William T. Trevena\\[3pt]
+{\small\itshape Independent Researcher (PhD, ISE, University of Florida)}\\
+{\small\texttt{trevenaw7@gmail.com}}}
+
+\date{June 2026}
+
+\begin{document}
+
+\maketitle
+
+{\small\itshape\sloppy Acknowledgment: Portions of this manuscript were developed with the assistance of Claude (Anthropic), an AI language model, which contributed to literature synthesis, mathematical exposition, drafting, and the computational experiments. All numerical claims are reproduced by the published scripts in \texttt{newwork/two\_ideal/} (\texttt{run\_rep.py}, \texttt{run\_full.py}, \texttt{run\_crosscheck.py}; deterministic seed 20260610): each script asserts its own claims at runtime and fails if any verification breaks. Consistent with COPE authorship guidelines, the AI system is acknowledged as a tool rather than listed as a coauthor.\par}
+
+\begin{abstract}
+\sloppy A companion paper \cite{p2} computed the gauge-invariant operator algebras of an eight-dimensional one-generation fermionic toy and found that the three-coupling question could not even be posed there: within that one-ideal, number-conserving realization no $SU(2)_L$ acts, and the invariant data of any pure state is its electric-charge distribution. This paper constructs and analyzes the smallest arena on which the question is posable: the $2^{15}$-dimensional fermionic Fock space over the fifteen Weyl modes of one Standard-Model generation ($Q$, $L$, $u_R$, $d_R$, $e_R$ with their usual $SU(3)\times SU(2)\times U(1)$ quantum numbers), on which the full gauge group acts with all anomaly sums vanishing. The commutant of the gauge action is derived by exact highest-weight methods and confirmed by four independent computations: it is $\bigoplus_{i=1}^{250}\mathbf{1}_{n_i}\otimes M_{m_i}$, of total dimension 57062, with center $\CC^{250}$, maximal multiplicity 52, and a 28-dimensional space of invariant vectors. Four structural results follow. (i) The 250 center labels are complete gauge-representation data $(a,b;2j;y)$ --- all three factors --- and every sector satisfies the congruence $y \equiv 4(a-b)+3(2j) \bmod 6$: the sector lattice is the weight lattice of $(SU(3)\times SU(2)\times U(1))/\ZZ_6$, the global form selected by the Standard Model's matter content. Chirality, baryon number $B$, lepton number $L$, and $B-L$ are \emph{not} center labels --- gauge kinematics superselects none of them --- and the invariant algebra contains explicit $B$- and $L$-violating operators (e.g.\ $|\mathrm{vac}\rangle\langle udd|$), while the one-generation $QQQL$ vertex is absent by Fermi statistics alone. (ii) The one-ideal theorem ``all edge, no bulk'' does not extend to this arena: 185 of 250 sectors have both $n_i,m_i>1$ (94.8\% of the space), Haar-random states on the $Q\oplus L$ sub-arena carry $0.200\pm0.024$ bits of quantum (non-center) invariant entropy, and an explicit state achieves exactly 1 bit. (iii) The three-coupling question, once posable, receives a precise kinematic answer: the Casimir moments $(\langle C_2(\su3)\rangle, \langle C_2(\su2)\rangle, \langle Y^2\rangle)$ are functionals of the invariant center data, aligned one-to-one with the gauge factors, and independently tunable (rank-3 Jacobian on a five-parameter family of product states, with explicit single-factor directions). (iv) And that is all: the ``three'' is the factor count of the group put in by hand; the sector lattice is rank four and strongly correlated across factors; the algebra-canonical states carry $(0,0,0)$; the symmetric state sits at fixed, parameter-free values; Haar states concentrate at the trace values. Nothing kinematic selects coupling \emph{values}. The arena supplies room for three couplings, and only the room: as in the exactly solvable two-dimensional Yang--Mills case \cite{ym2}, where a coupling is recovered it is recovered from a \emph{dynamical} family of sector distributions --- determination by the kinematic invariant data of a single state is no more available here than in the minimal toy.
+\end{abstract}
+
+\section{Introduction}
+
+\subsection{The question this arena exists to host}
+
+Is anything about the three Standard-Model gauge couplings encoded in the gauge-invariant data of a quantum state? A sequence of analyses of the minimal three-qubit/one-ideal toy answered progressively sharper versions of this question in the negative \cite{p1,p2}. The endpoint of that line was structural, not numerical: in the eight-dimensional one-generation ideal --- Furey's $\mathrm{Cl}(6)$ construction \cite{furey14,furey18,stoica} read as three fermionic modes \cite{szangolies} --- the entire mode gauge group is $U(3)\cong (SU(3)_c\times U(1)_{\mathrm{em}})/\ZZ_3$. No $SU(2)_L$ acts, the abelian charge is electric charge rather than hypercharge, and the gauge-invariant data of any pure state reduces to its charge-sector distribution. A question about three couplings cannot be posed on a system that carries at most two gauge factors; the companion paper closed with a step-by-step specification of the smallest construction on which it could be posed --- a two-ideal/chiral extension carrying the doublet pairs that the single ideal lacks (\cite{p2}, Sec.~9).
+
+This paper executes that specification and reports what the completed computation says. The arena is the fermionic Fock space over one full generation of chiral Weyl modes,
+\begin{equation*}
+\Fock \;=\; \Lambda^{*}(V), \qquad V \;=\; \underbrace{\rep{3,2}{1/6}}_{Q} \oplus \underbrace{\rep{1,2}{-1/2}}_{L} \oplus \underbrace{\rep{3,1}{2/3}}_{u_R} \oplus \underbrace{\rep{3,1}{-1/3}}_{d_R} \oplus \underbrace{\rep{1,1}{-1}}_{e_R},
+\end{equation*}
+fifteen modes, $\dim\Fock = 32768$, with $G = SU(3)\times SU(2)\times U(1)$ acting by second-quantized mode rotations. This is the representation-theoretically faithful minimal carrier of one generation: both the doublet (``left-ideal'') and singlet (``right-ideal'') sectors are present, $SU(2)_L$ acts within $Q$ and within $L$, and the abelian charge is hypercharge. Section~\ref{sec:setup} verifies that the matter content is anomaly-free in every applicable sum and proves a construction-independence lemma: any realization carrying this representation content --- including the division-algebraic two-ideal constructions \cite{furey14,furey16,furey18} --- has the same invariant-algebra structure, so nothing below depends on the scaffolding.
+
+\subsection{Contributions}
+
+\begin{enumerate}
+
+\item \textbf{The commutant, derived and verified four ways} (Theorem~2, Section~\ref{sec:commutant}). The commutant of the gauge action on $\Fock$ is $\bigoplus_{i=1}^{250} \mathbf{1}_{n_i}\otimes M_{m_i}$: 250 sectors, total dimension 57062, center $\CC^{250}$, maximal multiplicity $m=52$, and a 28-dimensional invariant-vector space. The derivation is analytic --- exact integer highest-weight peeling of the $2^{15}$ Fock weights, certified by the linear independence of irreducible characters --- and is confirmed by four independent computations: a character identity at random torus elements, exact Weyl-integration quadrature, full blockwise Casimir spectroscopy of the 32768-dimensional space, and (on sub-arenas) the structure-agnostic numerical commutant pipeline of \cite{p2}.
+
+\item \textbf{The center labels are the gauge-representation data, and detect the global group} (Proposition~3, Section~\ref{sec:center}). Each sector is labeled by $(a,b;2j;y)$: an $\su3$ highest weight, an isospin, and a hypercharge --- all three factors, where the one-ideal center was the level set of a single abelian charge. All 250 sectors satisfy $y\equiv 4(a-b)+3(2j) \bmod 6$ with zero violations: the realized lattice is the weight lattice of $(SU(3)\times SU(2)\times U(1))/\ZZ_6$ \cite{tong}. Equally sharp is what the labels are \emph{not}: chirality, $B$, $L$, and $B-L$ all vary within single sectors. Gauge kinematics does not superselect baryon or lepton number, and the invariant algebra contains $B$- and $L$-violating operators from the start.
+
+\item \textbf{``All edge, no bulk'' fails here, exactly as scoped} (Theorem~4, Section~\ref{sec:entropy}). In the one-ideal toy, the quantum piece of the algebraic entropy vanishes identically for pure states (\cite{p2}, Theorem~2 --- a statement proved for, and scoped to, that arena). Here 185 of 250 sectors have both $n_i>1$ and $m_i>1$, covering 94.8\% of the Fock dimension; Haar-random states on the 256-dimensional $Q\oplus L$ sub-arena carry $0.200 \pm 0.024$ bits of quantum invariant entropy (never zero in a 300-state ensemble); and an explicit state carries exactly 1 bit of purely quantum gauge-invariant entropy, confirmed by an independent Monte Carlo group twirl. The two results are complementary, not contradictory: the vanishing was an artifact of the one-ideal truncation, and this paper computes exactly where it dies.
+
+\item \textbf{The three-coupling question, posed and answered at the kinematic level} (Section~\ref{sec:threeparam}). The Casimir moments $F_3 = \langle C_2(\su3)\rangle$, $F_2 = \langle C_2(\su2)\rangle$, $F_1 = \langle Y^2\rangle$ are linear functionals of the center distribution $\{p_i\}$, each built from exactly one gauge factor. On a natural five-parameter family of product states their Jacobian has rank 3 (singular values $3.35, 1.75, 0.70$), with explicit state deformations moving each functional alone. This is the first arena in this program where three algebra-aligned, independently tunable invariant functionals exist. Section~\ref{sec:threeparam} then bounds the claim honestly, and the bound is the paper's spine: the ``three'' is the input group's factor count, not an output; the sector lattice is rank four (the rank of $G$) and strongly correlated across factors; every algebra-selected state carries trivial or parameter-free functional values; and nothing in the kinematics distinguishes any point of $(F_3,F_2,F_1)$-space that could encode coupling values.
+
+\item \textbf{A multiplicity-free catalog of would-be 't~Hooft vertices} (Section~\ref{sec:thooft}). The 28 invariant vectors resolve into 28 distinct species-number sectors, each with multiplicity exactly one: the vacuum, $udd$, $QLud$, $uude$, \ldots, up to the fully filled state (which is a gauge singlet precisely because the unsigned hypercharge sum vanishes). The one-generation $QQQL$ singlet is absent --- the count at species content $(n_Q,n_L)=(3,1)$ is exactly zero, by Fermi statistics alone (Proposition~6) --- recovering, as a kinematic zero of the commutant computation, the classic fact that the 't~Hooft vertex needs flavor structure \cite{thooft}.
+
+\end{enumerate}
+
+\subsection{Scope, and three entropies}\label{sec:notation}
+
+This is a kinematic study of a finite toy: no Hamiltonian, no scale, no flow, and no claim about continuum gauge theory beyond structural analogy. Every statement about couplings is a statement about \emph{room} --- the dimension and alignment of the invariant data --- never about values. Discussions in this area move between three inequivalent notions of ``entropy,'' and we fix the usage once, in Table~\ref{tab:notation}; the distinction matters at every point below where the word appears.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{p{0.23\textwidth}p{0.42\textwidth}p{0.26\textwidth}}
+\toprule
+\textbf{Object} & \textbf{Definition} & \textbf{Status in this paper} \\
+\midrule
+Subsystem (qubit) entropy & von Neumann entropy of the reduced state on a fixed tensor factor & not used: gauge-frame dependent in fermionic gauge systems \cite{p1} \\[3pt]
+Algebraic entropy $\SA$ & entropy relative to the gauge-invariant algebra $\Alg$ (commutant of the gauge action), Eq.~(\ref{eq:salg}) \cite{barnum,zanardi,chr} & the object computed throughout \\[3pt]
+Center (sector) entropy $H(\{p_i\})$ & Shannon entropy of the superselection-sector distribution; discrete analog of the edge-mode term \cite{donnelly12,donnelly14} & the \emph{classical} piece of $\SA$; its physical status as entanglement is contested \cite{chmp,soni} \\
+\bottomrule
+\end{tabular}
+
+\medskip
+
+\begin{tabular}{ll}
+\toprule
+\textbf{Symbol} & \textbf{Meaning} \\
+\midrule
+$(a,b)$ & $\su3$ Dynkin labels: $(0,0)=\mathbf{1}$, $(1,0)=\mathbf{3}$, $(0,1)=\bar{\mathbf{3}}$, $(1,1)=\mathbf{8}$, \ldots \\
+$2j$ & twice the $SU(2)$ isospin \\
+$y = 6Y$ & integer hypercharge ($Q$ has $y=+1$, $e_R$ has $y=-6$) \\
+$n_i$, $m_i$ & dimension and multiplicity of the $i$-th gauge irrep in $\Fock$ \\
+$p_i$ & sector probability $\langle\psi|P_i|\psi\rangle$, $P_i$ the minimal central projection \\
+$F_3, F_2, F_1$ & $\langle C_2(\su3)\rangle$, $\langle C_2(\su2)\rangle$, $\langle Y^2\rangle$; generators normalized so $C_2(\mathbf{3})=4/3$, $C_2(j)=j(j+1)$ \\
+\bottomrule
+\end{tabular}
+\caption{Top: three inequivalent notions of ``entropy'' in gauge systems. In this arena, unlike the one-ideal toy, the algebraic entropy is \emph{not} exhausted by the center term: Section~\ref{sec:entropy} computes a generically nonzero quantum piece. Bottom: sector-label notation used throughout.}
+\label{tab:notation}
+\end{table}
+
+\section{The Arena}\label{sec:setup}
+
+\subsection{Modes and gauge action}
+
+$V$ consists of the fifteen Weyl modes of one Standard-Model generation, with quantum numbers fixed by the usual assignments:
+
+\begin{center}
+\small
+\begin{tabular}{lccccc}
+\toprule
+species & rep & \# modes & $Y$ & $y=6Y$ & chirality \\
+\midrule
+$Q$ & $\rep{3,2}{1/6}$ & 6 & $+1/6$ & $+1$ & L \\
+$L$ & $\rep{1,2}{-1/2}$ & 2 & $-1/2$ & $-3$ & L \\
+$u_R$ & $\rep{3,1}{2/3}$ & 3 & $+2/3$ & $+4$ & R \\
+$d_R$ & $\rep{3,1}{-1/3}$ & 3 & $-1/3$ & $-2$ & R \\
+$e_R$ & $\rep{1,1}{-1}$ & 1 & $-1$ & $-6$ & R \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The Hilbert space is the fermionic Fock space $\Fock = \Lambda^*(V)$, $\dim\Fock = 2^{15} = 32768$, graded by the five species numbers and the gauge weights. There is no $\nu_R$; the sixteen-mode corollary is exact and trivial: $\Lambda^*(V\oplus\rep{1,1}{0}) = \Lambda^*(V)\otimes\CC^2$ with trivial $G$-action on the $\CC^2$ factor, so every multiplicity doubles, the sector list is unchanged, and nothing below changes qualitatively.
+
+$G = SU(3)\times SU(2)\times U(1)$ acts on $V$ blockwise by species ($U_3\otimes U_2\, e^{i\theta/6}$ on $Q$, $U_2\, e^{-i\theta/2}$ on $L$, $U_3\, e^{2i\theta/3}$ on $u_R$, and so on), second-quantized to $\Gamma(g) = \bigotimes_{\mathrm{species}} \Lambda^*(U_s)$ --- a plain tensor product over the species factorization $\Fock = \Fock_Q\otimes\Fock_L\otimes\Fock_u\otimes\Fock_d\otimes\Fock_e$, sign-safe because every gauge generator is an even (quadratic, species-diagonal) operator. The construction is checked numerically at runtime: Lie-algebra closure of the second-quantized generators to $8.7\times10^{-17}$, the homomorphism property $\Gamma(g_1)\Gamma(g_2)=\Gamma(g_1g_2)$ to $4.6\times10^{-15}$, and generator consistency $\frac{d}{d\varepsilon}\Gamma(e^{i\varepsilon T}) = i\,d\Gamma(T)$ to $4.5\times10^{-7}$ (one-sided finite difference, $\varepsilon=10^{-6}$; the residual is $O(\varepsilon)$ as expected).
+
+\subsection{Anomaly bookkeeping}\label{sec:anomalies}
+
+With chirality sign $\chi$ ($+1$ for $Q, L$; $-1$ for $u_R, d_R, e_R$), the accompanying code evaluates all sums in exact rational arithmetic:
+\begin{center}
+\small
+\begin{tabular}{llc}
+\toprule
+check & sum & value \\
+\midrule
+$[SU(3)]^2\,U(1)$ & $\sum_{\mathrm{colored}} \chi\, Y$ & $0$ \\
+$[SU(2)]^2\,U(1)$ & $\sum_{\mathrm{doublet}} \chi\, Y$ & $0$ \\
+$[\mathrm{grav}]^2\,U(1)$ & $\sum \chi\, Y$ & $0$ \\
+$[U(1)]^3$ & $\sum \chi\, Y^3$ & $0$ \\
+unsigned hypercharge & $\sum Y$ & $0$ \\
+Witten parity & \# $SU(2)$ doublets & $4$ (even) \\
+\bottomrule
+\end{tabular}
+\end{center}
+All five sums vanish exactly, and the Witten count is even \cite{witten}. The fifth line is a structural statement rather than an anomaly: the fully filled Fock state transforms by $\det$ of the mode representation, so \emph{the filled ``sea'' is a gauge singlet if and only if the unsigned hypercharge sum vanishes} --- which, for this matter content, it does. This single fact propagates through the paper: it puts the filled state in the vacuum's superselection sector (Section~\ref{sec:thooft}), makes the decomposition table self-conjugate, and underlies the construction-independence lemma below.
+
+\subsection{Construction independence}\label{sec:conventions}
+
+Furey realizes one generation on a pair of minimal left ideals of $\CC\otimes\mathbb{O} \cong M_8(\CC)$, with $SU(3)_c\times U(1)$ acting within ideals and (in the $\CC\otimes\mathbb{H}\otimes\mathbb{O}$ extension) $SU(2)_L$ acting between the chiral halves \cite{furey14,furey16,furey18}. We do not reproduce the division-algebra scaffolding, for a reason that can be made into a lemma: the commutant computation depends only on the unitary $G$-module structure of the Hilbert space, not on which algebra the carrier is an ideal of. The one genuine convention choice is whether the right-handed sector is described by particle modes ($u_R = \rep{3,1}{2/3}$, \ldots) or by left-handed conjugate modes ($u^c = (\bar{\mathbf{3}},\mathbf{1})_{-2/3}$, \ldots), and it does not matter:
+
+\medskip
+
+\noindent\textbf{Lemma 1 (convention independence).} \emph{Let $V$ be the mode space above and $V'$ the variant with the three right-handed species replaced by their conjugates ($u^c, d^c, e^c$). Then $\Lambda^*(V)\cong\Lambda^*(V')$ as $G$-representations. Consequently every quantity in this paper --- the commutant, the center labels, all invariant data --- is identical in the two conventions.}
+
+\medskip
+
+\noindent\textbf{Proof.} For a single species with mode space $W$ ($\dim W = n_W$), $\Lambda^k(W^*) \cong \Lambda^{n_W-k}(W)\otimes(\det W)^{*}$, so $\Lambda^*(W^*) \cong \Lambda^*(W) \otimes (\det W)^*$ up to the particle--hole regrading, which is a $G$-isomorphism on the \emph{total} exterior algebra. The determinant twists are abelian characters with hypercharges $-\sum_{\mathrm{modes}} y$; summed over the three conjugated species this is $-(12-6-6) = 0$, and the $SU(3)$ and $SU(2)$ determinants are trivial. The twists cancel exactly, and the total characters coincide. \hfill$\square$
+
+\medskip
+
+The cancellation is not generic --- it holds because the singlet-sector hypercharges sum to zero, i.e.\ for anomaly-related reasons. The character identity was also confirmed numerically at 50 random torus elements (maximum deviation $3.1\times10^{-12}$). What survives of the ``two-ideal'' name is exactly what the construction needs: the doublet/singlet split of the mode set, which is also the chirality grading, and which is what the one-ideal arena lacked.
+
+\section{The Commutant}\label{sec:commutant}
+
+\subsection{Algebraic entropy, fixed once}
+
+For a unital $*$-subalgebra of observables the definitions are as in \cite{barnum,zanardi,chr}; we use them in the form specialized to a group commutant. Decompose
+\begin{equation*}
+\Fock \;\cong\; \bigoplus_{i} V_i \otimes \CC^{m_i}, \qquad \Gamma(g) \;\cong\; \bigoplus_i \pi_i(g)\otimes\mathbf{1}_{m_i},
+\end{equation*}
+with $\pi_i$ pairwise inequivalent irreps of dimension $n_i$. The gauge-invariant algebra is the commutant $\Alg = \Gamma(G)' = \bigoplus_i \mathbf{1}_{n_i}\otimes M_{m_i}$, with center spanned by the minimal central projections $P_i$. For a pure state $\psi$, write $p_i = \langle\psi|P_i|\psi\rangle$ and let $\rho_i$ be the reduced state on the multiplicity factor $\CC^{m_i}$. The algebraic entropy is
+\begin{equation}
+\SA(\psi) \;=\; \underbrace{H(\{p_i\})\vphantom{\sum_i}}_{\text{classical (center) piece}} \;+\; \underbrace{\sum_i p_i\, S(\rho_i)}_{\text{quantum piece}},
+\label{eq:salg}
+\end{equation}
+in bits throughout. $\SA$ is gauge-invariant by construction, and it captures exactly the statistics available from single-copy measurements of gauge-invariant observables --- under a charge superselection rule, all that is operationally accessible \cite{brs}. A sector can contribute to the quantum piece only if $n_i>1$ \emph{and} $m_i>1$; in the one-ideal toy no such sector exists, which is the entire content of that arena's ``all edge, no bulk'' theorem.
+
+\subsection{The theorem}
+
+\noindent\textbf{Theorem 2 (commutant and center).} \emph{Under the gauge action of Section~\ref{sec:setup}, the Fock space decomposes into 250 pairwise inequivalent gauge-irrep sectors, with multiplicities $m_i$ as listed in \texttt{decomposition\_full.json}. Consequently}
+\begin{equation*}
+\Alg \;=\; \Gamma(G)' \;=\; \bigoplus_{i=1}^{250} \mathbf{1}_{n_i}\otimes M_{m_i}, \qquad
+\dim\Alg = \sum_i m_i^2 = 57062, \qquad Z(\Alg) \cong \CC^{250},
+\end{equation*}
+\emph{with $\sum_i m_i n_i = 32768$, maximal multiplicity $m = 52$, and invariant-vector multiplicity (the $m_i$ of the trivial sector) equal to 28.}
+
+\medskip
+
+\noindent\textbf{Proof.} The character of $\Fock$ at a torus element is $\chi_\Fock(g) = \det(1 + U(g)) = \prod_{\mathrm{modes}}(1 + e^{i\,w\cdot\theta})$, i.e.\ the weight multiset of $\Fock$ is the $2^{15}$ subset-sums of the fifteen mode weights $(p,q,t,y)$ --- exact integers. The decomposition is computed by highest-weight peeling: repeatedly select a maximal surviving weight (necessarily dominant), subtract the full weight diagram of the corresponding irrep $(a,b)\otimes(2j{+}1)$ (Freudenthal multiplicities, exact integer arithmetic), and record the multiplicity. The procedure terminates with the multiset exactly exhausted and no negative count at any step --- this termination is itself the proof, because irreducible characters are linearly independent: a nonnegative-integer combination of irrep weight diagrams that reproduces the weight multiset of $\Fock$ exactly \emph{is} the decomposition of $\Fock$. Schur's lemma then gives the commutant blockwise. \hfill$\square$
+
+\medskip
+
+\noindent\textbf{Verification, four independent ways.} The peeling is exact, but we treat its output as a claim to be attacked, and verified it by four methods sharing no code path with it:
+\begin{enumerate}
+\item \emph{Character identity.} $\sum_i m_i\chi_i(g) = \det(1+U(g))$ at 20 random torus elements, with the irreducible characters $\chi_i$ evaluated by Weyl/Schur bialternant formulas (no Freudenthal data). Maximum error $2.6\times10^{-12}$.
+\item \emph{Weyl-integration quadrature.} $\langle\chi_\Fock,\chi_\Fock\rangle = \sum_i m_i^2$ and $\langle 1,\chi_\Fock\rangle = m_{\mathrm{singlet}}$ computed by discrete Fourier quadrature on a $32\times32\times32\times128$ torus grid --- exact, not approximate, because every integrand is a Laurent polynomial of per-axis degree below the grid size. Both reproduce the peeling: 57062 and 28.
+\item \emph{Blockwise Casimir spectroscopy of the full space.} The problem block-diagonalizes over the 12916 joint eigenspaces of the five species numbers and the torus (maximal block dimension 30). In every block, the matrices of $C_2(\su3)$ and $C_2(\su2)$ --- and, where conjugate $\su3$ pairs have equal $C_2$, the cubic Casimir $C_3 = d_{ABC}F_AF_BF_C$ --- are assembled from species-local operators and diagonalized; each eigenvalue cluster is matched to an irrep; and the aggregated counts reproduce every $m_i\times(\text{weight multiplicity})$ for all 250 sectors and all weights. This is asserted exhaustively, not sampled. The $C_3$ assembly is itself checked against a brute-force dense construction (residual $2.2\times10^{-15}$) and $[C_3, \su3] = 0$ ($4.4\times10^{-16}$).
+\item \emph{The structure-agnostic pipeline of \cite{p2} on sub-arenas} (next subsection).
+\end{enumerate}
+Gauge invariance of the reported sector data was checked directly: $\max_i|\Delta p_i| = 2.9\times10^{-15}$ over random gauge transformations of test states on the full space.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{lr}
+\toprule
+quantity & value \\
+\midrule
+sectors (center dimension) & \textbf{250} \\
+$\dim\Alg = \sum_i m_i^2$ & \textbf{57062} \\
+$\sum_i m_i n_i$ ($= \dim\Fock$, consistency) & 32768 \\
+maximal multiplicity & \textbf{52}, at $\rep{3,2}{1/6}$ and $(\bar{\mathbf{3}},\mathbf{2})_{-1/6}$ \\
+sectors with $m_i = 1$ / $m_i\geq 2$ & 60 / 190 \\
+sectors with $n_i>1$ and $m_i>1$ & \textbf{185}, carrying 94.8\% of $\dim\Fock$ \\
+invariant vectors & \textbf{28} \\
+hypercharge range of sectors & $y = -18,\ldots,+18$ (all 37 values) \\
+distinct $\su3$ / $\su2$ labels & 15 / 5 ($2j = 0,\ldots,4$) \\
+realized label triples vs.\ product set & 250 of $15\times5\times37 = 2775$ \\
+\bottomrule
+\end{tabular}
+\caption{The commutant of the gauge action on the 15-mode one-generation Fock space. Largest sectors by multiplicity: $\rep{3,2}{1/6}$ and $(\bar{\mathbf{3}},\mathbf{2})_{-1/6}$ ($m=52$, $n=6$); $(\mathbf{8},\mathbf{2})_{\pm1/2}$ ($m=50$, $n=16$); $(\mathbf{8},\mathbf{1})_{0}$ ($m=42$, $n=8$). Full 250-row table in \texttt{decomposition\_full.json}.}
+\label{tab:headline}
+\end{table}
+
+\subsection{Sub-arenas, and the numerical cross-check}\label{sec:subarenas}
+
+Two sub-arenas serve as cross-check grounds where the dense numerical machinery of \cite{p2} runs end to end:
+
+\textbf{$Q$ only} (6 modes, $\dim 64$): 10 sectors, all $m_i = 1$ --- the commutant is abelian, $\CC^{10}$. This is a known multiplicity-freeness: by skew Howe duality, $\Lambda^k(\CC^3\otimes\CC^2) = \bigoplus_{\lambda} S_\lambda(\CC^3)\otimes S_{\lambda'}(\CC^2)$ over partitions $\lambda\subseteq(2,2,2)$ of $k$, each pair occurring once (Appendix~\ref{app:skew}). The structure-agnostic commutant computation --- SVD nullspace of stacked commutator maps over Haar samples of $\Gamma$, exactly as in \cite{p2} but in a memory-light eigencluster variant --- finds dimension 10, abelian to $2.5\times10^{-16}$, block dimensions $[1,1,4,6,6,6,6,9,9,16]$ matching the analytic table block for block, certified on 60 fresh Haar samples (residual $4.3\times10^{-14}$, $*$-closure $7.2\times10^{-15}$).
+
+\textbf{$Q\oplus L$} (8 modes, $\dim 256$): 31 sectors, $\dim\Alg = 46$, five sectors with $m=2$: the singlet (vacuum $+$ filled $Q L$ sea), $\rep{3,2}{1/6}$, $(\bar{\mathbf{3}},\mathbf{2})_{-1/6}$, $\rep{3,3}{-1/3}$, $(\bar{\mathbf{3}},\mathbf{3})_{+1/3}$. Here the full Wedderburn decomposition is realized explicitly: aligned orthonormal bases of all multiplicity copies are built by canonical lowering words from highest-weight vectors (global orthonormality of the resulting $256$-frame: $8.9\times10^{-16}$), so every $M_{m_i}$ block, every multiplicity-space state, and the complete invariant datum of any state are computed exactly. The $\rep{3,2}{1/6}$ block deserves a sentence: its two multiplicity copies are a single quark ($k=1$) and a five-fermion $QQQQL$ composite ($k=5$) carrying the same gauge quantum numbers --- so the gauge-invariant algebra contains the coherence between them, a $\Delta B = 1$, $\Delta L = 1$, $\Delta(B{-}L)=0$ operator, already in this 256-dimensional sub-arena. Section~\ref{sec:entropy} uses exactly this block.
+
+\section{What the Center Labels Are --- and Are Not}\label{sec:center}
+
+{\sloppy\noindent\textbf{Proposition 3 (center identification).} \emph{The 250 central labels are the complete gauge-representation data $(a,b;2j;y)$, and they satisfy, in every sector,}\par}
+\begin{equation}
+y \;\equiv\; 4(a-b) + 3\,(2j) \pmod 6,
+\label{eq:z6}
+\end{equation}
+\emph{i.e.\ the realized sector lattice is the weight lattice of $(SU(3)\times SU(2)\times U(1))/\ZZ_6$. The kernel of $\Gamma$ on $\Fock$ is exactly the $\ZZ_6$ generated by $\left(e^{2\pi i/3}\mathbf{1}_3,\; -\mathbf{1}_2,\; e^{i\pi/3}\right)$ (in the normalization where $U(1)$ acts on a mode of integer hypercharge $y$ by $e^{i\theta y/6}$, evaluated at $\theta = 2\pi$).}
+
+\medskip
+
+\noindent\textbf{Proof.} Congruence~(\ref{eq:z6}) holds for each of the five species (Appendix~\ref{app:z6} checks all five) and both sides are additive under tensor products modulo their respective periods (triality mod 3, duality mod 2, $y$ exactly), so it propagates to every irreducible constituent of every $\Lambda^k V$. The exhibited element therefore acts trivially. Conversely, since $\Lambda^1 V\subset\Fock$, the kernel of $\Gamma$ equals the kernel of the mode representation, and triviality on the five species forces any kernel element into $\langle\zeta\rangle$ --- the standard one-generation computation \cite{tong}. The congruence was also checked sector by sector on the computed table: 250 of 250, zero violations. \hfill$\square$
+
+\medskip
+
+Three readings, in decreasing order of comfort:
+
+\textbf{(a) All three factors appear.} The labels carry the full $\su3$ representation type $(a,b)$ --- not merely triality --- and the full isospin $j$ --- not merely a charge. This is the qualitative upgrade over the one-ideal toy, whose center was the level set of the single operator $Q_{\mathrm{em}}$. The superselection structure now ``knows about'' all three gauge factors, including the global $\ZZ_6$ quotient that distinguishes the true Standard-Model gauge group among its six global forms \cite{tong}.
+
+\textbf{(b) The lattice is rank four, not ``three-fold,'' and is not a product.} The labels are four integers --- the rank of $G$, not its factor count. And only 250 of the $15\times5\times37 = 2775$ conceivable label triples are realized: under the natural dimension-weighted measure $p_i \propto m_i n_i$, the label mutual informations are $I(\su3;Y) = 1.61$ bits, $I(\su2;Y) = 1.00$ bits, $I(\su3;\su2) = 0.07$ bits. The three ``channels'' are kinematically correlated --- partly but not only through the exact congruence~(\ref{eq:z6}). Any per-factor statistic inherits these correlations from the matter content.
+
+\textbf{(c) Chirality, $B$, $L$, $B-L$ are not center labels.} Each of them varies \emph{within} single sectors. The singlet sector alone contains the vacuum (chirality content zero) and the all-right-handed $udd$ state; its $B-L$ values span $\{-2,\ldots,+3\}$. These quantities are therefore multiplicity-space (commutant) directions, not superselected charges: \emph{gauge kinematics does not superselect baryon or lepton number}. Stated as operators: $|\mathrm{vac}\rangle\langle udd|$ is a gauge-invariant element of $\Alg$ (a ``neutron-content annihilation vertex''), and the vacuum--filled coherence ($\Delta B = 4$, $\Delta L = 3$ in this 15-mode counting) is invariant data. In the Standard Model, $B$ and $L$ conservation is accidental --- a property of the renormalizable dynamics, not of the kinematics; the toy renders that textbook statement as a computed algebraic fact, with the would-be violating vertices sitting inside the gauge-invariant algebra from the start. Section~\ref{sec:thooft} catalogs them.
+
+\section{Algebraic Entropy: the Quantum Piece Exists}\label{sec:entropy}
+
+\subsection{Failure of ``all edge, no bulk''}
+
+In the one-ideal toy, every Wedderburn block had $n_i = 1$ or $m_i = 1$, so the quantum piece of Eq.~(\ref{eq:salg}) vanished identically for every pure state (\cite{p2}, Theorem~2) --- the toy's invariant entropy was purely classical sector data. Table~\ref{tab:headline} shows how thoroughly this fails here: 185 of 250 sectors have both $n_i > 1$ and $m_i > 1$, and they carry $94.8\%$ of the Fock dimension.
+
+\medskip
+
+\noindent\textbf{Theorem 4 (genuine quantum piece).} \emph{(i) There exist pure states of the $Q\oplus L$ arena whose algebraic entropy is entirely quantum: the state}
+\begin{equation*}
+\psi \;=\; \tfrac{1}{\sqrt2}\left(\,\xi_{1}\otimes e_1 + \xi_{2}\otimes e_2\,\right) \;\in\; V_{\rep{3,2}{1/6}}\otimes\CC^2,
+\end{equation*}
+\emph{with $\xi_1\perp\xi_2$ two gauge-weight vectors of the irrep and $e_1, e_2$ the two multiplicity copies (single quark and $QQQQL$ composite), has $p = 1$ on one sector, multiplicity state $\rho = \mathbf{1}/2$, and $\SA = 1$ bit with center piece zero. (ii) The quantum piece is generic: over 300 Haar-random pure states of the $Q\oplus L$ arena it is $0.200\pm0.024$ bits (minimum $0.128$, never zero).}
+
+\medskip
+
+\noindent\textbf{Proof of (i).} By Theorem~2 restricted to the sub-arena, the $\rep{3,2}{1/6}$ isotypic component is $V\otimes\CC^2$ with $\dim V = 6$; the displayed state is normalized, lies in one sector ($H(\{p_i\}) = 0$), and its reduced state on the multiplicity factor is $\frac12(|e_1\rangle\langle e_1| + |e_2\rangle\langle e_2|) = \mathbf{1}/2$, giving $S(\rho) = 1$ bit. The construction was realized explicitly in the aligned bases of Section~\ref{sec:subarenas} ($\SA = 1.0000000$, center piece $< 5\times10^{-16}$) and confirmed by a method that never touches the block machinery: a Monte Carlo group twirl of $|\psi\rangle\langle\psi|$ over 4000 Haar samples of $\Gamma(g)$, whose entropy reproduces the algebraic value to $0.0019$. Claim (ii) is the ensemble computation; all numbers are asserted at runtime. \hfill$\square$
+
+\medskip
+
+The contrast with the one-ideal result is a matter of scope, not contradiction: both statements are exact, in different arenas. ``All edge, no bulk'' is revealed as an artifact of the one-ideal truncation --- the discrete analog of a pure-gauge-theory statement failing as soon as the matter content is rich enough to put equivalent irreps in inequivalent histories ($k=1$ quark vs.\ $k=5$ composite). Physically, the quantum piece is invariant data that is \emph{not} of the contested edge-mode type: the center term $H(\{p_i\})$ remains classical sector statistics, whose status as entanglement is disputed in the continuum \cite{chmp,soni}, but $\sum_i p_i S(\rho_i)$ lives in the multiplicity factors of the invariant algebra itself. We make no operational distillation claim; the statement is algebraic, and Eq.~(\ref{eq:salg}) keeps the two pieces separated wherever they appear.
+
+\subsection{Named states}
+
+Table~\ref{tab:states} collects the invariant data of the algebra-distinguished states. On the full 32768-dimensional space the center data $\{p_i\}$ is computed exactly for all states (and the total $\SA$ for states confined to $n_i=1$ or $m_i=1$ blocks); the complete decomposition including multiplicity-space states is computed exactly on $Q\oplus L$.
+
+\begin{table}[ht]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccl}
+\toprule
+\multicolumn{5}{l}{\textbf{Full arena} (center data; entropies in bits)} \\
+state & $H(\{p_i\})$ & sectors & $(F_3,F_2,F_1)$ & note \\
+\midrule
+Fock vacuum & 0 & 1 & $(0,0,0)$ & $\SA = 0$ \\
+filled sea & 0 & 1 & $(0,0,0)$ & same sector as vacuum \\
+$(\mathrm{vac}+\mathrm{filled})/\sqrt2$ & 0 & 1 & $(0,0,0)$ & invariant coherence, $\SA=0$ \\
+uniform product & 7.1643 & 250 & $(31/8,\ 9/4,\ 5/6)$ & occupies every sector \\
+generic product ($\theta_0$) & 6.4576 & 250 & $(3.16,\ 2.15,\ 0.56)$ & Jacobian base point \\
+Haar (200 states) & $7.183\pm0.007$ & 250 & $\approx(4,\ 3/2,\ 5/6)$ & mean $p_i = m_in_i/2^{15}$ to $10^{-4}$ \\
+\bottomrule
+\end{tabular}
+
+\medskip
+
+\begin{tabular}{lcccl}
+\toprule
+\multicolumn{5}{l}{\textbf{$Q\oplus L$ arena} (complete invariant data)} \\
+state & center & quantum & total & note \\
+\midrule
+vacuum / filled / coherence & 0 & 0 & 0 & \\
+$(\mathrm{vac}+\mathrm{quark})/\sqrt2$ & 1 & 0 & 1 & one classical sector bit \\
+engineered state (Thm.~4) & 0 & \textbf{1} & 1 & purely quantum invariant entropy \\
+uniform product & 4.2799 & 0.1722 & 4.4521 & quantum piece of the symmetric state \\
+Haar (300 states) & $4.526\pm0.056$ & $0.200\pm0.024$ & --- & quantum piece generic (min 0.128) \\
+\bottomrule
+\end{tabular}
+\caption{Gauge-invariant data of named states. The product family and $\theta_0$ are defined in Section~\ref{sec:threeparam}.}
+\label{tab:states}
+\end{table}
+
+\subsection{Particle--hole structure}\label{sec:ph}
+
+The one-ideal toy had an exact degeneracy $p_1 = p_2$ in its canonical state, traced to the algebra's symmetry, and it was natural to ask what survives the extension. The answer: an exact \emph{covariance}, and only a partial degeneracy.
+
+\medskip
+
+\noindent\textbf{Proposition 5 (particle--hole covariance).} \emph{Let $K$ be the signed (fermionic) complement map $\Fock_k\to\Fock_{15-k}$ and let $\bar\imath$ denote the conjugate sector $(b,a;2j;-y)$. Then $m_{\bar\imath} = m_i$ for every sector, and $p_i(\psi) = p_{\bar\imath}(K\psi)$ for every state.}
+
+\medskip
+
+\noindent\textbf{Proof.} $\Lambda^{15-k}(V)\cong\Lambda^k(V)^*\otimes\det V$ as $G$-modules, and $\det V$ is gauge-trivial because the mode hypercharges sum to zero (Section~\ref{sec:anomalies}); dualization sends each irrep to its conjugate, which has label $(b,a;2j;-y)$. Both statements follow; both were checked numerically (table self-conjugacy exactly, in integers; the covariance to $7.6\times10^{-17}$). \hfill$\square$
+
+\medskip
+
+But the uniform product state is \emph{not} $K$-invariant ($K$ introduces Fermi signs), so the inherited degeneracy is partial: of its 121 conjugate sector pairs, 54 are exactly degenerate and 67 are split (maximal gap $7.6\times10^{-3}$); the state carries 134 distinct $p$-values over 250 sectors. Nor is the uniform state the Haar-mean distribution ($\max_i |p_i - m_in_i/2^{15}| = 1.2\times10^{-2}$): the one-ideal mechanism ``uniform amplitudes $\Rightarrow$ $p$ proportional to sector dimension'' fails here because sectors are no longer single weight classes. The canonical symmetric state has \emph{more} invariant structure in this arena, not less --- and what degeneracy remains is theorem-controlled (the 54 surviving pairs) rather than accidental.
+
+\section{The Three-Coupling Question}\label{sec:threeparam}
+
+\subsection{The question, now posable}
+
+The well-posed question of \cite{p2} (Sec.~6.1 there) asks whether a natural --- algebra-dictated, not hand-chosen --- map exists from the single-copy gauge-invariant data of a state to three coupling-like parameters, one per gauge factor. In the one-ideal arena the question failed at the threshold: at most two factors acted. Here all three act, and the center is labeled by all three (Proposition~3). The question is posable. We pose it in the sharpest kinematic form the arena supports:
+
+\begin{quote}
+Do there exist three functionals of the invariant data, each aligned with one gauge factor by the algebra itself, that are independently variable by choice of state?
+\end{quote}
+
+\subsection{Answer, positive half}
+
+Take the quadratic Casimir moments
+\begin{equation*}
+F_3 = \langle C_2(\su3)\rangle, \qquad F_2 = \langle C_2(\su2)\rangle, \qquad F_1 = \langle Y^2\rangle .
+\end{equation*}
+Each is an exact \emph{linear} functional of the center distribution: $F_a(\psi) = \sum_i p_i(\psi)\, c_a(i)$, where $c_a(i)$ is the sharp Casimir value of sector $i$ --- hence a functional of the single-copy invariant data --- and each is built from exactly one factor's Casimir, so the factor alignment is supplied by the algebra, not chosen. (Cross-check: the $p$-weighted sector sums agree with direct operator expectations to $1.2\times10^{-14}$.)
+
+On the natural five-parameter family of product states --- one filling angle per species,
+\begin{equation*}
+\psi(\theta) = \prod_{\text{modes } \mu} \left(\cos\theta_{s(\mu)} + \sin\theta_{s(\mu)}\, f_\mu^\dagger\right)|0\rangle, \qquad \theta = (\theta_Q,\theta_L,\theta_u,\theta_d,\theta_e),
+\end{equation*}
+the Jacobian $\partial(F_3,F_2,F_1)/\partial\theta$ at the generic point $\theta_0 = (0.7, 0.9, 1.1, 0.5, 1.3)$ has \textbf{rank 3}, singular values $(3.35,\ 1.75,\ 0.70)$, and explicit single-factor directions exist: deformations moving $F_3$ alone (a $u$-versus-$d$ filling tradeoff, $d\theta \propto (-0.02, -0.05, -0.23, +0.20, -0.08)$), $F_2$ alone, and $F_1$ alone, each with off-target components below $10^{-6}$ (asserted; observed at the $10^{-16}$ level in the linearization). The zero pattern of the Jacobian is itself readable physics:
+\begin{equation*}
+\frac{\partial(F_3,F_2,F_1)}{\partial(\theta_Q,\theta_L,\theta_u,\theta_d,\theta_e)}
+=
+\begin{pmatrix}
+-0.374 & 0 & -2.394 & 2.276 & 0\\
+1.480 & -0.654 & 0 & 0 & 0\\
+0.484 & -0.562 & 0.115 & -0.238 & -0.681
+\end{pmatrix},
+\end{equation*}
+i.e.\ $\theta_L$ moves only $(F_2,F_1)$; $\theta_u,\theta_d$ move only $(F_3,F_1)$; $\theta_e$ moves only $F_1$; $\theta_Q$ moves all three --- exactly the charge table of Section~\ref{sec:setup} at work. Both obstructions that closed the one-ideal case are confirmed lifted: the center is no longer the level set of one abelian charge, and the $SU(2)$ Casimir functional is independently tunable. This is the first arena in this program in which the three-coupling question has, kinematically, enough room.
+
+\subsection{Answer, deflationary half: the honest ceiling}\label{sec:ceiling}
+
+The positive half is exactly as strong as it sounds, and no stronger. Four bounds, each computed:
+
+\textbf{(1) The ``three'' is an input, not an output.} The natural grading of the center is the rank-four label lattice, and the invariant data of a generic state is 249 independent sector probabilities plus multiplicity-space states --- a 57062-dimensional algebra's worth, not three numbers. Three appears exactly when one chooses to summarize each gauge factor by its quadratic Casimir moment: a canonical choice, but one available in any theory carrying any compact group. It reflects the fact that $SU(3)\times SU(2)\times U(1)$ was put in by hand. The arena \emph{permits} a three-parameter reading; it does not \emph{produce} one.
+
+\textbf{(2) No algebra-selected state carries three distinguished numbers.} The algebra-canonical states --- vacuum, filled sea, and their coherences --- sit in the singlet sector with $\SA = 0$ and $(F_3,F_2,F_1) = (0,0,0)$. The symmetric (uniform-product) state has fixed values $(31/8,\ 9/4,\ 5/6)$ with zero free parameters. The Haar ensemble concentrates at the trace values $(4,\ 3/2,\ 5/6)$ (sampled means $(4.000, 1.499, 0.834)$; entropy std $0.007$ bits). Nothing selects a \emph{point} in $(F_3,F_2,F_1)$-space that could encode $(g_3,g_2,g_1)$; the map from states to functional triples is hugely many-to-one, with no algebra-dictated section.
+
+\textbf{(3) The three channels are kinematically entangled.} The sector lattice is not a product (250 of 2775 triples; $I(\su3;Y) = 1.61$ bits; the $\ZZ_6$ congruence is an exact functional dependence mod 6). The one-ideal diagnosis ``no natural bijection between sectors and factors'' survives in refined form: a bijection now exists at the level of Casimir \emph{functionals}, but the underlying sector random variable does not factorize along the gauge factors.
+
+\textbf{(4) Values would have to come from dynamics.} The strongest statement the kinematics supports is the rank-3 tunability above. Selecting coupling \emph{values} requires a mechanism that picks a state or a flow --- a Hamiltonian family deforming $\{p_i\}$. This is precisely the lesson of the exactly solvable two-dimensional Yang--Mills case \cite{ym2,donnelly12,donnelly14}: there the coupling \emph{is} recoverable from center-sector statistics, but only because dynamics supplies a known one-parameter exponential family of sector distributions to invert. Reconstruction presupposes a dynamical family; determination by the kinematic invariant data of a single state is not available there, here, or in the minimal toy.
+
+\medskip
+
+\noindent\textbf{Verdict.} The extension converts ``the question is not posable'' \cite{p2} into: \emph{the question is posable, and the kinematic answer is that three independent, algebra-aligned, independently tunable functionals exist --- and that is all that exists.} There is room for three couplings; there is no mechanism, preferred state, or extra structure that would determine them. If a three-coupling structure is ever to emerge in this program rather than be imposed, it must come from dynamics on this arena, not from the kinematics of any single state.
+
+\section{The Singlet Sector: a Catalog of Would-Be 't~Hooft Vertices}\label{sec:thooft}
+
+The 28 invariant vectors of Theorem~2 resolve, under the species-number grading, into 28 distinct species contents, \emph{each with multiplicity exactly one} --- a multiplicity-free catalog. Table~\ref{tab:singlets} shows representative entries; the full list is in \texttt{results\_full.json}, and is closed under the particle--hole complement $k \leftrightarrow 15-k$ (Proposition~5).
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{lcccl}
+\toprule
+content & $k$ & $B$ & $L$ & reading \\
+\midrule
+vacuum & 0 & 0 & 0 & --- \\
+$u\,d\,d$ & 3 & 1 & 0 & the neutron-content singlet \\
+$Q\,L\,u\,d$ & 4 & 1 & 1 & mixed-chirality $B{+}L$ vertex \\
+$u\,u\,d\,e$ & 4 & 1 & 1 & all-right-handed singlet \\
+$L\,L\,u\,u\,d$ & 5 & 1 & 2 & \\
+$u^3 d^3 e$ & 7 & 2 & 1 & \\
+$Q^6 d^3$ & 9 & 3 & 0 & color-saturated tri-baryon \\
+filled ($Q^6 L^2 u^3 d^3 e$) & 15 & 4 & 3 & the anomaly-free sea \\
+\bottomrule
+\end{tabular}
+\caption{Eight of the 28 gauge-invariant vectors, by species content ($k$ = fermion number). Every entry has singlet multiplicity exactly 1. $B-L$ over the catalog spans $\{-2,\ldots,+3\}$.}
+\label{tab:singlets}
+\end{table}
+
+Because all 28 lie in one superselection sector, every coherence and every transition operator among them is gauge-invariant data: $|\mathrm{vac}\rangle\langle udd|$, $|\mathrm{vac}\rangle\langle\mathrm{filled}|$, and their relatives are elements of $\Alg$. These are the kinematic shadows of the operators that, in the Standard Model, appear as anomaly-induced or higher-dimension $B$- and $L$-violating vertices \cite{thooft}; in the toy they are simply present in the invariant algebra, conserved by nothing kinematic. One entry is conspicuously absent:
+
+\medskip
+
+{\sloppy\noindent\textbf{Proposition 6 ($QQQL$ is absent).} \emph{The invariant-vector count at species content $(n_Q,n_L,n_u,n_d,n_e) = (3,1,0,0,0)$ is exactly zero.}\par}
+
+\medskip
+
+\noindent\textbf{Proof.} A color singlet from three $Q$'s requires the totally antisymmetric $\epsilon^{abc}$, so Fermi statistics forces the isospin factor of $Q^3$ to be totally symmetric: by skew duality (Appendix~\ref{app:skew}), $\Lambda^3(\CC^3\otimes\CC^2)$ contains the color singlet only paired with $S_{(3)}(\CC^2)$, i.e.\ isospin $j = 3/2$. Coupling $j=3/2$ with the single $L$ doublet gives $j = 1$ or $2$ --- no singlet. (Hypercharge is fine: $3\cdot\frac16 - \frac12 = 0$; it is the $SU(2)$ that fails.) The count is also asserted directly in the Fock-space computation. \hfill$\square$
+
+\medskip
+
+With a single generation, the famous $QQQL$ 't~Hooft vertex needs flavor structure to exist --- here that classic statement falls out of the commutant computation as a zero, by Fermi statistics alone, with the gauge dynamics nowhere in sight.
+
+\section{Discussion}\label{sec:discussion}
+
+\subsection{What the superselection structure of one generation is}
+
+Assembling Sections~\ref{sec:center}--\ref{sec:thooft} into one sentence: \emph{the superselection structure of one generation's kinematics is purely gauge-representation-theoretic --- the center knows the full gauge-irrep label, including the global $\ZZ_6$ --- and everything else the Standard Model conserves, it must conserve for dynamical reasons.} The center washes out exactly the quantum numbers that organize the physics (chirality, $B$, $L$, $B-L$), while gauge-invariant $B$- and $L$-violating coherences are present in the kinematic data from the start, and the one vertex absent from the catalog is killed by Fermi statistics, not by gauge theory. We flag this as the computation's most surprising output, ahead of the headline commutant table.
+
+\subsection{Relation to the one-ideal results, and to the edge-term dispute}
+
+Each load-bearing one-ideal result has a definite fate under the extension, and none of the fates is a contradiction --- every statement was scoped to its arena, and the scoping did its job:
+
+\begin{itemize}
+\item \emph{No $SU(2)_L$} (\cite{p2}, Lemma~4): lifted, exactly as that lemma anticipated --- it was a statement about the one-ideal realization, and the doublet species here are precisely what it said was missing.
+\item \emph{All edge, no bulk} (\cite{p2}, Theorem~2): fails here (Theorem~4). The one-ideal toy's invariant entropy was 100\% center term; here the generic state has a strictly positive quantum piece. Since the contested object in the continuum edge-mode dispute \cite{chmp,soni} is the \emph{center} term, the appearance of a genuine quantum piece matters for how much of the invariant entropy is contested at all: in this arena, not all of it. We keep the caveat in both directions --- the center piece remains classical sector statistics with disputed entanglement status, and we claim no distillation protocol for the quantum piece.
+\item \emph{$p_1 = p_2$ rigidity}: survives only as the exact covariance of Proposition~5 plus a partial (54/121) degeneracy of the symmetric state --- theorem-controlled, and visibly broken by the $u$/$d$ hypercharge asymmetry.
+\item \emph{Determination vs.\ reconstruction}: unchanged, and sharpened. The two-dimensional Yang--Mills companion \cite{ym2} shows reconstruction working --- given dynamics. This paper shows the kinematic side maturing as far as it can: the invariant data finally has three aligned, tunable directions, and still selects no values.
+\end{itemize}
+
+\subsection{Limitations}
+
+The arena is kinematic; every positive claim is about room. The complete multiplicity-space machinery was run exactly on the 256-dimensional $Q\oplus L$ sub-arena; on the full space we computed exact center data for all states and exact total entropies for states confined to blocks with $n_i = 1$ or $m_i = 1$ --- building aligned bases for all 250 sectors is implementable with the same lowering-word code but was not needed for any conclusion. The product-state family is a natural but specific five-parameter slice; rank 3 on a slice is a lower bound on attainable rank, so the \emph{independence} claim is safe, but the \emph{non-existence} claims of Section~\ref{sec:ceiling} are structural arguments, not exhaustive searches over the state space. Haar ensembles used 200 (full) and 300 ($Q\oplus L$) samples, with means matching exact trace identities to $\sim 10^{-4}$; no conclusion rests on ensemble tails. Finally, we did not reproduce the division-algebra construction literally; Lemma~1 is our warrant that the conclusions transfer verbatim to any realization with this representation content.
+
+\section{Reproducibility}\label{sec:repro}
+
+{\sloppy All computations are produced by three scripts in the repository's \texttt{newwork/two\_ideal/} directory, deterministic with seed 20260610, pure NumPy: \texttt{run\_rep.py} ($\approx$1\,s: exact peeling, character and quadrature verifications, anomaly sums, congruence and convention checks; writes the three \texttt{decomposition\_*.json} tables and \texttt{rep\_checks.json}), \texttt{run\_full.py} ($\approx$15\,s: full Fock-space Casimir spectroscopy, singlet spectroscopy, named states, Haar ensemble, three-parameter test; writes \texttt{results\_full.json}), and \texttt{run\_crosscheck.py} ($\approx$5\,s: the structure-agnostic commutant pipeline on $\Fock_Q$, aligned multiplicity bases and complete invariant data on $\Fock_{Q\oplus L}$, the engineered state and twirl check; writes \texttt{results\_crosscheck.json}). Every claim in this paper is asserted at runtime by one of the three scripts, which fail loudly if any verification breaks; the library files are \texttt{su3.py} (exact $\su3$ weight systems and characters, self-tested), \texttt{model.py} (modes, peeling, verifications), and \texttt{fock.py} (species-factorized Fock machinery). The numerical commutant library of \cite{p2} is imported read-only for the cross-check.\par}
+
+\appendix
+
+\section{Derivation Details}
+
+\subsection{The peeling certificate}\label{app:peel}
+
+The proof of Theorem~2 rests on the statement that successful termination of the peeling \emph{certifies} the decomposition. Explicitly: the peeling outputs nonnegative integers $\{m_i\}$ and, by construction, $\sum_i m_i\,\Theta_i = \Theta_\Fock$ as multisets of $(p,q,t,y)$ weights, where $\Theta_i$ is the full weight diagram of irrep $i$ (Freudenthal multiplicities for $\su3$, the string $-2j,\ldots,2j$ for $\su2$). Since weight generating functions of inequivalent irreps (their characters) are linearly independent over $\CC$, and $\Fock$ itself is a $G$-representation whose character is \emph{some} nonnegative-integer combination of irreducible characters, the combination found is the unique one: $\{m_i\}$ is the multiplicity list of $\Fock$. The only inputs trusted are the weight diagrams themselves, which are produced by a self-testing module (dimension checks against the Weyl formula, character checks against Schur bialternants) and independently corroborated by verifications (1)--(4) of Section~\ref{sec:commutant}. Maximal-weight selection uses the height function $2(p+q)+t$; at every step the selected weight was dominant and no count went negative --- asserted, for all three arenas.
+
+\subsection{Skew duality and the \texorpdfstring{$Q$}{Q}-only arena}\label{app:skew}
+
+Skew (GL$_3\times$GL$_2$) Howe duality gives
+\begin{equation*}
+\Lambda^k(\CC^3\otimes\CC^2) \;=\; \bigoplus_{\lambda\,\vdash\, k,\ \lambda\subseteq(2,2,2)} S_\lambda(\CC^3)\otimes S_{\lambda'}(\CC^2),
+\end{equation*}
+each summand occurring exactly once. The ten partitions fitting in the $3\times2$ box give the ten sectors of $\Fock_Q$ with dimensions $\{1,1,4,6,6,6,6,9,9,16\}$ --- e.g.\ $\lambda = (2,1)$ gives $\mathbf{8}\otimes\mathbf{2}$, dimension 16. Multiplicity-freeness is why the $Q$-only commutant is abelian ($\CC^{10}$), making it the ideal certification arena for the numerical pipeline (Section~\ref{sec:subarenas}); and the $k=3$ row of the same formula --- color singlet $S_{(1,1,1)}(\CC^3)$ paired only with $S_{(3)}(\CC^2)$, i.e.\ $j = 3/2$ --- is the engine of Proposition~6.
+
+\subsection{The \texorpdfstring{$\ZZ_6$}{Z6} congruence at mode level}\label{app:z6}
+
+Congruence~(\ref{eq:z6}) for the five species, with $(a,b)$ the fundamental ($Q,u,d$: triality $+1$) or trivial color label: $Q$: $4(1)+3(1) = 7 \equiv 1 = y$; $L$: $0 + 3 \equiv 3 \equiv -3 = y$; $u_R$: $4 \equiv 4 = y$; $d_R$: $4 \equiv -2 = y$; $e_R$: $0 \equiv -6 = y$ (all mod 6). Triality $a-b$ is additive mod 3 and duality $2j$ mod 2 under tensor products, and $y$ is exactly additive, so the congruence propagates to every irreducible constituent of $\Lambda^*(V)$, and the element $\zeta = (e^{2\pi i/3}\mathbf{1}_3, -\mathbf{1}_2, e^{i\pi/3})$ acts trivially on $\Fock$. Conversely, the computed table realizes all 37 hypercharges and all triality/duality classes, so the represented group is exactly $(SU(3)\times SU(2)\times U(1))/\langle\zeta\rangle$. This is the same $\ZZ_6$ quotient distinguished in the Standard Model by its line-operator spectrum \cite{tong}; here it is detected by superselection labels.
+
+\subsection{Particle--hole and convention isomorphisms}\label{app:ph}
+
+Both Lemma~1 and Proposition~5 are instances of one mechanism: $\Lambda^{n-k}(W) \cong \Lambda^k(W)^*\otimes\det W$. For Proposition~5, $W = V$, $n = 15$: $\det V$ carries hypercharge $\sum_\mu y_\mu = 0$ and trivial nonabelian determinants, so the complement map intertwines each sector with its conjugate label $(b,a;2j;-y)$ --- giving the table symmetry $m_{\bar\imath} = m_i$ (checked exactly) and the state covariance $p_i(\psi) = p_{\bar\imath}(K\psi)$ (checked to $7.6\times10^{-17}$). For Lemma~1 the same identity is applied per right-handed species, and the three determinant twists carry hypercharges $-12, +6, +6$ --- canceling precisely because the singlet-sector hypercharges sum to zero. The signs of the fermionic complement map $K$ (the ``Fermi signs'' of Section~\ref{sec:ph}) are what break $K$-invariance of the uniform product state and reduce the inherited degeneracy from 121 pairs to 54.
+
+\subsection{Casimir spectroscopy details}\label{app:casimir}
+
+The full-space verification (method 3 of Section~\ref{sec:commutant}) works in the joint eigenbasis of $(n_Q,n_L,n_u,n_d,n_e)$ and the torus $(p,q,t,y)$: 12916 blocks of dimension at most 30. In each block the operators $C_2(\su3) = \sum_{A=1}^{8} F_A^2$ and $C_2(\su2)$ are assembled exactly from species-local one-body matrices; where an $\su3$ pair $(a,b)\neq(b,a)$ shares a block with equal $C_2$, the cubic Casimir $C_3 = d_{ABC}F_AF_BF_C$ (assembled from a collapsed term list, itself verified against a dense construction to $2.2\times10^{-15}$) separates them by sign. Every eigenvalue cluster in every block is matched to a unique irrep label and the aggregated per-weight counts are asserted to equal $m_i$ times the weight multiplicity for all 250 sectors --- 25356 block-level entries in total, none sampled.
+
+\begin{thebibliography}{19}
+
+\bibitem{p2} W.T. Trevena, ``Gauge-Invariant Algebraic Entropy in a Minimal Fermionic Toy: A Single-Copy No-Go for Coupling Encoding,'' companion paper (2026); code and manuscript at the same repository.
+
+\bibitem{p1} W.T. Trevena, ``No-Go Results for a Three-Qubit Entropy Ansatz for Gauge-Coupling Hierarchies, with an Exact Octonionic Rotor Construction in an Appendix,'' companion paper (2026); code and manuscript at the same repository.
+
+\bibitem{ym2} W.T. Trevena, ``Fisher Information and Coupling Reconstruction from Edge-Sector Statistics in Two-Dimensional Yang--Mills,'' companion paper (2026); code and manuscript at the same repository.
+
+\bibitem{furey14} C. Furey, ``Generations: three prints, in colour,'' JHEP 2014, 046 (2014); arXiv:1405.4601.
+
+\bibitem{furey16} C. Furey, ``Standard model physics from an algebra?'' PhD thesis, University of Waterloo (2015); arXiv:1611.09182.
+
+\bibitem{furey18} C. Furey, ``$SU(3)_C \times SU(2)_L \times U(1)_Y$ ($\times U(1)_X$) as a symmetry of division algebraic ladder operators,'' Eur. Phys. J. C 78, 375 (2018).
+
+\bibitem{stoica} O.C. Stoica, ``Leptons, quarks, and gauge from the complex Clifford algebra $\mathrm{Cl}(6)$,'' Adv. Appl. Clifford Algebras 28, 52 (2018); arXiv:1702.04336.
+
+\bibitem{szangolies} J. Szangolies, ``The Standard Model Symmetry and Qubit Entanglement,'' Entropy 27(6), 569 (2025); arXiv:2512.17328.
+
+\bibitem{barnum} H. Barnum, E. Knill, G. Ortiz, and L. Viola, ``A subsystem-independent generalization of entanglement,'' Phys. Rev. Lett. 92, 107902 (2004).
+
+\bibitem{zanardi} P. Zanardi, ``Virtual quantum subsystems,'' Phys. Rev. Lett. 87, 077901 (2001).
+
+\bibitem{chr} H. Casini, M. Huerta, and J.A. Rosabal, ``Remarks on entanglement entropy for gauge fields,'' Phys. Rev. D 89, 085012 (2014); arXiv:1312.1183.
+
+\bibitem{donnelly12} W. Donnelly, ``Decomposition of entanglement entropy in lattice gauge theory,'' Phys. Rev. D 85, 085004 (2012); arXiv:1109.0036.
+
+\bibitem{donnelly14} W. Donnelly, ``Entanglement entropy and nonabelian gauge symmetry,'' Class. Quantum Grav. 31, 214003 (2014); arXiv:1406.7304.
+
+\bibitem{chmp} H. Casini, M. Huerta, J.M. Mag\'an, and D. Pontello, ``Logarithmic coefficient of the entanglement entropy of a Maxwell field,'' Phys. Rev. D 101, 065020 (2020); arXiv:1911.00529.
+
+\bibitem{soni} R.M. Soni and S.P. Trivedi, ``Aspects of Entanglement Entropy for Gauge Theories,'' JHEP 01 (2016) 136; arXiv:1510.07455.
+
+\bibitem{brs} S.D. Bartlett, T. Rudolph, and R.W. Spekkens, ``Reference frames, superselection rules, and quantum information,'' Rev. Mod. Phys. 79, 555 (2007).
+
+\bibitem{thooft} G. 't Hooft, ``Symmetry breaking through Bell--Jackiw anomalies,'' Phys. Rev. Lett. 37, 8 (1976); ``Computation of the quantum effects due to a four-dimensional pseudoparticle,'' Phys. Rev. D 14, 3432 (1976).
+
+\bibitem{witten} E. Witten, ``An $SU(2)$ anomaly,'' Phys. Lett. B 117, 324 (1982).
+
+\bibitem{tong} D. Tong, ``Line operators in the Standard Model,'' JHEP 07 (2017) 104; arXiv:1705.01853.
+
+\end{thebibliography}
+
+\end{document}

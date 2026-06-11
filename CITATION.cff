@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: >-
+  If you use this code or these results, please cite the repository as below.
+  Paper-level citation entries will be added when each manuscript receives its
+  frozen submission tag and archival DOI.
+type: software
+title: "qio: no-go results and edge-sector coupling reconstruction — code and manuscripts"
+authors:
+  - family-names: Trevena
+    given-names: William T.
+    email: trevenaw7@gmail.com
+date-released: "2026-06-11"
+url: "https://github.com/wtrevena/qio"
+repository-code: "https://github.com/wtrevena/qio"
+license: MIT
+keywords:
+  - lattice gauge theory
+  - entanglement entropy
+  - edge modes
+  - superselection sectors
+  - two-dimensional Yang-Mills
+  - Fisher information

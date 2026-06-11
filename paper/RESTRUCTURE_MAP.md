@@ -117,3 +117,75 @@ Removed because their supporting text (old Secs. 3, 4, 10) was cut: `hawking`, `
 Retained from the old motivational material (now one sentence in Sec. 1.1): `bekenstein`,
 `maldacena`, `ryu`, `page`, `takayanagi`. All division-algebra, quantum-information, and
 RG references are unchanged.
+
+---
+
+# Round-3 Addendum (June 2026, post-feedback revision)
+
+Maps the **21-page round-2 version** (rows above) to the **round-3 version** (still 21 pages).
+All `\label`s are unchanged; only rendered section numbers moved. Use this to fix
+cross-references in Papers 2 and 3.
+
+## Title change (round 3 — affects bibliography entries in Papers 2 and 3)
+
+- **Old (round 2):** "Is the Standard Model Coupling Hierarchy Encoded in Three-Qubit
+  Entanglement? Scoped No-Go Results and an Exact Octonionic Rotor Vacuum"
+- **New (round 3):** "No-Go Results for a Three-Qubit Entropy Ansatz for Gauge-Coupling
+  Hierarchies, with an Exact Octonionic Rotor Construction in an Appendix"
+
+## Section moves: round 2 -> round 3
+
+| Round 2 | Content (label) | Round 3 |
+|---|---|---|
+| Sec. 3 "Haar Genericity and Null Controls" (`sec:generic`) | compressed ~50% to a supporting sanity check | **Sec. 3** "A Sampling Sanity Check: Haar Genericity and Null Controls" |
+| Sec. 3.1 (`sec:exp1`) | compressed to one paragraph | **Sec. 3.1** "Haar Genericity (Experiment 1)" |
+| Sec. 3.2 (`sec:controls`) | controls A-D, compressed | **Sec. 3.2** (unchanged number) |
+| **Sec. 5 "RG Obstruction / Entropy-Flow Envelope"** (`sec:rg`, `sec:running`, `sec:envelope`, `sec:corollary`) | **swapped after JW**; running table cut; section shortened | **Sec. 6** (6.1, 6.2, 6.3) |
+| **Sec. 6 "Jordan-Wigner Gauge-Covariance Obstruction"** (`sec:jw`, `sec:embedding`, `sec:jwconsequences`, `sec:obstruction`) | **moved before RG** (now the paper's principal result) | **Sec. 5** (5.1, 5.2, 5.3) |
+| **Sec. 7 "Octonionic Rotor Vacuum"** (`sec:rotor`, `sec:closedform`, `sec:rotorcontrols`, `sec:robustness`, `sec:rotorscope`) | **moved to appendix**, reframed as a dynamical control ("even the most canonical dynamical octonionic construction produces symmetry, not hierarchy"); all content kept | **Appendix A** "An Exact Octonionic Rotor Construction as a Dynamical Control" (A.1-A.4) |
+| Sec. 8 Discussion (`sec:discussion`) | | **Sec. 7** |
+| Sec. 8.1 (`sec:notruledout`) | | **Sec. 7.1** |
+| Sec. 8.2 "This Paper in the Series" (`sec:series`) | series table (old Table 2) **deleted**; rewritten as a short pointer paragraph | **Sec. 7.2** "Relation to Subsequent Work" |
+| Sec. 8.3 (`sec:broader`) | | **Sec. 7.3** |
+| Sec. 8.4 (`sec:repro`) | | **Sec. 7.4** |
+| Sec. 9 Conclusion (`sec:conclusion`) | rewritten around "naive entropy observable is not gauge-invariant => map not physically meaningful"; explicit "not refuting Szangolies" scope statement added (also in Sec. 1.1) | **Sec. 8** |
+
+Sections 1, 2, 4 keep their round-2 numbers and subsection structure.
+
+## Quick lookup for Paper 2/3 citation targets (round 2 -> round 3)
+
+| Cited (round 2) | Replace with (round 3) |
+|---|---|
+| Sec. 6.3 (gauge-frame obstruction) | **Sec. 5.3** |
+| Secs. 6.3 and 9 | **Secs. 5.3 and 8** |
+| Sec. 6 (JW toy construction) | **Sec. 5** |
+| Sec. 7 (rotor Hamiltonian / rotor vacuum) | **Appendix A** |
+| Sec. 5 / 5.1 / 5.2 / 5.3 (RG, envelope, corollary) | **Sec. 6 / 6.1 / 6.2 / 6.3** |
+| Secs. 2.2-2.3, 3.1, 4 (underconstraint/generic/W-class) | unchanged |
+| Eqs. (1)-(7) | **unchanged** (the JW section has no numbered equations, so the Sec. 5/6 swap does not move equation numbers) |
+| Fig. 1, Fig. 2 | unchanged (figure *text outlined* in round 3 to remove Type 3 fonts; content identical) |
+
+## Tables (round 3)
+
+- **NEW Table 1** (`tab:notions`, Sec. 1.3): notation table distinguishing (i) subsystem
+  entropy of qubits (this paper's object), (ii) algebraic entropy relative to
+  gauge-invariant algebras (Paper 2's object), (iii) flux-sector/edge entropy in gauge
+  theory (Paper 3's object).
+- Old Table 1 (`tab:notruledout`) -> **Table 2**.
+- Old Table 2 (`tab:series`, four-claims series table) -> **deleted** (content reduced to
+  one paragraph in Sec. 7.2).
+- The RG representative-scales table (Sec. 5.1 of round 2) -> **deleted** (key values kept
+  in the Sec. 6.1 text; curve remains Fig. 1a).
+
+## Language/packaging changes (round 3, no structural effect)
+
+- "machine-verified" -> "verified numerically" / "the accompanying code verifies".
+- "adversarial review" -> "independent verification"; acknowledgment and reproducibility
+  paragraphs now say "the repository includes an independent verification log and a
+  response-to-review document".
+- "the series"/"Paper 2"/"Paper 3"/"companion" reduced to essential pointers
+  (Sec. 7.2 + Note Added).
+- Added `\usepackage[T1]{fontenc}` + `\usepackage{lmodern}`; figure text converted to
+  outlines; `pdffonts` on the built PDF shows zero Type 3 fonts.
+- arXiv package `arxiv_submission/qio_paper1.tar.gz` rebuilt and clean-room verified
+  (0 errors, 21 pages).
