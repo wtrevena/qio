@@ -1,6 +1,6 @@
 # PROJECT NOTES (Claude's internal working notes — maintained across sessions)
 
-**Last updated:** 2026-06-10, after Paper 1 restructure (review round 2).
+**Last updated:** 2026-06-10 late PM, after push to origin/main and planning update for review round 3.
 **Purpose:** if a session is interrupted, resume from here. Update this file after every completed work item.
 
 ## What this project is
@@ -42,15 +42,19 @@ QIO program → deflated into a defensible three-paper series. Success mode (use
 - arXiv tarball: embedded thebibliography (no .bbl needed); always clean-room compile from /tmp after rebuild; check NULs.
 - Agents: don't let them run git; give each exclusive folder ownership; they should cite Paper 1 results by NAME not section number (sections changed in restructure).
 
-## TODO — next items (in order)
+## PLAN OF RECORD (user-approved 2026-06-10 late PM) — do in this order
 
-1. ~~Cross-ref reconcile after Paper 1 restructure~~ **DONE 2026-06-10**: 15 pointers fixed in paper2/main.tex, 2 in paper3/main.tex (incl. an out-of-list catch: paper3's \bibitem{P2} had Paper 2's old "Entanglement" title → corrected to "Algebraic Entropy" + paper2/main.tex path). One map disagreement resolved: Paper 2's L207 note referenced a Fig-1c representative value that no longer exists in restructured Paper 1 — reworded to cite Lemma 2's verification (Sec 4.1). Both papers recompiled: 21pp + 20pp, 0 errors, zero stale-string hits.
-2. Final read-through pass of all three PDFs (page-level sanity, cross-paper consistency).
-3. User uploads Paper 1 to arXiv (package ready at paper/arxiv_submission/). After arXiv ID exists: fill placeholder refs in Paper 2 (companion, ym2companion) and Paper 3 (P1, P2), rebuild packages.
-4. Build arXiv packages for Papers 2 and 3 (not yet done — only Paper 1 has one).
-5. Decide Paper 4: two-ideal writeup vs u1_4d writeup vs both. Both REPORTs are paper-grade. Suggested: two-ideal first (answers Paper 2's open objection; reviewer called it "the next real paper"). Supportable u1_4d scope: "asymptotic exponential families + crossover obstruction + zero-mode bridge" (one new computation: T³ flux-winding sectors).
-6. Optional: update Papers 2/3 "in progress" mentions of the two research directions once Paper 4 decision is made (they claim no results — accurate but understated now).
-7. Keep this file updated after every completed item.
+1. **NEXT UP (not yet started — user will give go-ahead): review round 3.** Read and triage `C:\Users\willi\repos\qio\20260610.10.48_PM_PST_revision_feedback.txt` (NOT yet read — content unknown). It is feedback on Papers 1-3. Apply fixes by severity, recompile all three, commit+push. Rebuild Paper 1 arXiv tarball if main.tex changes.
+2. **Wrap up Paper 4 (two-ideal, sequel to Paper 2).** Source: newwork/two_ideal/REPORT.md (computations done, machine-verified 4 ways). Write LaTeX in new paper4/ matching series conventions (article 11pt, embedded thebibliography, theorem style of Paper 2, standard byline), adversarial critic pass, compile 0 errors. Decision already made: two-ideal is Paper 4, separate paper, NOT folded into Paper 2 (it partially reverses Paper 2's "all edge no bulk" — sequel's job).
+3. **Wrap up Paper 5 (u1_4d, note-length sequel to Paper 3).** First run the one missing computation flagged in newwork/u1_4d/REPORT.md: T³ flux-winding sectors on the lattice. Then write paper5/ at the supportable scope: asymptotic exponential families + crossover obstruction + zero-mode bridge (Donnelly–Wall 1506.05792 eq. 36 family, finite Fisher 1/(2e⁴) per mode). Critic pass, compile.
+4. **Series wiring for the 5-paper batch.** Upgrade "in progress, no results claimed" mentions in Papers 1-3 to real citations of Papers 4/5 (locations verified by grep: Paper 1 discussion Sec 8.2; Paper 2 abstract + Sec 5.1 + Lemma 4 area + Sec 9 + conclusion; Paper 3 d=4 proposal paragraph ~L417). Build arXiv packages for Papers 2-5 (only Paper 1 has one). Final cross-paper consistency pass. Commit + push.
+5. Strategy on record: post all five together (or 1-4 then 5); cite companions by title, fill arXiv IDs during the announcement cycle or in v2. User uploads; first-time-submitter endorsement notes in paper/arxiv_submission/SUBMISSION.md.
+6. Keep this file updated after every completed item.
+
+### Recently completed (this session)
+- Cross-ref reconcile post-restructure: 15 pointers in paper2, 2 in paper3 (incl. out-of-list P2-title catch); L207 Fig-1c note reworded to Lemma 2 verification; 21pp+20pp, 0 errors, zero stale strings.
+- Pushed everything to origin/main (git@github.com:wtrevena/qio.git, branch was newly created on remote, upstream now set). Verified pushed paper/main.tex blob is the clean 73,332-byte version — the 20,577 "NULs" seen via the mount were a stale-cache mirage; host+git were always clean. Lesson reinforced: NEVER trust the sandbox mount's view of repo files for verification; check via Desktop Commander/git cat-file on host.
+- Task list (Cowork): #12 review feedback (pending), #13 Paper 4 (pending), #14 Paper 5 + T³ (pending), #15 series wiring + packages (pending).
 
 ## Commit log (this effort)
 
