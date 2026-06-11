@@ -1,5 +1,9 @@
 # Direction A: Gauge-Invariant (Algebraic) Entanglement in the Jordan-Wigner Three-Qubit Toy
 
+> **Status (2026-06-10): superseded by `paper2/` (main.tex / sequel_draft.md).** This working
+> report predates the referee round and strengthening pass; where numbers or claims differ,
+> Paper 2 and its machine-checked Appendix B are authoritative.
+
 **Goal.** Section 9.3 of the paper (`draft.md`) showed that the title question -- *is the SM coupling
 hierarchy encoded in three-qubit vacuum entanglement?* -- is ill-posed: single-qubit entropies of the
 Jordan-Wigner factorization are not gauge-invariant (a color DFT maps a separable quark state,

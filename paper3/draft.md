@@ -2,7 +2,7 @@
 
 **William T. Trevena**
 
-*Independent researcher (PhD, Industrial and Systems Engineering, University of Florida) — william.todd.trevena@gmail.com*
+*Independent Researcher (PhD, ISE, University of Florida) — trevenaw7@gmail.com*
 
 June 2026
 
@@ -48,7 +48,7 @@ Each contribution carries an epistemic label, as throughout the series. "Literat
 
 2. **Fisher-information identity and Cramér–Rao saturation** (derived; computed). The flux distribution is a one-parameter exponential family with sufficient statistic C₂(R); its Fisher information is I(t) = ¼Var_t(C₂), so dS/dt = −t·I(t): the entropy's sensitivity to the coupling *is* (t times) the statistical information the flux carries about the coupling. Maximum-likelihood estimation from N flux samples saturates the Cramér–Rao bound for U(1), SU(2), SU(3) (Sec. 4).
 
-3. **SU(3) — the QCD group** (computed; new in this paper). The analysis extends to SU(3) with irreps (p,q), dim = (p+1)(q+1)(p+q+2)/2, C₂ = (p²+q²+pq+3p+3q)/3 (convention verified, Sec. 2.3). At t = 1 the coupling is recovered to 1.6% from 10³ samples, 0.5% from 10⁴, at Cramér–Rao efficiency ~1.0. Reconstruction *improves* with group size: I(t) → dim(G)/2t² at weak coupling, so the larger the gauge group, the more information each flux sample carries (Sec. 4.3).
+3. **SU(3) — the QCD group** (computed; new in this paper). The analysis extends to SU(3) with irreps (p,q), dim = (p+1)(q+1)(p+q+2)/2, C₂ = (p²+q²+pq+3p+3q)/3 (convention verified, Sec. 2.3). At t = 1 the coupling is recovered to 1.6% from 10³ samples, 0.5% from 10⁴, at Cramér–Rao efficiency ~1.0. Reconstruction *improves* with group size: I(t) → dim(G)/(2t²) at weak coupling, so the larger the gauge group, the more information each flux sample carries (Sec. 4.3).
 
 4. **Capacity of entanglement** (derived; computed). C(t) ≡ Var(−ln ρ) = t²I(t), with C(t) → ½dim G as t → 0 (verified to 10⁻⁶ at t = 0.05 for all three groups). We found no prior computation of the capacity of entanglement in 2d Yang–Mills (search record in the companion notes); the concept is due to Yao–Qi [YQ10] and was developed in QFT by de Boer–Järvelä–Keski-Vakkuri [dBJK18] (Sec. 3.4).
 
@@ -70,7 +70,7 @@ Pure Yang–Mills theory with compact gauge group G in two Euclidean dimensions 
 
 with C₂ the quadratic Casimir. The theory has no propagating degrees of freedom; by invariance under area-preserving diffeomorphisms, g² and the areas enter only through products g²·(area).
 
-The state is the **Hartle–Hawking (sphere) state** on a spatial circle, the setting of Donnelly's nonabelian analysis [D14, §3]: the wavefunction prepared by the path integral over a hemisphere (disk) of area A/2,
+The state is the **Hartle–Hawking (sphere) state** on a spatial circle, the setting of Donnelly's nonabelian analysis [D14]: the wavefunction prepared by the path integral over a hemisphere (disk) of area A/2,
 
     ψ(R) ∝ (dim R) e^{−(g²A/4) C₂(R)},
 
@@ -80,13 +80,13 @@ expressed in the character basis |R⟩ of the physical Hilbert space (class func
 
 ### 2.2. The two formulas
 
-Cutting the circle into a region A of n disjoint intervals (2n cut points) and embedding into the extended Hilbert space (one copy of L²(G) per interval), the reduced density matrix is block-diagonal in the boundary irrep R ("electric flux"), with each block maximally mixed over the edge multiplicity space of dimension (dim R)^{2n} [D14, §2.2]. The two formulas everything in this paper rests on are:
+Cutting the circle into a region A of n disjoint intervals (2n cut points) and embedding into the extended Hilbert space (one copy of L²(G) per interval), the reduced density matrix is block-diagonal in the boundary irrep R ("electric flux"), with each block maximally mixed over the edge multiplicity space of dimension (dim R)^{2n} [D14]. The two formulas everything in this paper rests on are:
 
 **(F1) Flux distribution** [D14, eq. (pr)]:
 
     p_R(t) = d_R² e^{−(t/2)C₂(R)} / Z(t),    Z(t) = Σ_R d_R² e^{−(t/2)C₂(R)},     (1)
 
-where d_R = dim R. This is the probability of measuring boundary flux R at the cut — in 2d YM, the Casimir of the boundary electric field is the *only* local gauge-invariant observable [D14, §3]. Note that p_R does not depend on n (Sec. 3.5).
+where d_R = dim R. This is the probability of measuring boundary flux R at the cut — in 2d YM, the Casimir of the boundary electric field is the *only* local gauge-invariant observable [D14]. Note that p_R does not depend on n (Sec. 3.5).
 
 **(F2) Entanglement entropy, n intervals** [D14, eq. (YM2entropy); verbatim from the source: `S = \sum_R p(R) (- \log p(R) + 2n \log \dim R)`]:
 
@@ -138,7 +138,7 @@ Differentiating with (3):
 
 *Computed verification.* On t ∈ [0.05, 20] (400-point geometric grid): S strictly decreasing for U(1), SU(2), SU(3); the analytic derivative (5) matches finite differences to better than 0.3% (SU(2), U(1)) and 0.6% (SU(3)) everywhere on the grid (grid-stencil error), and to 2.4×10⁻¹⁰ with dedicated central differences (Sec. 3.5); max dS/dt on the grid: −6.2×10⁻³ (SU(2)), −4.5×10⁻⁴ (U(1)), −2.6×10⁻⁴ (SU(3)) — bounded away from zero. Practical inversion (given exact S, root-find t) recovers t to ≤ 9×10⁻¹⁴ at six test points per group. The Shannon-only piece H(t) = S − 2⟨ln d⟩ is *not* manifestly monotonic (dH/dt = −(t/4)Var(C₂) + Cov(ln d, C₂), a competition); numerically it is also strictly decreasing for all three groups on the grid, but only the full S has the analytic proof. We flag this honestly because H, not S, is the piece [D14] identifies with uncertainty in gauge-invariant observables.
 
-The weak-coupling behavior is universal: S ≃ ½dim(G)·ln(1/t) + const as t → 0 (computed; consistent with [GS14], and formally the same ½dim(G)·log(coupling) structure as Radičević's d = 3 universal term [R15]).
+The weak-coupling behavior is universal, and it is what justifies S → ∞ in Proposition 1: Z(t) = Σ_R d_R² e^{−(t/2)C₂(R)} is the heat kernel of the group manifold G evaluated at the identity, whose short-time behavior is the standard flat divergence Z(t) ≃ vol(G)·(2πt)^{−dim(G)/2} [Cam90; CMR94], so S ≃ ½dim(G)·ln(1/t) + const as t → 0. Computed witness: S(t) + ½dim(G)·ln t is constant to better than 10⁻⁶ over t ∈ [0.002, 0.2] for all three groups, and for U(1) the constant equals the exact heat-kernel value ½ + ½ln 2π = 1.4189385 to seven digits. This is consistent with the weak-coupling scaling of [GS14], and formally the same ½dim(G)·log(coupling) structure as Radičević's d = 3 universal term [R15].
 
 ### 3.3. Fisher information: reconstructability = susceptibility
 
@@ -154,7 +154,7 @@ and the Cramér–Rao bound for any unbiased estimator of t from N i.i.d. flux s
 
 The entropy's sensitivity to the coupling and the statistical information the flux carries about the coupling are the same function of t, up to the factor −t. Physically, Var_t(C₂) is the flux susceptibility of the vacuum — the object the synthesis of this series identified as "the defensible core" of any coupling-from-entanglement claim. Eq. (7) says that in d = 2 the identification is exact: *entanglement susceptibility is Fisher information.*
 
-*The flux measurement is quantum-optimal.* A referee may ask whether some other measurement on the interval extracts more information about t. No: the reduced density matrices {ρ_A(t)} are all diagonal in the same flux-block basis (eq. (1) with t-independent eigenvectors), so the family is mutually commuting, and the quantum Fisher information of ρ_A(t) equals the classical Fisher information of its eigenvalue distribution. Within a block the state is maximally mixed with t-independent weights 1/d_R², carrying no information; the eigenvalue distribution over blocks is p_R(t). Hence QFI(t) = I(t) = ¼Var_t(C₂): the flux measurement saturates the quantum Cramér–Rao bound among all measurements on the interval's algebra, and (6) is not an artifact of a convenient measurement choice.
+*The flux measurement is quantum-optimal.* A referee may ask whether some other measurement on the interval extracts more information about t. No: the reduced density matrices {ρ_A(t)} are all diagonal in the same flux-block basis (eq. (1) with t-independent eigenvectors), so the family is mutually commuting, and the quantum Fisher information of ρ_A(t) equals the classical Fisher information of its eigenvalue distribution [BC94]. Within a block the state is maximally mixed with t-independent weights 1/d_R², carrying no information; the eigenvalue distribution over blocks is p_R(t). Hence QFI(t) = I(t) = ¼Var_t(C₂): the flux measurement saturates the quantum Cramér–Rao bound among all measurements on the interval's algebra, and (6) is not an artifact of a convenient measurement choice.
 
 ### 3.4. Capacity of entanglement
 
@@ -166,7 +166,7 @@ The capacity of entanglement is the variance of the modular Hamiltonian, C(t) �
 
 In this model the capacity of entanglement *is* the Fisher information in disguise — a clean instance of the thermodynamic analogy (capacity ↔ heat capacity ↔ fluctuation ↔ information) becoming an identity. Computed: C(t) → ½dim G as t → 0⁺, equal to 0.5000, 1.5000, 4.0000 (U(1), SU(2), SU(3)) at t = 0.05 to the precision quoted in the results files; equivalently S ≃ ½dim(G) ln(1/t) at weak coupling, with the capacity plateau ending around t ~ 1 (SU(3) still 3.995 at t ≈ 3.9).
 
-*Prior work.* Capacity of entanglement was introduced in [YQ10], studied systematically in QFT and holography in [dBJK18], and computed for local-operator excitations of 4d free Yang–Mills in [N21]. Searches (June 2026; queries recorded in `paper3/NOTES.md`) found no prior computation in 2d Yang–Mills and no prior statement of (6)–(8) there; we flag that the entanglement entropy of YM₂ itself is thoroughly studied [GS14; D14; DTV19; MOPT26], so (8) is best read as low-hanging fruit made visible by the Fisher framing, not as a difficult result.
+*Prior work.* Capacity of entanglement was introduced in [YQ10], studied systematically in QFT and holography in [dBJK18], and computed for local-operator excitations of 4d free Yang–Mills in [N21]. We also note the contact with the symmetry-resolved entanglement literature: the flux-block decomposition of ρ_A is precisely a charge/sector-resolved structure in the sense of [GS18; XAS18], and the capacity of entanglement has been used as a probe of RG flows and symmetry resolution in [ADKT23]; our eq. (8) is the YM₂ instance in which the sector distribution alone carries all of the t-dependence. Searches (June 2026; queries recorded in `paper3/NOTES.md`) found no prior computation in 2d Yang–Mills and no prior statement of (6)–(8) there; we flag that the entanglement entropy of YM₂ itself is thoroughly studied [GS14; D14; DTV19; MOPT26], so (8) is best read as low-hanging fruit made visible by the Fisher framing, not as a difficult result.
 
 ### 3.5. n intervals: the entropy scales, the information does not
 
@@ -178,13 +178,13 @@ In this model the capacity of entanglement *is* the Fisher information in disgui
 
     **dS_n/dt = −(t/4)·Var_t(C₂) − (n−1)·Cov_t(ln d, C₂).**     (9)
 
-Computed: (9) matches central finite differences to ≤ 2.4×10⁻¹⁰ relative over 48 (group, t, n) combinations (U(1), SU(2), SU(3); t ∈ {0.3, 1, 3, 8}; n ∈ {1,2,3,4}). Cov_t(ln d, C₂) > 0 on the full grid for SU(2) and SU(3) (min 4.3×10⁻⁵ for SU(3)) and is identically 0 for U(1) (d ≡ 1); so S_n is strictly decreasing in t for every n in all cases computed — each additional pair of cut points makes the entropy *more* coupling-sensitive, by (n−1)Cov.
+Computed: (9) matches central finite differences to ≤ 2.4×10⁻¹⁰ relative over 48 (group, t, n) combinations (U(1), SU(2), SU(3); t ∈ {0.3, 1, 3, 8}; n ∈ {1,2,3,4}). Cov_t(ln d, C₂) > 0 on the full 400-point grid for SU(2) and SU(3) (minima 1.1×10⁻³ and 4.3×10⁻⁵ respectively) and is identically 0 for U(1) (d ≡ 1); so S_n is strictly decreasing in t for every n in all cases computed — each additional pair of cut points makes the entropy *more* coupling-sensitive, by (n−1)Cov.
 
 *Information.* Does Fisher information scale with n — do more cuts mean more flux samples? **No.** The 2n cut-point fluxes of one prepared circle are copies of the single global R: perfectly correlated, joint distribution supported on the diagonal with weights p_R(t). The Fisher information of the joint measurement is therefore exactly I(t) = ¼Var_t(C₂), independent of n. Donnelly states the qualitative point verbatim for the abelian case [D14]: "the entropy is independent of the number of intervals traced out... Having access to an additional interval therefore does not change the amount of information one can acquire about the state." (In the nonabelian case the *entropy* does grow with n — but only through the 2n⟨ln d⟩ edge term, which [D14] notes "is not associated to uncertainty in gauge-invariant observables.")
 
 *Computed demonstration.* M = 400 trials, each preparing N = 1000 independent circles cut into n = 3 intervals (6 cut points, 6000 flux readings, 1000 independent values). The MLE from the 6000-reading dataset is *identical* to the MLE from the 1000 unique samples (duplication leaves the sufficient statistic unchanged; verified to 10⁻¹⁴ relative, exact as estimators), and its standard deviation matches the N-preparation Cramér–Rao bound, not the hypothetical 2nN-sample bound: sd/CRB_N = 0.93 (SU(3)), 0.97 (SU(2)); sd/CRB_{2nN} = 2.27, 2.37 ≈ √6·(sd/CRB_N).
 
-The moral is worth the sentence: **in 2d Yang–Mills, entropy counts cut points; information counts independent preparations.** The edge term 2n⟨ln d⟩ — the dominant part of S_n for large n — carries no additional information about the coupling beyond what one cut already provides. A referee who suspects that "more entanglement entropy" must mean "better reconstruction" has it exactly backwards here, and the structure of the reduced state says why: 2d YM's flux is one global random variable. (Compare the flux-tube entanglement of [BFHK24], which likewise depends on the number of boundary crossings and dim R but not on lengths.)
+The moral is worth the sentence: **in 2d Yang–Mills, entropy counts cut points; information counts independent preparations.** The edge term 2n⟨ln d⟩ — the dominant part of S_n for large n — carries no additional information about the coupling beyond what one cut already provides. A referee who suspects that "more entanglement entropy" must mean "better reconstruction" has it exactly backwards here, and the structure of the reduced state says why: 2d YM's flux is one global random variable. (Compare the flux-tube entanglement of [ASV24], which likewise depends on the number of boundary crossings and dim R but not on lengths.)
 
 ---
 
@@ -212,7 +212,7 @@ Errors fall as N^{−1/2} along the CR line. Across all t* ∈ {0.5, 1, 2, 4} at
 
 SU(3) is the gauge group of quantum chromodynamics; the computation above is the statement that **in the d = 2 world, the strong coupling — the dimensionless g²A — is reconstructible from gauge-invariant entanglement statistics at the Cramér–Rao limit.** We confine that sentence to d = 2 with the full force of Section 5.
 
-The group-size trend is itself informative. At weak coupling I(t) ≈ dim(G)/2t² (from C(t) → ½dim G and (8)): I(1) = 0.5, 1.5, 4.0 for U(1), SU(2), SU(3). Each flux sample from a larger group carries more information about the coupling, because the Casimir spectrum is richer and the d_R² degeneracy weighting spreads p_R over more, better-separated sectors. The hierarchy-minded reader of Paper 1 will note the irony: in the one solvable setting, the *non-abelian* couplings are the easy ones.
+The group-size trend is itself informative. At weak coupling I(t) ≈ dim(G)/(2t²) (from C(t) → ½dim G and (8)): I(1) = 0.5, 1.5, 4.0 for U(1), SU(2), SU(3). Each flux sample from a larger group carries more information about the coupling, because the Casimir spectrum is richer and the d_R² degeneracy weighting spreads p_R over more, better-separated sectors. The hierarchy-minded reader of Paper 1 will note the irony: in the one solvable setting, the *non-abelian* couplings are the easy ones.
 
 ### 4.4. Inversion from the exact entropy
 
@@ -272,7 +272,7 @@ All computations are deterministic (seed 20260609) and complete in seconds on a 
 
 **Companion papers**
 
-- [P1] W. T. Trevena, *Is the Standard Model Coupling Hierarchy Encoded in Three-Qubit Vacuum Entanglement? No-Go Results, an Exact Octonionic Vacuum, and the Surviving Hypothesis Space*, companion paper (2026), repository `draft.md`.
+- [P1] W. T. Trevena, *Is the Standard Model Coupling Hierarchy Encoded in Three-Qubit Vacuum Entanglement? No-Go Results, an Exact Octonionic Vacuum, and the Surviving Hypothesis Space*, companion paper (2026), repository `paper/draft.md`.
 - [P2] W. T. Trevena, *Gauge-Invariant Entanglement in a Minimal Fermionic Toy: The Coupling–Entropy Question Made Well-Posed — and Closed*, companion paper (2026), repository `paper2/sequel_draft.md`.
 
 **2d Yang–Mills solvability**
@@ -303,13 +303,18 @@ All computations are deterministic (seed 20260609) and complete in seconds on a 
 
 - [DTV19] W. Donnelly, S. Timmerman, N. Valdés-Meller, *Entanglement entropy and the large N expansion of two-dimensional Yang–Mills theory*, arXiv:1911.09302, JHEP 04 (2020) 182.
 - [MOPT26] D. Melnikov, J. T. Oliveira, V. Peixoto, M. Tenser, *States of 2D Yang–Mills and large-volume entanglement*, arXiv:2603.10171 (2026).
-- [BFHK24] R. Amorosso, S. Syritsyn et al., *Entanglement entropy of a color flux tube in (1+1)D Yang–Mills theory*, arXiv:2411.12818; and *(2+1)D*, arXiv:2410.00112. *(Author list per arXiv; cited for the crossing-number dependence of flux-tube entanglement.)*
+- [ASV24] R. Amorosso, S. Syritsyn, R. Venugopalan, *Entanglement entropy of a color flux tube in (1+1)D Yang–Mills theory*, arXiv:2411.12818; and *Entanglement entropy of a color flux tube in (2+1)D Yang–Mills theory*, arXiv:2410.00112, JHEP 12 (2024) 177. *(Cited for the crossing-number dependence of flux-tube entanglement.)*
 
-**Capacity of entanglement**
+**Capacity of entanglement, symmetry resolution, estimation**
 
 - [YQ10] H. Yao, X.-L. Qi, *Entanglement entropy and entanglement spectrum of the Kitaev model*, arXiv:1001.1165, Phys. Rev. Lett. 105, 080501 (2010).
 - [dBJK18] J. de Boer, J. Järvelä, E. Keski-Vakkuri, *Aspects of capacity of entanglement*, arXiv:1807.07357, Phys. Rev. D 99, 066012 (2019).
 - [N21] P. Nandy, *Capacity of entanglement in local operators*, arXiv:2106.00228, JHEP 07 (2021) 019.
+- [GS18] M. Goldstein, E. Sela, *Symmetry-resolved entanglement in many-body systems*, arXiv:1711.09418, Phys. Rev. Lett. 120, 200602 (2018).
+- [XAS18] J. C. Xavier, F. C. Alcaraz, G. Sierra, *Equipartition of the entanglement entropy*, arXiv:1804.06357, Phys. Rev. B 98, 041106(R) (2018).
+- [ADKT23] R. Arias, G. Di Giulio, E. Keski-Vakkuri, E. Tonni, *Probing RG flows, symmetry resolution and quench dynamics through the capacity of entanglement*, arXiv:2301.02117, JHEP 03 (2023) 175.
+- [BC94] S. L. Braunstein, C. M. Caves, *Statistical distance and the geometry of quantum states*, Phys. Rev. Lett. 72, 3439 (1994).
+- [Cam90] R. Camporesi, *Harmonic analysis and propagators on homogeneous spaces*, Phys. Rep. 196, 1 (1990). *(Short-time heat-kernel asymptotics on group manifolds.)*
 
 **SU(3) representation data (convention check)**
 

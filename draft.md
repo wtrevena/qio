@@ -2,7 +2,7 @@
 
 **William T. Trevena**
 
-*Independent researcher (PhD, Industrial and Systems Engineering, University of Florida) — william.todd.trevena@gmail.com*
+*Independent Researcher (PhD, ISE, University of Florida) — trevenaw7@gmail.com*
 
 June 2026
 

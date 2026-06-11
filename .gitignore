@@ -1,2 +1,9 @@
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.toc
+*.synctex.gz
 __pycache__/
-*.pyc
+tmp*.tmp

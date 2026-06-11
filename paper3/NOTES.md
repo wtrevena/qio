@@ -164,10 +164,18 @@ simultaneously and replace repo paths with arXiv IDs.
 - [x] Fisher demo ratios 0.93/0.97 (CRB_N) and 2.27/2.37 (CRB_6N), √6 ≈ 2.449.
 - [x] Donnelly verbatim quotes in Secs. 2.2, 3.5 match the e-print source
       strings grepped on 2026-06-09.
-- [ ] OPEN: [BFHK24] author list abbreviated in references ("Amorosso,
-      Syritsyn et al.") — pull the exact author list before submission.
-- [ ] OPEN: heat-kernel small-t asymptotics citation for S → ∞ (item 5).
-- [ ] OPEN: optional symmetry-resolved-entanglement sentence (item 10).
+- [x] RESOLVED 2026-06-10: [BFHK24] author list pulled from arXiv: Rocco
+      Amorosso, Sergey Syritsyn, Raju Venugopalan (both 2411.12818 and
+      2410.00112; the latter JHEP 12 (2024) 177). Tag was wrong too —
+      renamed [ASV24] in draft and main.tex (CRITIC_ROUND1.md, P1-1).
+- [x] RESOLVED 2026-06-10: heat-kernel small-t asymptotics added to Sec. 3.2
+      with citation [Cam90] (Camporesi, Phys. Rep. 196 (1990)) + [CMR94];
+      computed witness added: S + ½dim G·ln t constant to <1e-6 on
+      t ∈ [0.002, 0.2], U(1) constant = ½ + ½ln 2π to seven digits
+      (CRITIC_ROUND1.md, P1-2).
+- [x] RESOLVED 2026-06-10: symmetry-resolved-entanglement sentence added to
+      Sec. 3.4 with [GS18] 1711.09418, [XAS18] 1804.06357, [ADKT23]
+      2301.02117 (JHEP 03 (2023) 175 verified) (CRITIC_ROUND1.md, P2-6).
 
 ## 14. What we deliberately do NOT claim (rebuttal red lines)
 
