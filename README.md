@@ -12,11 +12,14 @@ the one positive result, in the one exactly solvable setting: in 2d Yang-Mills
 the boundary-flux sector distribution is an exponential family in the coupling,
 so its entropy derivative, Fisher information, and coupling-estimation
 sensitivity are exactly linked, and the coupling is genuinely reconstructible
-from gauge-invariant flux statistics. Papers 4 and 5 are extensions currently
-in preparation: the two-ideal/chiral arena on which the full SM gauge group
-acts (`newwork/two_ideal/`, manuscript to appear in `paper4/`) and compact
-U(1) flux sectors across higher-dimensional entangling surfaces
-(`newwork/u1_4d/`, manuscript to appear in `paper5/`). None of this derives
+from gauge-invariant flux statistics. Papers 4 and 5 are drafted extensions:
+"Room for Three Couplings, and Only the Room: The Gauge-Invariant Algebra of
+a One-Generation Chiral Fock Space" (Paper 4, `paper4/`, computations in
+`newwork/two_ideal/`) — the two-ideal/chiral arena on which the full SM gauge
+group acts — and "Fisher Information in Compact U(1) Flux Sectors: Asymptotic
+Exponential Families, a Crossover Obstruction, and a Topological Zero-Mode
+Bridge to Four Dimensions" (Paper 5, `paper5/`, computations in
+`newwork/u1_4d/`). None of this derives
 any Standard Model coupling value; the series is a cartography of what
 entanglement data can and cannot determine.
 
@@ -89,7 +92,7 @@ with or without scipy via a built-in Brent fallback) is the long job of the
 series — 27 (group, t*, N) cells with 2000 Monte-Carlo batches each; expect
 minutes, not seconds. Seed 20260609 throughout.
 
-### Paper 4 (in preparation, `paper4/`) — the two-ideal / chiral arena
+### Paper 4 (`paper4/main.tex`, drafted) — the two-ideal / chiral arena
 
 ```
 cd newwork/two_ideal && python run_rep.py && python run_full.py && python run_crosscheck.py
@@ -104,7 +107,7 @@ explicit Schur analysis and runs the three-parameter test. `run_crosscheck.py`
 cross-check and computes the first nonzero quantum (bulk) pieces. Findings:
 `newwork/two_ideal/REPORT.md`.
 
-### Paper 5 (in preparation, `paper5/`) — compact U(1) flux sectors in higher d
+### Paper 5 (`paper5/main.tex`, drafted) — compact U(1) flux sectors in higher d
 
 ```
 cd newwork/u1_4d && python u1_2d_baseline.py && python u1_chain_ed.py grid && python u1_chain_ed.py fisher && python u1_chain_ed.py conv1 && python u1_chain_ed.py conv2 && python analyze_chain.py && python u1_dipole_gas.py
@@ -141,8 +144,8 @@ python tests/run_tests.py         # zero-dependency fallback (python3 + numpy)
 | `paper/` | Paper 1 manuscript (`main.tex`, figures, `arxiv_submission/`) | active |
 | `paper2/` | Paper 2 manuscript + `VERIFICATIONS.md`, critic round notes | active |
 | `paper3/` | Paper 3 manuscript + `mle_bias_ci.py`, `weak_coupling_check.py` | active |
-| `paper4/` | Paper 4 manuscript (two-ideal arena) | in preparation |
-| `paper5/` | Paper 5 manuscript (compact U(1), higher d) | in preparation |
+| `paper4/` | Paper 4 manuscript (two-ideal arena; `arxiv_submission/`) | drafted |
+| `paper5/` | Paper 5 manuscript (compact U(1), higher d; `arxiv_submission/`) | drafted |
 | `experiments/` | Paper 1 computations (`qio_lib.py`, exp1–exp6, controls, verifiers, `results/`) | active |
 | `direction_A/` | Paper 2 computations (`alg_entanglement.py`, `run_direction_A.py`, `strengthen.py`) | active; its `REPORT.md` is superseded by `paper2/` |
 | `direction_B/` | Edge-mode / contact-term literature verification (`LITERATURE_REVIEW.md`, `SOURCES.md`) | reference material |

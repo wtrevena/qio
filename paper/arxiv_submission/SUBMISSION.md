@@ -18,7 +18,7 @@ No custom style files are used (standard `article` class with geometry, fontenc/
 
 No-Go Results for a Three-Qubit Entropy Ansatz for Gauge-Coupling Hierarchies, with an Exact Octonionic Rotor Construction in an Appendix
 
-(Previous title, for cross-reference bookkeeping: "Is the Standard Model Coupling Hierarchy Encoded in Three-Qubit Entanglement? Scoped No-Go Results and an Exact Octonionic Rotor Vacuum" — bibliography entries in the companion manuscripts must be updated to the new title.)
+(Previous title, for cross-reference bookkeeping: "Is the Standard Model Coupling Hierarchy Encoded in Three-Qubit Entanglement? Scoped No-Go Results and an Exact Octonionic Rotor Vacuum" — bibliography entries in the companion manuscripts have been updated to the new title in the series wiring pass, June 2026.)
 
 ## Abstract (plain text, 1,914 characters — within arXiv's 1,920 limit)
 
@@ -53,7 +53,11 @@ arXiv requires that first-time submitters to most categories, including **quant-
 3. **Whom to ask:** the natural endorsers are researchers whose work this paper engages directly — e.g., authors in the division-algebra program (Furey, Todorov, Szangolies) or quantum-information researchers you have corresponded with. Send a short, specific email: the endorsement code, the paper PDF, a 2–3 sentence summary, and a sentence on why you are contacting them specifically. Endorsement asks only "is this a serious, on-topic scientific submission?", not refereeing — say so, since many people don't know that.
 4. **Expect some friction:** endorsers are not obligated to respond; plan to ask 2–3 people, one at a time, and allow a week each. Cold requests succeed more often when the paper visibly engages the endorser's own work, which is true here for several candidates.
 5. **Alternatives if endorsement stalls:** none within arXiv (arXiv staff do not endorse on request), but you can post to a preprint server without endorsement (e.g., Preprints.org, OSF) in the meantime. Do not submit to a less-gated arXiv category just to get in — cross-category dumping risks moderation holds.
-6. **Moderation note:** independent-researcher submissions touching "Standard Model from octonions" territory get moderator attention. This paper's framing (rigorous no-go results, published code, explicit anti-numerology controls) is exactly what moderators look for in serious work; nevertheless, expect possible delay of a few days and possibly a reclassification suggestion. The "Note Added" referencing a companion paper in preparation is fine and standard.
+6. **Moderation note:** independent-researcher submissions touching "Standard Model from octonions" territory get moderator attention. This paper's framing (rigorous no-go results, published code, explicit anti-numerology controls) is exactly what moderators look for in serious work; nevertheless, expect possible delay of a few days and possibly a reclassification suggestion. The "Note Added" citing drafted companion manuscripts is fine and standard.
+
+## Companion arXiv IDs — fill at announcement time
+
+The bibliography now cites the four companion manuscripts (`\bibitem{paper2}`–`\bibitem{paper5}`) as "companion manuscript (2026)" without identifiers. When the companions receive arXiv identifiers at announcement, update these entries (replacement or pre-announcement edit) and cross-link the IDs in the Comments field. Suggested submission order: this paper first (the companions cite its section numbers), then Papers 2–5.
 
 ## Practical submission checklist
 
