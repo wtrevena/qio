@@ -42,6 +42,12 @@ QIO program → deflated into a defensible three-paper series. Success mode (use
 - arXiv tarball: embedded thebibliography (no .bbl needed); always clean-room compile from /tmp after rebuild; check NULs.
 - Agents: don't let them run git; give each exclusive folder ownership; they should cite Paper 1 results by NAME not section number (sections changed in restructure).
 
+## NEXT STEP (user-directed 2026-06-11, NOT yet started — do this first on resume)
+
+**Round 4 — final pre-publication review.** Read `C:\Users\willi\repos\qio\20260611_7.54am_PST_revision_feedback.txt` (deliberately NOT yet read; content unknown). User instruction: treat it as ADVISORY feedback only — Claude applies whatever revisions Claude deems appropriate (not obligated to take every suggestion), then we wrap up and declare the series ready to publish. After applying: recompile + rebuild any touched arXiv packages (clean-room), re-run tests/run_tests.py if code touched, update this file, commit + push. Cowork task #16 tracks this. This is intended as the LAST revision round before publish-ready sign-off.
+
+Triage discipline learned from rounds 2-3 (reuse): split feedback into (a) technical errors → always fix; (b) language/framing/scope → fix if consistent with deflationary strategy; (c) structural reorganization → weigh against user's standing decisions (separate papers, order 1→2→3→4→5, arXiv first); (d) journal-strategy advice → log in notes, don't act; (e) new-research suggestions → log as future work, don't start without user approval.
+
 ## STATUS 2026-06-11: ROUND 3 + PAPERS 4/5 + WIRING ALL COMPLETE
 
 All five papers compiled (0 errors, Type-1 fonts only): P1 21pp "No-Go Results for a Three-Qubit Entropy Ansatz for Gauge-Coupling Hierarchies, with an Exact Octonionic Rotor Construction in an Appendix"; P2 22pp "…A Single-Copy No-Go for Coupling Encoding"; P3 22pp "Fisher Information and Coupling Reconstruction from Edge-Sector Statistics in Two-Dimensional Yang–Mills"; P4 16pp "Room for Three Couplings, and Only the Room: The Gauge-Invariant Algebra of a One-Generation Chiral Fock Space"; P5 13pp "Fisher Information in Compact U(1) Flux Sectors: …Topological Zero-Mode Bridge to Four Dimensions". All five arxiv_submission/ packages built + clean-room verified; abstracts <1920 chars; categories suggested per SUBMISSION.md files. Cross-refs fully wired (new titles everywhere, P1 round-3 section remaps applied in P2, placeholders twoideal/u1fourd filled). Repo packaged: README, requirements.txt (numpy==2.2.6, Python 3.10.12), MIT LICENSE, CITATION.cff, tests/ 12-test suite green in 1.7s (pytest-compatible; sandbox lacks pytest → tests/run_tests.py runner). T³ computation done (newwork/u1_4d/T3_RESULTS.md): exact exponential family on H¹(T³,ℤ), dS/de²=−e²I to 7.5e-10, I→b₂/(2e⁴) metric-independent, Poisson e²↔4π²/e² duality to 1.2e-15.
@@ -62,8 +68,29 @@ REMAINING (user actions + post-upload): (1) user uploads the five packages to ar
 - Pushed everything to origin/main (git@github.com:wtrevena/qio.git, branch was newly created on remote, upstream now set). Verified pushed paper/main.tex blob is the clean 73,332-byte version — the 20,577 "NULs" seen via the mount were a stale-cache mirage; host+git were always clean. Lesson reinforced: NEVER trust the sandbox mount's view of repo files for verification; check via Desktop Commander/git cat-file on host.
 - Task list (Cowork): #12 review feedback (pending), #13 Paper 4 (pending), #14 Paper 5 + T³ (pending), #15 series wiring + packages (pending).
 
-## Commit log (this effort)
+## Exhaustive completion ledger (as of 2026-06-11, end of round 3)
 
-- b1f44ce series finalization round 1 (bylines, packages, critic rounds)
-- e7c786b review round 2: Papers 2+3 revised, newwork/two_ideal + newwork/u1_4d research done
-- (next) Paper 1 restructure + this notes file + cross-ref reconcile
+**Papers — all compiled 0 errors, 0 undefined refs, Type-1 fonts only, byline standard:**
+| Paper | Folder | Title (current) | Pages | Status |
+|---|---|---|---|---|
+| 1 | paper/ | No-Go Results for a Three-Qubit Entropy Ansatz for Gauge-Coupling Hierarchies, with an Exact Octonionic Rotor Construction in an Appendix | 21 | submit-ready |
+| 2 | paper2/ | Gauge-Invariant Algebraic Entropy in a Minimal Fermionic Toy: A Single-Copy No-Go for Coupling Encoding | 22 | submit-ready |
+| 3 | paper3/ | Fisher Information and Coupling Reconstruction from Edge-Sector Statistics in Two-Dimensional Yang–Mills | 22 | submit-ready |
+| 4 | paper4/ | Room for Three Couplings, and Only the Room: The Gauge-Invariant Algebra of a One-Generation Chiral Fock Space | 16 | submit-ready |
+| 5 | paper5/ | Fisher Information in Compact U(1) Flux Sectors: Asymptotic Exponential Families, a Crossover Obstruction, and a Topological Zero-Mode Bridge to Four Dimensions | 13 | submit-ready |
+
+**Per-paper revision history:** P1: round-1 byline/package → round-2 full restructure (no-go first, QIO cut 75-80%, Lemma 2 analytic W-family, tables) → round-3 (retitle, rotor→App A as control, JW before RG, Haar compressed, Szangolies non-refutation sentence, notation table). P2: critic round (CRITIC_ROUND2.md, 0 P0) → theorem-ification (Thms 1-3 + Schur App B + scoped Lemma 4 + Secs 8/9) → round-3 (retitle single-copy, method-first framing, two-ideal consistency). P3: critic round (CRITIC_ROUND1.md) → formal theorems + bias/CI + weak-coupling App → round-3 (retitle edge-sector, exponential-family-first, MLE→App B, nontrivial-group hypotheses, QCD language removed). P4: written from newwork/two_ideal/REPORT.md, own critic round (3 P0 + 5 P1 fixed, all numbers verified vs JSONs). P5: T³ computation first (all 4 targets confirmed), then written, own critic round (1 P0 + 7 P1 fixed).
+
+**arXiv packages (all clean-room verified from /tmp):** paper{,2,3,4,5}/arxiv_submission/qio_paperN.tar.gz + SUBMISSION.md each (abstracts 1913-1918 chars, all <1920; categories: P1 quant-ph+hep-th, P2 quant-ph+hep-th, P3 hep-th+quant-ph/math-ph, P4 quant-ph+hep-th, P5 hep-th+hep-lat/quant-ph; P3 tarball includes fig_ym2.png+fig_su3.png; P1 includes 2 outlined-font PDF figures; P2/P4/P5 tex-only).
+
+**Cross-ref wiring (round-3 final state):** all five bibliographies carry the current titles; P2's 6 section pointers remapped to P1's round-3 numbering; P1 gained 4 companion bibitems (paper2-paper5) + neutral drafted-manuscript clauses in Sec 7.2 and Note Added; twoideal/u1fourd placeholders filled; zero "in preparation" language anywhere; READMEs say "drafted". Companion arXiv IDs are the ONLY placeholders left (filled after upload).
+
+**Repo packaging:** README.md (per-paper one-command reproduction, all commands sandbox-verified; scipy-dependent scripts documented as such), requirements.txt (Python 3.10.12, numpy==2.2.6, matplotlib==3.10.9, scipy optional), LICENSE (MIT 2026), CITATION.cff (repo-level), tests/ (12 theorem-level tests, all green 1.7s; pytest-format + zero-dep run_tests.py runner because sandbox lacks pytest).
+
+**Research artifacts:** newwork/two_ideal/ (commutant ⊕₂₅₀M_m dim 57062, center=(a,b;2j;y) detecting (SU(3)×SU(2)×U(1))/Z₆, all-edge-no-bulk fails, rank-3 Casimir Jacobian, 't Hooft catalog, QQQL Fermi-absent — all in P4). newwork/u1_4d/ (phase-by-phase exponential families, crossover obstruction, zero-mode bridge + T3_RESULTS.md: exact family on H¹(T³,ℤ), dS/de²=−e²I @7.5e-10, I→b₂/(2e⁴) metric-blind, Poisson duality @1.2e-15, self-dual point e²=2π — all in P5).
+
+**External reviews processed:** new_review.txt (round 2 — full restructure driver) and 20260610.10.48_PM_PST_revision_feedback.txt (round 3 — retitles, repo-consistency P0, packaging). Round 4 file exists, unread (see NEXT STEP).
+
+**Standing user decisions:** separate papers (no merges), order 1→2→3→4→5, arXiv first (user uploads; first-timer endorsement notes in P1's SUBMISSION.md), byline with (PhD, ISE, University of Florida), journal strategy deferred (reviewer: P3 → JMP/JPA/Annals/SciPost Core first; P1+P2 merge for journal form; P4 strongest continuation).
+
+**Commit log:** b1f44ce round 1 → e7c786b round 2 + research → 69d2091 P1 restructure + notes → 6f4e8bc reconcile → 3051f2f plan → 6846f53 round 3 + P4/P5 + packaging → 677a29b wiring + packages (all pushed to git@github.com:wtrevena/qio.git main).

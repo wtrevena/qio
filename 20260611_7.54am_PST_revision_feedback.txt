@@ -1,0 +1,388 @@
+## Overall referee verdict
+
+I would **not recommend accepting the five-paper package as-is**, but I would **not dismiss the research direction**. The set contains a coherent and increasingly defensible program:
+
+1. A naive three-qubit subsystem-entropy coupling ansatz fails.
+2. The correct repair is gauge-invariant algebraic entropy.
+3. In the minimal one-ideal toy, that repair gives an even stronger no-go.
+4. In exactly solvable 2d Yang-Mills, coupling reconstruction from flux-sector statistics does work, but only because dynamics supplies a one-parameter family.
+5. In the full one-generation chiral Fock-space arena, the invariant algebra finally has “room” for three gauge-factor-aligned functionals, but still no kinematic mechanism selecting coupling values.
+6. In compact U(1) above two dimensions, the 2d mechanism survives only in scoped/asymptotic/topological-sector forms, not as a universal coupling-from-entanglement principle.
+
+That is a strong conceptual arc. The main publication problem is that the manuscripts are **too internally cross-referential, too close to a private research log in places, and too dependent on code-verified claims without enough journal-style proof packaging**. The strongest individual paper is the **2d Yang-Mills Fisher-information paper**. The weakest standalone paper is the original **three-qubit entropy ansatz no-go**, not because it is wrong, but because it studies a deliberately naive ansatz and is mostly valuable as the prelude to the gauge-invariant papers.
+
+The GitHub repo supports the manuscripts with Python/TeX code, multiple experiment directories, and committed result files, but it has **no release**, no visible package/environment file at the root, and is still structured like an active project rather than an archival reproducibility bundle. The repo currently lists 17 commits, Python/TeX content, directories for `experiments`, `direction_A`, `ym2`, and `newwork`, but no published release. ([GitHub][1]) The experiments directory does contain named verification scripts, null controls, result files, and figure generators, which is good, but I would still require a `requirements.txt` or `pyproject.toml`, a single top-level `make reproduce`, CI, and a Zenodo/OSF archival DOI before publication. ([GitHub][2])
+
+---
+
+# Independent paper-by-paper critique
+
+## Paper 1: *No-Go Results for a Three-Qubit Entropy Ansatz for Gauge-Coupling Hierarchies, with an Exact Octonionic Rotor Construction in an Appendix*
+
+**Recommendation:** **Major revision if submitted as a short negative-results / mathematical-physics note; probably reject as a standalone high-energy-physics article.**
+
+This paper’s strongest result is the diagnosis that the proposed logarithmic entropy-coupling map collapses to a single entropy-gap-ratio condition, so unconstrained matching is not evidence. The manuscript explicitly defines the ansatz
+[
+\log(\alpha_i^{-1}) = A + B S_i
+]
+and then shows that fitting two couplings leaves only the scalar condition
+[
+r_S = \frac{S_1-S_2}{S_2-S_3}=r_{\rm SM}.
+]
+That is the right mathematical way to kill the naive model. 
+
+### Strengths
+
+The paper is honest about scope. It repeatedly says it is not refuting Szangolies’s gauge-group construction, only a coupling-entropy extension. That matters. The introduction distinguishes the object under test from the Standard Model, noting that the toy has no gauge fields, matter, chirality, anomalies, Yukawas, Higgsing, thresholds, or scheme dependence. 
+
+The negative result is multi-layered rather than merely numerical. The paper gives an analytic underconstraint lemma, a marginal-polytope feasibility argument, a W-class counterexample, numerical Haar-genericity checks, null controls, an RG-running obstruction, and a gauge-frame-dependence obstruction. The strongest line is the gauge-covariance point: a color DFT can map a separable single-quark state into a W-type entangled state in the qubit factorization, showing that the single-qubit entropy observable is not gauge-invariant. 
+
+The rotor appendix is valuable as a control. The exact rotor ground state being permutation-symmetric rather than hierarchical is a useful way of showing that “canonical octonionic” state selection does not automatically produce the desired hierarchy. The abstract states the exact ground state, marginal spectra, and 3-tangle. 
+
+The reproducibility posture is unusually strong for a toy-model paper: the repo contains scripts for Haar sampling, entropy computation, 3-tangle/concurrence, null controls, figure generation, W-family verification, and cross-checks of the quoted numbers.  The experiments report states that the 10 million Haar-state run produced 2,666 matches within tolerance, that matched-state 3-tangle distributions were statistically generic, and that random-target and permutation controls did not single out the Standard Model hierarchy. ([GitHub][3])
+
+### Weaknesses
+
+The main weakness is **novelty framing**. A journal referee may say: “You proposed a naive two-parameter map, showed it is underconstrained, then showed the observable is gauge-variant. Why is this a publishable physics result rather than an internal sanity check?” The answer can be made persuasive, but the manuscript needs to foreground the *methodological lesson* rather than the ansatz itself.
+
+The three-qubit Haar experiment is less important than the analytic underconstraint lemma. Sampling (10^7) states sounds impressive, but because the analytic geometry already explains why matching is generic, the paper should not lean too heavily on the simulation as evidence. It should be presented as a sanity check only.
+
+The title is too long and slightly confused in emphasis. The appendix rotor construction may be mathematically neat, but putting it in the title dilutes the central no-go.
+
+The RG section is useful but secondary. The decisive flaw is gauge non-invariance. The RG-running obstruction is true but, as the manuscript admits, not deep. I would shorten it further or move it to an appendix.
+
+### Required revisions
+
+I would require the paper to:
+
+1. Re-title around the actual contribution: something like **“A Gauge-Variance No-Go for a Three-Qubit Entropy Ansatz for Gauge-Coupling Hierarchies.”**
+2. Move the rotor material into a clearly labeled appendix or companion note.
+3. State the theorem hierarchy more cleanly: underconstraint, W-class counterexample, gauge non-invariance, RG inconsistency.
+4. Remove any language that sounds like the paper is testing the Standard Model itself.
+5. Make the W-family proof and marginal-polytope feasibility argument the mathematical center.
+6. Treat the computational sampling as reproducibility support, not as the main result.
+
+**Publication path:** This paper is best as the **first section of a larger combined paper** with Paper 2, not as the flagship submission.
+
+---
+
+## Paper 2: *Gauge-Invariant Algebraic Entropy in a Minimal Fermionic Toy: A Single-Copy No-Go for Coupling Encoding*
+
+**Recommendation:** **Major revision, but scientifically stronger than Paper 1.**
+
+This is the first manuscript where the program becomes genuinely well-posed. It replaces gauge-variant qubit subsystem entropy with entropy relative to the commutant of the gauge action. The paper computes the finite-dimensional gauge-invariant operator algebras for the one-ideal Jordan-Wigner/Fock toy and shows that the invariant data cannot encode three couplings.
+
+The abstract reports the core commutants: U(3) gives the abelian algebra (\mathbb C^4) of charge-sector projectors; SU(3) gives (M_2 \oplus \mathbb C \oplus \mathbb C); U(1) gives (M_1 \oplus M_3 \oplus M_3 \oplus M_1). It also states the strongest conclusion: the weighted-W “match” from Paper 1 is pure gauge, with zero algebraic entropy for all three invariant algebras, and the one-ideal construction lacks SU(2)(_L), so the three-coupling question cannot even be posed there. 
+
+### Strengths
+
+This paper fixes the main conceptual defect of Paper 1. It takes the gauge-invariant observable algebra seriously and computes the commutant. That is a journal-worthy move.
+
+The finite-dimensional setting is clean. There are no continuum regulator disputes inside the toy. The paper can give exact Wedderburn decompositions, exact sector probabilities, exact entropy formulas, and direct gauge-invariance checks. The introduction correctly says the machinery applies to finite-dimensional gauge actions generally: compute the commutant, identify its Wedderburn structure, and evaluate entropy relative to that algebra. 
+
+The strongest scientific conclusion is sharper than the original no-go: the gauge-invariant data of a single pure state in the U(3) toy is just its charge-sector distribution, the quantum piece of algebraic entropy vanishes for every pure state, and the W-matching curve is a gauge orbit of a single Fock basis state. 
+
+The repo support is substantial. The Direction A report says the code computes commutants, checks fresh-sample residuals, identifies Wedderburn structure, computes named-state entropies, verifies gauge invariance, and tests all sector-assignment feature maps. ([GitHub][4]) The script itself contains assertions for CAR relations, gauge-unitary homomorphism, mode transformation, commutant dimensions, algebra closure, and expected block structures. ([GitHub][5])
+
+### Weaknesses
+
+The main weakness is that the paper risks being perceived as **too small**: an 8-dimensional toy, one ideal, no SU(2)(_L), no hypercharge, no continuum gauge theory. The paper knows this and states it, but the title and abstract still need to make the limited scope unmistakable.
+
+The phrase “all edge, no bulk” is evocative but dangerous. It is true within the toy for pure states, but Paper 4 later shows it dies in the chiral Fock-space extension. The manuscript does acknowledge the contested physical status of the center/edge term and says the strict continuum-algebra viewpoint may make the toy’s gauge-invariant entropy “arguably empty,” strengthening the no-go.  Still, the phrase should be used sparingly and always scoped.
+
+The paper is too dependent on companion-paper context. A referee should not need Paper 1 or Paper 4 to understand why this paper matters. The paper should include a compact self-contained statement of the original ansatz and why gauge-invariantization is the necessary repair.
+
+The “SU(2)(_L) absent” conclusion is important, but it is also expected once the one-ideal content is stated. The paper should avoid making this sound surprising.
+
+### Required revisions
+
+I would require:
+
+1. A self-contained theorem/proof section for the commutant decompositions.
+2. A clearer distinction between algebraic entropy, center entropy, and invariant data. Entropy is lossy, and the paper itself notes that U(1) and U(3) entropies can coincide even when the invariant algebras differ.
+3. Reduced reliance on slogans like “all edge, no bulk.”
+4. A short “why this is not contradicted by Paper 4” note, since Paper 4 shows nonzero quantum invariant entropy in the larger arena.
+5. A cleaner publication framing: this is a **finite-dimensional gauge-invariant entropy case study**, not a Standard Model coupling paper.
+
+**Publication path:** This paper could be publishable in a mathematical physics or quantum-information journal after major revision, especially if merged with the best parts of Paper 1.
+
+---
+
+## Paper 3: *Fisher Information and Coupling Reconstruction from Edge-Sector Statistics in Two-Dimensional Yang-Mills*
+
+**Recommendation:** **Best standalone submission; likely publishable after major or possibly moderate revision.**
+
+This is the strongest paper in the set. It has a clean theorem-level result, a known exactly solvable model, a clear known/new distinction, and a defensible positive statement: in 2d Yang-Mills, the flux-sector distribution is an exponential family in (t=g^2A), and therefore entropy susceptibility, Fisher information, and coupling reconstruction are exactly linked.
+
+The abstract states the central formulas:
+[
+p_R(t) \propto (\dim R)^2 e^{-(t/2)C_2(R)}, \quad
+\frac{dS}{dt}= -\frac{t}{4}\operatorname{Var}_t(C_2), \quad
+I(t)=\frac14\operatorname{Var}_t(C_2), \quad
+\frac{dS}{dt}=-tI(t).
+]
+It also states the operational distinction: exact entropy inversion is idealized, while flux-sector sampling is the physical channel. 
+
+### Strengths
+
+The paper’s conceptual distinction between **reconstruction** and **determination** is excellent. It does not claim entanglement determines the coupling from first principles. It says that, given a known theory and known one-parameter family, sector statistics allow efficient inference of the parameter. That distinction is the spine of the whole manuscript set.
+
+The results are mathematically clean. The exponential-family reading immediately yields monotonicity, Fisher information, capacity, and Cramér-Rao behavior. The paper explicitly states hypotheses: nontrivial compact connected Lie group, standard heat-kernel formulation, Casimir convention fixed, Hartle-Hawking state on a sphere. 
+
+The SU(3) analysis is a useful addition because it connects the mathematical identity to the gauge group of phenomenological interest while carefully refusing any 4d QCD claim. The manuscript states that in the 2d world the SU(3) dimensionless coupling (t=g^2A) is reconstructible from edge-sector statistics at the Cramér-Rao limit, but makes no claim about four-dimensional QCD. 
+
+The capacity-of-entanglement identity is elegant. The paper shows that (C(t)=t^2I(t)), so the capacity is Fisher information in disguise in this model. 
+
+The n-interval result is conceptually strong: entropy grows with more cuts, but Fisher information does not, because the flux label is one global random variable. That is a nice warning against treating entropy scaling as information scaling.
+
+### Weaknesses
+
+The novelty may be challenged as “obvious once the known 2d YM formula is written as an exponential family.” The manuscript anticipates this by separating known formulas from new interpretation, but this needs to be even sharper. The contribution is not the heat-kernel distribution; it is the estimation-theoretic reading, the exact identity chain, the capacity identity, the finite-sample reconstruction analysis, the SU(3) implementation, and the n-interval information non-scaling.
+
+The term “entanglement entropy” remains risky because the object is a flux-sector/edge contribution whose physical status is contested. The manuscript does repeatedly state this, but the title could still be criticized. A safer title would include **“flux-sector statistics”** before “entanglement.”
+
+The phrase “coupling reconstruction” is correct but must always be tied to (t=g^2A), not (g) alone. The paper does say only the product is recoverable, but this point should appear in the abstract and theorem statements.
+
+The finite-sample numerical results are useful but secondary. The theorems should be the core; simulations should demonstrate the statistical protocol.
+
+### Required revisions
+
+I would require:
+
+1. A brutally clear “known vs new” table near the front.
+2. “Reconstructs (t=g^2A), not (g) alone” in the abstract.
+3. A short discussion of Casimir normalization and torus-factor normalization in the main text, not buried.
+4. A stronger literature search around Fisher information, exponential families, and symmetry-resolved/edge-sector entropy in 2d YM.
+5. Reproducibility packaging for `ym2_flux.py`, `ym2_su3.py`, and all output files.
+
+**Publication path:** Submit this one first. It is the cleanest, least speculative, and most likely to survive peer review.
+
+---
+
+## Paper 4: *Room for Three Couplings, and Only the Room: The Gauge-Invariant Algebra of a One-Generation Chiral Fock Space*
+
+**Recommendation:** **Major revision; potentially publishable and important within the series.**
+
+This paper executes the most important correction to Paper 2: it moves from the one-ideal toy, where SU(2)(_L) is absent, to the 15-mode one-generation chiral Weyl Fock space carrying SU(3) × SU(2) × U(1). The result is exactly the right kind of answer: the question becomes posable, three factor-aligned invariant functionals exist, but no coupling values are selected.
+
+The abstract reports the main computation: the commutant has 250 sectors, total dimension 57,062, center (\mathbb C^{250}), maximal multiplicity 52, and a 28-dimensional invariant-vector space. It also reports the sector congruence
+[
+y \equiv 4(a-b)+3(2j) \mod 6,
+]
+which identifies the sector lattice with the weight lattice of ((SU(3)\times SU(2)\times U(1))/Z_6). 
+
+### Strengths
+
+This is the paper that makes the program honest with respect to the Standard Model gauge representation content. The arena contains (Q, L, u_R, d_R, e_R), fifteen Weyl modes, dimension (2^{15}=32768), with SU(2)(_L) acting on the doublets and hypercharge replacing electric charge. 
+
+The computation is substantial. The report states that the commutant was verified by exact highest-weight peeling, character identities, exact Weyl-integration quadrature, full Fock-space Casimir spectroscopy, and sub-arena cross-checks with the previous commutant pipeline. ([GitHub][6])
+
+The conceptual result is excellent: the center labels are complete gauge-representation labels, but not chirality, baryon number, lepton number, or (B-L). This is a strong algebraic way of seeing that gauge kinematics does not superselect those quantities. ([GitHub][6])
+
+The paper corrects Paper 2 in a healthy way. The “all edge, no bulk” result fails in the larger arena: 185 of 250 sectors have both (n_i>1) and (m_i>1), covering 94.8% of the Fock space, and Q⊕L Haar states carry a nonzero quantum invariant entropy piece. 
+
+The final coupling conclusion is appropriately deflationary. The Casimir moments (\langle C_2(su(3))\rangle), (\langle C_2(su(2))\rangle), and (\langle Y^2\rangle) are gauge-factor-aligned and independently tunable, but the “three” is the input group’s factor count, the sector lattice is rank four and correlated, and no kinematics selects coupling values. 
+
+### Weaknesses
+
+The biggest issue is that the paper does **not literally reproduce the division-algebraic construction**. It argues that the commutant depends only on representation content, so the representation-theoretic Fock space is enough. That is probably correct, but it will be attacked by referees from the division-algebra side. The construction-independence lemma must be made airtight and central.
+
+The full multiplicity-space machinery is not completed on the full 32768-dimensional space. The limitations section says exact complete multiplicity machinery was run on the 256-dimensional Q⊕L sub-arena, while full-space exact center data and selected entropy cases were computed.  That is probably acceptable for the stated conclusions, but it weakens the impression of completeness. Either finish the full aligned-basis implementation or state more explicitly which claims do and do not require it.
+
+The B/L-violating invariant-operator discussion is interesting but physically delicate. A commutant containing (|vac\rangle\langle udd|) does not mean a physical Hamiltonian contains that transition. The paper knows this, but the rhetoric could mislead. Emphasize “kinematic allowed operator,” not “dynamically present interaction.”
+
+The product-state rank-3 Jacobian is a lower-bound result, not a classification. The paper is clear about this in limitations, but the abstract should not make the independence result sound stronger than it is.
+
+### Required revisions
+
+I would require:
+
+1. Formal proof of representation-content invariance / construction independence.
+2. A precise statement of which results use full 32768-dimensional data and which use Q⊕L.
+3. Either complete the full multiplicity-basis machinery or move quantum-piece claims to a clearly scoped sub-arena theorem.
+4. Tone down B/L-violating language.
+5. Include machine-verifiable decomposition tables as supplementary material with a DOI.
+6. Add a concise “why this does not derive couplings” paragraph after every positive result.
+
+**Publication path:** This could be a strong mathematical physics paper if separated from speculative motivation and presented as a representation-theoretic commutant computation for the one-generation SM Fock space.
+
+---
+
+## Paper 5: *Fisher Information in Compact U(1) Flux Sectors: Asymptotic Exponential Families, a Crossover Obstruction, and a Topological Zero-Mode Bridge to Four Dimensions*
+
+**Recommendation:** **Major revision; promising but currently the most technically fragile of the positive-extension papers.**
+
+This paper asks whether the exact 2d YM exponential-family/Fisher mechanism survives for compact U(1) above two dimensions. The answer is nuanced: yes asymptotically at strong coupling, no globally across the coupling axis, and yes exactly for topological zero modes on a spatial 3-torus in a Gibbs/Hartle-Hawking class of states.
+
+The abstract states the three core results: strong-coupling lattice compact U(1) has a leading-order exponential family with dipole-count statistic and natural parameter (\theta=\ln(16e^8)); globally the family is curved by exact-diagonalization rank tests; and the T(^3) winding sectors give an exact regulator-independent exponential family in (e^2), with (dS/de^2=-e^2I(e^2)). 
+
+### Strengths
+
+This is exactly the right sequel to Paper 3. It asks what survives when the 2d heat-kernel miracle is no longer globally available.
+
+The entropy-Fisher lemma is useful and portable: for an exponential family (p_\theta(x)=h(x)e^{-\theta T(x)}/Z), the Fisher information is (\operatorname{Var}_\theta(T)), and the entropy derivative includes the (-\theta I(\theta)) term plus a base-measure covariance correction. 
+
+The paper is careful that all entropy statements concern the Shannon entropy of the flux-sector distribution, not full entanglement entropy. It explicitly notes that in (d\ge 3) there is a propagating photon and the paper does not compute the distillable term. 
+
+The topological zero-mode result is the best part. It is finite, regulator-independent, tied to Donnelly-Wall’s constant flux sectors, and clearly more defensible than local edge-mode continuum claims. The reproducibility appendix lists deterministic scripts, residuals, theta-sum truncation, Poisson-dual weak-coupling evaluation, and exact-diagonalization residuals. 
+
+### Weaknesses
+
+The title may overpromise “four dimensions.” A large part of the evidence for the crossover obstruction comes from a 2+1d dual-height strip exact diagonalization, while the strong-coupling statement is leading-order 3+1d lattice, and the exact 4d statement is topological zero modes on T(^3). Those are all legitimate, but the title and abstract must make the patchwork structure unmistakable.
+
+The strong-coupling result is leading order. It should be framed as an asymptotic theorem, not as a global statement about the ground-state flux distribution.
+
+The global curvature claim is computational and model-limited. Exact diagonalization rank tests are valuable, but they do not constitute a theorem for all compact U(1) flux-sector distributions in higher dimensions.
+
+The paper should more directly address the compactness dependence. The literature note correctly says free noncompact Maxwell theory can absorb the coupling by field redefinition, so vacuum entanglement cannot depend on (e) except through compactness or charged matter. ([GitHub][7]) That point should be in the main paper’s introduction.
+
+### Required revisions
+
+I would require:
+
+1. Re-title to something like **“Flux-Sector Fisher Information in Compact U(1): Strong-Coupling, Crossover, and Topological Zero-Mode Regimes.”**
+2. Separate the three regimes into theorem/proposition/computation categories.
+3. Make the 2+1d ED evidence subordinate to the analytic claims.
+4. Put the noncompact Maxwell field-redefinition no-go in the introduction.
+5. Clarify exactly which (e)-dependent information is regulator-dependent and which is topological/finite.
+6. Include all deterministic result files and scripts in an archival supplement.
+
+**Publication path:** Submit after Paper 3, not before. It depends conceptually on the reader accepting the 2d YM benchmark first.
+
+---
+
+# Critique of the five papers together
+
+## The combined scientific message is strong
+
+Together, the papers support a clean thesis:
+
+**Kinematic entanglement data does not determine gauge couplings. Couplings can be reconstructed from gauge-invariant sector statistics only when a dynamics supplies a known coupling-dependent family of sector distributions.**
+
+That is a publishable conceptual result. It is also more mature than the original three-qubit motivation.
+
+The internal progression is coherent:
+
+* Paper 1 kills the naive subsystem-entropy ansatz.
+* Paper 2 makes the question gauge-invariant and kills it again in the minimal toy.
+* Paper 3 gives the positive control: 2d YM reconstructs (g^2A) from sector statistics because the theory supplies (p_R(t)).
+* Paper 4 restores the full three-factor SM gauge representation content and shows there is room for three aligned functionals, but no value-selection mechanism.
+* Paper 5 asks how much of the 2d positive mechanism survives in compact U(1) above two dimensions and finds only scoped survival.
+
+That is a legitimate research program.
+
+## The combined package is too self-referential
+
+Each paper cites the others heavily as “companion manuscripts.” That is acceptable for a preprint series but dangerous for journal review. Referees generally dislike being forced to read five unpublished manuscripts to review one.
+
+For publication, each manuscript should be self-contained. The phrase “companion manuscript” should be reduced to a short note. The logical dependencies should be restated rather than imported.
+
+## The code-verification posture is good but not enough
+
+The code is a strength. The manuscripts and repo repeatedly state that numerical claims are asserted at runtime, use deterministic seeds, and fail if verification breaks. Paper 1’s experiment directory lists scripts for matching, algebraic families, entropy flow, dynamics, Jordan-Wigner/Furey tests, rotor robustness, and number verification.  Paper 2’s appendix lists commutant construction, conditional expectation, algebraic entropy cross-checks, Haar sampling, and exact-rational checks.  Paper 4’s repo report says every claim is asserted at runtime by `run_rep.py`, `run_full.py`, or `run_crosscheck.py`. ([GitHub][6])
+
+But for journal publication, code assertions are not a substitute for proof. The manuscripts should distinguish:
+
+* **Exact theorem with proof**
+* **Exact computation with certificate**
+* **Floating-point numerical verification**
+* **Monte Carlo sanity check**
+* **Heuristic/exploratory evidence**
+
+That taxonomy should appear in every paper.
+
+## The AI acknowledgment is honest but may alarm referees
+
+The acknowledgments disclose use of Claude for literature synthesis, exposition, drafting, and computational experiments. That transparency is good. But saying an “independent verification pass” was performed by a separately instructed instance of the same AI system is not a substitute for independent human verification. A referee may react negatively.
+
+I would revise the acknowledgments to be more conventional: AI assisted drafting and code generation; all claims, proofs, and code responsibility rest with the author; code and logs are public. Avoid making the AI verification sound like a reviewer.
+
+## The publication strategy should change
+
+I would not submit five papers simultaneously. I would restructure into **three submissions**:
+
+### Submission A: Gauge-invariant finite-dimensional no-gos
+
+Merge Papers 1 and 2, and possibly the minimal-to-chiral bridge from Paper 4, into one strong article:
+
+**Proposed title:**
+**“Gauge-Invariant Entanglement and Coupling-Encoding No-Gos in Finite Fermionic Gauge Toys.”**
+
+Core content:
+
+* Naive subsystem entropy is gauge-variant.
+* Minimal one-ideal commutant gives only charge-sector data.
+* Weighted-W matching is pure gauge.
+* One-ideal lacks SU(2)(_L).
+* Chiral Fock-space extension restores full gauge group and gives room, but not values.
+
+This would be a much stronger paper than Papers 1 and 2 separately.
+
+### Submission B: 2d Yang-Mills Fisher reconstruction
+
+Submit Paper 3 mostly standalone.
+
+**Proposed title:**
+**“Fisher Information of Boundary Flux Sectors in Two-Dimensional Yang-Mills.”**
+
+This is the most elegant and least speculative result.
+
+### Submission C: Compact U(1) above two dimensions
+
+Submit Paper 5 only after Paper 3 is polished.
+
+**Proposed title:**
+**“Regime Dependence of Flux-Sector Fisher Information in Compact U(1) Gauge Theory.”**
+
+This should be framed as a sequel testing the survival of the 2d mechanism.
+
+Paper 4 could either be part of Submission A or become its own paper if expanded into a fully polished representation-theoretic computation with supplementary decomposition tables.
+
+---
+
+# Most important revisions across the whole project
+
+1. **Replace “coupling from entanglement” language with “coupling reconstruction from gauge-invariant sector statistics.”** The former sounds ontological; the latter is what the papers actually prove.
+
+2. **Make “determination vs reconstruction” the central slogan.** Determination by kinematics fails; reconstruction from a dynamical family can work.
+
+3. **Stop treating entropy alone as the central observable.** Entropy is a lossy functional. The sector distribution or invariant algebraic data is the real object.
+
+4. **Make the edge/center caveat unavoidable.** The center term is contested as physical entanglement. The papers know this; the abstracts and titles should reflect it.
+
+5. **Package the repo for peer review.** Add:
+
+   * `requirements.txt` or `pyproject.toml`
+   * exact Python version
+   * `make reproduce`
+   * CI workflow
+   * expected runtime table
+   * archived release DOI
+   * all result JSONs regenerated by scripts
+   * a README mapping each manuscript claim to a script/output file
+
+6. **Reduce companion-manuscript dependencies.** Each submitted paper should stand alone.
+
+7. **Convert code assertions into proof certificates where possible.** Exact integer arithmetic, representation decompositions, Weyl character checks, and commutant decompositions should be packaged as certificate files, not just scripts.
+
+---
+
+# Final accept/reject table
+
+| Paper                                     |      Scientific value | Main defect                                       | Referee recommendation                         |
+| ----------------------------------------- | --------------------: | ------------------------------------------------- | ---------------------------------------------- |
+| Three-qubit entropy no-go                 |              Moderate | Naive ansatz, best as prelude                     | Major revision / merge                         |
+| Minimal gauge-invariant algebraic entropy | High within toy scope | Very small toy, no SU(2)(_L)                      | Major revision                                 |
+| 2d YM Fisher reconstruction               |                  High | Novelty must be sharply framed                    | Moderate/major revision, best first submission |
+| One-generation chiral Fock space          |    High but technical | No dynamics, partial full-space entropy machinery | Major revision                                 |
+| Compact U(1) flux sectors                 |             Promising | Regime-dependent, technically fragile             | Major revision after Paper 3                   |
+
+My bottom-line judgment: **there is publishable material here, but not in the current five-paper form.** The strongest journal path is to lead with the 2d YM Fisher-information paper, then publish the finite-dimensional gauge-invariant no-go/SM-Fock-space paper as the structural counterpart, then submit the compact U(1) extension as a sequel.
+
+[1]: https://github.com/wtrevena/qio "GitHub - wtrevena/qio · GitHub"
+[2]: https://github.com/wtrevena/qio/tree/main/experiments "qio/experiments at main · wtrevena/qio · GitHub"
+[3]: https://raw.githubusercontent.com/wtrevena/qio/main/experiments/RESULTS.md "raw.githubusercontent.com"
+[4]: https://raw.githubusercontent.com/wtrevena/qio/main/direction_A/REPORT.md "raw.githubusercontent.com"
+[5]: https://raw.githubusercontent.com/wtrevena/qio/main/direction_A/run_direction_A.py "raw.githubusercontent.com"
+[6]: https://raw.githubusercontent.com/wtrevena/qio/main/newwork/two_ideal/REPORT.md "raw.githubusercontent.com"
+[7]: https://raw.githubusercontent.com/wtrevena/qio/main/newwork/u1_4d/LITERATURE.md "raw.githubusercontent.com"
