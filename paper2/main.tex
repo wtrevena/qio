@@ -38,7 +38,7 @@ A companion paper \cite{companion} showed that the question ``is the Standard Mo
 
 The companion paper \cite{companion} asked whether the Standard Model gauge coupling hierarchy is encoded in the entanglement entropies of a three-qubit vacuum state, motivated by the convergence of the emergent-spacetime and division-algebraic programs through the Szangolies construction \cite{szangolies}. Its answer was a battery of no-go results, capped by a diagnosis: the question is \emph{ill-posed}. Recognizing Furey's $\mathrm{Cl}(6)$ construction \cite{furey14, furey18, stoica} as the three-qubit operator algebra under the Jordan--Wigner transformation \cite{jordanwigner} makes electric charge the Hamming-weight grading of the computational basis --- and exposes the obstruction that gauge transformations act on the fermionic \emph{modes}, not on the qubit tensor factors. A color discrete Fourier transform maps a separable single-quark state, with single-qubit entropies $(0, 0, 0)$, to the W state, with entropies $(0.918, 0.918, 0.918)$. The program's central quantity was frame decoration.
 
-The companion paper closed by identifying the construction of a gauge-invariant entanglement functional as the central open problem (\cite{companion}, Secs.~9.3, 11.2). This paper completes that program for the minimal toy, and reports what the completed version says.
+The companion paper closed by identifying the construction of a gauge-invariant entanglement functional as the central open problem (\cite{companion}, Secs.~6.3 and~9). This paper completes that program for the minimal toy, and reports what the completed version says.
 
 The functional is not new and we do not claim it as such: entanglement relative to a distinguished $*$-subalgebra of observables is the ``generalized entanglement'' of Barnum, Knill, Ortiz, and Viola \cite{barnum}, the algebra-relative subsystem notion of Zanardi \cite{zanardi}, and --- in the form most relevant here --- the algebraic definition that Casini, Huerta, and Rosabal introduced for gauge fields \cite{chr}, whose classical center term Donnelly identified with lattice-gauge edge modes \cite{donnelly12, donnelly14}. Our contribution is to \emph{execute} this definition exactly, end to end, in the one system where the companion paper's question lives: the eight-dimensional one-generation ideal $(\nu, \bar d, u, e^+)$ in its Jordan--Wigner three-qubit presentation, under the three natural gauge choices $U(3)$, $SU(3)$, and $U(1)$. Everything is finite-dimensional, so there are no regularization choices to argue about; the commutants are computed numerically and certified, the entropies have closed forms, and every claim in this paper is asserted at runtime by the published code.
 
@@ -50,7 +50,7 @@ The functional is not new and we do not claim it as such: entanglement relative 
 
 \item \textbf{All edge, no bulk} (Theorem~2, Section~5). For every pure state and all three algebras, the quantum piece of the algebraic entropy vanishes identically --- a two-line consequence of the block structure, verified numerically to $1.8 \times 10^{-15}$. The toy's entire gauge-invariant entropy is the classical center term, the discrete analog of the edge-mode contribution in lattice gauge theory. As a corollary we derive $S_{U(1)} = S_{U(3)}$ for every pure state, despite the $U(1)$-invariant algebra being five times larger.
 
-\item \textbf{The headline: the companion paper's surviving ``match'' is pure gauge} (Theorem~3, Section~5.4). Every point of the weighted-W coupling-matching curve --- the one static construction in \cite{companion} that reproduced $\rSM = 1.8174$ --- has $\SA = 0$ for all three invariant algebras and is gauge-equivalent to a single Fock basis state: one quark in a rotated color frame. We exhibit $U \in SU(3)$ with $G(U)|001\rangle = |W\rangle$ exactly. The static coupling-matching analysis of \cite{companion}, Secs.~5--6, was matching frame artifacts.
+\item \textbf{The headline: the companion paper's surviving ``match'' is pure gauge} (Theorem~3, Section~5.4). Every point of the weighted-W coupling-matching curve --- the one static construction in \cite{companion} that reproduced $\rSM = 1.8174$ --- has $\SA = 0$ for all three invariant algebras and is gauge-equivalent to a single Fock basis state: one quark in a rotated color frame. We exhibit $U \in SU(3)$ with $G(U)|001\rangle = |W\rangle$ exactly. The static coupling-matching analysis of \cite{companion}, Secs.~2--4, was matching frame artifacts.
 
 \item \textbf{The well-posed question, answered} (Section~6). The gauge-invariant reformulation of the coupling-entropy question is stated and answered in the negative for four independent, machine-verified reasons: the invariant sectors are charge sectors, not gauge sectors; the algebra-canonical rotor vacuum carries exactly two independent invariant parameters, $p = (1/2, 3/14, 3/14, 1/14)$ with $p_1 = p_2$; exhaustive search over sector-to-coupling assignments misses $\rSM$ (best unprincipled miss: $r = 2$ exactly, flagged as numerology bait); and, within this one-ideal, number-conserving three-mode realization, no $SU(2)_L$ action is present --- a machine-checked and deliberately scoped lemma (Lemma~4; Appendix~C.1), not a claim about Furey's framework in general --- so a three-coupling question cannot even be posed here.
 
@@ -66,7 +66,7 @@ This paper is about an eight-dimensional toy. Nothing here bears on continuum ga
 
 \section{The Toy and Its Gauge Action}
 
-\textbf{Status: construction inherited from \cite{companion}, Sec.~9; machine-verified here to stated residuals.}
+\textbf{Status: construction inherited from \cite{companion}, Sec.~6; machine-verified here to stated residuals.}
 
 The arena is $\CC^8 = \CC^2 \otimes \CC^2 \otimes \CC^2$ with three Jordan--Wigner fermionic modes
 \begin{equation*}
@@ -157,7 +157,7 @@ Readings, in turn:
 
 \begin{itemize}
 
-\item \textbf{$U(3)$: the commutant is abelian.} The four weight sectors carry the inequivalent irreps $(1, U, \Lambda^2 U, \det U)$, each with multiplicity one, so the invariant algebra is the sector projectors and nothing more. \emph{The only single-copy gauge-invariant data of any state is its charge-sector distribution $(p_0, p_1, p_2, p_3)$.} This is the precise, gauge-invariant version of \cite{companion}'s ``index ambiguity'' (Sec.~2.3 there): there is no gauge-covariant tensor factorization because there are no gauge-invariant subsystems at all --- only charge sectors.
+\item \textbf{$U(3)$: the commutant is abelian.} The four weight sectors carry the inequivalent irreps $(1, U, \Lambda^2 U, \det U)$, each with multiplicity one, so the invariant algebra is the sector projectors and nothing more. \emph{The only single-copy gauge-invariant data of any state is its charge-sector distribution $(p_0, p_1, p_2, p_3)$.} This is the precise, gauge-invariant version of \cite{companion}'s ``index ambiguity'' (Sec.~2.1 Remark there): there is no gauge-covariant tensor factorization because there are no gauge-invariant subsystems at all --- only charge sectors.
 
 \item \textbf{$SU(3)$: the $\nu$--$e^+$ coherence survives.} Weights 0 and 3 are both $SU(3)$-trivial, so the commutant contains a full $M_2$ block on $\mathrm{span}\{|000\rangle, |111\rangle\} = \mathrm{span}\{\nu, e^+\}$ (machine check: the $M_2$ central projection equals the projector onto indices $\{0, 7\}$; assertion threshold $10^{-9}$, measured residual $\leq 3.3 \times 10^{-15}$). When only color is gauged, the GHZ-type $\nu$--$e^+$ coherence is gauge-invariant data. Weights 1 and 2 (the $\mathbf{3}$ and $\bar{\mathbf{3}}$) remain inequivalent and contribute $\CC \oplus \CC$.
 
@@ -204,7 +204,7 @@ Haar ensemble ($10^4$), mean $\pm$ std & --- & $1.580 \pm 0.239$ & $1.398 \pm 0.
 \end{tabular}
 \end{center}
 
-{\sloppy \emph{Cross-paper note (weighted-W row).} The representative matching state quoted here, $S = (0.9995, 0.8580, 0.7802)$, is the first stored point of the exp2 matching curve (\texttt{weighted\_W.examples[0]} in \texttt{exp2\_results.json}, curve grid index 0). The companion paper's Fig.~1c quotes a different representative, $S = (0.978, 0.895, 0.849)$ --- the separately stored curve midpoint (\texttt{weighted\_W\_example}, grid index 21 of 43). These are different points on the same one-parameter $r_S = 1.8174$ matching curve, not a discrepancy: both satisfy $r_S = \rSM$ to solver precision, both are verified weight-1-supported, and both are pure gauge, with $\SA = 0$ for all three invariant algebras (machine-verified in \texttt{direction\_A/strengthen.py}).\par}
+{\sloppy \emph{Cross-paper note (weighted-W row).} The representative matching state quoted here, $S = (0.9995, 0.8580, 0.7802)$, is the first stored point of the exp2 matching curve (\texttt{weighted\_W.examples[0]} in \texttt{exp2\_results.json}, curve grid index 0). It is the same representative the companion paper now quotes when verifying its closed-form Lemma~2 (\cite{companion}, Sec.~4.1, the $g = 0.0779$ point). The separately stored curve midpoint, $S = (0.978, 0.895, 0.849)$ (\texttt{weighted\_W\_example}, grid index 21 of 43), is covered by the same verification: the two are different points on the same one-parameter $r_S = 1.8174$ matching curve, not a discrepancy --- both satisfy $r_S = \rSM$ to solver precision, both are verified weight-1-supported, and both are pure gauge, with $\SA = 0$ for all three invariant algebras (machine-verified in \texttt{direction\_A/strengthen.py}).\par}
 
 Exact closed forms for the rotor vacuum (machine-checked to $10^{-12}$):
 \begin{align*}
@@ -217,15 +217,15 @@ and the $SU(3)$-invariant qubit in the $M_2$ ($\nu/e^+$) block is pure, with blo
 
 \subsection{State by State}
 
-\textbf{The W state's qubit entanglement is pure gauge.} We exhibit $U \in SU(3)$ (third column $(1,1,1)/\sqrt{3}$) with $G(U)|001\rangle = |W\rangle$ exactly (construction residual $0.0$), and verify $\EA(W) = \EA(|001\rangle)$ for the $U(3)$ algebra (residual $2.6 \times 10^{-16}$). The paradox that opened the well-posedness diagnosis in \cite{companion}, Sec.~9.3 --- a separable quark state mapped to the ``entangled'' W by a color DFT --- is here resolved rather than flagged: the algebraic entropy assigns \textbf{zero to both}, because a single quark in a color-rotated frame is still a single quark. The 0.918 bits the W state carries in the qubit factorization is entirely frame.
+\textbf{The W state's qubit entanglement is pure gauge.} We exhibit $U \in SU(3)$ (third column $(1,1,1)/\sqrt{3}$) with $G(U)|001\rangle = |W\rangle$ exactly (construction residual $0.0$), and verify $\EA(W) = \EA(|001\rangle)$ for the $U(3)$ algebra (residual $2.6 \times 10^{-16}$). The paradox that opened the well-posedness diagnosis in \cite{companion}, Sec.~6.3 --- a separable quark state mapped to the ``entangled'' W by a color DFT --- is here resolved rather than flagged: the algebraic entropy assigns \textbf{zero to both}, because a single quark in a color-rotated frame is still a single quark. The 0.918 bits the W state carries in the qubit factorization is entirely frame.
 
 \textbf{GHZ is one classical bit --- or nothing.} Under $U(3)$, which contains the electromagnetic $U(1)$, the GHZ state's invariant content is the charge distribution $(1/2, 0, 0, 1/2)$: exactly one bit of classical charge uncertainty, no quantum piece. Under $SU(3)$ only, the $\nu$--$e^+$ coherence sits inside the $M_2$ invariant block as a \emph{pure} qubit, and $S_{SU(3)}(\mathrm{GHZ}) = 0$. The ``maximal tripartite entanglement'' of GHZ is, gauge-invariantly, either one classical bit (charge superselection imposed) or no entropy at all (color-only gauging). Nothing about it is three-partite in any invariant sense. The toy cleanly separates color gauging from charge superselection here: the $\nu$--$e^+$ coherence is physical data if and only if the abelian factor is not gauged.
 
-\textbf{The rotor vacuum} --- the unique ground state of the companion paper's algebra-canonical Hamiltonian $H = i(L_u + 2R_u)$ (\cite{companion}, Sec.~8) --- is the only state in the list with nontrivial invariant data, and that data is two numbers (Section~6.3). Its invariant entropy, 1.724 bits, is comfortably \emph{generic}: the Haar mean is $1.580 \pm 0.239$. Gauge-invariantly, the canonical vacuum is not even unusually entangled.
+\textbf{The rotor vacuum} --- the unique ground state of the companion paper's algebra-canonical Hamiltonian $H = i(L_u + 2R_u)$ (\cite{companion}, Sec.~7) --- is the only state in the list with nontrivial invariant data, and that data is two numbers (Section~6.3). Its invariant entropy, 1.724 bits, is comfortably \emph{generic}: the Haar mean is $1.580 \pm 0.239$. Gauge-invariantly, the canonical vacuum is not even unusually entangled.
 
 \subsection{The Headline: the Coupling-Matching Curve Collapses to Pure Gauge}
 
-The companion paper's only surviving static ``match'' was the weighted-W family: a continuous curve of states $a|001\rangle + b|010\rangle + c|100\rangle$ reproducing the Standard Model log-inverse-coupling gap ratio $\rSM = 1.8174$ exactly under the two-parameter logarithmic map (\cite{companion}, Eq.~1; Secs.~5.3, 6.2, Fig.~1c). Every state on that curve is a weight-1 state, so the following theorem annihilates the entire matching mechanism at once --- and covers the W state of Section~5.3 as the special case $a = b = c$.
+The companion paper's only surviving static ``match'' was the weighted-W family: a continuous curve of states $a|001\rangle + b|010\rangle + c|100\rangle$ reproducing the Standard Model log-inverse-coupling gap ratio $\rSM = 1.8174$ exactly under the two-parameter logarithmic map (\cite{companion}, Eq.~1; Secs.~2.2--2.3, 4.1, Fig.~1c). Every state on that curve is a weight-1 state, so the following theorem annihilates the entire matching mechanism at once --- and covers the W state of Section~5.3 as the special case $a = b = c$.
 
 \medskip
 
@@ -239,7 +239,7 @@ The companion paper's only surviving static ``match'' was the weighted-W family:
 
 \medskip
 
-Numerical confirmation: all five stored curve points give $\max |\SA| = 1.9 \times 10^{-15}$, and the explicit $W = G(U)|001\rangle$ construction of Section~5.3 has residual $0.0$. The entire matching curve is gauge-equivalent to a single $\bar d$ quark in a rotated color frame, with invariant data identical to that of $|001\rangle$. \emph{The static coupling-matching analysis of \cite{companion}, Secs.~5--6, was matching gauge artifacts.} The companion paper diagnosed its title question as ill-posed; the well-posed functional goes further and evaluates the would-be evidence at exactly zero.
+Numerical confirmation: all five stored curve points give $\max |\SA| = 1.9 \times 10^{-15}$, and the explicit $W = G(U)|001\rangle$ construction of Section~5.3 has residual $0.0$. The entire matching curve is gauge-equivalent to a single $\bar d$ quark in a rotated color frame, with invariant data identical to that of $|001\rangle$. \emph{The static coupling-matching analysis of \cite{companion}, Secs.~2--4, was matching gauge artifacts.} The companion paper diagnosed its title question as ill-posed; the well-posed functional goes further and evaluates the would-be evidence at exactly zero.
 
 \subsection{Haar Ensemble and Analytic Cross-Check}
 
@@ -257,7 +257,7 @@ This is well-posed where the title question of \cite{companion} was not: $\EA$ i
 
 \subsection{Reason 1: the Sectors Are Charge Sectors, Not Gauge Sectors}
 
-The center of the $U(3)$-invariant algebra is spanned by the projectors onto eigenspaces of the \emph{single operator} $N$ (electric charge $Q = N/3$). The four labels $\{0, 1/3, 2/3, 1\}$ are values of one $U(1)$ quantum number. The $SU(3)$ factor contributes no additional center label --- weights 1 and 2 carry the $\mathbf{3}$ and $\bar{\mathbf{3}}$, but that is representation \emph{type}, not a continuous parameter --- and there are four sectors for three would-be couplings. A map $(p_1, p_2, p_3) \to (\alpha_3, \alpha_2, \alpha_1)$ requires a bijection $\{\text{charge sectors}\} \to \{\text{gauge factors}\}$ that nothing in the algebra provides: the invariant data simply does not factorize along gauge factors. This is the companion paper's ``index ambiguity'' (\cite{companion}, Sec.~2.3) promoted from labeling worry to structural fact.
+The center of the $U(3)$-invariant algebra is spanned by the projectors onto eigenspaces of the \emph{single operator} $N$ (electric charge $Q = N/3$). The four labels $\{0, 1/3, 2/3, 1\}$ are values of one $U(1)$ quantum number. The $SU(3)$ factor contributes no additional center label --- weights 1 and 2 carry the $\mathbf{3}$ and $\bar{\mathbf{3}}$, but that is representation \emph{type}, not a continuous parameter --- and there are four sectors for three would-be couplings. A map $(p_1, p_2, p_3) \to (\alpha_3, \alpha_2, \alpha_1)$ requires a bijection $\{\text{charge sectors}\} \to \{\text{gauge factors}\}$ that nothing in the algebra provides: the invariant data simply does not factorize along gauge factors. This is the companion paper's ``index ambiguity'' (\cite{companion}, Sec.~2.1 Remark) promoted from labeling worry to structural fact.
 
 \subsection{Reason 2: the Algebra-Canonical Vacuum Has Only Two Parameters}
 
@@ -265,7 +265,7 @@ The rotor vacuum's invariant data is exactly
 \begin{equation*}
 p = \left(\tfrac{1}{2}, \tfrac{3}{14}, \tfrac{3}{14}, \tfrac{1}{14}\right), \qquad \text{with } p_1 = p_2 \text{ exactly},
 \end{equation*}
-because the vacuum $(\sqrt{7}\,e_0 - iu)/\sqrt{14}$ has uniform $|\text{amplitude}|^2 = 1/14$ on all seven imaginary units, forcing $p_k$ proportional to the sector dimension on weights 1--3 (machine check: $|p_1 - p_2| < 10^{-16}$; the rationals certified against the floats to $10^{-10}$). The canonical vacuum therefore carries \textbf{two independent invariant parameters --- fewer than three couplings.} The permutation degeneracy that killed every hierarchical reading in the frame-dependent analysis (\cite{companion}, Secs.~6.2, 8) \emph{survives gauge-invariantization} as an exact sector degeneracy. The obstruction was never the frame; it is the algebra's symmetry. We stress that the parameter count is decisive jointly with the naturality requirement of Section~6.1 and the ansatz class inherited from \cite{companion} --- two invariant parameters cannot fill three coupling slots under any algebra-dictated assignment within that class --- not as bare dimension counting, which a sufficiently contrived map could always evade.
+because the vacuum $(\sqrt{7}\,e_0 - iu)/\sqrt{14}$ has uniform $|\text{amplitude}|^2 = 1/14$ on all seven imaginary units, forcing $p_k$ proportional to the sector dimension on weights 1--3 (machine check: $|p_1 - p_2| < 10^{-16}$; the rationals certified against the floats to $10^{-10}$). The canonical vacuum therefore carries \textbf{two independent invariant parameters --- fewer than three couplings.} The permutation degeneracy that killed every hierarchical reading in the frame-dependent analysis (\cite{companion}, Secs.~4.2 and~7) \emph{survives gauge-invariantization} as an exact sector degeneracy. The obstruction was never the frame; it is the algebra's symmetry. We stress that the parameter count is decisive jointly with the naturality requirement of Section~6.1 and the ansatz class inherited from \cite{companion} --- two invariant parameters cannot fill three coupling slots under any algebra-dictated assignment within that class --- not as bare dimension counting, which a sufficiently contrived map could always evade.
 
 \subsection{Reason 3: No Assignment Reproduces the Hierarchy Anyway}
 
@@ -293,7 +293,7 @@ Consequently \emph{the three-coupling question cannot even be posed gauge-covari
 
 \subsection{Verdict: More Constrained, Not Less}
 
-The ill-posed version of the question was \emph{underconstrained}: a 14-real-parameter state space, a guaranteed-nonempty one-parameter matching manifold, statistically generic matches, W-class realizations (\cite{companion}, Secs.~5.3, 6.1--6.2). The well-posed version is drastically \emph{more} constrained:
+The ill-posed version of the question was \emph{underconstrained}: a 14-real-parameter state space, a guaranteed-nonempty one-parameter matching manifold, statistically generic matches, W-class realizations (\cite{companion}, Secs.~2.2--2.3, 3.1, 4). The well-posed version is drastically \emph{more} constrained:
 
 \begin{itemize}
 \item the invariant state space shrinks from 14 parameters to 3 ($U(3)$);
@@ -314,8 +314,8 @@ The ill-posed version of the question was \emph{underconstrained}: a 14-real-par
 Across the two papers, the coupling-entropy question has now descended a complete ladder, each rung sharper than the last:
 
 \begin{enumerate}
-\item \textbf{Frame-dependent} (\cite{companion}, Secs.~5--6): the static matching analysis succeeded too easily --- matching was statistically generic, null controls matched equally well, and the one algebraically flavored success (the weighted-W curve) survived.
-\item \textbf{Ill-posed} (\cite{companion}, Sec.~9.3): the quantity being matched, single-qubit entropy of the Jordan--Wigner factorization, is not gauge-invariant. Diagnosis, not yet answer.
+\item \textbf{Frame-dependent} (\cite{companion}, Secs.~2--4): the static matching analysis succeeded too easily --- matching was statistically generic, null controls matched equally well, and the one algebraically flavored success (the weighted-W curve) survived.
+\item \textbf{Ill-posed} (\cite{companion}, Sec.~6.3): the quantity being matched, single-qubit entropy of the Jordan--Wigner factorization, is not gauge-invariant. Diagnosis, not yet answer.
 \item \textbf{Well-posed} (this paper, Secs.~3--4): replace subsystem entropy by the entropy relative to the gauge-invariant algebra. The question now has a definite, frame-independent content: three real parameters under $U(3)$.
 \item \textbf{Still no} (this paper, Sec.~6): the well-posed question has a negative answer for four independent structural reasons --- and it retroactively evaluates the rung-1 evidence at exactly zero (Sec.~5.4).
 \end{enumerate}
@@ -480,7 +480,7 @@ All three identifications also follow from Schur's lemma alone --- that is the a
 
 \begin{thebibliography}{20}
 
-\bibitem{companion} W.T. Trevena, ``Is the Standard Model Coupling Hierarchy Encoded in Three-Qubit Vacuum Entanglement? No-Go Results, an Exact Octonionic Vacuum, and the Surviving Hypothesis Space,'' companion paper (2026); code and manuscript at the same repository.
+\bibitem{companion} W.T. Trevena, ``Is the Standard Model Coupling Hierarchy Encoded in Three-Qubit Entanglement? Scoped No-Go Results and an Exact Octonionic Rotor Vacuum,'' companion paper (2026); code and manuscript at the same repository.
 
 \bibitem{furey14} C. Furey, ``Generations: three prints, in colour,'' JHEP 2014, 046 (2014).
 

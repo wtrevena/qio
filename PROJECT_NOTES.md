@@ -44,12 +44,12 @@ QIO program → deflated into a defensible three-paper series. Success mode (use
 
 ## TODO — next items (in order)
 
-1. **[IN PROGRESS] Cross-ref reconcile after Paper 1 restructure:** paper2/main.tex has ~17 pointers to Paper 1's OLD section numbers (lines listed in Paper 2 agent report: L41, L53, L69, L160, L201, L207, L220, L224, L228, L242, L260, L268, L272, L296, L317, L318, L519) — remap via paper/RESTRUCTURE_MAP.md (9.3→6.3; 11.2→6.3+9; 5-6→2-4; 9→6; 2.3→2.1-Remark; 8→7; 6.2→4; 5.3→2.2-2.3; 6.1→3.1; Fig 1c, Eqs 1-3 unchanged). ALSO: Paper 1's TITLE changed — update its quoted title in paper2 + paper3 bibliographies (paper3 \bibitem{P1} also cites path "paper/draft.md" → point to paper/main.tex). Recompile both, 0 errors. Then commit.
+1. ~~Cross-ref reconcile after Paper 1 restructure~~ **DONE 2026-06-10**: 15 pointers fixed in paper2/main.tex, 2 in paper3/main.tex (incl. an out-of-list catch: paper3's \bibitem{P2} had Paper 2's old "Entanglement" title → corrected to "Algebraic Entropy" + paper2/main.tex path). One map disagreement resolved: Paper 2's L207 note referenced a Fig-1c representative value that no longer exists in restructured Paper 1 — reworded to cite Lemma 2's verification (Sec 4.1). Both papers recompiled: 21pp + 20pp, 0 errors, zero stale-string hits.
 2. Final read-through pass of all three PDFs (page-level sanity, cross-paper consistency).
-3. User uploads Paper 1 to arXiv (package ready). After arXiv ID exists: fill placeholder refs in Paper 2 ([1] companion, [20] ym2companion) and Paper 3 ([P1]), rebuild their packages.
+3. User uploads Paper 1 to arXiv (package ready at paper/arxiv_submission/). After arXiv ID exists: fill placeholder refs in Paper 2 (companion, ym2companion) and Paper 3 (P1, P2), rebuild packages.
 4. Build arXiv packages for Papers 2 and 3 (not yet done — only Paper 1 has one).
-5. Decide Paper 4: two-ideal writeup vs u1_4d writeup vs both. Both REPORTs are paper-grade. Suggested: two-ideal first (it answers Paper 2's open objection; reviewer called it "the next real paper").
-6. Optional per reviewer: update Papers 2/3 "in progress" mentions of the two research directions once Paper 4 decision is made (they currently claim no results — accurate but understated now).
+5. Decide Paper 4: two-ideal writeup vs u1_4d writeup vs both. Both REPORTs are paper-grade. Suggested: two-ideal first (answers Paper 2's open objection; reviewer called it "the next real paper"). Supportable u1_4d scope: "asymptotic exponential families + crossover obstruction + zero-mode bridge" (one new computation: T³ flux-winding sectors).
+6. Optional: update Papers 2/3 "in progress" mentions of the two research directions once Paper 4 decision is made (they claim no results — accurate but understated now).
 7. Keep this file updated after every completed item.
 
 ## Commit log (this effort)
