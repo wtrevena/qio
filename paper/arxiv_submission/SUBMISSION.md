@@ -4,23 +4,23 @@
 
 `qio_paper1.tar.gz` — upload this file directly on the arXiv submission page.
 
-Contents (verified self-contained; compiles from scratch with 0 errors, 28 pages):
+Contents (verified self-contained; clean-room compile from the tarball: 0 errors, 21 pages):
 
 | File | Purpose |
 |---|---|
-| `main.tex` | Complete manuscript. The bibliography is embedded as a `thebibliography` environment, so no `.bbl` or `.bib` file is needed. |
-| `fig1_experiments.pdf` | Figure 1 (Section 6 computational experiments) |
-| `fig2_entropy_flow.pdf` | Figure 2 (Section 7 entropy flow) |
+| `main.tex` | Complete manuscript (restructured June 2026: no-go results front-loaded, deflationary framing). The bibliography is embedded as a `thebibliography` environment, so no `.bbl` or `.bib` file is needed. |
+| `fig1_experiments.pdf` | Figure 1 (Section 3 genericity; panels also referenced from Sections 4-5) |
+| `fig2_entropy_flow.pdf` | Figure 2 (Section 5 entropy-flow consistency envelope) |
 
 No custom style files are used (standard `article` class with geometry, amsmath, amssymb, graphicx, hyperref — all in every TeX Live, including arXiv's). arXiv will run pdflatex automatically (AutoTeX); the figures are PDF, which pdflatex handles natively.
 
 ## Title
 
-Is the Standard Model Coupling Hierarchy Encoded in Three-Qubit Vacuum Entanglement? No-Go Results, an Exact Octonionic Vacuum, and the Surviving Hypothesis Space
+Is the Standard Model Coupling Hierarchy Encoded in Three-Qubit Entanglement? Scoped No-Go Results and an Exact Octonionic Rotor Vacuum
 
-## Abstract (plain text, 1,897 characters — within arXiv's 1,920 limit)
+## Abstract (plain text, 1,918 characters — within arXiv's 1,920 limit)
 
-Our title question is motivated by emergent spacetime from entanglement and Standard Model structure from the octonions, bridged by Szangolies's three-qubit octonionic Hopf construction of the gauge group. We answer with systematic no-go results, verified with published code. The static version is underconstrained: across 10⁷ Haar-random states, the coupling-matching manifold is statistically generic, intersects the W class, and is matched equally well by random targets, four-qubit systems, and relabeled qubits. Two-qubit states cannot encode unequal couplings. Scale-independent entropies are inconsistent with renormalization-group running. Every canonical octonionic state construction tested is permutation-degenerate. An exactly solvable case sharpens the rigidity: the rotor Hamiltonian with multiplication-table-sign couplings equals i(L_u + 2R_u), u the sum of imaginary units; its unique ground state (√7 e₀ − iu)/√14 is provably convention-invariant and symmetric, with marginal spectra (1/7, 6/7) and 3-tangle equal to each squared concurrence, 8/49. Recognizing Furey's Cl(6) as the three-qubit algebra (Jordan-Wigner) yields charge as Hamming-weight grading — and an obstruction: gauge transformations are not local unitaries of the qubit factorization, so single-qubit entropies are gauge-frame dependent; the GUT normalization of α₁ adds convention-dependence. The title question is thus ill-posed as stated. What survives: gauge-invariant entanglement functionals; hierarchy from flow under an RG-consistent affine map, feasible only for |B| ≳ 126, whose one falsifiable consequence equates a symmetric boundary state with exact unification (SM asymmetry bottoms at 0.029; the MSSM reaches 0.003); and an explanation of why the algebra's canonical vacuum is symmetric. We offer a map of dead and surviving regions, not evidence for the motivating framework.
+Motivated by Szangolies's three-qubit octonionic Hopf construction of the Standard Model gauge group, we ask whether the measured three-gauge-coupling hierarchy could be encoded, under a proposed two-parameter logarithmic entropy map, in the single-qubit entanglement entropies of a three-qubit candidate state. We answer with scoped no-go results, verified with published code. The map collapses to one entropy-gap-ratio condition, which lies inside the three-qubit marginal polytope's image: matching is guaranteed and carries no evidence. Across 10⁷ Haar-random states the matching manifold is statistically generic, matched equally well by random coupling targets, four-qubit systems, and relabeled qubits; two-qubit states cannot encode unequal couplings at all. We give an analytic one-parameter family of W-class (zero 3-tangle) states satisfying the ratio condition exactly, so matching does not even fix the SLOCC class. A scale-independent entropy triple is inconsistent with renormalization-group running; the surviving affine entropy-flow map is a consistency envelope, not a model: feasible only for |B| ≳ 126, binding at M_Z alone, dependent on the GUT normalization of α₁. Every canonical octonionic construction considered here is permutation-degenerate. Recognizing Furey's Cl(6) as the three-qubit operator algebra (Jordan–Wigner) yields charge as Hamming-weight grading — and the sharpest obstruction: gauge transformations are not local unitaries of the qubit factorization, so single-qubit entropies are gauge-frame dependent and the title question is ill-posed as stated. A separate exact result: the rotor Hamiltonian i(L_u + 2R_u) selects a unique ground state (√7 e₀ − iu)/√14 — a genuine vacuum, chosen by algebra-canonical dynamics — convention-invariant and permutation-symmetric, with marginal spectra (1/7, 6/7) and 3-tangle 8/49. We close with a map of what is ruled out and what is not.
 
 (arXiv's metadata fields accept UTF-8; if any Unicode character is rejected, replace with inline TeX, e.g. `$10^7$`, `$(\sqrt{7}\,e_0 - iu)/\sqrt{14}$`, `$\gtrsim$`.)
 
@@ -55,7 +55,7 @@ arXiv requires that first-time submitters to most categories, including **quant-
 
 ## Practical submission checklist
 
-- Upload `qio_paper1.tar.gz` as-is; arXiv unpacks and runs AutoTeX (pdflatex). Verify the generated PDF preview is 28 pages with both figures rendered.
+- Upload `qio_paper1.tar.gz` as-is; arXiv unpacks and runs AutoTeX (pdflatex). Verify the generated PDF preview is 21 pages with both figures rendered.
 - Metadata: paste title and abstract from this file; author "William T. Trevena"; no report number; MSC/ACM classes not needed.
 - Journal-ref / DOI: leave blank (preprint).
-- Comments field suggestion: "28 pages, 2 figures. Code and raw outputs at [repository URL]. Companion paper to follow." — fill in the actual code repository URL before submitting, since the manuscript states the code is published.
+- Comments field suggestion: "21 pages, 2 figures, 2 tables. Code and raw outputs at [repository URL]. First paper of a three-paper series; companion papers to follow." — fill in the actual code repository URL before submitting, since the manuscript states the code is published.

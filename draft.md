@@ -1,3 +1,5 @@
+> **NOTE (June 2026):** This markdown draft is superseded — the authoritative, restructured manuscript is `paper/main.tex` (old-to-new section mapping in `paper/RESTRUCTURE_MAP.md`); this file is retained for history and has not been restructured.
+
 # Is the Standard Model Coupling Hierarchy Encoded in Three-Qubit Vacuum Entanglement? No-Go Results, an Exact Octonionic Vacuum, and the Surviving Hypothesis Space
 
 **William T. Trevena**
