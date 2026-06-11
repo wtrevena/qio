@@ -1,0 +1,179 @@
+{
+ "seed": 20260610,
+ "c3_selftest": {
+  "termlist_vs_dense": 2.220446049250313e-15,
+  "c3_commutes_with_su3": 4.440892098500626e-16
+ },
+ "FQ": {
+  "dim_commutant_numeric": 10,
+  "dim_commutant_analytic": 10,
+  "fresh_sample_residual": 4.298108851476167e-14,
+  "star_algebra_residual": 7.152615204485038e-15,
+  "abelian_residual": 2.5260277123055285e-16,
+  "center_dim_numeric": 10,
+  "block_dims_numeric": [
+   1,
+   1,
+   4,
+   6,
+   6,
+   6,
+   6,
+   9,
+   9,
+   16
+  ],
+  "block_dims_analytic": [
+   1,
+   1,
+   4,
+   6,
+   6,
+   6,
+   6,
+   9,
+   9,
+   16
+  ],
+  "all_m_equal_1": true
+ },
+ "QL_basis_orthonormality_residual": 8.881784197001252e-16,
+ "QL_named_states": {
+  "vacuum": {
+   "center_bits": -0.0,
+   "quantum_bits": 0.0,
+   "total_bits": 0.0,
+   "n_sectors": 1
+  },
+  "filled": {
+   "center_bits": -0.0,
+   "quantum_bits": 0.0,
+   "total_bits": 0.0,
+   "n_sectors": 1
+  },
+  "vac_plus_filled": {
+   "center_bits": 3.2034265038149176e-16,
+   "quantum_bits": 0.0,
+   "total_bits": 3.2034265038149176e-16,
+   "n_sectors": 1,
+   "singlet_mult_state": [
+    [
+     0.4999999999999999,
+     0.0
+    ],
+    [
+     0.4999999999999999,
+     0.0
+    ],
+    [
+     0.4999999999999999,
+     0.0
+    ],
+    [
+     0.4999999999999999,
+     0.0
+    ]
+   ],
+   "note": "off-diagonal coherence between the two invariant vectors (Fock vacuum and filled QL sea) is gauge-invariant data; S = 0"
+  },
+  "vac_plus_quark": {
+   "center_bits": 1.0,
+   "quantum_bits": 0.0,
+   "total_bits": 1.0,
+   "n_sectors": 2
+  },
+  "engineered_quantum": {
+   "center_bits": 4.805139755722375e-16,
+   "quantum_bits": 0.9999999999999997,
+   "total_bits": 1.0000000000000002,
+   "n_sectors": 1,
+   "trip_mult_state_eigs": [
+    0.5,
+    0.5000000000000001
+   ],
+   "note": "p = 1 on the (3,2)_{1/6} sector; multiplicity state = I/2 => S = 1 bit of PURE QUANTUM gauge-invariant entropy (first nonzero quantum piece in this program)"
+  },
+  "uniform_product": {
+   "center_bits": 4.279875390016526,
+   "quantum_bits": 0.172180468885217,
+   "total_bits": 4.452055858901743,
+   "n_sectors": 27
+  }
+ },
+ "QL_gauge_invariance": {
+  "max_dp": 2.6645352591003757e-15,
+  "max_dspec": 2.6645352591003757e-15,
+  "max_dS": 4.551914400963142e-15
+ },
+ "QL_twirl_check": {
+  "S_from_twirl_minus_dimterm": 0.9981004765045496,
+  "S_algebraic": 1.0000000000000002,
+  "n_mc": 4000,
+  "gap": 0.001899523495450639
+ },
+ "QL_haar": {
+  "n": 300,
+  "center_mean": 4.526480264254285,
+  "center_std": 0.056123085054864755,
+  "quantum_mean": 0.20023658828003416,
+  "quantum_std": 0.024295680021237314,
+  "quantum_min": 0.12827430617707183,
+  "frac_quantum_of_total": 0.042362721213705344
+ },
+ "QL_structure": {
+  "n_sectors": 31,
+  "dim_commutant": 46,
+  "sectors_m2": [
+   {
+    "label": [
+     1,
+     0,
+     2,
+     -2
+    ],
+    "m": 2,
+    "n": 9
+   },
+   {
+    "label": [
+     0,
+     1,
+     1,
+     -1
+    ],
+    "m": 2,
+    "n": 6
+   },
+   {
+    "label": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "m": 2,
+    "n": 1
+   },
+   {
+    "label": [
+     1,
+     0,
+     1,
+     1
+    ],
+    "m": 2,
+    "n": 6
+   },
+   {
+    "label": [
+     0,
+     1,
+     2,
+     2
+    ],
+    "m": 2,
+    "n": 9
+   }
+  ]
+ }
+}

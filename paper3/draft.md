@@ -1,5 +1,7 @@
 # Reconstructing the Gauge Coupling from Gauge-Invariant Entanglement Statistics: The Exactly Solvable Case of Two-Dimensional Yang–Mills
 
+> **NOTE (2026-06-10, round-2 revision): `paper3/main.tex` is the authoritative manuscript.** This markdown draft predates the round-2 revision implementing the external review's recommendations and is retained for history. The round-2 revision (in `main.tex` only) adds: formal theorem statements with explicit hypotheses (H) for the identity chain dS/dt = −(t/4)Var(C₂), I(t) = ¼Var(C₂), dS/dt = −t·I(t), and the n-cut identity; "compact connected Lie group in the standard 2d YM heat-kernel formulation" scoping with a remark on finite/disconnected groups; an explicit inversion-vs-sampling (channel (A)/(B)) distinction with the additive-counterterm convention stated prominently; a known-vs-new novelty table; finite-sample MLE bias and Wald/profile-likelihood confidence-interval analysis (new script `paper3/mle_bias_ci.py`, results `paper3/mle_bias_ci.json`); a weak-coupling asymptotics appendix with the heat-kernel constant c_G = ln vol(G) − (dim G/2)ln 2π + dim G/2 verified to machine precision (new script `paper3/weak_coupling_check.py`); a seven-point benchmark checklist; and a compressed, programmatic d = 4 discussion with one concrete proposed calculation (Fisher information of compact-U(1) edge-flux sectors across a closed entangling surface).
+
 **William T. Trevena**
 
 *Independent Researcher (PhD, ISE, University of Florida) — trevenaw7@gmail.com*

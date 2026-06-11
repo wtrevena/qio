@@ -11,7 +11,12 @@
 
 \hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
 
-\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\theoremstyle{plain}
 
 \newcommand{\Var}{\operatorname{Var}}
 \newcommand{\Cov}{\operatorname{Cov}}
@@ -32,7 +37,7 @@
 {\small\itshape Acknowledgment: Portions of this manuscript were developed with the assistance of Claude (Anthropic), an AI language model, which contributed to literature synthesis, mathematical exposition, drafting, and the computational experiments. Every formula taken from the literature was verified against the arXiv LaTeX source of the cited paper, not from memory; the verification record is \texttt{ym2/FORMULAS.md} in the repository. All numerical claims are reproduced by the published scripts (\texttt{ym2/ym2\_flux.py}, \texttt{ym2/ym2\_su3.py}, deterministic seed 20260609). Consistent with COPE authorship guidelines, the AI system is acknowledged as a tool rather than listed as a coauthor.}
 
 \begin{abstract}
-This is the third paper of a series. The first \cite{P1} showed that ``is the coupling hierarchy encoded in vacuum entanglement?'' is ill-posed for frame-dependent entanglement; the second \cite{P2} made the question well-posed algebraically and answered it negatively in the minimal toy, where all gauge-invariant entanglement is the classical edge (center) term. This paper presents the positive case the no-gos point to: the one setting where gauge-field entanglement is exactly computable and purely edge --- two-dimensional Yang--Mills on a sphere --- and where the coupling is not merely reflected in invariant entanglement data but \emph{efficiently estimable} from it. For compact gauge group $G$ in the Hartle--Hawking state, the boundary-flux distribution $p_R(t) \propto (\dim R)^2 e^{-(t/2)C_2(R)}$, $t = g^2 A$, is a one-parameter exponential family, which yields three exact statements: (i) $dS/dt = -(t/4)\Var_t(C_2) < 0$ --- the entanglement entropy is strictly decreasing in the coupling, so $t \mapsto S(t)$ is a bijection; (ii) the Fisher information of the flux measurement is $I(t) = \tfrac14\Var_t(C_2)$, so entropy susceptibility and statistical reconstructability are the same function, $dS/dt = -t\,I(t)$; (iii) the capacity of entanglement is $C(t) = t^2 I(t) \to \tfrac12\dG$ as $t \to 0$. Maximum-likelihood reconstruction from $N$ flux samples saturates the Cram\'er--Rao bound for $\mathrm{U}(1)$, $\mathrm{SU}(2)$, and $\mathrm{SU}(3)$ --- the gauge group of QCD: at $t = 1$, the coupling is recovered to $1.6\%$ from $10^3$ samples and $0.5\%$ from $10^4$. With $n$ intervals the entropy grows linearly in $n$ through the edge term $2n\langle \ln \dim R\rangle$, but the Fisher information does not grow at all: the flux at every cut is one global random variable, so entropy scales while information does not. We state precisely why all of this demonstrates \emph{reflection}, not determination: the inference inverts a known one-parameter family; only the product $g^2 A$ is recoverable; the edge term that carries it is contested as entanglement; and the one sharp $d = 4$ computation in the literature has the coupling dropping out. The open question the series leaves is whether any $d = 4$ analog of this $d = 2$ encoding exists.
+This is the third paper of a series. The first \cite{P1} showed that ``is the coupling hierarchy encoded in vacuum entanglement?'' is ill-posed for frame-dependent entanglement; the second \cite{P2} made the question well-posed algebraically and answered it negatively in the minimal toy, where all gauge-invariant entanglement is the classical edge (center) term. This paper presents the positive case the no-gos point to: the one setting where gauge-field entanglement is exactly computable and purely edge --- two-dimensional Yang--Mills on a sphere --- and where the coupling is not merely reflected in invariant entanglement data but \emph{efficiently estimable} from it. For a compact connected Lie gauge group $G$ in the standard heat-kernel formulation (Hartle--Hawking state), the boundary-flux distribution $p_R(t) \propto (\dim R)^2 e^{-(t/2)C_2(R)}$, $t = g^2 A$, is a one-parameter exponential family. The formulas themselves are known (Donnelly; Gromov--Santos); our contribution is the estimation-theoretic reading of them, stated as theorems with explicit hypotheses, plus the explicit $\mathrm{SU}(3)$/capacity/$n$-interval analysis. Three exact statements result: (i) $dS/dt = -(t/4)\Var_t(C_2) < 0$, so the \emph{convention-fixed} extended-Hilbert-space entropy --- or equivalently the counterterm-free flux distribution $p_R(t)$ itself --- determines $t$ by inversion (the additive-counterterm convention must be fixed for the entropy version of this claim, and we say so precisely); (ii) the Fisher information of the flux measurement is $I(t) = \tfrac14\Var_t(C_2)$, so entropy susceptibility and statistical reconstructability are the same function, $dS/dt = -t\,I(t)$; (iii) the capacity of entanglement is $C(t) = t^2 I(t) \to \tfrac12\dG$ as $t \to 0$, and $S(t) = \tfrac12\dG\ln(1/t) + c_G + o(1)$ with $c_G$ the heat-kernel constant computed in the appendix. Two operationally distinct reconstruction channels follow --- exact inversion of the convention-fixed entropy, and maximum-likelihood estimation from $N$ flux samples --- and the Fisher identity is why their sensitivities coincide. The MLE saturates the Cram\'er--Rao bound for $\mathrm{U}(1)$, $\mathrm{SU}(2)$, and $\mathrm{SU}(3)$ --- the gauge group of QCD: at $t = 1$, the coupling is recovered to $1.6\%$ from $10^3$ samples and $0.5\%$ from $10^4$, with finite-sample bias matching the analytic $O(1/N)$ formula and Wald/profile-likelihood confidence intervals attaining nominal coverage. With $n$ intervals the entropy grows linearly in $n$ through the edge term $2n\langle \ln \dim R\rangle$, but the Fisher information does not grow at all: the flux at every cut is one global random variable, so entropy scales while information does not. We state precisely why all of this is \emph{reconstruction of a parameter within a presupposed theory, not determination of the coupling by entanglement}: the inference inverts a known one-parameter family; only the product $g^2 A$ is recoverable; the edge term that carries it is contested as entanglement; and the one sharp $d = 4$ computation in the literature has the coupling dropping out. We close with a checklist that any future ``coupling from entanglement'' claim should specify, and one concrete proposed $d = 4$ calculation.
 \end{abstract}
 
 \section{Introduction}
@@ -41,7 +46,7 @@ This is the third paper of a series. The first \cite{P1} showed that ``is the co
 
 This paper completes an arc that began with a question and ends with the only version of an affirmative answer we believe the current literature supports.
 
-\textbf{Paper 1} \cite{P1} asked whether the Standard Model coupling hierarchy is encoded in the entanglement entropies of a three-qubit vacuum state, and answered with no-go results: the static matching problem is underconstrained (any hierarchy can be matched; matching is non-evidential), and --- the diagnosis that drives everything after it --- the question is \emph{ill-posed}, because gauge transformations act on fermionic modes rather than on qubit tensor factors, so the entanglement entropies in question are gauge-frame dependent (\cite{P1}, Sec.~9.3).
+\textbf{Paper 1} \cite{P1} asked whether the Standard Model coupling hierarchy is encoded in the entanglement entropies of a three-qubit vacuum state, and answered with no-go results: the static matching problem is underconstrained (any hierarchy can be matched; matching is non-evidential), and --- the diagnosis that drives everything after it --- the question is \emph{ill-posed}, because gauge transformations act on fermionic modes rather than on qubit tensor factors, so the entanglement entropies in question are gauge-frame dependent (the frame-dependence/ill-posedness diagnosis of \cite{P1}).
 
 \textbf{Paper 2} \cite{P2} made the question well-posed by replacing subsystem entropies with entanglement relative to the gauge-invariant operator algebra (Barnum--Knill--Ortiz--Viola \cite{BKOV}; Zanardi \cite{Zanardi}; in the gauge-field form, Casini--Huerta--Rosabal \cite{CHR}) and computed the answer exactly in the minimal toy. The well-posed answer was a sharper no-go: the single-copy invariant data is the charge-sector distribution alone; the quantum piece of the algebraic entropy vanishes identically for every pure state (``all edge, no bulk''); and the one static ``match'' of Paper 1 turned out to be pure gauge.
 
@@ -53,7 +58,7 @@ Both papers end at the same object from opposite sides: the \emph{classical cent
 
 Our thesis has a positive half and a deflationary half, and we state both up front.
 
-\emph{Positive.} In 2d Yang--Mills on a sphere (Hartle--Hawking state, compact group $G$), the gauge-invariant entanglement data of an interval --- the distribution $p_R(t)$ of the boundary electric flux, and the entanglement entropy $S(t)$ built from it --- determines the dimensionless coupling $t = g^2 A$ \textbf{exactly and efficiently}: $S(t)$ is strictly decreasing (an identity, not a numerical observation), so the map $t \mapsto S$ is a bijection; and an observer who measures the flux $N$ times can estimate $t$ with the smallest variance allowed by statistics, saturating the Cram\'er--Rao bound, because the flux distribution is an exponential family in the coupling. This includes $G = \mathrm{SU}(3)$: in the $d = 2$ world, the gauge coupling of the strong interaction is reconstructible from gauge-invariant entanglement statistics, and more efficiently than for smaller groups.
+\emph{Positive.} In 2d Yang--Mills on a sphere (Hartle--Hawking state, compact connected Lie group $G$, standard heat-kernel formulation), the gauge-invariant entanglement data of an interval --- the distribution $p_R(t)$ of the boundary electric flux, and the entanglement entropy $S(t)$ built from it, with the additive-counterterm convention fixed --- determines the dimensionless coupling $t = g^2 A$ \textbf{exactly and efficiently}, through two operationally distinct channels: $S(t)$ is strictly decreasing (an identity, not a numerical observation), so the convention-fixed map $t \mapsto S$ is a bijection and exact entropy gives $t$ by inversion; and an observer who measures the flux $N$ times can estimate $t$ with the smallest variance allowed by statistics, saturating the Cram\'er--Rao bound, because the flux distribution is an exponential family in the coupling --- with no entropy convention needed at all. The Fisher identity $dS/dt = -t\,I(t)$ is why the two channels have the same sensitivity. This includes $G = \mathrm{SU}(3)$: in the $d = 2$ world, the gauge coupling of the strong interaction is reconstructible from gauge-invariant entanglement statistics, and more efficiently than for smaller groups.
 
 \emph{Deflationary.} This demonstrates \textbf{reflection, not determination}. The inference presupposes the theory --- the group, the state preparation, the known one-parameter family $p_R(t)$ --- and recovers the value of a parameter the family was already known to depend on. It does not show that the coupling is \emph{constituted by} entanglement, nor that any of this survives to $d = 4$, where the only sharp computation of a coupling-sensitive entanglement coefficient finds it independent of the coupling's value \cite{CHMP}. Section~\ref{sec:scope} makes the deflation precise; Section~\ref{sec:d34} prices out what $d = 3$ and $d = 4$ would require.
 
@@ -65,9 +70,9 @@ Each contribution carries an epistemic label, as throughout the series. ``Litera
 
 \begin{enumerate}
 
-\item \textbf{Monotonicity theorem} (derived; computed to stated residuals). For any compact $G$, the interval entanglement entropy of the Hartle--Hawking state obeys $dS/dt = -(t/4)\Var_t(C_2) < 0$ on $t \in (0,\infty)$; hence $t \mapsto S(t)$ is a smooth bijection $(0,\infty) \to (0,\infty)$ and the coupling is recoverable from the exact entropy. Numerical inversion recovers $t$ to $\leq 9\times10^{-14}$ across three groups (Sec.~\ref{sec:mono}).
+\item \textbf{Monotonicity theorem} (derived; computed to stated residuals). For every compact connected Lie group $G$ in the standard heat-kernel formulation, the interval entanglement entropy of the Hartle--Hawking state obeys $dS/dt = -(t/4)\Var_t(C_2) < 0$ on $t \in (0,\infty)$; hence $t \mapsto S(t)$ is a smooth bijection $(0,\infty) \to (0,\infty)$ and the coupling is recoverable by inversion from the exact \emph{convention-fixed} entropy --- equivalently, from the counterterm-free flux distribution $p_R(t)$ (Theorem~\ref{thm:mono}). Numerical inversion recovers $t$ to $\leq 9\times10^{-14}$ across three groups (Sec.~\ref{sec:mono}).
 
-\item \textbf{Fisher-information identity and Cram\'er--Rao saturation} (derived; computed). The flux distribution is a one-parameter exponential family with sufficient statistic $C_2(R)$; its Fisher information is $I(t) = \tfrac14\Var_t(C_2)$, so $dS/dt = -t\,I(t)$: the entropy's sensitivity to the coupling \emph{is} ($t$ times) the statistical information the flux carries about the coupling. Maximum-likelihood estimation from $N$ flux samples saturates the Cram\'er--Rao bound for $\mathrm{U}(1)$, $\mathrm{SU}(2)$, $\mathrm{SU}(3)$ (Sec.~\ref{sec:recon}).
+\item \textbf{Fisher-information identity, two reconstruction channels, Cram\'er--Rao saturation} (derived; computed). The flux distribution is a one-parameter exponential family with sufficient statistic $C_2(R)$; its Fisher information is $I(t) = \tfrac14\Var_t(C_2)$, so $dS/dt = -t\,I(t)$ (Theorem~\ref{thm:fisher}): the entropy's sensitivity to the coupling \emph{is} ($t$ times) the statistical information the flux carries about the coupling. This makes two operationally distinct channels --- inversion of the exact entropy and maximum-likelihood estimation from finite flux samples --- quantitatively equivalent in sensitivity (Sec.~\ref{sec:channels}). The MLE saturates the Cram\'er--Rao bound for $\mathrm{U}(1)$, $\mathrm{SU}(2)$, $\mathrm{SU}(3)$, with finite-sample bias matching the analytic $O(1/N)$ formula and confidence intervals at nominal coverage (Secs.~\ref{sec:recon}, \ref{sec:biasci}).
 
 \item \textbf{SU(3) --- the QCD group} (computed; new in this paper). The analysis extends to $\mathrm{SU}(3)$ with irreps $(p,q)$, $\dim = (p+1)(q+1)(p+q+2)/2$, $C_2 = (p^2+q^2+pq+3p+3q)/3$ (convention verified, Sec.~\ref{sec:groupdata}). At $t = 1$ the coupling is recovered to $1.6\%$ from $10^3$ samples, $0.5\%$ from $10^4$, at Cram\'er--Rao efficiency ${\sim}1.0$. Reconstruction \emph{improves} with group size: $I(t) \to \dG/(2t^2)$ at weak coupling, so the larger the gauge group, the more information each flux sample carries (Sec.~\ref{sec:qcd}).
 
@@ -75,9 +80,33 @@ Each contribution carries an epistemic label, as throughout the series. ``Litera
 
 \item \textbf{$n$ intervals: entropy scales, information does not} (derived; computed; the qualitative point is Donnelly's \cite{D14}). For a region of $n$ intervals the entropy is $S_n = H[p] + 2n\langle\ln d\rangle$ \cite[eq.~(YM2entropy), literature-verified]{D14}, and we derive $dS_n/dt = -(t/4)\Var(C_2) - (n-1)\Cov(\ln d, C_2)$, strictly negative for all $n$ in all cases computed. But the flux variables at the $2n$ cut points are \emph{perfectly correlated} --- one global $R$ --- so the Fisher information is exactly $n$-independent: more cuts give no new information about the coupling, and a numerical experiment confirms the estimator obeys the $N$-preparation bound, not the hypothetical $2nN$-sample bound (Sec.~\ref{sec:ncuts}). 2d Yang--Mills's flux is one global random variable; the edge entropy counts cut points, not information.
 
-\item \textbf{Scope, stated as sharply as the results} (literature-verified). Everything here is $d = 2$ and purely the contested edge term; only the product $g^2 A$ is recoverable; and the $d = 4$ evidence runs \emph{against} naive extrapolation (Secs.~\ref{sec:scope}--\ref{sec:d34}).
+\item \textbf{Weak-coupling asymptotics with the heat-kernel constant} (derived; computed to machine precision). $S(t) = \tfrac12\dG\ln(1/t) + c_G + o(1)$ as $t \to 0^+$, with $c_G = \ln\mathrm{vol}(G) - \tfrac12\dG\ln 2\pi + \tfrac12\dG$ in the Casimir-adapted metric, and $I(t) = \dG/(2t^2)$, $C(t) \to \tfrac12\dG$; the $e^{at}$ heat-kernel correction cancels identically in $S$. Closed forms for all three groups, verified to $\leq 2\times10^{-14}$ (Appendix~\ref{app:weak}).
+
+\item \textbf{Scope, stated as sharply as the results} (literature-verified). Everything here is $d = 2$ and purely the contested edge term; only the product $g^2 A$ is recoverable; and the $d = 4$ evidence runs \emph{against} naive extrapolation (Secs.~\ref{sec:scope}--\ref{sec:d34}). Section~\ref{sec:benchmark} distills the model into a benchmark checklist for any future ``coupling from entanglement'' claim.
 
 \end{enumerate}
+
+\subsection{What is known and what is new}\label{sec:novelty}
+
+The reader should not mistake the inputs for the outputs. The formulas are known; the contribution is the estimation-theoretic reading and the explicit $\mathrm{SU}(3)$/capacity/$n$-interval analysis. Table~\ref{tab:novelty} draws the line item by item.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{p{0.47\textwidth}p{0.47\textwidth}}
+\toprule
+\textbf{Known (literature, verified against sources)} & \textbf{New in this paper} \\
+\midrule
+Heat-kernel solution of 2d YM; all amplitudes as irrep sums \cite{Mig75, Rus90, Wit91, CMR94} & Exponential-family reading of $p_R(t)$: natural parameter $-t/2$, sufficient statistic $C_2(R)$, and everything that follows from it \\[3pt]
+Flux distribution $p_R(t) \propto d_R^2 e^{-(t/2)C_2}$ \cite[eq.~(pr)]{D14} & Identity chain packaged as theorems: $dS/dt = -(t/4)\Var_t(C_2)$, $I(t) = \tfrac14\Var_t(C_2)$, $dS/dt = -t\,I(t)$ (Theorems~\ref{thm:mono}, \ref{thm:fisher}) \\[3pt]
+Edge entropy $S_n = H[p] + 2n\langle\ln d\rangle$ \cite{D14, GS14, V08}; extended-Hilbert-space decomposition \cite{D11, CHR, GST15} & Capacity-of-entanglement identity $C(t) = t^2 I(t)$ in YM$_2$ (Prop.~\ref{prop:capacity}); weak-coupling constant $c_G$ (App.~\ref{app:weak}) \\[3pt]
+Qualitative $n$-interval point: extra intervals give no new information (abelian case, verbatim) \cite{D14} & $n$-cut derivative identity $dS_n/dt = -(t/4)\Var - (n-1)\Cov(\ln d, C_2)$ and the quantitative Fisher non-scaling $I_n = I_1$, with numerical demonstration (Theorem~\ref{thm:ncut}) \\[3pt]
+Capacity of entanglement as a concept \cite{YQ10, dBJK18}; weak-coupling $\tfrac12\dG\log$ scaling \cite{GS14, R15} & $\mathrm{SU}(3)$ computation; MLE/Cram\'er--Rao saturation demonstration; finite-sample bias and confidence-interval analysis (Secs.~\ref{sec:recon}--\ref{sec:biasci}) \\
+\bottomrule
+\end{tabular}
+\caption{Division of labor between the literature and this paper. The left column is literature-verified (sources and verbatim strings in \texttt{ym2/FORMULAS.md}); the right column is what this paper adds.}
+\label{tab:novelty}
+\end{table}
 
 \section{Setting and Verified Formulas}\label{sec:setting}
 
@@ -85,7 +114,7 @@ Each contribution carries an epistemic label, as throughout the series. ``Litera
 
 \subsection{The theory and the state}
 
-Pure Yang--Mills theory with compact gauge group $G$ in two Euclidean dimensions is exactly solvable: the heat-kernel lattice action is self-reproducing under plaquette merging, so every amplitude on every surface has a closed form as a sum over irreps \cite{Mig75, Rus90, Wit91, CMR94}. On a closed surface $\Sigma$ of area $V$ and Euler characteristic $\chi$,
+Pure Yang--Mills theory with compact connected Lie gauge group $G$ in two Euclidean dimensions, in the standard heat-kernel formulation, is exactly solvable: the heat-kernel lattice action is self-reproducing under plaquette merging, so every amplitude on every surface has a closed form as a sum over irreps \cite{Mig75, Rus90, Wit91, CMR94}. On a closed surface $\Sigma$ of area $V$ and Euler characteristic $\chi$,
 \[
 Z(\Sigma) = \sum_R (\dim R)^{\chi}\, \exp\!\left[-\tfrac{g^2 V}{2}\, C_2(R)\right],
 \]
@@ -136,17 +165,29 @@ $\mathrm{SU}(3)$ & $(p,q)$, $p,q \in \mathbb{Z}_{\geq 0}$ & $(p+1)(q+1)(p+q+2)/2
 
 \section{Exact Results}\label{sec:exact}
 
-\subsection{Exponential-family structure}
+\subsection{Standing hypotheses and exponential-family structure}
 
 \textbf{Status: derived (elementary); the observation that drives the paper.}
 
-Eq.~\eqref{eq:flux} is a one-parameter exponential family in $\theta = -t/2$ with sufficient statistic $C_2(R)$ and base measure $d_R^2$. Writing $\langle\cdot\rangle$, $\Var$, $\Cov$ for moments under $p(t)$, the standard cumulant identities give
+All formal statements below share one set of hypotheses, which we state once:
+
+\begin{quote}
+\textbf{Hypotheses (H).} $G$ is a compact connected Lie group; the theory is pure 2d Yang--Mills in the standard heat-kernel formulation on a sphere of area $A$, in the Hartle--Hawking state on the equatorial circle (Sec.~\ref{sec:setting}); $t = g^2 A \in (0,\infty)$; the region is $n \geq 1$ disjoint intervals; $S_n(t)$ is the extended-Hilbert-space entanglement entropy \eqref{eq:Sn} with the additive counterterm fixed by the $v = 0$ convention of Sec.~\ref{sec:groupdata} (trivial flux sector nondegenerate, $S \to 0$ as $t \to \infty$); $p_R(t)$ is the flux distribution \eqref{eq:flux}, which is convention-free.
+\end{quote}
+
+Connectedness matters: it guarantees infinitely many irreps with unbounded, non-constant Casimir, which is what the bijection and weak-coupling claims use. Remark~\ref{rem:groups} states what survives without it.
+
+Under (H), eq.~\eqref{eq:flux} is a one-parameter exponential family in $\theta = -t/2$ with sufficient statistic $C_2(R)$ and base measure $d_R^2$. Writing $\langle\cdot\rangle$, $\Var$, $\Cov$ for moments under $p(t)$, the standard cumulant identities give
 \begin{equation}\label{eq:cumulant}
 \frac{d\langle f(R)\rangle}{dt} = -\tfrac12 \Cov_t(f, C_2) \quad \text{for any statistic } f, \qquad \frac{d \ln Z}{dt} = -\tfrac12\langle C_2\rangle.
 \end{equation}
 Everything in Secs.~\ref{sec:mono}--\ref{sec:ncuts} is a corollary of \eqref{eq:cumulant}.
 
-\subsection{Monotonicity: \texorpdfstring{$S$ determines $t$}{S determines t}}\label{sec:mono}
+\begin{remark}[wider and narrower groups]\label{rem:groups}
+The identities of Theorems~\ref{thm:mono}--\ref{thm:ncut} that involve only the exponential-family structure --- $dS_n/dt$, $I(t)$, $C(t)$, and their relations --- hold verbatim for \emph{any} compact group, including finite and disconnected ones, whenever the Boltzmann weight is $e^{-(t/2)c(R)}$ for a fixed non-constant class statistic $c$ (for compact disconnected Lie groups, $C_2$ itself; for finite groups, any chosen $c$, since no canonical Casimir exists). What fails without connectedness is the \emph{range} statement: a finite group has finitely many irreps, so $S$ is bounded, $S \not\to \infty$ as $t \to 0^+$, and $t \mapsto S(t)$ is a bijection onto a bounded interval rather than onto $(0,\infty)$; the weak-coupling asymptotics of Appendix~\ref{app:weak}, which use the heat-kernel divergence of the group manifold, have no analog. For a disconnected compact Lie group, the statements hold with $\dG$ the dimension of the identity component and $\mathrm{vol}(G)$ including the number of components. We therefore write ``compact connected Lie $G$'' in the theorems and treat these extensions as remarks, not as instances.
+\end{remark}
+
+\subsection{Monotonicity: the convention-fixed \texorpdfstring{$S$}{S} determines \texorpdfstring{$t$}{t}}\label{sec:mono}
 
 \textbf{Status: derived; computed (machine-verified residuals quoted).}
 
@@ -156,42 +197,81 @@ S(t) = \ln Z(t) + \tfrac{t}{2}\langle C_2\rangle_t.
 \end{equation}
 Differentiating with \eqref{eq:cumulant}:
 
-\begin{proposition}[monotonicity]\label{prop:mono}
-For any compact $G$,
+\begin{theorem}[entropy--coupling monotonicity and inversion]\label{thm:mono}
+Assume (H) with $n = 1$. Then on $t \in (0,\infty)$:
+\begin{enumerate}
+\item[(a)] \emph{(derivative identity)}
 \begin{equation}\label{eq:dSdt}
-\frac{dS}{dt} = -\tfrac12\langle C_2\rangle + \tfrac12\langle C_2\rangle + \tfrac{t}{2}\left(-\tfrac12\Var_t(C_2)\right) = -\frac{t}{4}\,\Var_t(C_2) \;<\; 0
+\frac{dS}{dt} = -\frac{t}{4}\,\Var_t(C_2) \;<\; 0,
 \end{equation}
-for all $t > 0$, since $p(t)$ has full support on irreps with distinct Casimirs. $Z(t)$ is analytic on $(0,\infty)$, so $S$ is smooth and strictly decreasing, with $S \to \infty$ as $t \to 0^+$ and $S \to 0$ as $t \to \infty$: the map $t \mapsto S(t)$ is a bijection $(0,\infty) \to (0,\infty)$. The dimensionless coupling $t = g^2 A$ is exactly recoverable from the entanglement entropy.
-\end{proposition}
+where strict negativity holds because $p(t)$ has full support on infinitely many irreps with distinct Casimirs, so $\Var_t(C_2) > 0$.
+\item[(b)] \emph{(bijection)} $Z(t)$ is analytic on $(0,\infty)$, so $S$ is smooth and strictly decreasing, with $S \to \infty$ as $t \to 0^+$ (Appendix~\ref{app:weak}) and $S \to 0$ as $t \to \infty$; hence $t \mapsto S(t)$ is a bijection $(0,\infty) \to (0,\infty)$.
+\item[(c)] \emph{(what determines $t$)} The convention-fixed extended-Hilbert-space entropy --- or equivalently the ambiguity-free flux distribution $p_R(t)$ --- determines $t$ exactly.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) Differentiate \eqref{eq:SlnZ} using \eqref{eq:cumulant}: $dS/dt = -\tfrac12\langle C_2\rangle + \tfrac12\langle C_2\rangle + \tfrac{t}{2}(-\tfrac12\Var_t(C_2)) = -\tfrac{t}{4}\Var_t(C_2)$. (b) Analyticity of $Z$ follows from uniform convergence of the irrep sum on compact subsets of $(0,\infty)$ (Casimir growth dominates dimension growth); the $t \to 0^+$ divergence is the heat-kernel asymptotics of Appendix~\ref{app:weak}; as $t \to \infty$ the trivial sector dominates and $S \to 0$ in the $v = 0$ convention. (c) is immediate from (b) given the convention, and from injectivity of $t \mapsto p(t)$ (e.g.\ via $\langle C_2 \rangle_t$ strictly decreasing) without it.
+\end{proof}
+
+\begin{remark}[the convention dependence is essential, and quarantined]\label{rem:convention}
+Part (c) is stated with care because $S$ carries a $t$-independent additive counterterm ambiguity (Sec.~\ref{sec:groupdata}). \emph{Without} fixing the convention, the exact entropy determines $t$ only up to that ambiguity --- an observer handed ``the value of $S$'' in an unknown convention learns $t$ only after one calibration point. The objects that determine $t$ with no convention at all are the flux distribution $p_R(t)$, any $t$-derivative of $S$, and finite flux samples (Sec.~\ref{sec:recon}). Every reconstruction channel used in this paper is of that ambiguity-free kind except the explicit entropy-inversion demonstration of Sec.~\ref{sec:inversion}, which declares its convention.
+\end{remark}
 
 \emph{Computed verification.} On $t \in [0.05, 20]$ (400-point geometric grid): $S$ strictly decreasing for $\mathrm{U}(1)$, $\mathrm{SU}(2)$, $\mathrm{SU}(3)$; the analytic derivative \eqref{eq:dSdt} matches finite differences to better than $0.3\%$ ($\mathrm{SU}(2)$, $\mathrm{U}(1)$) and $0.6\%$ ($\mathrm{SU}(3)$) everywhere on the grid (grid-stencil error), and to $2.4\times10^{-10}$ with dedicated central differences (Sec.~\ref{sec:ncuts}); max $dS/dt$ on the grid: $-6.2\times10^{-3}$ ($\mathrm{SU}(2)$), $-4.5\times10^{-4}$ ($\mathrm{U}(1)$), $-2.6\times10^{-4}$ ($\mathrm{SU}(3)$) --- bounded away from zero. Practical inversion (given exact $S$, root-find $t$) recovers $t$ to $\leq 9\times10^{-14}$ at six test points per group. The Shannon-only piece $H(t) = S - 2\langle\ln d\rangle$ is \emph{not} manifestly monotonic ($dH/dt = -(t/4)\Var(C_2) + \Cov(\ln d, C_2)$, a competition); numerically it is also strictly decreasing for all three groups on the grid, but only the full $S$ has the analytic proof. We flag this honestly because $H$, not $S$, is the piece \cite{D14} identifies with uncertainty in gauge-invariant observables.
 
-The weak-coupling behavior is universal, and it is what justifies $S \to \infty$ in Proposition~\ref{prop:mono}: $Z(t) = \sum_R d_R^2 e^{-(t/2)C_2(R)}$ is the heat kernel of the group manifold $G$ evaluated at the identity, whose short-time behavior is the standard flat divergence $Z(t) \simeq \mathrm{vol}(G)\,(2\pi t)^{-\dG/2}$ \cite{Cam90, CMR94}, so $S \simeq \tfrac12\dG\,\ln(1/t) + \text{const}$ as $t \to 0$. Computed witness: $S(t) + \tfrac12\dG\,\ln t$ is constant to better than $10^{-6}$ over $t \in [0.002, 0.2]$ for all three groups, and for $\mathrm{U}(1)$ the constant equals the exact heat-kernel value $\tfrac12 + \tfrac12\ln 2\pi = 1.4189385$ to seven digits. This is consistent with the weak-coupling scaling of \cite{GS14}, and formally the same $\tfrac12\dG\,\log(\text{coupling})$ structure as Radi\v{c}evi\'c's $d = 3$ universal term \cite{R15}.
+The weak-coupling behavior is universal, and it is what justifies $S \to \infty$ in Theorem~\ref{thm:mono}: $Z(t) = \sum_R d_R^2 e^{-(t/2)C_2(R)}$ is the heat kernel of the group manifold $G$ evaluated at the identity, whose short-time behavior is the standard flat divergence $Z(t) \simeq \mathrm{vol}(G)\,(2\pi t)^{-\dG/2}$ \cite{Cam90, CMR94}, so $S(t) = \tfrac12\dG\,\ln(1/t) + c_G + o(1)$ as $t \to 0$. Appendix~\ref{app:weak} derives the constant, $c_G = \ln\mathrm{vol}(G) - \tfrac12\dG\ln 2\pi + \tfrac12\dG$, evaluates it in closed form for all three groups, and verifies it numerically to $\leq 2\times10^{-14}$; the same expansion gives $I(t) = \dG/(2t^2)$ and $C(t) \to \tfrac12\dG$. This is consistent with the weak-coupling scaling of \cite{GS14}, and formally the same $\tfrac12\dG\,\log(\text{coupling})$ structure as Radi\v{c}evi\'c's $d = 3$ universal term \cite{R15}.
 
 \subsection{Fisher information: reconstructability = susceptibility}\label{sec:fisher}
 
 \textbf{Status: derived; the framing we believe is new (novelty scan in the companion notes).}
 
-For the family \eqref{eq:flux}, $\partial_t \ln p_R = \tfrac12(\langle C_2\rangle - C_2(R))$, so the Fisher information of one flux measurement is
+\begin{theorem}[Fisher-information identity]\label{thm:fisher}
+Assume (H). The Fisher information about $t$ of a single flux measurement at one cut is
 \begin{equation}\label{eq:fisher}
 I(t) = \mathbb{E}\!\left[(\partial_t \ln p_R)^2\right] = \tfrac14\,\Var_t(C_2),
 \end{equation}
-and the Cram\'er--Rao bound for any unbiased estimator of $t$ from $N$ i.i.d.\ flux samples is $\Var(\hat t) \geq 1/(N I(t)) = 4/(N \Var_t(C_2))$. Comparing \eqref{eq:dSdt} and \eqref{eq:fisher}:
+so the Cram\'er--Rao bound for any unbiased estimator of $t$ from $N$ i.i.d.\ flux samples is $\Var(\hat t) \geq 1/(N I(t)) = 4/(N \Var_t(C_2))$; and, comparing with \eqref{eq:dSdt},
 \begin{equation}\label{eq:dSisI}
 \boxed{\;\frac{dS}{dt} = -t\, I(t).\;}
 \end{equation}
+\end{theorem}
+
+\begin{proof}
+For the family \eqref{eq:flux}, $\partial_t \ln p_R = \tfrac12(\langle C_2\rangle - C_2(R))$, whose square has expectation $\tfrac14\Var_t(C_2)$; \eqref{eq:dSisI} is \eqref{eq:dSdt} divided by \eqref{eq:fisher}.
+\end{proof}
+
 The entropy's sensitivity to the coupling and the statistical information the flux carries about the coupling are the same function of $t$, up to the factor $-t$. Physically, $\Var_t(C_2)$ is the flux susceptibility of the vacuum --- the object the synthesis of this series identified as ``the defensible core'' of any coupling-from-entanglement claim. Eq.~\eqref{eq:dSisI} says that in $d = 2$ the identification is exact: \emph{entanglement susceptibility is Fisher information.}
 
 \emph{The flux measurement is quantum-optimal.} A referee may ask whether some other measurement on the interval extracts more information about $t$. No: the reduced density matrices $\{\rho_A(t)\}$ are all diagonal in the same flux-block basis (eq.~\eqref{eq:flux} with $t$-independent eigenvectors), so the family is mutually commuting, and the quantum Fisher information of $\rho_A(t)$ equals the classical Fisher information of its eigenvalue distribution \cite{BC94}. Within a block the state is maximally mixed with $t$-independent weights $1/d_R^2$, carrying no information; the eigenvalue distribution over blocks is $p_R(t)$. Hence $\mathrm{QFI}(t) = I(t) = \tfrac14\Var_t(C_2)$: the flux measurement saturates the quantum Cram\'er--Rao bound among all measurements on the interval's algebra, and \eqref{eq:fisher} is not an artifact of a convenient measurement choice.
+
+\subsection{Two reconstruction channels, one identity}\label{sec:channels}
+
+Inverting an entropy and sampling a flux are operationally different acts, and the paper's headline claims should be read against that distinction. There are two channels:
+
+\begin{enumerate}
+\item[\textbf{(A)}] \textbf{Inversion from the exact entropy.} Given the exact value of the \emph{convention-fixed} $S(t^*)$ --- one real number, no samples --- Theorem~\ref{thm:mono}(b) recovers $t^*$ by root finding. This channel \emph{requires} the additive-counterterm convention (Remark~\ref{rem:convention}); handed $S$ in an unknown convention, it returns $t$ only up to calibration. It is also idealized: no experiment returns an exact entropy; entropy is not an observable but a functional of the state, estimated in practice through many measurements.
+\item[\textbf{(B)}] \textbf{Estimation from finite flux samples.} An observer who measures the boundary flux $N$ times draws $R_1, \dots, R_N \sim p_R(t^*)$ and forms the MLE $\hat t$ (Sec.~\ref{sec:recon}). This channel is convention-free --- $p_R(t)$ carries no counterterm --- and operational: the flux is a measurable gauge-invariant observable, indeed the only local one here \cite{D14}.
+\end{enumerate}
+
+These are different protocols with different presuppositions, and conflating them is the error the review literature warns against (``measuring entanglement entropy'' usually means channel (B)-style statistics dressed in channel (A) language). What ties them together is Theorem~\ref{thm:fisher}: the sensitivity of channel (A) --- how fast $S$ moves when $t$ moves, $|dS/dt| = t\,I(t)$ --- and the information rate of channel (B) --- $I(t)$ per sample --- are the same function. Concretely, an uncertainty $\delta S$ in the entropy propagates to $\delta t = \delta S / (t\,I(t))$, while $N$ flux samples give $\delta t = 1/\sqrt{N I(t)}$: both channels are governed by the single function $I(t) = \tfrac14\Var_t(C_2)$, which is why we report them side by side without identifying them.
 
 \subsection{Capacity of entanglement}\label{sec:capacity}
 
 \textbf{Status: derived; computed. Concept from \cite{YQ10, dBJK18}; we found no prior YM$_2$ appearance.}
 
-The capacity of entanglement is the variance of the modular Hamiltonian, $C(t) \equiv \Var(-\ln\rho_A)$ --- the entanglement analog of heat capacity \cite{YQ10, dBJK18}. Since $-\ln\lambda_R = \ln Z + (t/2)C_2(R)$ is affine in $C_2$,
+The capacity of entanglement is the variance of the modular Hamiltonian, $C(t) \equiv \Var(-\ln\rho_A)$ --- the entanglement analog of heat capacity \cite{YQ10, dBJK18}.
+
+\begin{proposition}[capacity identity]\label{prop:capacity}
+Assume (H) with $n = 1$. Then
 \begin{equation}\label{eq:capacity}
-C(t) = \tfrac{t^2}{4}\,\Var_t(C_2) = t^2\, I(t), \qquad \text{and} \qquad \frac{dS}{dt} = -\frac{C(t)}{t}.
+C(t) = \tfrac{t^2}{4}\,\Var_t(C_2) = t^2\, I(t), \qquad \frac{dS}{dt} = -\frac{C(t)}{t}, \qquad \text{and} \quad C(t) \to \tfrac12\dG \ \text{as } t \to 0^+.
 \end{equation}
+\end{proposition}
+
+\begin{proof}
+$-\ln\lambda_R = \ln Z + (t/2)C_2(R)$ is affine in $C_2$, so $\Var(-\ln\rho_A) = (t^2/4)\Var_t(C_2) = t^2 I(t)$; the second relation is \eqref{eq:dSisI}; the limit is Appendix~\ref{app:weak}, eq.~\eqref{eq:Iasymp}.
+\end{proof}
 In this model the capacity of entanglement \emph{is} the Fisher information in disguise --- a clean instance of the thermodynamic analogy (capacity $\leftrightarrow$ heat capacity $\leftrightarrow$ fluctuation $\leftrightarrow$ information) becoming an identity. Computed: $C(t) \to \tfrac12\dG$ as $t \to 0^+$, equal to $0.5000$, $1.5000$, $4.0000$ ($\mathrm{U}(1)$, $\mathrm{SU}(2)$, $\mathrm{SU}(3)$) at $t = 0.05$ to the precision quoted in the results files; equivalently $S \simeq \tfrac12\dG\,\ln(1/t)$ at weak coupling, with the capacity plateau ending around $t \sim 1$ ($\mathrm{SU}(3)$ still $3.995$ at $t \approx 3.9$).
 
 \emph{Prior work.} Capacity of entanglement was introduced in \cite{YQ10}, studied systematically in QFT and holography in \cite{dBJK18}, and computed for local-operator excitations of 4d free Yang--Mills in \cite{N21}. We also note the contact with the symmetry-resolved entanglement literature: the flux-block decomposition of $\rho_A$ is precisely a charge/sector-resolved structure in the sense of \cite{GS18, XAS18}, and the capacity of entanglement has been used as a probe of RG flows and symmetry resolution in \cite{ADKT23}; our eq.~\eqref{eq:capacity} is the YM$_2$ instance in which the sector distribution alone carries all of the $t$-dependence. Searches (June 2026; queries recorded in the companion notes) found no prior computation in 2d Yang--Mills and no prior statement of \eqref{eq:fisher}--\eqref{eq:capacity} there; we flag that the entanglement entropy of YM$_2$ itself is thoroughly studied \cite{GS14, D14, DTV19, MOPT26}, so \eqref{eq:capacity} is best read as low-hanging fruit made visible by the Fisher framing, not as a difficult result.
@@ -202,13 +282,22 @@ In this model the capacity of entanglement \emph{is} the Fisher information in d
 
 \emph{Setting adopted (stated carefully, since the cut topology matters).} The spatial manifold is the circle in the HH sphere state; region $A$ = $n$ disjoint intervals, complement = $n$ intervals, $2n$ cut points. The physical state is a class function of the single circle holonomy, $\psi = \sum_R c_R |R\rangle$; iterating Donnelly's embedding map, the character state $|R\rangle$ embeds into the $2n$-interval extended Hilbert space with one $d_R$-dimensional index pair per cut point, all carrying the \emph{same} $R$. The reduced density matrix is therefore block-diagonal in \textbf{one global flux label $R$} with the \emph{$n$-independent} distribution $p_R(t)$ of eq.~\eqref{eq:flux}, each block maximally mixed of dimension $d_R^{2n}$. This yields \eqref{eq:Sn}, whose log-dim term ``appears once for each of the $2n$ points on the boundary of $A$'' \cite[verbatim]{D14}. The replica computation of \cite{GS14} on the sphere with $l = n$ cuts gives the same $t$-dependence. (On higher-genus surfaces or for non-HH states the sector structure is richer \cite{MOPT26}; we do not use those settings.)
 
-\emph{Entropy.} From $S_n = S_1 + 2(n-1)\langle\ln d\rangle$ and \eqref{eq:cumulant}:
+\begin{theorem}[$n$-cut identity and information non-scaling]\label{thm:ncut}
+Assume (H) with $n \geq 1$ intervals. Then:
+\begin{enumerate}
+\item[(a)] \emph{(entropy derivative)}
 \begin{equation}\label{eq:dSndt}
 \frac{dS_n}{dt} = -\frac{t}{4}\,\Var_t(C_2) - (n-1)\,\Cov_t(\ln d, C_2).
 \end{equation}
-Computed: \eqref{eq:dSndt} matches central finite differences to $\leq 2.4\times10^{-10}$ relative over 48 (group, $t$, $n$) combinations ($\mathrm{U}(1)$, $\mathrm{SU}(2)$, $\mathrm{SU}(3)$; $t \in \{0.3, 1, 3, 8\}$; $n \in \{1,2,3,4\}$). $\Cov_t(\ln d, C_2) > 0$ on the full 400-point grid for $\mathrm{SU}(2)$ and $\mathrm{SU}(3)$ (minima $1.1\times10^{-3}$ and $4.3\times10^{-5}$ respectively) and is identically $0$ for $\mathrm{U}(1)$ ($d \equiv 1$); so $S_n$ is strictly decreasing in $t$ for every $n$ in all cases computed --- each additional pair of cut points makes the entropy \emph{more} coupling-sensitive, by $(n-1)\Cov$.
+\item[(b)] \emph{(information non-scaling)} The Fisher information about $t$ of the joint flux measurement at all $2n$ cut points equals that of one cut: $I_n(t) = I_1(t) = \tfrac14\Var_t(C_2)$ for every $n$.
+\end{enumerate}
+\end{theorem}
 
-\emph{Information.} Does Fisher information scale with $n$ --- do more cuts mean more flux samples? \textbf{No.} The $2n$ cut-point fluxes of one prepared circle are copies of the single global $R$: perfectly correlated, joint distribution supported on the diagonal with weights $p_R(t)$. The Fisher information of the joint measurement is therefore exactly $I(t) = \tfrac14\Var_t(C_2)$, independent of $n$. Donnelly states the qualitative point verbatim for the abelian case \cite{D14}: ``the entropy is independent of the number of intervals traced out\dots\ Having access to an additional interval therefore does not change the amount of information one can acquire about the state.'' (In the nonabelian case the \emph{entropy} does grow with $n$ --- but only through the $2n\langle\ln d\rangle$ edge term, which \cite{D14} notes ``is not associated to uncertainty in gauge-invariant observables.'')
+\begin{proof}
+(a) From $S_n = S_1 + 2(n-1)\langle\ln d\rangle$ (eq.~\eqref{eq:Sn}) and the cumulant identity \eqref{eq:cumulant} applied to $f = \ln d$, together with \eqref{eq:dSdt}. (b) The $2n$ cut-point fluxes of one prepared circle are copies of the single global $R$ (the reduced state is block-diagonal in one shared label, as recalled above): the joint distribution is supported on the diagonal $\{(R, \dots, R)\}$ with weights $p_R(t)$, so the joint likelihood equals the single-cut likelihood and the Fisher informations coincide.
+\end{proof}
+
+\emph{Computed.} Identity \eqref{eq:dSndt} matches central finite differences to $\leq 2.4\times10^{-10}$ relative over 48 (group, $t$, $n$) combinations ($\mathrm{U}(1)$, $\mathrm{SU}(2)$, $\mathrm{SU}(3)$; $t \in \{0.3, 1, 3, 8\}$; $n \in \{1,2,3,4\}$). $\Cov_t(\ln d, C_2) > 0$ on the full 400-point grid for $\mathrm{SU}(2)$ and $\mathrm{SU}(3)$ (minima $1.1\times10^{-3}$ and $4.3\times10^{-5}$ respectively) and is identically $0$ for $\mathrm{U}(1)$ ($d \equiv 1$); so $S_n$ is strictly decreasing in $t$ for every $n$ in all cases computed --- each additional pair of cut points makes the entropy \emph{more} coupling-sensitive, by $(n-1)\Cov$. Donnelly states the qualitative information point verbatim for the abelian case \cite{D14}: ``the entropy is independent of the number of intervals traced out\dots\ Having access to an additional interval therefore does not change the amount of information one can acquire about the state.'' (In the nonabelian case the \emph{entropy} does grow with $n$ --- but only through the $2n\langle\ln d\rangle$ edge term, which \cite{D14} notes ``is not associated to uncertainty in gauge-invariant observables.'')
 
 \emph{Computed demonstration.} $M = 400$ trials, each preparing $N = 1000$ independent circles cut into $n = 3$ intervals (6 cut points, 6000 flux readings, 1000 independent values). The MLE from the 6000-reading dataset is \emph{identical} to the MLE from the 1000 unique samples (duplication leaves the sufficient statistic unchanged; verified to $10^{-14}$ relative, exact as estimators), and its standard deviation matches the $N$-preparation Cram\'er--Rao bound, not the hypothetical $2nN$-sample bound: $\mathrm{sd}/\mathrm{CRB}_N = 0.93$ ($\mathrm{SU}(3)$), $0.97$ ($\mathrm{SU}(2)$); $\mathrm{sd}/\mathrm{CRB}_{2nN} = 2.27$, $2.37 \approx \sqrt{6}\cdot(\mathrm{sd}/\mathrm{CRB}_N)$.
 
@@ -217,7 +306,7 @@ The moral is worth the sentence: \textbf{in 2d Yang--Mills, entropy counts cut p
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{fig_ym2.png}
-\caption{$\mathrm{U}(1)$ and $\mathrm{SU}(2)$ (script \texttt{ym2\_flux.py}, seed 20260609). (a)~Flux distribution $p_R(t)$ of eq.~\eqref{eq:flux} at $t \in \{0.5, 2, 8\}$. (b)~Entropy $S(t)$, its Shannon piece $H(t)$, and the edge term: all strictly decreasing, Proposition~\ref{prop:mono}. (c)~RMSE of the maximum-likelihood estimate $\hat t$ versus number of flux samples $N$, against the Cram\'er--Rao lines $\sqrt{1/(N I(t^*))}$ (Sec.~\ref{sec:results}).}
+\caption{$\mathrm{U}(1)$ and $\mathrm{SU}(2)$ (script \texttt{ym2\_flux.py}, seed 20260609). (a)~Flux distribution $p_R(t)$ of eq.~\eqref{eq:flux} at $t \in \{0.5, 2, 8\}$. (b)~Entropy $S(t)$, its Shannon piece $H(t)$, and the edge term: all strictly decreasing, Theorem~\ref{thm:mono}. (c)~RMSE of the maximum-likelihood estimate $\hat t$ versus number of flux samples $N$, against the Cram\'er--Rao lines $\sqrt{1/(N I(t^*))}$ (Sec.~\ref{sec:results}).}
 \label{fig:ym2}
 \end{figure}
 
@@ -254,15 +343,50 @@ $\mathrm{SU}(3)$ & 4.000 & 0.0490 & 0.0162 & 0.0048 & 1.03 / 0.97 \\
 
 Errors fall as $N^{-1/2}$ along the CR line (Figs.~\ref{fig:ym2}c, \ref{fig:su3}c). Across all $t^* \in \{0.5, 1, 2, 4\}$ at $N = 3\times10^4$: $\Var(\hat t)/\mathrm{CRB} \in [0.93, 1.08]$ ($\mathrm{SU}(2)$, $\mathrm{U}(1)$, 8 cells) and $[0.89, 1.07]$ ($\mathrm{SU}(3)$, 4 cells) --- saturation within Monte-Carlo resolution ($\pm{\sim}7\%$ at 400 trials). Bias is $O(1/N)$ and negligible ($|\mathrm{bias}| \leq 1.4\times10^{-4}$ at $N = 3\times10^4$, $\mathrm{SU}(3)$, $t^* = 1$). $\mathrm{SU}(3)$ reconstruction at $t^* \in \{0.5, 1, 2, 4\}$ and $N = 10^3$ achieves RMSE $\{0.0080, 0.0162, 0.0318, 0.0650\}$, i.e.\ $1.6\%$ relative at $t^* = 1$ and $10^3$ samples, $0.48\%$ at $10^4$. No clamped batches occurred for $\mathrm{SU}(3)$ (the $d_R^2$ degeneracy pressure makes all-trivial-sector samples vanishingly rare); the single pathological batch in the whole series remains the $\mathrm{U}(1)$, $t^* = 4$, $N = 30$ cell documented in the results files.
 
+\subsection{Finite-sample bias and confidence intervals}\label{sec:biasci}
+
+\textbf{Status: computed (new script \texttt{paper3/mle\_bias\_ci.py}, seed 20260609; $M = 2000$ batches per cell, 27 cells: three groups $\times$ $t^* \in \{0.5, 1, 4\}$ $\times$ $N \in \{10^2, 10^3, 10^4\}$).}
+
+Asymptotic Cram\'er--Rao saturation says nothing about whether $N = 100$ is already ``asymptotic.'' Two finite-sample questions remain: how biased is the MLE, and do the standard confidence intervals actually cover at their nominal level?
+
+\emph{Bias.} The MLE solves $\mu(\hat t) = \bar m$ with $\mu(t) = \langle C_2\rangle_t$ and $\bar m = N^{-1}\sum_i C_2(R_i)$. Expanding $\mu^{-1}$ around $\mu(t^*)$ and using the cumulant identities of the family ($\mu' = -\tfrac12\Var_t(C_2)$, $\mu'' = \tfrac14\kappa_3(C_2)$, with $\kappa_3$ the third central moment) gives the first-order bias
+\begin{equation}\label{eq:bias1}
+\mathbb{E}[\hat t\,] - t^* = b_1(t^*) + O(N^{-2}), \qquad b_1(t^*) = \frac{\kappa_3(C_2)}{N\,\Var_{t^*}(C_2)^2}.
+\end{equation}
+
+\emph{Confidence intervals.} The Wald interval is $\hat t \pm z_{0.975}/\sqrt{N I(\hat t)}$ with plug-in information; the profile-likelihood interval is $\{t : 2[\ell(\hat t) - \ell(t)] \leq \chi^2_{1, 0.95}\}$, where the deviance depends on the data only through the sufficient statistic: $2[\ell(\hat t) - \ell(t)] = N[(t - \hat t)\bar m + 2(\ln Z(t) - \ln Z(\hat t))]$.
+
+At $t^* = 1$ (bias $\pm$ Monte-Carlo standard error; coverage at nominal $95\%$, MC resolution $\pm 0.49\%$):
+
+\begin{center}
+\begin{tabular}{lcccccc}
+\toprule
+group & $N$ & bias $\widehat{\mathbb{E}[\hat t\,]} - t^*$ & analytic $b_1$ \eqref{eq:bias1} & Wald cov. & profile cov. \\
+\midrule
+$\mathrm{U}(1)$ & $10^2$ & $+0.0208 \pm 0.0033$ & $+0.0200$ & $0.950$ & $0.954$ \\
+ & $10^3$ & $+0.0018 \pm 0.0010$ & $+0.0020$ & $0.949$ & $0.949$ \\
+ & $10^4$ & $+0.0002 \pm 0.0003$ & $+0.0002$ & $0.950$ & $0.951$ \\
+$\mathrm{SU}(2)$ & $10^2$ & $+0.0058 \pm 0.0018$ & $+0.0067$ & $0.951$ & $0.949$ \\
+ & $10^3$ & $+0.0002 \pm 0.0006$ & $+0.0007$ & $0.959$ & $0.961$ \\
+ & $10^4$ & $+0.0003 \pm 0.0002$ & $+0.0001$ & $0.951$ & $0.952$ \\
+$\mathrm{SU}(3)$ & $10^2$ & $+0.0028 \pm 0.0011$ & $+0.0025$ & $0.952$ & $0.953$ \\
+ & $10^3$ & $+0.0002 \pm 0.0004$ & $+0.0003$ & $0.957$ & $0.956$ \\
+ & $10^4$ & $+0.0002 \pm 0.0001$ & $+0.0000$ & $0.957$ & $0.956$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Findings, across all 27 cells (\texttt{mle\_bias\_ci.json}): (i) the empirical bias is consistent with the $1/N$ law \eqref{eq:bias1} within Monte-Carlo error in 26 of 27 cells --- the exception is ($\mathrm{SU}(3)$, $t^* = 4$, $N = 10^2$), where $b_1 \approx 0.010$ but the measured bias is $-0.003 \pm 0.004$, i.e.\ higher-order terms are still comparable at strong coupling and small $N$; (ii) Wald coverage lies in $[0.941, 0.960]$ and profile coverage in $[0.943, 0.961]$, both consistent with the nominal $0.950$ at the $\pm 0.005$ Monte-Carlo resolution, with no systematic under-coverage even at $N = 10^2$; (iii) Wald and profile intervals agree in mean length to better than $0.3\%$ everywhere (the log-likelihood is nearly quadratic in $t$ at these sample sizes); (iv) no batch hit the estimator bracket. Bias is negligible relative to the statistical error in every cell ($|b_1| \leq 0.15\,\sigma_{\mathrm{CR}}$ at $N = 10^2$ across all cells, falling as $N^{-1/2}$ relative), so the RMSE figures of Sec.~\ref{sec:results} are variance-dominated, as the Cram\'er--Rao comparison assumed.
+
 \subsection{The QCD sentence, and why bigger groups are easier}\label{sec:qcd}
 
 $\mathrm{SU}(3)$ is the gauge group of quantum chromodynamics; the computation above is the statement that \textbf{in the $d = 2$ world, the strong coupling --- the dimensionless $g^2 A$ --- is reconstructible from gauge-invariant entanglement statistics at the Cram\'er--Rao limit.} We confine that sentence to $d = 2$ with the full force of Section~\ref{sec:scope}.
 
 The group-size trend is itself informative. At weak coupling $I(t) \approx \dG/(2t^2)$ (from $C(t) \to \tfrac12\dG$ and \eqref{eq:capacity}): $I(1) = 0.5$, $1.5$, $4.0$ for $\mathrm{U}(1)$, $\mathrm{SU}(2)$, $\mathrm{SU}(3)$. Each flux sample from a larger group carries more information about the coupling, because the Casimir spectrum is richer and the $d_R^2$ degeneracy weighting spreads $p_R$ over more, better-separated sectors. The hierarchy-minded reader of Paper 1 will note the irony: in the one solvable setting, the \emph{non-abelian} couplings are the easy ones.
 
-\subsection{Inversion from the exact entropy}
+\subsection{Inversion from the exact entropy (channel (A))}\label{sec:inversion}
 
-Independent of sampling: given the exact value of $S(t^*)$ alone (one number, no samples), root-finding on the strictly monotonic $S(\cdot)$ recovers $t^*$ to $\leq 9\times10^{-14}$ at all test points $t^* \in \{0.3, 0.7, 1.5, 3, 6, 12\}$ for all three groups --- the bijection of Proposition~\ref{prop:mono} in practice. We emphasize that this uses the $v = 0$ normalization (Sec.~\ref{sec:groupdata}); an observer uncertain about the additive counterterm should use derivative or sampling data, which are ambiguity-free.
+Independent of sampling: given the exact value of $S(t^*)$ alone (one number, no samples), root-finding on the strictly monotonic $S(\cdot)$ recovers $t^*$ to $\leq 9\times10^{-14}$ at all test points $t^* \in \{0.3, 0.7, 1.5, 3, 6, 12\}$ for all three groups --- the bijection of Theorem~\ref{thm:mono}(b) in practice. We emphasize that this is channel (A) of Sec.~\ref{sec:channels} and uses the $v = 0$ normalization (Sec.~\ref{sec:groupdata}); an observer uncertain about the additive counterterm should use derivative or sampling data, which are ambiguity-free (Remark~\ref{rem:convention}).
 
 \section{Scope: What This Does and Does Not Show}\label{sec:scope}
 
@@ -276,7 +400,7 @@ Independent of sampling: given the exact value of $S(t^*)$ alone (one number, no
 
 \item \textbf{Only $g^2 A$ is recoverable --- reflection has a gauge orbit of its own.} By area-preserving diffeomorphism invariance, $g^2$ and $A$ enter all observables only through $t = g^2 A$ \cite{GS14}; ``the coupling'' is recoverable only relative to a fixed fiducial area. This is the $d = 2$ echo of the $d = 4$ obstruction that for noncompact free Maxwell, $g$ can be removed entirely by field redefinition: couplings are scheme-relative quantities, and entanglement data can at best pin down their invariant combinations.
 
-\item \textbf{Reflection, not determination --- the precise statement.} What is proven: the map $t \mapsto p(t)$ is injective (Proposition~\ref{prop:mono}) and its inversion from samples is statistically efficient (Sec.~\ref{sec:recon}). What is presupposed: the group $G$, the Hartle--Hawking preparation, and the functional form of the family \eqref{eq:flux} --- i.e., the entire theory up to one number. An inference of this shape can never show that couplings \emph{are} entanglement properties; it shows that a known theory's coupling leaves a complete, efficiently readable fingerprint in invariant data. Determination would require, at minimum, an induced-coupling framework in which $1/g^2$ is \emph{defined} by an entanglement functional (the gauge analog of Sakharov/Jacobson induced gravity, flagged as unclaimed territory in the series synthesis) --- no such framework exists in the literature we verified.
+\item \textbf{Reflection, not determination --- the precise statement.} What is proven: the map $t \mapsto p(t)$ is injective (Theorem~\ref{thm:mono}) and its inversion from samples is statistically efficient (Sec.~\ref{sec:recon}). What is presupposed: the group $G$, the Hartle--Hawking preparation, and the functional form of the family \eqref{eq:flux} --- i.e., the entire theory up to one number. An inference of this shape can never show that couplings \emph{are} entanglement properties; it shows that a known theory's coupling leaves a complete, efficiently readable fingerprint in invariant data. Determination would require, at minimum, an induced-coupling framework in which $1/g^2$ is \emph{defined} by an entanglement functional (the gauge analog of Sakharov/Jacobson induced gravity, flagged as unclaimed territory in the series synthesis) --- no such framework exists in the literature we verified.
 
 \item \textbf{The additive ambiguity is real but quarantined.} $S(t)$ carries the $t$-independent counterterm ambiguity (Sec.~\ref{sec:groupdata}). All reconstruction channels used here --- $p_R(t)$, $t$-derivatives of $S$, sampled fluxes --- are ambiguity-free. A claim that needed the absolute value of $S$ would not be.
 
@@ -288,7 +412,25 @@ Independent of sampling: given the exact value of $S(t^*)$ alone (one number, no
 
 \textbf{$d = 3$.} The entropy is no longer all edge: the distillable term of \cite{D11} is nonzero (a propagating photon/gluon), and the boundary flux becomes a \emph{field} on the entangling curve rather than one label. Radi\v{c}evi\'c's weak-coupling analysis \cite{R15} shows the coupling still enters a universal term, $\tfrac12\dG\cdot\log(e^2 r)$ for a region of size $r$ --- formally the same $\tfrac12\dG\cdot\log(\text{coupling})$ structure as our weak-coupling $S(t)$. A $d = 3$ reconstruction program would need: (i) the joint distribution of boundary fluxes (at weak coupling a Gaussian field with covariance $\langle E_\perp E_\perp\rangle$ set by $e^2$) --- note that unlike our single global $R$, \emph{this} distribution genuinely has more independent components for larger boundaries, so the $n$-cuts no-go of Sec.~\ref{sec:ncuts} is a $d = 2$ peculiarity, not a general law; (ii) separation of the universal log coefficient from non-universal perimeter pieces; (iii) a stance on the center choice, which in $d \geq 3$ affects the sufficient statistics themselves \cite{CHR}.
 
-\textbf{$d = 4$.} Three verified facts frame the problem. (i) For noncompact free Maxwell, vacuum entanglement cannot depend on $g$ at all (field redefinition). (ii) For compact $\mathrm{U}(1)$, the coupling enters through flux-sector (zero-mode) weights --- a finite, topological term \cite{DW16} --- and through compactness effects on the edge partition function; this is the closest $d = 4$ analog of our $p_R(t)$ and the natural first target: \emph{the flux-sector distribution on a compact entangling surface is an exponential family in $1/e^2$ with sufficient statistic the flux quantum number squared}, and a Fisher analysis of it would be a direct (if much weaker) descendant of Sec.~\ref{sec:fisher}. (iii) With charged matter, the one sharp computation \cite{CHMP} finds the log-coefficient shift universal --- independent of the coupling's value and of the charge masses. So in $d = 4$ the live possibilities are: the coupling enters only through compactness/topology (reconstructible but topological, not local), or only through scale-dependence of coarse-grained flux statistics (the ``reconstruction, not identification'' conjecture of the series synthesis), or not at all in any distillable quantity. Deciding among these is the open problem the series hands to whoever next enters; the $d = 2$ result fixes the gold standard such a program should be measured against --- exponential-family structure, identity \eqref{eq:dSisI}, CR saturation --- while its own $n$-cuts lesson warns that gauge theories can manufacture arbitrarily much edge entropy carrying zero additional information.
+\textbf{$d = 4$.} We keep this short and programmatic, because three verified facts already frame it. (i) For noncompact free Maxwell, vacuum entanglement cannot depend on $g$ at all (field redefinition). (ii) For compact $\mathrm{U}(1)$, the coupling enters through flux-sector (zero-mode) weights --- a finite, topological term \cite{DW16} --- and through compactness effects on the edge partition function. (iii) With charged matter, the one sharp computation \cite{CHMP} finds the log-coefficient shift universal --- independent of the coupling's value and of the charge masses. The live possibilities are therefore: the coupling enters only through compactness/topology, or only through scale-dependence of coarse-grained flux statistics, or not at all in any distillable quantity.
+
+\emph{The one calculation we propose.} Rather than survey that territory, we pose a single concrete next computation, the direct $d = 4$ descendant of Theorem~\ref{thm:fisher}: \textbf{compute the Fisher information about $e^2$ carried by the compact-$\mathrm{U}(1)$ edge-flux sector distribution across a closed entangling surface in $d = 4$} (e.g.\ a sphere, with the zero-mode/flux-sector weights of \cite{DW16}). The sector weights are an exponential family in $1/e^2$ with sufficient statistic the flux quantum number squared, so $I(e^2)$ is computable in closed form once the weights are fixed; the questions the calculation decides are whether $I(e^2) \neq 0$ survives the continuum/large-surface limit, which regularization ambiguities it inherits (item 6 of the checklist below), and how it scales with the entangling-surface geometry (item 7). This computation is in progress as the next step of the series' research program; no result is claimed here. If $I(e^2)$ survives, the $d = 2$ mechanism has a weak $d = 4$ descendant --- topological, not local; if it does not, the deflationary reading of this paper is complete.
+
+\section{2d Yang--Mills as a Benchmark: a Checklist}\label{sec:benchmark}
+
+The $d = 2$ result fixes the gold standard against which any future ``coupling from entanglement'' claim --- in $d = 3$, $d = 4$, holography, or analog experiments --- should be measured. In this model every item below has an exact answer; a future claim should specify all seven, and the burden of stating them falls on the claimant:
+
+\begin{enumerate}
+\item \textbf{Observable algebra.} Which gauge-invariant algebra (and which center choice \cite{CHR}) is the entanglement relative to? [Here: class functions of the holonomy; trivial choice ambiguity, flagged.]
+\item \textbf{Sector distribution.} What is the analog of $p_R(t)$ --- the probability distribution over superselection sectors at the cut --- and is it convention-free? [Here: eq.~\eqref{eq:flux}; yes.]
+\item \textbf{Sufficient statistic.} Through which statistic does the coupling enter the sector distribution? [Here: $C_2(R)$, exponential family in $-t/2$.]
+\item \textbf{Fisher information.} What is $I(\text{coupling})$ for the best gauge-invariant measurement, and does it saturate the quantum Fisher information? [Here: $I(t) = \tfrac14\Var_t(C_2) = \mathrm{QFI}$.]
+\item \textbf{Reconstruction map.} Is the claim inversion of an exact functional (channel (A)) or estimation from samples (channel (B)) --- and at what efficiency? [Here: both, tied by \eqref{eq:dSisI}; Cram\'er--Rao saturated.]
+\item \textbf{Ambiguity/counterterm dependence.} Which parts of the claim survive the additive counterterm and regularization ambiguities of gauge-theory entanglement? [Here: everything except the absolute value of $S$; Remark~\ref{rem:convention}.]
+\item \textbf{Sample-vs-cut scaling.} Does more entangling boundary mean more information, or just more entropy? [Here: more cuts give exactly nothing, Theorem~\ref{thm:ncut} --- entropy counts cut points, information counts independent preparations.]
+\end{enumerate}
+
+The checklist is deliberately deflationary: items 1, 2, and 6 are where frame-dependent or scheme-dependent claims die (Papers 1--2), and item 7 is where ``more entanglement'' rhetoric dies. A $d = 4$ proposal that cannot fill in the seven lines is not yet a claim.
 
 \section{Conclusion: The Series Closed Into a Point}
 
@@ -298,9 +440,45 @@ Paper 1 proved that the frame-dependent version of ``couplings from entanglement
 \]
 say in one line what the series learned the long way: in $d = 2$, entanglement susceptibility, flux susceptibility, Fisher information, and capacity of entanglement are one function, and that function knows the coupling.
 
-What none of this shows is determination. The inference presupposes the theory; the recovered number is the scheme-invariant product $g^2 A$; the carrier is a term whose entanglement credentials are contested; and the $d = 4$ evidence is, if anything, adverse. The honest summary of the series is therefore a conditional: \emph{if} gauge couplings are encoded in vacuum entanglement in the actual world, the encoding must be of the kind exhibited here --- gauge-invariant flux statistics, not frame-dependent subsystem entropies --- and whether any $d = 4$ version of that encoding exists, beyond topological zero modes, is the open question. The no-gos cleared the ground; this paper is the one building that provably stands on it; everything taller is future work, and we have priced the lumber.
+What none of this shows is determination. The inference presupposes the theory; the recovered number is the scheme-invariant product $g^2 A$; the carrier is a term whose entanglement credentials are contested; and the $d = 4$ evidence is, if anything, adverse. The honest summary of the series is therefore a conditional: \emph{if} gauge couplings are encoded in vacuum entanglement in the actual world, the encoding must be of the kind exhibited here --- gauge-invariant flux statistics, not frame-dependent subsystem entropies --- and whether any $d = 4$ version of that encoding exists, beyond topological zero modes, is the open question. The no-gos cleared the ground; this paper is the one building that provably stands on it; everything taller is future work, and we have priced the lumber: Section~\ref{sec:benchmark} is the checklist any successor claim must fill in, and the Fisher information of compact-$\mathrm{U}(1)$ edge-flux sectors across a closed entangling surface in $d = 4$ (Sec.~\ref{sec:d34}) is the one calculation that directly tests for a descendant of the $d = 2$ mechanism.
 
 \appendix
+
+\section{Weak-Coupling Asymptotics}\label{app:weak}
+
+\textbf{Status: derived; computed to machine precision (script \texttt{paper3/weak\_coupling\_check.py}).}
+
+\begin{proposition}[weak-coupling expansion]\label{prop:weak}
+Assume (H) with $n = 1$. As $t \to 0^+$,
+\begin{align}
+S(t) &= \tfrac12\dG\,\ln\frac1t + c_G + \varepsilon_S(t), \qquad c_G = \ln \mathrm{vol}(G) - \tfrac12\dG\ln 2\pi + \tfrac12\dG, \label{eq:Sasymp}\\
+I(t) &= \frac{\dG}{2t^2}\left(1 + \varepsilon_I(t)\right), \qquad C(t) = t^2 I(t) \to \tfrac12\dG, \label{eq:Iasymp}
+\end{align}
+where $\mathrm{vol}(G)$ is the Riemannian volume of $G$ in the bi-invariant metric whose Laplace--Beltrami eigenvalue on irrep $R$ is the $C_2(R)$ used throughout, and the remainders $\varepsilon_S, \varepsilon_I$ are exponentially small in $1/t$ (not power-law).
+\end{proposition}
+
+\begin{proof}
+By Peter--Weyl, $Z(t) = \sum_R d_R^2\, e^{-(t/2)C_2(R)} = \mathrm{vol}(G)\, K_{t/2}(e)$, with $K_s$ the heat kernel of the Laplace--Beltrami operator on the group manifold and $K_s(e)$ its value at the identity. Its short-time behavior is $K_s(e) = (4\pi s)^{-\dG/2}\, e^{b s}\,(1 + \text{exp.\ small})$, with $b$ the curvature constant ($b = |\rho|^2$ in the standard normalization; see \cite{Cam90} for the general homogeneous-space expansion), so $Z(t) = \mathrm{vol}(G)\,(2\pi t)^{-\dG/2} e^{bt/2}(1 + \text{exp.\ small})$.
+
+The key structural fact is a cancellation: \emph{if $Z(t) = c_0\, t^{-d/2} e^{\beta t}$ exactly, then $S$, $I$, $C$ are independent of $\beta$:}
+\[
+\langle C_2\rangle = -2\,\frac{d\ln Z}{dt} = \frac{d}{t} - 2\beta, \qquad
+S = \ln Z + \tfrac{t}{2}\langle C_2\rangle = \ln c_0 + \tfrac{d}{2} - \tfrac{d}{2}\ln t,
+\]
+\[
+\Var_t(C_2) = -2\,\frac{d\langle C_2\rangle}{dt} = \frac{2d}{t^2}, \qquad I(t) = \frac{d}{2t^2}, \qquad C(t) = t^2 I(t) = \frac{d}{2},
+\]
+all exactly. The linear-in-$t$ exponent of the heat kernel therefore drops out of every quantity in the proposition, and the only corrections are the exponentially small ones, which survive differentiation as exponentially small terms. Substituting $c_0 = \mathrm{vol}(G)(2\pi)^{-\dG/2}$ gives $c_G$.
+\end{proof}
+
+\emph{Closed-form constants.} The metric normalization is fixed by the Casimir convention of Sec.~\ref{sec:groupdata}:
+\begin{itemize}
+\item $\mathrm{U}(1)$: irreps $n \in \mathbb{Z}$, $C_2 = n^2$; the circle of circumference $2\pi$ has Laplacian spectrum $n^2$, so $\mathrm{vol} = 2\pi$ and $c_{\mathrm{U}(1)} = \tfrac12 + \tfrac12\ln 2\pi = 1.41893853\ldots$
+\item $\mathrm{SU}(2)$: $C_2(j) = j(j+1)$; the 3-sphere of radius $2$ has spectrum $l(l+2)/4 = j(j+1)$ with $l = 2j$, so $\mathrm{vol} = 2\pi^2 \cdot 2^3 = 16\pi^2$ and $c_{\mathrm{SU}(2)} = \ln 16\pi^2 - \tfrac32\ln 2\pi + \tfrac32 = 3.80523289\ldots$
+\item $\mathrm{SU}(3)$: in this normalization $\mathrm{vol}(\mathrm{SU}(3)) = 8\sqrt{3}\,(2\pi)^5$, consistent with the standard invariant-volume formulas and verified numerically below; hence $c_{\mathrm{SU}(3)} = \ln(8\sqrt 3) + \ln 2\pi + 4 = 8.46662475\ldots$
+\end{itemize}
+
+\emph{Computed verification} (\texttt{weak\_coupling\_check.json}; grid $t \in [10^{-3}, 0.2]$, all three groups): $|S(t) + \tfrac12\dG\ln t - c_G| \leq 2\times10^{-14}$ and $|2t^2 I(t)/\dG - 1| \leq 4\times10^{-15}$ at every grid point --- machine precision, with no visible $t$-dependence. The corrections are indeed exponentially small rather than power-law, exactly as the cancellation argument predicts: at $t = 0.2$ a power-law correction would be conspicuous, and there is none. (This sharpens the $10^{-6}$-level witness quoted in earlier drafts, which was limited by the verification grid, not by the physics.) For $\mathrm{U}(1)$ the statement is elementary: $Z(t) = \theta_3(0, e^{-t/2})$, and Poisson resummation gives $Z = \sqrt{2\pi/t}\,(1 + 2e^{-2\pi^2/t} + \cdots)$, with $e^{-2\pi^2/t} < 10^{-42}$ already at $t = 0.2$.
 
 \section{Reproducibility}
 
@@ -310,6 +488,8 @@ All computations are deterministic (seed 20260609) and complete in seconds on a 
 \item \texttt{ym2/FORMULAS.md} --- every literature formula with citation and verbatim source string, verified against the arXiv LaTeX of \cite{D14}, \cite{GS14}, \cite{D11} (fetched 2026-06-09); the convention discrepancies found (\cite{GS14} Casimir $\times 2$; additive counterterm) and resolutions.
 \item \texttt{ym2/ym2\_flux.py} --- $\mathrm{U}(1)$ and $\mathrm{SU}(2)$: curves, monotonicity, inversion, MLE/CRB demo. Output: \texttt{results.json}, \texttt{fig\_ym2.png/.pdf} (Fig.~\ref{fig:ym2}). Runtime ${\approx}8$ s.
 \item \texttt{ym2/ym2\_su3.py} --- \textbf{new for this paper.} $\mathrm{SU}(3)$ (convention asserted at runtime on the irreps $\mathbf{1}$, $\mathbf{3}$, $\bar{\mathbf{3}}$, $\mathbf{6}$, $\mathbf{8}$, $\mathbf{10}$), plus the $n$-interval analysis for all three groups: identity \eqref{eq:dSndt} by central differences, and the Fisher non-scaling demonstration. Output: \texttt{su3\_results.json}, \texttt{fig\_su3.png/.pdf} (Fig.~\ref{fig:su3}). Runtime ${\approx}3$ s. Run \texttt{python3 ym2\_su3.py} (no arguments) for the full pipeline; staged execution (\texttt{stage1}, \texttt{stage2:0.5,1.0}, \texttt{stage2:2.0,4.0}, \texttt{stage3}, \texttt{merge}) produces bit-identical results via per-component RNG streams \texttt{default\_rng([SEED, stage, index])}.
+\item \texttt{paper3/mle\_bias\_ci.py} --- \textbf{new for this revision.} Finite-sample bias and confidence-interval analysis of Sec.~\ref{sec:biasci}: 27 cells (three groups $\times$ $t^* \in \{0.5,1,4\}$ $\times$ $N \in \{10^2,10^3,10^4\}$), $M = 2000$ batches per cell, per-cell RNG streams \texttt{default\_rng([SEED, gi, ti, ni])} (so cells can be run in any order or in parallel with bit-identical results). Runs with or without SciPy (a pure-Python Brent root-finder is included). Output: \texttt{mle\_bias\_ci.json}. Runtime ${\approx}2$ min.
+\item \texttt{paper3/weak\_coupling\_check.py} --- \textbf{new for this revision.} Deterministic verification of Appendix~\ref{app:weak}: the constants $c_G$ and the $I(t) = \dG/(2t^2)$ law on $t \in [10^{-3}, 0.2]$. Output: \texttt{weak\_coupling\_check.json}. Runtime ${\approx}20$ s.
 \item Truncation policy: curve/identity computations keep all irreps with relative weight $> e^{-800}$ (truncation error exactly zero in float64); the MLE inner loop uses $e^{-120}$ (relative truncation $< 10^{-50}$, ${\sim}46$ orders below Monte-Carlo noise). For $\mathrm{SU}(3)$ the irrep sum runs over a $(p,q)$ grid with $p, q \leq \sqrt{6 \cdot 860 / t} + 2$.
 \item Headline residuals: $|S_{\text{direct}} - S_{\text{exponential-family}}| \leq 3.6\times10^{-15}$ ($\mathrm{SU}(3)$, 400 grid points); identity \eqref{eq:dSndt} to $2.4\times10^{-10}$ (48 combinations); inversion $\leq 9\times10^{-14}$ (18 test points); capacity plateau $\tfrac12\dG$ to $< 10^{-6}$ at $t = 0.05$.
 \end{itemize}
@@ -386,4 +566,5 @@ All computations are deterministic (seed 20260609) and complete in seconds on a 
 
 \end{thebibliography}
 
+% round-2 revision, 2026-06-10
 \end{document}

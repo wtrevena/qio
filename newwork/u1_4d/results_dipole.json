@@ -1,0 +1,155 @@
+{
+ "seed": 20260610,
+ "note": "deterministic, no RNG",
+ "strong_coupling_dipole_gas": [
+  {
+   "e2": 1.5,
+   "theta": 4.394449154672439,
+   "p_dipole": 0.012048192771084333,
+   "S_per_plaquette": 0.13028179420060348,
+   "I_theta": 0.023515749743734438,
+   "VarT": 0.023515749745971832,
+   "identity_dSdth_eq_minus_theta_I_relres": 6.974359188843887e-10,
+   "I_e2_per_plaquette": 0.1672231092887782,
+   "dS_de2": -0.27557004441310556,
+   "naive_e2_ratio": 1.0986122894343213,
+   "theta_over_4": 1.0986122886681098
+  },
+  {
+   "e2": 2.0,
+   "theta": 5.545177444479562,
+   "p_dipole": 0.003875968992248063,
+   "S_per_plaquette": 0.05076801210468723,
+   "I_theta": 0.00769184544755349,
+   "VarT": 0.007691845441980652,
+   "identity_dSdth_eq_minus_theta_I_relres": 5.654875115628472e-10,
+   "I_e2_per_plaquette": 0.03076738179021396,
+   "dS_de2": -0.08530529571615375,
+   "naive_e2_ratio": 1.3862943603359583,
+   "theta_over_4": 1.3862943611198906
+  },
+  {
+   "e2": 3.0,
+   "theta": 7.16703787691222,
+   "p_dipole": 0.000770416024653313,
+   "S_per_plaquette": 0.012585222011156093,
+   "I_theta": 0.0015384578858421488,
+   "VarT": 0.0015384578859024556,
+   "identity_dSdth_eq_minus_theta_I_relres": 1.2832899074799897e-08,
+   "I_e2_per_plaquette": 0.002735036241497153,
+   "dS_de2": -0.014701581441817213,
+   "naive_e2_ratio": 1.791759492221524,
+   "theta_over_4": 1.791759469228055
+  },
+  {
+   "e2": 5.0,
+   "theta": 9.210340371976182,
+   "p_dipole": 9.998000399920025e-05,
+   "S_per_plaquette": 0.0020416797371145936,
+   "I_theta": 0.0001999200237007501,
+   "VarT": 0.00019992002399360178,
+   "identity_dSdth_eq_minus_theta_I_relres": 3.137902205606907e-08,
+   "I_e2_per_plaquette": 0.0001279488151684801,
+   "dS_de2": -0.001473065218589309,
+   "naive_e2_ratio": 2.3025851652469154,
+   "theta_over_4": 2.3025850929940455
+  },
+  {
+   "e2": 8.0,
+   "theta": 11.090354888959125,
+   "p_dipole": 1.525832341542312e-05,
+   "S_per_plaquette": 0.0003689575558483018,
+   "I_theta": 3.0515715501738595e-05,
+   "VarT": 3.051571556511244e-05,
+   "identity_dSdth_eq_minus_theta_I_relres": 4.131884472932248e-08,
+   "I_e2_per_plaquette": 7.628928875434649e-06,
+   "dS_de2": -0.0001692150503106258,
+   "naive_e2_ratio": 2.772588607679623,
+   "theta_over_4": 2.772588722239781
+  },
+  {
+   "e2": 12.0,
+   "theta": 12.712215321391783,
+   "p_dipole": 3.014063620854907e-06,
+   "S_per_plaquette": 8.265899689241417e-05,
+   "I_theta": 6.0280908941377675e-06,
+   "VarT": 6.028090903391772e-06,
+   "identity_dSdth_eq_minus_theta_I_relres": 1.0362581322822332e-06,
+   "I_e2_per_plaquette": 6.697878771264186e-07,
+   "dS_de2": -2.5543436671472828e-05,
+   "naive_e2_ratio": 3.178050537067232,
+   "theta_over_4": 3.1780538303479458
+  }
+ ],
+ "strong_coupling_notes": {
+  "N_str": "2 * N_cut straddling plaquettes; all totals are N_str * per-plaquette values",
+  "extensivity": "I_total = N_str * I_per_plaquette \u221d Area/a^2 -> information scales with cut area (unlike d=2)"
+ },
+ "coulomb_zero_mode": [
+  {
+   "e2": 0.05,
+   "theta2": 0.025,
+   "S": 2.916804669981668,
+   "I_e2": 200.0000000002937,
+   "gaussian_limit_1_over_2e4": 199.99999999999997,
+   "I_over_gaussian_limit": 1.0000000000014688,
+   "identity_dSde2_eq_minus_e2_I_relres": 3.057799347992041e-10,
+   "VarT_n2": 800.0
+  },
+  {
+   "e2": 0.1,
+   "theta2": 0.05,
+   "S": 2.5702310797016956,
+   "I_e2": 50.00000000173668,
+   "gaussian_limit_1_over_2e4": 49.99999999999999,
+   "I_over_gaussian_limit": 1.0000000000347338,
+   "identity_dSde2_eq_minus_e2_I_relres": 5.491335383203235e-10,
+   "VarT_n2": 200.0
+  },
+  {
+   "e2": 0.2,
+   "theta2": 0.1,
+   "S": 2.223657489421723,
+   "I_e2": 12.500000000770775,
+   "gaussian_limit_1_over_2e4": 12.499999999999998,
+   "I_over_gaussian_limit": 1.0000000000616622,
+   "identity_dSde2_eq_minus_e2_I_relres": 5.222050344648421e-10,
+   "VarT_n2": 50.0
+  },
+  {
+   "e2": 0.4,
+   "theta2": 0.2,
+   "S": 1.8770838991417498,
+   "I_e2": 3.125000000350431,
+   "gaussian_limit_1_over_2e4": 3.1249999999999996,
+   "I_over_gaussian_limit": 1.000000000112138,
+   "identity_dSde2_eq_minus_e2_I_relres": 2.7640112417204418e-11,
+   "VarT_n2": 12.5
+  },
+  {
+   "e2": 0.8,
+   "theta2": 0.4,
+   "S": 1.5305103079507847,
+   "I_e2": 0.7812500335783286,
+   "gaussian_limit_1_over_2e4": 0.7812499999999999,
+   "I_over_gaussian_limit": 1.0000000429802607,
+   "identity_dSde2_eq_minus_e2_I_relres": 2.3617071721253836e-10,
+   "VarT_n2": 3.1250001345523515
+  },
+  {
+   "e2": 1.0,
+   "theta2": 0.5,
+   "S": 1.4189384329391128,
+   "I_e2": 0.5000018734519286,
+   "gaussian_limit_1_over_2e4": 0.5,
+   "I_over_gaussian_limit": 1.0000037469038572,
+   "identity_dSde2_eq_minus_e2_I_relres": 2.3862800024915886e-10,
+   "VarT_n2": 2.0000074941867103
+  }
+ ],
+ "coulomb_notes": {
+  "model": "Donnelly-Wall 1506.05792 eq.(36): p(n) \u221d exp(-(q_B^2 Vol(B)/2) n^2); kappa stands for q_B^2 Vol(B)/e2-scaling",
+  "identity": "natural parameter is \u221d e2, so dS/de2 = -e2*I(e2) holds here (the direct 2dYM analog)",
+  "divergence": "full cut: one such mode per independent boundary link mode; I_total \u2248 N_modes/(2 e2^2), N_modes \u221d Area/a^2 -> divergent as a->0"
+ }
+}
